@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  pennjets-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - pennjets-network
+
+networks:
+  pennjets-network:
+    driver: bridge
