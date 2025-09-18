@@ -4,51 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Hero from '../../common/Hero/Hero';
 import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
+import { aircraftDatabase } from '../../../data/aircraftData';
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const featuredAircraft = [
-    {
-      id: 1,
-      name: 'Citation X+',
-      manufacturer: 'Cessna',
-      year: 2019,
-      price: '$22,500,000',
-      image: '/api/placeholder/400/300',
-      specs: {
-        range: '3,460 nm',
-        passengers: '10-12',
-        speed: '527 ktas'
-      }
-    },
-    {
-      id: 2,
-      name: 'Gulfstream G650ER',
-      manufacturer: 'Gulfstream',
-      year: 2020,
-      price: '$68,000,000',
-      image: '/api/placeholder/400/300',
-      specs: {
-        range: '7,500 nm',
-        passengers: '13-19',
-        speed: '516 ktas'
-      }
-    },
-    {
-      id: 3,
-      name: 'Falcon 8X',
-      manufacturer: 'Dassault',
-      year: 2021,
-      price: '$58,000,000',
-      image: '/api/placeholder/400/300',
-      specs: {
-        range: '6,450 nm',
-        passengers: '12-16',
-        speed: '488 ktas'
-      }
-    }
-  ];
+  // Get only available aircraft for sale
+  const featuredAircraft = aircraftDatabase.filter(aircraft => aircraft.status === 'Available');
 
   const services = [
     {
@@ -73,12 +35,6 @@ const Home = () => {
     }
   ];
 
-  const stats = [
-    { number: '500+', label: 'Aircraft Sold' },
-    { number: '25+', label: 'Years Experience' },
-    { number: '$2.5B+', label: 'Total Transactions' },
-    { number: '98%', label: 'Client Satisfaction' }
-  ];
 
   return (
     <>
@@ -104,23 +60,6 @@ const Home = () => {
         }}
       />
 
-      {/* Stats Section */}
-      <section className="section-padding bg-white">
-        <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                <div className="text-3xl lg:text-4xl font-bold text-primary-600 mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Featured Aircraft Section */}
       <section className="section-padding bg-gray-50">
@@ -137,8 +76,8 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredAircraft.map((aircraft, index) => (
-              <Card 
-                key={aircraft.id} 
+              <Card
+                key={aircraft.id}
                 className="overflow-hidden animate-slide-up"
                 style={{ animationDelay: `${index * 200}ms` }}
               >
@@ -147,34 +86,34 @@ const Home = () => {
                     Aircraft Image
                   </div>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900">
                       {aircraft.year} {aircraft.manufacturer} {aircraft.name}
                     </h3>
                     <p className="text-2xl font-bold text-primary-600 mt-2">
-                      {aircraft.price}
+                      {aircraft.priceFormatted}
                     </p>
                   </div>
-                  
+
                   <div className="grid grid-cols-3 gap-4 text-sm">
                     <div>
                       <div className="font-medium text-gray-900">Range</div>
-                      <div className="text-gray-600">{aircraft.specs.range}</div>
+                      <div className="text-gray-600">{aircraft.specifications.range}</div>
                     </div>
                     <div>
                       <div className="font-medium text-gray-900">Passengers</div>
-                      <div className="text-gray-600">{aircraft.specs.passengers}</div>
+                      <div className="text-gray-600">{aircraft.specifications.passengers}</div>
                     </div>
                     <div>
-                      <div className="font-medium text-gray-900">Speed</div>
-                      <div className="text-gray-600">{aircraft.specs.speed}</div>
+                      <div className="font-medium text-gray-900">Category</div>
+                      <div className="text-gray-600">{aircraft.category}</div>
                     </div>
                   </div>
-                  
-                  <Button 
-                    variant="outline" 
+
+                  <Button
+                    variant="outline"
                     className="w-full"
                     onClick={() => navigate(`/aircraft/${aircraft.id}`)}
                   >

@@ -11,7 +11,7 @@ export const aircraftDatabase = [
     status: 'Available',
     location: 'Miami, FL',
     images: [
-      '/api/placeholder/800/600',
+      '/images/hawker-800xp-exterior.jpg',
       '/api/placeholder/800/600',
       '/api/placeholder/800/600',
     ],

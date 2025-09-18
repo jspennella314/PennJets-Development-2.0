@@ -9,27 +9,9 @@ const About = () => {
 
   const teamMembers = [
     {
-      name: 'James Peterson',
+      name: 'Joseph Pennella',
       title: 'Founder & CEO',
-      bio: 'With over 25 years in aviation, James founded PennJets to provide unmatched expertise in the luxury aircraft market.',
-      image: '/api/placeholder/300/300'
-    },
-    {
-      name: 'Sarah Mitchell',
-      title: 'VP of Sales',
-      bio: 'Sarah brings 18 years of aviation sales experience, specializing in ultra-long-range aircraft transactions.',
-      image: '/api/placeholder/300/300'
-    },
-    {
-      name: 'Michael Rodriguez',
-      title: 'Director of Acquisitions',
-      bio: 'Michael leads our acquisition team with expertise in aircraft evaluation and market analysis.',
-      image: '/api/placeholder/300/300'
-    },
-    {
-      name: 'Emily Chen',
-      title: 'Charter Operations Manager',
-      bio: 'Emily oversees our charter operations with a focus on safety, compliance, and exceptional service.',
+      bio: 'Aviation enthusiast and founder of PennJets LLC, dedicated to making private aviation accessible, profitable, and hassle-free.',
       image: '/api/placeholder/300/300'
     }
   ];
@@ -57,33 +39,6 @@ const About = () => {
     }
   ];
 
-  const milestones = [
-    {
-      year: '1998',
-      title: 'Company Founded',
-      description: 'PennJets established as a boutique aviation brokerage'
-    },
-    {
-      year: '2005',
-      title: 'First $100M Year',
-      description: 'Achieved first $100 million in annual transactions'
-    },
-    {
-      year: '2012',
-      title: 'International Expansion',
-      description: 'Expanded services to European and Asian markets'
-    },
-    {
-      year: '2018',
-      title: 'Charter Division Launch',
-      description: 'Launched charter services to complement brokerage operations'
-    },
-    {
-      year: '2023',
-      title: '$2.5B Milestone',
-      description: 'Surpassed $2.5 billion in lifetime transactions'
-    }
-  ];
 
   return (
     <>
@@ -114,21 +69,15 @@ const About = () => {
               <h2 className="heading-md mb-6">Our Story</h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Founded in 1998 by aviation enthusiast James Peterson, PennJets began as a 
-                  boutique brokerage with a simple mission: to provide unparalleled expertise 
-                  and personalized service in the luxury aircraft market.
+                  Founded in 2025 by aviation enthusiast Joseph Pennella, PennJets LLC is a
+                  boutique aircraft brokerage and management firm dedicated to making private
+                  aviation accessible, profitable, and hassle-free for owners and flyers.
                 </p>
                 <p>
-                  Over the past 25 years, we have evolved into one of the most respected names 
-                  in aviation brokerage, facilitating over $2.5 billion in aircraft transactions 
-                  and building lasting relationships with clients worldwide.
-                </p>
-                <p>
-                  Our success is built on deep industry knowledge, unwavering integrity, and 
-                  a commitment to excellence that permeates every aspect of our business. 
-                  From first-time buyers to seasoned fleet owners, we provide the expertise 
-                  and guidance needed to make informed decisions in the complex world of 
-                  luxury aviation.
+                  Whether you're buying your first light jet, looking for fractional ownership
+                  with 100% bonus depreciation, or liquidating a legacy aircraft, PennJets
+                  provides the expertise, negotiation power, and end-to-end management to
+                  maximize your return and minimize your risk.
                 </p>
               </div>
             </div>
@@ -165,47 +114,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="section-padding bg-white">
-        <div className="max-w-7xl mx-auto container-padding">
-          <div className="text-center mb-12">
-            <h2 className="heading-lg mb-4">Our Journey</h2>
-            <p className="body-lg max-w-2xl mx-auto">
-              Key milestones that have shaped our company and the aviation industry.
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-primary-200"></div>
-
-            <div className="space-y-12">
-              {milestones.map((milestone, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <Card className="inline-block">
-                      <div className="text-primary-600 font-bold text-lg mb-2">
-                        {milestone.year}
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">
-                        {milestone.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm">
-                        {milestone.description}
-                      </p>
-                    </Card>
-                  </div>
-                  
-                  {/* Timeline Dot */}
-                  <div className="relative z-10 w-4 h-4 bg-primary-600 rounded-full border-4 border-white"></div>
-                  
-                  <div className="w-1/2"></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Team Section */}
       <section className="section-padding bg-gray-50" id="team">
@@ -242,21 +150,13 @@ const About = () => {
       {/* Stats Section */}
       <section className="section-padding bg-primary-600 text-white">
         <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold mb-2">25+</div>
-              <div className="text-primary-100">Years of Experience</div>
+              <div className="text-4xl font-bold mb-2">2025</div>
+              <div className="text-primary-100">Year Founded</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">500+</div>
-              <div className="text-primary-100">Aircraft Sold</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">$2.5B+</div>
-              <div className="text-primary-100">Total Transactions</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">98%</div>
+              <div className="text-4xl font-bold mb-2">100%</div>
               <div className="text-primary-100">Client Satisfaction</div>
             </div>
           </div>
