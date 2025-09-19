@@ -67,6 +67,46 @@ export const aircraftDatabase = [
     description: 'This 1982 Mitsubishi Diamond 1A is being offered for parts. Located in Sanford, FL, this aircraft represents a unique opportunity for parts acquisition or restoration project.'
   },
   {
+    id: 3,
+    name: 'Beechcraft Premier 1A',
+    manufacturer: 'Beechcraft',
+    model: 'Premier 1A',
+    year: 2006,
+    price: 300000,
+    priceFormatted: '$300,000 (1/4 Share)',
+    category: 'Light Jet',
+    status: 'Available',
+    location: 'Miami, FL',
+    images: [
+      '/images/premier-1a-exterior.jpg',
+      '/images/premier-1a-hangar.jpg',
+      '/images/premier-1a-entry.jpg',
+      '/images/premier-1a-cabin.jpg',
+      '/images/premier-1a-seating.jpg',
+    ],
+    specifications: {
+      range: '1,460 nm',
+      averageBlockSpeed: '390 kts',
+      normalCruiseSpeed: '456 kts',
+      longRangeCruiseSpeed: '420 kts',
+      fuelUsage: '215 gal/hr',
+      serviceCeiling: '41,000 ft',
+      passengers: '6',
+      baggage: '53 cu ft',
+      runway: '3,560 ft'
+    },
+    features: [
+      'Rockwell Collins Pro Line 21 Avionics',
+      'Executive Interior Configuration',
+      'Enclosed Lavatory',
+      'Galley with Refreshment Center',
+      'Climate Control System',
+      'LED Cabin Lighting',
+      'Leather Seating'
+    ],
+    description: 'This 2006 Beechcraft Premier 1A is a sophisticated light jet offering exceptional performance and comfort. With its composite construction and advanced avionics, it delivers impressive speed and efficiency for business travel. The spacious cabin features executive seating and modern amenities. Available as a 1/4 share ownership.'
+  },
+  {
     id: 5,
     name: 'E55 Baron',
     manufacturer: 'Beechcraft',
