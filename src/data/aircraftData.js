@@ -1,7 +1,7 @@
 export const aircraftDatabase = [
   {
     id: 1,
-    name: 'Hawker 800XP',
+    name: '800XP',
     manufacturer: 'Hawker',
     model: '800XP',
     year: 2003,
@@ -37,7 +37,7 @@ export const aircraftDatabase = [
   },
   {
     id: 4,
-    name: 'Mitsubishi Diamond 1A',
+    name: '1A',
     manufacturer: 'Mitsubishi',
     model: 'Diamond 1A',
     year: 1982,
@@ -68,7 +68,7 @@ export const aircraftDatabase = [
   },
   {
     id: 3,
-    name: 'Beechcraft Premier 1A',
+    name: '1A',
     manufacturer: 'Beechcraft',
     model: 'Premier 1A',
     year: 2006,
@@ -108,7 +108,7 @@ export const aircraftDatabase = [
   },
   {
     id: 5,
-    name: 'E55 Baron',
+    name: 'E55',
     manufacturer: 'Beechcraft',
     model: 'E55 Baron',
     year: 1979,

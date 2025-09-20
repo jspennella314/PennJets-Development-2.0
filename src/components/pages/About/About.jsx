@@ -75,9 +75,9 @@ const About = () => {
               <h2 className="heading-md mb-6">Our Story</h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Founded in 2025 by aviation enthusiast Joseph Pennella, PennJets LLC is a
-                  boutique aircraft brokerage and management firm dedicated to making private
-                  aviation accessible, profitable, and hassle-free for owners and flyers.
+                  Founded in 2025 by Aviation Enthusiast Joseph Pennella, Penn Jets LLC, an
+                  emerging aviation broker, with an exclusive partnership in KLM Aviation, a
+                  trusted operator in South Florida.
                 </p>
                 <p>
                   Whether you're buying your first light jet, looking for fractional ownership
