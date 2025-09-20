@@ -9,6 +9,7 @@ import AircraftListing from './components/pages/AircraftListing/AircraftListing'
 import AircraftDetail from './components/pages/AircraftDetail/AircraftDetail';
 import Contact from './components/pages/Contact/Contact';
 import Blog from './components/pages/Blog/Blog';
+import PennShare from './components/pages/PennShare/PennShare';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/aircraft" element={<AircraftListing />} />
               <Route path="/aircraft/:id" element={<AircraftDetail />} />
+              <Route path="/pennshare" element={<PennShare />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
             </Routes>
