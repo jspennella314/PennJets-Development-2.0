@@ -13,6 +13,12 @@ const About = () => {
       title: 'Founder & CEO',
       bio: 'Aviation enthusiast and founder of PennJets LLC, dedicated to making private aviation accessible, profitable, and hassle-free.',
       image: '/api/placeholder/300/300'
+    },
+    {
+      name: 'Steven Smyth',
+      title: 'Captain and Owner Operator',
+      bio: 'Captain and Owner Operator of KLM Aviation, established in 1991. Brings decades of aviation expertise and operational excellence to the PennJets team.',
+      image: '/api/placeholder/300/300'
     }
   ];
 
@@ -126,7 +132,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {teamMembers.map((member, index) => (
               <Card key={index} className="text-center">
                 <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
