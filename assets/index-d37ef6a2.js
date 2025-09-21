@@ -120,25 +120,27 @@ Error generating stack: `+l.message+`
         }
 
         .hero-text h1 {
-          font-size: 4rem;
+          font-size: clamp(2.5rem, 8vw, 4rem);
           font-weight: 800;
           margin: 0 0 1rem 0;
         }
 
         .hero-text p {
-          font-size: 1.25rem;
+          font-size: clamp(1rem, 2vw, 1.25rem);
           margin: 0 0 2rem 0;
           max-width: 600px;
+          padding: 0 1rem;
         }
 
         .hero-btn {
           background: rgba(255,255,255,0.2);
           border: 2px solid rgba(255,255,255,0.3);
           color: white;
-          padding: 12px 24px;
+          padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 24px);
           border-radius: 8px;
           cursor: pointer;
           backdrop-filter: blur(10px);
+          font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .hero-btn:hover {
