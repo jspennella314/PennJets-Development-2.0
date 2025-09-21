@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PennJets Scroll Test</title>
+    <style>
+        :root {
+            --day-src: url('/images/day-flight.jpg?v=2');
+            --night-src: url('/images/night-flight.jpg?v=1');
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .day-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--day-src);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .night-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--night-src);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+
+        .content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            text-align: center;
+            background: rgba(0,0,0,0.3);
+            opacity: calc(1 - var(--scroll-progress, 0));
+            transition: opacity 0.1s ease;
+        }
+
+        .text {
+            background: rgba(0,0,0,0.5);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .spacer {
+            height: 50vh;
+            background: linear-gradient(to bottom, transparent, #1f2937);
+            position: relative;
+            z-index: 5;
+            margin-top: 100vh;
+        }
+
+        .main-content {
+            background: #1f2937;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            color: white;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="day-image"></div>
+        <div class="night-image" id="nightImage"></div>
+    </div>
+
+    <div class="content">
+        <div class="text">
+            <h1>PennJets</h1>
+            <p>Experience luxury aviation at 40,000 feet. From sunrise to city lights, we elevate your journey with unmatched service and expertise.</p>
+            <button class="btn" onclick="window.location.href='http://localhost:3001/aircraft'">Explore Our Fleet</button>
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <div style="font-size: 24px;">↓</div>
+        <div style="font-size: 12px; margin-top: 8px;">Scroll to see transition</div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="main-content">
+        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Premium Aviation Services</h2>
+        <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+            Discover our comprehensive aviation solutions tailored to your needs, backed by decades of industry expertise.
+        </p>
+        <br><br>
+
+        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 10px; margin: 2rem auto; max-width: 600px; text-align: left;">
+            <h3 style="color: #fbbf24; margin-bottom: 1rem;">🔧 3-Step Verification Checklist:</h3>
+            <ol style="line-height: 1.8; font-size: 0.95rem;">
+                <li><strong>Direct Image Access:</strong><br>
+                    • Visit <a href="/images/day-flight.jpg" target="_blank" style="color: #60a5fa;">/images/day-flight.jpg</a> → expect 200<br>
+                    • Visit <a href="/images/night-flight.jpg" target="_blank" style="color: #60a5fa;">/images/night-flight.jpg</a> → expect 200
+                </li>
+                <li><strong>Cache-Disabled Reload:</strong><br>
+                    • Press <code style="background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 3px;">Ctrl+Shift+R</code> (or <code style="background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 3px;">Cmd+Shift+R</code>) to reload with cache disabled<br>
+                    • Confirm images render in hero background
+                </li>
+                <li><strong>DevTools Network Check:</strong><br>
+                    • Open DevTools → Network tab → Reload page<br>
+                    • Check for any 404s or blocked requests<br>
+                    • Fix paths if needed
+                </li>
+            </ol>
+        </div>
+
+        <button class="btn" onclick="window.location.href='http://localhost:3001'">Back to Main Site</button>
+    </div>
+
+    <script>
+        function updateScrollProgress() {
+            const scrolled = window.scrollY;
+            const maxScroll = window.innerHeight * 0.25; // Very short scroll distance
+            const progress = Math.min(scrolled / maxScroll, 1);
+
+            const nightImage = document.getElementById('nightImage');
+            nightImage.style.opacity = progress;
+
+            // Set CSS custom property for text fade
+            document.documentElement.style.setProperty('--scroll-progress', progress);
+
+            // Debug: show progress in console
+            console.log('Scroll progress:', progress.toFixed(2));
+        }
+
+        window.addEventListener('scroll', updateScrollProgress, { passive: true });
+        updateScrollProgress();
+
+        // Check if images are loading
+        window.addEventListener('load', () => {
+            console.log('Page loaded');
+            const dayImg = new Image();
+            const nightImg = new Image();
+
+            dayImg.onload = () => console.log('Day image loaded successfully');
+            dayImg.onerror = () => console.log('Day image failed to load');
+            dayImg.src = '/images/day-flight.jpg?v=2';
+
+            nightImg.onload = () => console.log('Night image loaded successfully');
+            nightImg.onerror = () => console.log('Night image failed to load');
+            nightImg.src = '/images/night-flight.jpg?v=1';
+        });
+    </script>
+</body>
+</html>

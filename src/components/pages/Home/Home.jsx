@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import Hero from '../../common/Hero/Hero';
+import ScrollHeroSimple from '../../common/ScrollHero/ScrollHeroSimple';
 import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
 import { aircraftDatabase } from '../../../data/aircraftData';
@@ -44,22 +44,29 @@ const Home = () => {
         <meta name="keywords" content="aviation brokerage, private jets, aircraft sales, charter services, luxury aircraft" />
       </Helmet>
 
-      {/* Hero Section */}
-      <Hero
-        title="Elevate Your Aviation Experience"
-        subtitle="Premier Aviation Brokerage"
-        description="With over 25 years of expertise, we connect discerning clients with the world's finest aircraft. From acquisition to management, trust PennJets for unparalleled service in luxury aviation."
-        backgroundImage="/api/placeholder/1920/1080"
-        primaryAction={{
-          text: 'Browse Aircraft',
-          onClick: () => navigate('/aircraft')
-        }}
-        secondaryAction={{
-          text: 'Contact Us',
-          onClick: () => navigate('/contact')
-        }}
-      />
+      {/* Scroll Hero Section */}
+      <ScrollHeroSimple />
 
+      {/* Services Section */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto container-padding">
+          <div className="text-center mb-12">
+            <h2 className="heading-lg text-gray-900 mb-4">Our Services</h2>
+            <p className="body-lg max-w-3xl mx-auto">
+              Comprehensive aviation solutions tailored to your needs, backed by decades of industry expertise.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="text-center">
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Featured Aircraft Section */}
       <section className="section-padding bg-gray-50">
