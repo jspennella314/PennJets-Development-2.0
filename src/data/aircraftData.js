@@ -83,6 +83,7 @@ export const aircraftDatabase = [
       '/images/premier-1a-entry.jpg',
       '/images/premier-1a-cabin.jpg',
       '/images/premier-1a-seating.jpg',
+      '/images/premier-1a-hangar - Copy.jpg',
     ],
     specifications: {
       range: '1,460 nm',
@@ -105,6 +106,41 @@ export const aircraftDatabase = [
       'Leather Seating'
     ],
     description: 'This 2006 Beechcraft Premier 1A is a sophisticated light jet offering exceptional performance and comfort. With its composite construction and advanced avionics, it delivers impressive speed and efficiency for business travel. The spacious cabin features executive seating and modern amenities. Available as a 1/4 share ownership.'
+  },
+  {
+    id: 2,
+    name: '182',
+    manufacturer: 'Cessna',
+    model: '182 Skylane',
+    year: 2006,
+    price: 50000,
+    priceFormatted: '$50,000 (1/10th Share)',
+    category: 'Piston Single',
+    status: 'Available',
+    location: 'TBD',
+    images: [
+      '/images/cessna-182.jpg',
+      '/images/cessna-182-panel.jpg',
+      '/images/cessna-182-exterior.jpg',
+    ],
+    specifications: {
+      range: '915 nm',
+      maxSpeed: '182 kts',
+      cruiseSpeed: '145 kts',
+      maxAltitude: '18,100 ft',
+      passengers: '4',
+      baggage: '120 lbs',
+      runway: '1,365 ft'
+    },
+    features: [
+      'Garmin G1000 Glass Cockpit',
+      'Fixed Landing Gear',
+      'High Wing Configuration',
+      'Fuel Injection',
+      'Club Seating',
+      'Cargo Door Access'
+    ],
+    description: 'This 2006 Cessna 182 Skylane represents an excellent opportunity for fractional ownership. As a 1/10th share, you gain access to one of aviation\'s most reliable and versatile single-engine aircraft. Perfect for personal transportation, training, or recreational flying. The 182 is known for its forgiving flight characteristics, spacious cabin, and excellent load-carrying capability.'
   },
   {
     id: 5,
@@ -141,13 +177,15 @@ export const aircraftDatabase = [
 
 export const manufacturers = [
   'All',
+  'Beechcraft',
+  'Cessna',
   'Hawker',
-  'Mitsubishi',
-  'Beechcraft'
+  'Mitsubishi'
 ];
 
 export const categories = [
   'All',
+  'Piston Single',
   'Piston Prop',
   'Light Jet',
   'Mid-Size'
