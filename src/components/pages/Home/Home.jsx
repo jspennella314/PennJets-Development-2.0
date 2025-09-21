@@ -159,8 +159,8 @@ const Home = () => {
       {/* Hero Section */}
       <header className="relative">
         <img
-          src="/images/day-flight.jpg"
-          alt="Light and midsize private jets on the ramp"
+          src="/images/Hawker-night.jpg"
+          alt="Private jet on the ramp at night with illuminated cabin"
           loading="eager"
           width={1920}
           height={1080}
