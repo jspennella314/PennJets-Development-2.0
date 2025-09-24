@@ -179,7 +179,7 @@ const PennShare = () => {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src="/images/premier-1a-exterior.jpg"
+                  src="/images/PENNSHARE/PREMIER-1A.jpg"
                   alt="2006 Beechcraft Premier 1A"
                   className="w-full h-96 object-cover"
                   onError={(e) => {
@@ -220,13 +220,28 @@ const PennShare = () => {
                 </div>
               </div>
 
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => navigate('/aircraft/3')}
-              >
-                View Complete Details
-              </Button>
+              <div className="space-y-4">
+                <div
+                  className="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition-shadow"
+                  onClick={() => navigate('/aircraft/3')}
+                >
+                  <img
+                    src="/images/PENNSHARE/PREMIER-1A-interior.jpg"
+                    alt="Premier 1A Interior Details"
+                    className="w-full h-32 object-cover hover:scale-105 transition-transform"
+                    onError={(e) => {
+                      e.target.src = '/api/placeholder/400/200';
+                    }}
+                  />
+                </div>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => navigate('/aircraft/3')}
+                >
+                  View Complete Details
+                </Button>
+              </div>
             </div>
           </div>
         </div>

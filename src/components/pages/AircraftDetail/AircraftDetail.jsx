@@ -74,7 +74,18 @@ const AircraftDetail = () => {
           {/* Image Section */}
           <div className="mb-8">
             <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500 text-xl">
+              {aircraft.id === 3 ? (
+                <img
+                  src="/images/PENNSHARE/PREMIER-1A.jpg"
+                  alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+              ) : null}
+              <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500 text-xl" style={{display: aircraft.id === 3 ? 'none' : 'flex'}}>
                 Aircraft Image
               </div>
             </div>
