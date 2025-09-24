@@ -46,7 +46,7 @@ const PennShare = () => {
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Experience private aviation through intelligent fractional ownership.
-                Share the costs, not the convenience. Professional management included.
+                Share the costs, not the convenience. Professional management Exclusively through KLM AVIATION EST. 1991
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -319,7 +319,7 @@ const PennShare = () => {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src="/images/PENNSHARE/HAWKER-800XP.png"
+                  src="/images/PENNSHARE/HAWKER-800XP.jpg"
                   alt="2004 Hawker 800XP"
                   className="w-full h-96 object-cover"
                   onError={(e) => {

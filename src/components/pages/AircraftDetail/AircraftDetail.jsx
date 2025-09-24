@@ -84,6 +84,16 @@ const AircraftDetail = () => {
                     e.target.nextSibling.style.display = 'flex';
                   }}
                 />
+              ) : aircraft.id === 2 ? (
+                <img
+                  src="/images/Cessna-182/CESSNA-182.jpg"
+                  alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
               ) : aircraft.id === 3 ? (
                 <img
                   src="/images/PENNSHARE/PREMIER-1A.jpg"
@@ -105,7 +115,7 @@ const AircraftDetail = () => {
                   }}
                 />
               ) : null}
-              <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500 text-xl" style={{display: (aircraft.id === 1 || aircraft.id === 3 || aircraft.id === 4) ? 'none' : 'flex'}}>
+              <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500 text-xl" style={{display: (aircraft.id === 1 || aircraft.id === 2 || aircraft.id === 3 || aircraft.id === 4) ? 'none' : 'flex'}}>
                 Aircraft Image
               </div>
             </div>

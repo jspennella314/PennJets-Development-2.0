@@ -11,9 +11,9 @@ export const aircraftDatabase = [
     status: 'Available',
     location: 'Miami, FL',
     images: [
-      '/images/hawker-800xp-exterior.jpg',
-      '/api/placeholder/800/600',
-      '/api/placeholder/800/600',
+      '/images/Hawker-night - Copy.jpg',
+      '/images/Hawker-night - Copy.jpg',
+      '/images/Hawker-night - Copy.jpg',
     ],
     specifications: {
       range: '2,540 nm',
@@ -120,9 +120,9 @@ export const aircraftDatabase = [
     status: 'Available',
     location: 'TBD',
     images: [
-      '/images/cessna-182.jpg',
-      '/images/cessna-182-panel.jpg',
-      '/images/cessna-182-exterior.jpg',
+      '/images/Cessna-182/CESSNA-182.jpg',
+      '/images/Cessna-182/CESSNA-182.jpg',
+      '/images/Cessna-182/CESSNA-182.jpg',
     ],
     specifications: {
       range: '915 nm',
