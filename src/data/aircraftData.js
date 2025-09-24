@@ -47,8 +47,8 @@ export const aircraftDatabase = [
     status: 'Available',
     location: 'Sanford, FL',
     images: [
-      '/api/placeholder/800/600',
-      '/api/placeholder/800/600',
+      '/images/Diamond-1A/diamond-1a-ramp.JPEG',
+      '/images/Diamond-1A/diamond-1a-ramp.JPEG',
     ],
     specifications: {
       range: '1,700 nm',
@@ -64,7 +64,8 @@ export const aircraftDatabase = [
       'Standard Interior',
       'Offered for Parts'
     ],
-    description: 'This 1982 Mitsubishi Diamond 1A is being offered for parts. Located in Sanford, FL, this aircraft represents a unique opportunity for parts acquisition or restoration project.'
+    description: 'This 1982 Mitsubishi Diamond 1A is being offered for parts. Located in Sanford, FL, this aircraft represents a unique opportunity for parts acquisition or restoration project. Full listing details and additional photos available on Trade-A-Plane.',
+    tradeAPlaneUrl: 'https://www.trade-a-plane.com/search?category_level1=Jets&make=MITSUBISHI&model=DIAMOND+1A&listing_id=2447075&s-type=aircraft'
   },
   {
     id: 3,

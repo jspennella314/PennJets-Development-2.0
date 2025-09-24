@@ -74,7 +74,17 @@ const AircraftDetail = () => {
           {/* Image Section */}
           <div className="mb-8">
             <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden">
-              {aircraft.id === 3 ? (
+              {aircraft.id === 1 ? (
+                <img
+                  src="/images/PENNSHARE/HAWKER-800XP.jpg"
+                  alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+              ) : aircraft.id === 3 ? (
                 <img
                   src="/images/PENNSHARE/PREMIER-1A.jpg"
                   alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
@@ -84,8 +94,18 @@ const AircraftDetail = () => {
                     e.target.nextSibling.style.display = 'flex';
                   }}
                 />
+              ) : aircraft.id === 4 ? (
+                <img
+                  src="/images/Diamond-1A/diamond-1a-ramp.JPEG"
+                  alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
               ) : null}
-              <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500 text-xl" style={{display: aircraft.id === 3 ? 'none' : 'flex'}}>
+              <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500 text-xl" style={{display: (aircraft.id === 1 || aircraft.id === 3 || aircraft.id === 4) ? 'none' : 'flex'}}>
                 Aircraft Image
               </div>
             </div>
@@ -161,6 +181,28 @@ const AircraftDetail = () => {
                 </div>
               </div>
 
+              {/* Trade-A-Plane Link */}
+              {aircraft.tradeAPlaneUrl && (
+                <div className="bg-blue-50 rounded-lg shadow-md p-6 mb-6">
+                  <h3 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="mr-2">🛩️</span>
+                    Full Listing Details
+                  </h3>
+                  <p className="text-gray-600 mb-4 text-sm">
+                    View complete specifications, additional photos, and detailed information on Trade-A-Plane.
+                  </p>
+                  <a
+                    href={aircraft.tradeAPlaneUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center font-medium"
+                  >
+                    <span className="mr-2">🔗</span>
+                    View on Trade-A-Plane
+                  </a>
+                </div>
+              )}
+
               {/* Contact */}
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h3 className="text-xl font-semibold mb-4">Contact Specialist</h3>
@@ -172,8 +214,8 @@ const AircraftDetail = () => {
                   <div className="text-sm text-gray-600">Private Jet Expert</div>
                 </div>
                 <div className="space-y-2 text-sm mb-4">
-                  <div>📞 (555) 123-4567</div>
-                  <div>✉️ specialist@pennjets.com</div>
+                  <div>📞 (973) 868-8425</div>
+                  <div>✉️ info@pennjets.com</div>
                 </div>
                 <button
                   onClick={() => navigate('/contact')}

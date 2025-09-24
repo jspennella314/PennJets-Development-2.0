@@ -6,8 +6,6 @@
     <title>PennJets - Premium Aviation Services</title>
     <style>
         :root {
-            --day-src: url('/images/day-flight.jpg?v=2');
-            --night-src: url('/images/night-flight.jpg?v=1');
             --scroll-progress: 0;
             --primary-50: #f0f9ff;
             --primary-100: #e0f2fe;
@@ -51,33 +49,13 @@
             z-index: 1;
         }
 
-        .day-image {
+        .hero-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: var(--day-src);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transform: scale(calc(1.02 + 0.03 * var(--scroll-progress)));
-            transition: transform 0.1s ease;
-        }
-
-        .night-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: var(--night-src);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: var(--scroll-progress);
-            transform: scale(calc(1.03 + 0.04 * var(--scroll-progress)));
-            transition: opacity 0.1s ease, transform 0.1s ease;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
         }
 
         .hero-overlay {
@@ -86,11 +64,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(
-                120vmax 90vmax at 50% 65%,
-                rgba(0, 0, 0, calc(0.2 + 0.3 * var(--scroll-progress))),
-                rgba(0, 0, 0, calc(0.5 + 0.4 * var(--scroll-progress)))
-            );
+            background: rgba(0, 0, 0, 0.3);
             z-index: 2;
         }
 
@@ -105,9 +79,6 @@
             justify-content: center;
             z-index: 10;
             text-align: center;
-            opacity: calc(1 - var(--scroll-progress));
-            transform: translateY(calc(var(--scroll-progress) * 20px));
-            transition: opacity 0.1s ease, transform 0.1s ease;
         }
 
         .hero-text {
@@ -316,69 +287,6 @@
             transform: translateY(-2px);
         }
 
-        /* Navigation Bar */
-        .navigation-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 1rem 2rem;
-            z-index: 100;
-            transform: translateY(calc((1 - min(var(--scroll-progress), 0.7)) * -100%));
-            transition: transform 0.3s ease;
-            pointer-events: auto;
-        }
-
-        .nav-content {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-600);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--gray-800);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-600);
-        }
-
-        .nav-cta {
-            background: var(--primary-600);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .nav-cta:hover {
-            background: var(--primary-700);
-            transform: translateY(-1px);
-        }
-
         /* Scroll Indicator */
         .scroll-indicator {
             position: fixed;
@@ -387,7 +295,7 @@
             transform: translateX(-50%);
             z-index: 15;
             color: white;
-            opacity: calc(0.8 - var(--scroll-progress));
+            opacity: 0.8;
             animation: bounce 2s infinite;
             text-align: center;
         }
@@ -420,47 +328,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .nav-links li:first-child,
-            .nav-links li:last-child {
-                display: none;
-            }
-
-            .navigation-bar {
-                padding: 0.75rem 1rem;
-            }
-
-            .nav-logo {
-                font-size: 1.25rem;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navigation-bar">
-        <div class="nav-content">
-            <a href="http://localhost:3001/" class="nav-logo">PennJets</a>
-            <ul class="nav-links">
-                <li><a href="http://localhost:3001/">Home</a></li>
-                <li><a href="http://localhost:3001/about">About</a></li>
-                <li><a href="http://localhost:3001/services">Services</a></li>
-                <li><a href="http://localhost:3001/aircraft">Aircraft</a></li>
-                <li><a href="http://localhost:3001/pennshare">PennShare</a></li>
-                <li><a href="http://localhost:3001/blog">Blog</a></li>
-            </ul>
-            <a href="http://localhost:3001/contact" class="nav-cta">Contact Us</a>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
     <div class="scroll-hero">
-        <div class="day-image"></div>
-        <div class="night-image"></div>
+        <div class="hero-background"></div>
         <div class="hero-overlay"></div>
     </div>
 
@@ -561,35 +435,9 @@
     </div>
 
     <script>
-        function updateScrollProgress() {
-            const scrolled = window.scrollY;
-            const maxScroll = window.innerHeight * 0.3; // 30% scroll distance
-            const progress = Math.min(scrolled / maxScroll, 1);
-
-            // Set CSS custom property for all scroll-based animations
-            document.documentElement.style.setProperty('--scroll-progress', progress);
-
-            // Debug: show progress in console
-            console.log('Scroll progress:', progress.toFixed(2));
-        }
-
-        // Initialize
-        window.addEventListener('scroll', updateScrollProgress, { passive: true });
-        updateScrollProgress();
-
-        // Check if images are loading
+        // Simple page load confirmation
         window.addEventListener('load', () => {
-            console.log('Page loaded');
-            const dayImg = new Image();
-            const nightImg = new Image();
-
-            dayImg.onload = () => console.log('Day image loaded successfully');
-            dayImg.onerror = () => console.log('Day image failed to load');
-            dayImg.src = '/images/day-flight.jpg?v=2';
-
-            nightImg.onload = () => console.log('Night image loaded successfully');
-            nightImg.onerror = () => console.log('Night image failed to load');
-            nightImg.src = '/images/night-flight.jpg?v=1';
+            console.log('Page loaded successfully');
         });
     </script>
 </body>

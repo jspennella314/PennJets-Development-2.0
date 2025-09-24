@@ -58,8 +58,8 @@ const Home = () => {
       pax: 7,
       rangeNm: 1700,
       location: "Sanford, FL",
-      url: "/aircraft/diamond-1a",
-      image: "/images/diamond-1a.webp",
+      url: "/aircraft/4",
+      image: "/images/Diamond-1A/diamond-1a-ramp.JPEG",
       blurb: "Offered for parts • Strong spares platform",
     },
     {

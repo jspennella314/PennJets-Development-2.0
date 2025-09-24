@@ -35,13 +35,13 @@ const Contact = () => {
   const contactInfo = [
     {
       title: 'Phone',
-      info: '(954) 546-0763',
+      info: '(973) 868-8425',
       description: 'Available 24/7 for urgent inquiries',
       icon: '📞'
     },
     {
       title: 'Email',
-      info: 'info@pennjets.com',
+      info: 'INFO@PENNJETS.COM',
       description: 'We respond within 2 hours',
       icon: '✉️'
     },
@@ -57,7 +57,7 @@ const Contact = () => {
     {
       city: 'Miami, FL',
       address: '690 SW 1st Ct #1030\nMiami, FL 33130',
-      phone: '(954) 546-0763',
+      phone: '(973) 868-8425',
       isHQ: true
     },
   ];

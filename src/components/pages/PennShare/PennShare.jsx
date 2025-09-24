@@ -247,6 +247,91 @@ const PennShare = () => {
         </div>
       </section>
 
+      {/* Hawker 800XP Section */}
+      <section className="py-16 lg:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto container-padding">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
+                MID-SIZE JET
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                2004 Hawker 800XP
+              </h2>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 mb-8">
+                <div className="flex justify-between items-center py-2 border-b border-blue-200">
+                  <span className="text-gray-600 font-medium">Share Available:</span>
+                  <span className="font-semibold text-gray-900">1/4 Ownership</span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-gray-600 font-medium">Investment:</span>
+                  <span className="font-bold text-2xl text-blue-600">$750,000</span>
+                </div>
+              </div>
+              <p className="text-xl text-gray-600 mb-8">
+                Step up to mid-size luxury with exceptional range and performance.
+                Perfect for transcontinental business travel with executive amenities.
+              </p>
+
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600">2,540</div>
+                  <div className="text-sm text-gray-600">Nautical Mile Range</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600">9</div>
+                  <div className="text-sm text-gray-600">Passenger Capacity</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600">419</div>
+                  <div className="text-sm text-gray-600">Cruise Speed (kts)</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600">41K</div>
+                  <div className="text-sm text-gray-600">Service Ceiling (ft)</div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div
+                  className="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition-shadow"
+                  onClick={() => navigate('/aircraft/1')}
+                >
+                  <img
+                    src="/images/PENNSHARE/HAWKER-800XP.jpg"
+                    alt="Hawker 800XP Details"
+                    className="w-full h-32 object-cover hover:scale-105 transition-transform"
+                    onError={(e) => {
+                      e.target.src = '/api/placeholder/400/200';
+                    }}
+                  />
+                </div>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => navigate('/aircraft/1')}
+                >
+                  View Hawker Details
+                </Button>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img
+                  src="/images/PENNSHARE/HAWKER-800XP.png"
+                  alt="2004 Hawker 800XP"
+                  className="w-full h-96 object-cover"
+                  onError={(e) => {
+                    e.target.src = '/api/placeholder/600/400';
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form Section */}
       <section className="py-16 lg:py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto container-padding">
@@ -303,7 +388,7 @@ const PennShare = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    placeholder="(555) 123-4567"
+                    placeholder="(973) 868-8425"
                   />
                 </div>
                 <div>
