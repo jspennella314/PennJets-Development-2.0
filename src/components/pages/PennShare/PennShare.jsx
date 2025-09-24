@@ -226,7 +226,7 @@ const PennShare = () => {
                   onClick={() => navigate('/aircraft/3')}
                 >
                   <img
-                    src="/images/PENNSHARE/PREMIER-1A-interior.jpg"
+                    src="/images/PENNSHARE/PREMIER-1A.jpg"
                     alt="Premier 1A Interior Details"
                     className="w-full h-32 object-cover hover:scale-105 transition-transform"
                     onError={(e) => {
