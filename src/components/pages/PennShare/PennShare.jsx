@@ -80,7 +80,7 @@ const PennShare = () => {
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">
                     <span className="text-gray-600 font-medium">Investment:</span>
-                    <span className="font-bold text-2xl text-primary-600">$300,000</span>
+                    <span className="font-bold text-2xl text-primary-600">$550,000</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
                     <span className="text-gray-600 font-medium">Annual Hours:</span>
