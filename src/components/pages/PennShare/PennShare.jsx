@@ -46,7 +46,7 @@ const PennShare = () => {
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Experience private aviation through intelligent fractional ownership.
-                Share the costs, not the convenience. Professional management Exclusively through KLM AVIATION EST. 1991
+                Share the costs, not the convenience. Professional management Exclusively through Part 135-Charter Operators
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button

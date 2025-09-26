@@ -31,7 +31,7 @@ const Home = () => {
       rangeNm: 2540,
       location: "Miami, FL",
       url: "/aircraft/1",
-      image: "/images/Hawker-night - Copy.jpg",
+      image: "/images/PENNSHARE/HAWKER-800XP.jpg",
       featured: true,
       blurb: "Mid-size business jet • Executive interior",
     },
@@ -158,15 +158,15 @@ const Home = () => {
 
       {/* Hero Section */}
       <header className="relative">
-        <img
-          src="/images/Hawker-sunset.png"
-          alt="Private jet on the ramp during golden hour with warm sunset lighting"
-          loading="eager"
-          width={1920}
-          height={1080}
+        <video
+          src="/videos/Falcon-Hero-Flyover.MP4"
+          autoPlay
+          muted
+          loop
+          playsInline
           className="h-[60vh] w-full object-cover md:h-[80vh]"
         />
-        <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
+        <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
         <div className="absolute inset-0 flex items-center">
           <Container>
             <div className="text-white">
@@ -176,7 +176,7 @@ const Home = () => {
               <p className="mt-3 max-w-2xl text-base md:text-lg">
                 Brokerage, charter, and aircraft management — with transparent costs
                 and deal-maker expertise. Our flagship share: Premier 1A, FLL-based,
-                on 135 charter with KLM AVIATION.
+                on 135 charter operations in the Domestic US.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button

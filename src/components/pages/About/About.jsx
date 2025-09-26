@@ -82,8 +82,7 @@ const About = () => {
               <div className="space-y-4 text-gray-600">
                 <p>
                   Founded in 2025 by Aviation Enthusiast Joseph Pennella, Penn Jets LLC, an
-                  emerging aviation broker, with an exclusive partnership in KLM Aviation, a
-                  trusted operator in South Florida.
+                  emerging aviation broker.
                 </p>
                 <p>
                   Whether you're buying your first light jet, looking for fractional ownership
@@ -111,7 +110,7 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
+            {teamMembers.filter(member => member.name !== 'Steven J Smyth').map((member, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <div className="relative mb-6">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary-100">
