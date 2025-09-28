@@ -10,6 +10,10 @@ import AircraftDetail from './components/pages/AircraftDetail/AircraftDetail';
 import Contact from './components/pages/Contact/Contact';
 import Blog from './components/pages/Blog/Blog';
 import PennShare from './components/pages/PennShare/PennShare';
+import PrivacyPolicy from './components/pages/Legal/PrivacyPolicy';
+import TermsOfService from './components/pages/Legal/TermsOfService';
+import CookiePolicy from './components/pages/Legal/CookiePolicy';
+import Compliance from './components/pages/Legal/Compliance';
 
 function App() {
   return (
@@ -27,6 +31,10 @@ function App() {
               <Route path="/pennshare" element={<PennShare />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/cookie-policy" element={<CookiePolicy />} />
+              <Route path="/compliance" element={<Compliance />} />
             </Routes>
           </main>
           <Footer />
