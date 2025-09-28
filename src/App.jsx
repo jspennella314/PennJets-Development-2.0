@@ -14,11 +14,13 @@ import PrivacyPolicy from './components/pages/Legal/PrivacyPolicy';
 import TermsOfService from './components/pages/Legal/TermsOfService';
 import CookiePolicy from './components/pages/Legal/CookiePolicy';
 import Compliance from './components/pages/Legal/Compliance';
+import ScrollToTop from './components/common/ScrollToTop/ScrollToTop';
 
 function App() {
   return (
     <HelmetProvider>
       <Router>
+        <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-1">

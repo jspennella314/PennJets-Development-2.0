@@ -20,7 +20,7 @@ const Footer = () => {
         { name: 'Browse Aircraft', href: '/aircraft' },
         { name: 'Sell Your Aircraft', href: '/contact' },
         { name: 'Market Analysis', href: '/services#analysis' },
-        { name: 'Valuation Services', href: '/services#valuation' },
+        { name: 'Valuation Services', href: '/services#analysis' },
       ]
     },
     {
@@ -44,10 +44,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'LinkedIn', href: '#', icon: 'linkedin' },
-    { name: 'Twitter', href: '#', icon: 'twitter' },
-    { name: 'Facebook', href: '#', icon: 'facebook' },
-    { name: 'Instagram', href: '#', icon: 'instagram' },
+    // Social media links will be added when accounts are set up
+    // { name: 'LinkedIn', href: 'https://linkedin.com/company/pennjets', icon: 'linkedin' },
+    // { name: 'Twitter', href: 'https://twitter.com/pennjets', icon: 'twitter' },
   ];
 
   return (
@@ -69,19 +68,23 @@ const Footer = () => {
                 We connect buyers and sellers in the luxury aircraft market with unmatched 
                 expertise and personalized service.
               </p>
-              <div className="flex space-x-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors"
-                    aria-label={social.name}
-                  >
-                    <span className="sr-only">{social.name}</span>
-                    <div className="w-5 h-5 bg-gray-400"></div>
-                  </a>
-                ))}
-              </div>
+              {socialLinks.length > 0 && (
+                <div className="flex space-x-4">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors"
+                      aria-label={social.name}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="sr-only">{social.name}</span>
+                      <div className="w-5 h-5 bg-gray-400"></div>
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Footer Links */}
