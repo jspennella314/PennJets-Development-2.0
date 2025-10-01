@@ -10,6 +10,7 @@ import AircraftDetail from './components/pages/AircraftDetail/AircraftDetail';
 import Contact from './components/pages/Contact/Contact';
 import Blog from './components/pages/Blog/Blog';
 import PennShare from './components/pages/PennShare/PennShare';
+import Charter from './components/pages/Charter/Charter';
 import PrivacyPolicy from './components/pages/Legal/PrivacyPolicy';
 import TermsOfService from './components/pages/Legal/TermsOfService';
 import CookiePolicy from './components/pages/Legal/CookiePolicy';
@@ -31,6 +32,7 @@ function App() {
               <Route path="/aircraft" element={<AircraftListing />} />
               <Route path="/aircraft/:id" element={<AircraftDetail />} />
               <Route path="/pennshare" element={<PennShare />} />
+              <Route path="/charter" element={<Charter />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
