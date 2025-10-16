@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import emailjs from '@emailjs/browser';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
 
 const Contact = () => {
+  // Initialize EmailJS with public key
+  useEffect(() => {
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+      console.log('EmailJS initialized successfully');
+    } else {
+      console.error('EmailJS public key not found in environment variables');
+    }
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,6 +42,13 @@ const Contact = () => {
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+      // Validate environment variables
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS configuration is missing. Please check your .env file.');
+      }
+
+      console.log('Sending email with config:', { serviceId, templateId });
+
       // Template parameters matching your form fields
       const templateParams = {
         from_name: formData.name,
@@ -43,15 +60,17 @@ const Contact = () => {
         to_email: 'info@pennjets.com'
       };
 
-      await emailjs.send(
+      console.log('Template params:', templateParams);
+
+      const response = await emailjs.send(
         serviceId,
         templateId,
-        templateParams,
-        publicKey
+        templateParams
       );
 
+      console.log('Email sent successfully:', response);
       setSubmitStatus('success');
-      alert('Thank you for your message! We will contact you shortly at info@pennjets.com.');
+      alert('Thank you for your message! We will contact you shortly.');
 
       // Reset form
       setFormData({
@@ -64,6 +83,11 @@ const Contact = () => {
       });
     } catch (error) {
       console.error('Email sending failed:', error);
+      console.error('Error details:', {
+        message: error.message,
+        text: error.text,
+        status: error.status
+      });
       setSubmitStatus('error');
       alert('Sorry, there was an error sending your message. Please try again or contact us directly at info@pennjets.com or call (973) 868-8425.');
     } finally {
