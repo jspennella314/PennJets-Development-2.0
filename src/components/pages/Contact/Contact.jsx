@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import emailjs from '@emailjs/browser';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
 
 const Contact = () => {
-  // Initialize EmailJS with public key
-  useEffect(() => {
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    if (publicKey) {
-      emailjs.init(publicKey);
-      console.log('EmailJS initialized successfully');
-    } else {
-      console.error('EmailJS public key not found in environment variables');
-    }
-  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -37,38 +26,42 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      // EmailJS configuration
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      // Get CRM API endpoint from environment or use default
+      const crmApiUrl = import.meta.env.VITE_CRM_API_URL || 'https://www.pennforce.pennjets.com';
+      const webhookUrl = `${crmApiUrl}/api/webhooks/contact-form`;
 
-      // Validate environment variables
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error('EmailJS configuration is missing. Please check your .env file.');
+      console.log('Submitting to CRM:', webhookUrl);
+
+      // Send to CRM webhook with security token
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-form-secret': import.meta.env.VITE_CONTACT_FORM_SECRET || '',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          company: formData.company || undefined,
+          service: formData.service || undefined,
+          message: formData.message,
+          // Add UTM parameters if available (from URL query params)
+          utm_source: new URLSearchParams(window.location.search).get('utm_source') || undefined,
+          utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || undefined,
+          utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || undefined,
+          utm_term: new URLSearchParams(window.location.search).get('utm_term') || undefined,
+          utm_content: new URLSearchParams(window.location.search).get('utm_content') || undefined,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit form');
       }
 
-      console.log('Sending email with config:', { serviceId, templateId });
-
-      // Template parameters matching your form fields
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone || 'Not provided',
-        company: formData.company || 'Not provided',
-        service: formData.service || 'Not specified',
-        message: formData.message,
-        to_email: 'info@pennjets.com'
-      };
-
-      console.log('Template params:', templateParams);
-
-      const response = await emailjs.send(
-        serviceId,
-        templateId,
-        templateParams
-      );
-
-      console.log('Email sent successfully:', response);
+      console.log('Lead created successfully:', data);
       setSubmitStatus('success');
       alert('Thank you for your message! We will contact you shortly.');
 
@@ -82,12 +75,7 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
-      console.error('Email sending failed:', error);
-      console.error('Error details:', {
-        message: error.message,
-        text: error.text,
-        status: error.status
-      });
+      console.error('Form submission failed:', error);
       setSubmitStatus('error');
       alert('Sorry, there was an error sending your message. Please try again or contact us directly at info@pennjets.com or call (973) 868-8425.');
     } finally {
@@ -129,11 +117,11 @@ const Contact = () => {
     <>
       <Helmet>
         <title>Contact PennJets - Get in Touch with Aviation Experts</title>
-        <meta name="description" content="Contact PennJets for all your aviation needs. Speak with our expert team about aircraft sales, acquisitions, charter, and management services." />
+        <meta name="description" content="Contact PennJets for all your aviation needs. Speak with our expert team about aircraft sales, acquisitions, charter brokerage, and consulting services." />
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-gray-900 text-white py-24 mt-16">
+      <section className="bg-gray-900 text-white py-24 mt-24">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="heading-lg mb-6">Contact Us</h1>
@@ -217,7 +205,7 @@ const Contact = () => {
                     <option value="">Select a service</option>
                     <option value="aircraft-sales">Aircraft Sales</option>
                     <option value="aircraft-acquisition">Aircraft Acquisition</option>
-                    <option value="charter-services">Charter Services</option>
+                    <option value="charter-brokerage">Charter Brokerage</option>
                     <option value="aircraft-management">Aircraft Management</option>
                     <option value="consulting">Consulting</option>
                     <option value="other">Other</option>

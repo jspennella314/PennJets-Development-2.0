@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
+import BonusDepreciationCountdown from '../../common/BonusDepreciationCountdown/BonusDepreciationCountdown';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ const Home = () => {
       year: 1982,
       make: "Mitsubishi",
       model: "Diamond 1A",
-      price: "$285,000 OBO",
+      price: "$225,000 OBO",
       pax: 7,
       rangeNm: 1700,
       location: "Sanford, FL",
@@ -145,11 +146,11 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>PennJets — Private Jet Brokerage, Charter & Management</title>
-        <meta name="description" content="PennJets is a private aviation brokerage specializing in aircraft sales, charter, and management. Transparent pro‑formas, vetted operators, and white‑glove service. Call (973) 868‑8425." />
-        <meta name="keywords" content="private aviation, aircraft brokerage, charter, management, Premier 1A" />
-        <meta property="og:title" content="PennJets — Private Jet Brokerage, Charter & Management" />
-        <meta property="og:description" content="Private aviation. Done right. Brokerage, charter, and aircraft management." />
+        <title>PennJets — Private Jet Brokerage & Aviation Consulting</title>
+        <meta name="description" content="PennJets is a private aviation brokerage and consulting firm specializing in aircraft sales, acquisitions, and charter brokerage. Partnering with vetted Part 135 operators. Call (973) 868‑8425." />
+        <meta name="keywords" content="private aviation, aircraft brokerage, aviation consulting, charter broker, Premier 1A" />
+        <meta property="og:title" content="PennJets — Private Jet Brokerage & Aviation Consulting" />
+        <meta property="og:description" content="Private aviation. Done right. Brokerage, consulting, and charter connections." />
         <meta property="og:image" content="/images/og-hero.jpg" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.pennjets.com" />
@@ -174,9 +175,9 @@ const Home = () => {
                 Private Aviation, Done Right
               </h1>
               <p className="mt-3 max-w-2xl text-base md:text-lg">
-                Brokerage, charter, and aircraft management — with transparent costs
-                and deal-maker expertise. Our flagship share: Premier 1A, FLL-based,
-                on 135 charter operations in the Domestic US.
+                Aviation brokerage and consulting — with transparent costs
+                and deal-maker expertise. Partnering with vetted Part 135 certified
+                operators throughout the Domestic US.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
@@ -210,6 +211,9 @@ const Home = () => {
           </div>
         </Container>
       </section>
+
+      {/* Bonus Depreciation Countdown */}
+      <BonusDepreciationCountdown />
 
       {/* Why PennJets Section */}
       <section aria-labelledby="why" className="py-12">

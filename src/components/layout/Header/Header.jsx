@@ -31,21 +31,18 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+    <header className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
+      isScrolled ? 'top-0 bg-white/95 backdrop-blur-lg shadow-lg' : 'top-10 bg-transparent'
     }`}>
       <nav className="max-w-7xl mx-auto container-padding">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">P</span>
-            </div>
-            <span className={`text-xl font-bold transition-colors ${
-              isScrolled ? 'text-gray-900' : 'text-white'
-            }`}>
-              PennJets
-            </span>
+          <Link to="/" className="flex items-center">
+            <img
+              src="/images/PennJets-Website-Logo.png"
+              alt="PennJets"
+              className="h-8 lg:h-10 w-auto transition-all"
+            />
           </Link>
 
           {/* Desktop Navigation */}

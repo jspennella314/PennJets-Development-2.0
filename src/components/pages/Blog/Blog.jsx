@@ -93,7 +93,7 @@ const Blog = () => {
     <>
       <Helmet>
         <title>Aviation Insights & Industry News | PennJets Blog</title>
-        <meta name="description" content="Stay informed with the latest aviation industry insights, aircraft reviews, market analysis, and expert guidance from PennJets aviation specialists." />
+        <meta name="description" content="Stay informed with the latest aviation industry insights, aircraft reviews, market analysis, and expert guidance from PennJets aviation consultants." />
       </Helmet>
 
       {/* Hero Section */}

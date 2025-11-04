@@ -84,11 +84,11 @@ const AircraftListing = () => {
     <>
       <Helmet>
         <title>Aircraft for Sale - Premium Private Jets | PennJets</title>
-        <meta name="description" content="Browse our exclusive selection of premium private jets and aircraft for sale. Find your perfect aircraft with expert guidance from PennJets aviation specialists." />
+        <meta name="description" content="Browse our exclusive selection of premium private jets and aircraft for sale. Find your perfect aircraft with expert guidance from PennJets aviation consultants." />
       </Helmet>
 
       {/* Header Section */}
-      <section className="bg-gray-900 text-white py-24 mt-16">
+      <section className="bg-gray-900 text-white py-24 mt-24">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center">
             <h1 className="heading-lg mb-6">Aircraft for Sale</h1>
@@ -212,7 +212,18 @@ const AircraftListing = () => {
                   className={`overflow-hidden ${viewMode === 'list' ? 'flex flex-col md:flex-row' : ''}`}
                 >
                   <div className={`${viewMode === 'list' ? 'md:w-1/3' : 'w-full'} aspect-video bg-gray-200 rounded-lg ${viewMode === 'list' ? 'md:rounded-r-none mb-4 md:mb-0' : 'mb-4'} overflow-hidden`}>
-                    <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500">
+                    {aircraft.images && aircraft.images.length > 0 ? (
+                      <img
+                        src={aircraft.images[0]}
+                        alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                    ) : null}
+                    <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500" style={{display: aircraft.images && aircraft.images.length > 0 ? 'none' : 'flex'}}>
                       Aircraft Image
                     </div>
                   </div>
@@ -282,15 +293,15 @@ const AircraftListing = () => {
         <div className="max-w-7xl mx-auto container-padding text-center">
           <h2 className="heading-md mb-6">Can't Find What You're Looking For?</h2>
           <p className="body-lg mb-8 max-w-2xl mx-auto">
-            Our aviation specialists have access to an extensive network of off-market aircraft. 
+            Our aviation consultants have access to an extensive network of off-market aircraft.
             Let us help you find the perfect aircraft for your needs.
           </p>
-          <Button 
-            variant="secondary" 
+          <Button
+            variant="secondary"
             size="lg"
             onClick={() => navigate('/contact')}
           >
-            Contact Our Specialists
+            Contact a Consultant
           </Button>
         </div>
       </section>

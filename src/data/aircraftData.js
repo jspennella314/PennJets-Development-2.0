@@ -51,21 +51,33 @@ export const aircraftDatabase = [
       '/images/Diamond-1A/diamond-1a-ramp.JPEG',
     ],
     specifications: {
-      range: '1,700 nm',
-      maxSpeed: '340 kts',
-      cruiseSpeed: '320 kts',
-      maxAltitude: '35,000 ft',
+      engines: '2× Pratt & Whitney JT15D-4D',
+      thrust: '2,200 lbf each',
+      tbo: '3,500 hours',
+      range: '1,512 nm',
+      cruiseSpeed: '404 kts (75% power)',
+      serviceCeiling: '41,000 ft',
+      rateOfClimb: '3,050 ft/min',
+      fuelCapacity: '655 gal',
       passengers: '7',
-      baggage: '25 cu ft',
-      runway: '3,800 ft'
+      wingspan: '44.5 ft',
+      length: '48.4 ft',
+      height: '13.74 ft',
+      emptyWeight: '9,099 lbs',
+      grossWeight: '14,630 lbs',
+      takeoffDistance: '5,050 ft',
+      landingDistance: '4,600 ft'
     },
     features: [
-      'Basic Avionics Package',
-      'Standard Interior',
-      'Offered for Parts'
+      '2× Pratt & Whitney JT15D-4D Engines',
+      'Twin Jet Configuration',
+      '3,500 Hour TBO',
+      'Offered for Parts',
+      '655 Gallon Fuel Capacity',
+      'Strong Spares Platform'
     ],
-    description: 'This 1982 Mitsubishi Diamond 1A is being offered for parts. Located in Sanford, FL, this aircraft represents a unique opportunity for parts acquisition or restoration project. Full listing details and additional photos available on Trade-A-Plane.',
-    tradeAPlaneUrl: 'https://www.trade-a-plane.com/search?category_level1=Jets&make=MITSUBISHI&model=DIAMOND+1A&listing_id=2447075&s-type=aircraft'
+    description: 'This 1982 Mitsubishi Diamond 1A is being offered for parts. Located in Sanford, FL, this aircraft represents a unique opportunity for parts acquisition or restoration project. Full listing details and additional photos available on Aircraft Shopper Online.',
+    tradeAPlaneUrl: 'https://www.aso.com/listings/spec/ViewAd.aspx?id=200889&listingType=true&IsInternal=True&pagingNo=1&searchId=62389252&dealerid='
   },
   {
     id: 3,

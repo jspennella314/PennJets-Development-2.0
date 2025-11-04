@@ -10,7 +10,7 @@ const About = () => {
   const teamMembers = [
     {
       name: 'Joseph Pennella',
-      title: 'Founder & CEO',
+      title: 'Managing Director',
       credentials: 'Aviation Entrepreneur',
       bio: 'Aviation enthusiast and founder of PennJets LLC, dedicated to making private aviation accessible, profitable, and hassle-free. With a passion for deal-making and client success, Joseph brings innovative approaches to aircraft brokerage and fractional ownership.',
       image: '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
@@ -20,13 +20,13 @@ const About = () => {
     },
     {
       name: 'Steven J Smyth',
-      title: 'Chief Operations Officer',
+      title: 'Partner Operator Liaison',
       credentials: 'KLM Aviation - Est. 1991',
-      bio: 'Chief Operations Officer and Captain at KLM Aviation, established in 1991. Brings over three decades of aviation expertise and operational excellence to the PennJets team. Specializes in Part 135 charter operations, flight training, and comprehensive aircraft management.',
+      bio: 'Partner Operator Liaison and Captain at KLM Aviation, established in 1991. Brings over three decades of aviation expertise to the PennJets partnership network. Coordinates with Part 135 certified operators to ensure the highest standards of safety, compliance, and service for PennJets clients.',
       image: '/images/Meet-The-Team/steven-smyth.jpg',
       phone: '(954) 881-4799',
       email: 'steven@pennjets.com',
-      specialties: ['Part 135 Operations', 'Flight Training', 'Aircraft Management', 'Safety Compliance']
+      specialties: ['Operator Coordination', 'Safety Standards', 'Quality Assurance', 'Compliance Oversight']
     },
     {
       name: 'Charles Brennan',
@@ -39,12 +39,32 @@ const About = () => {
       specialties: ['Aviation Technology', 'Digital Innovation', 'System Integration', 'Data Analytics']
     },
     {
+      name: 'James Wofford',
+      title: 'Aviation Consultant',
+      credentials: 'Private Aviation Advisor',
+      bio: 'James Wofford is a results-driven leader with a foundation in Aviation Management from Auburn University and a proven track record in sales, operations, and project leadership. With experience managing multimillion-dollar initiatives and leading cross-functional teams across industries—from aviation and energy efficiency to healthcare consulting—James combines strategic planning and data-driven decision-making to drive efficiency and growth. Known for his ability to streamline operations and enhance client satisfaction, he brings a disciplined, aviation-inspired approach to leadership and performance optimization.',
+      image: '/images/Meet-The-Team/james-wofford.jpg',
+      phone: '(310) 994-4060',
+      email: 'jameswofford@pennjets.com',
+      specialties: ['Aircraft Sales', 'Client Advisory', 'Market Analysis', 'Transaction Management']
+    },
+    {
+      name: 'Joe Delisio',
+      title: 'Aviation Consultant',
+      credentials: 'Private Aviation Advisor',
+      bio: 'Experienced aviation consultant focused on helping clients navigate aircraft acquisitions and sales. Joe provides personalized service and strategic guidance throughout the entire transaction process.',
+      image: '/images/Meet-The-Team/joe-delisio.jpg',
+      phone: '(954) 546-0763',
+      email: 'joedelisio@pennjets.com',
+      specialties: ['Aircraft Acquisitions', 'Client Relations', 'Deal Negotiation', 'Market Intelligence']
+    },
+    {
       name: 'Aviation Team',
       title: 'Specialists & Support',
       credentials: 'Industry Professionals',
       bio: 'Our extended team includes certified mechanics, avionics specialists, insurance experts, and administrative professionals who ensure every aspect of your aviation needs is handled with expertise and attention to detail.',
       image: '/images/Meet-The-Team/aviation-team.jpg',
-      phone: '(973) 868-8425',
+      phone: '(954) 546-0763',
       email: 'info@pennjets.com',
       specialties: ['Maintenance', 'Avionics', 'Insurance', 'Administration']
     }
@@ -60,7 +80,7 @@ const About = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-gray-900 text-white py-24 mt-16">
+      <section className="bg-gray-900 text-white py-24 mt-24">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="heading-lg mb-6">About PennJets</h1>
@@ -175,22 +195,14 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 gap-8 text-center max-w-2xl mx-auto">
             <div>
               <div className="text-4xl font-bold text-primary-600 mb-2">30+</div>
               <div className="text-sm text-gray-600">Years Combined Experience</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-primary-600 mb-2">100+</div>
-              <div className="text-sm text-gray-600">Successful Transactions</div>
-            </div>
-            <div>
               <div className="text-4xl font-bold text-primary-600 mb-2">24/7</div>
               <div className="text-sm text-gray-600">Client Support</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-primary-600 mb-2">Part 135</div>
-              <div className="text-sm text-gray-600">Certified Operations</div>
             </div>
           </div>
         </div>
@@ -222,10 +234,10 @@ const About = () => {
             </Card>
             <Card className="text-center">
               <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold mb-3">Charter Operations</h3>
+              <h3 className="text-xl font-semibold mb-3">Charter Brokerage</h3>
               <p className="text-gray-600 text-sm">
-                Part 135 certified charter services with experienced pilots and maintained
-                aircraft.
+                Access to vetted Part 135 certified operators with experienced pilots and
+                well-maintained aircraft through our trusted partner network.
               </p>
             </Card>
           </div>
@@ -238,7 +250,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto">
             <h2 className="heading-lg mb-6">Ready to Work With Us?</h2>
             <p className="body-lg text-gray-600 mb-8">
-              Whether you're buying, selling, or chartering, our team is ready to provide 
+              Whether you're buying, selling, or connecting with charter operators, our team is ready to provide
               the expertise and personalized service you deserve.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

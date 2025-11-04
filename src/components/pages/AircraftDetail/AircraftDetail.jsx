@@ -191,7 +191,7 @@ const AircraftDetail = () => {
                 </div>
               </div>
 
-              {/* Trade-A-Plane Link */}
+              {/* Aircraft Shopper Online Link */}
               {aircraft.tradeAPlaneUrl && (
                 <div className="bg-blue-50 rounded-lg shadow-md p-6 mb-6">
                   <h3 className="text-xl font-semibold mb-4 flex items-center">
@@ -199,7 +199,7 @@ const AircraftDetail = () => {
                     Full Listing Details
                   </h3>
                   <p className="text-gray-600 mb-4 text-sm">
-                    View complete specifications, additional photos, and detailed information on Trade-A-Plane.
+                    View complete specifications, additional photos, and detailed information on Aircraft Shopper Online.
                   </p>
                   <a
                     href={aircraft.tradeAPlaneUrl}
@@ -208,20 +208,20 @@ const AircraftDetail = () => {
                     className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center font-medium"
                   >
                     <span className="mr-2">🔗</span>
-                    View on Trade-A-Plane
+                    View on Aircraft Shopper Online
                   </a>
                 </div>
               )}
 
               {/* Contact */}
               <div className="bg-white rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold mb-4">Contact Specialist</h3>
+                <h3 className="text-xl font-semibold mb-4">Contact a Consultant</h3>
                 <div className="text-center mb-4">
                   <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-3 flex items-center justify-center">
                     <span className="text-2xl">👤</span>
                   </div>
-                  <div className="font-medium">Aviation Specialist</div>
-                  <div className="text-sm text-gray-600">Private Jet Expert</div>
+                  <div className="font-medium">Aviation Consultant</div>
+                  <div className="text-sm text-gray-600">Private Jet Advisor</div>
                 </div>
                 <div className="space-y-2 text-sm mb-4">
                   <div>📞 (973) 868-8425</div>
@@ -231,7 +231,7 @@ const AircraftDetail = () => {
                   onClick={() => navigate('/contact')}
                   className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
                 >
-                  Contact Specialist
+                  Contact a Consultant
                 </button>
               </div>
             </div>

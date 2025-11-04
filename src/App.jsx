@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import TopBanner from './components/common/TopBanner/TopBanner';
 import Header from './components/layout/Header/Header';
 import Footer from './components/layout/Footer/Footer';
 import Home from './components/pages/Home/Home';
@@ -23,6 +24,7 @@ function App() {
       <Router>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
+          <TopBanner />
           <Header />
           <main className="flex-1">
             <Routes>
