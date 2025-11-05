@@ -155,6 +155,37 @@ const Home = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.pennjets.com" />
         <meta name="twitter:card" content="summary_large_image" />
+
+        {/* Schema.org structured data for better SEO */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "PennJets",
+            "url": "https://www.pennjets.com",
+            "logo": "https://www.pennjets.com/images/PennJets-Website-Logo.png",
+            "description": "Private aviation brokerage and consulting firm specializing in aircraft sales, acquisitions, and charter brokerage",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "690 SW 1st Ct #1030",
+              "addressLocality": "Miami",
+              "addressRegion": "FL",
+              "postalCode": "33130",
+              "addressCountry": "US"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-973-868-8425",
+              "contactType": "Sales",
+              "areaServed": "US",
+              "availableLanguage": "English"
+            },
+            "email": "info@pennjets.com",
+            "sameAs": [
+              "https://www.pennjets.com"
+            ]
+          })}
+        </script>
       </Helmet>
 
       {/* Hero Section */}
