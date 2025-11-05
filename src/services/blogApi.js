@@ -11,14 +11,17 @@ export const blogApi = {
    */
   async getPosts() {
     try {
-      const response = await fetch(`${CRM_API_URL}/api/public/blog/posts`);
+      const response = await fetch(`${CRM_API_URL}/api/public/blog`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch blog posts');
       }
 
       const data = await response.json();
-      return data.posts || [];
+      const posts = data.posts || [];
+
+      // Transform posts to add missing fields
+      return posts.map(post => this.transformPost(post));
     } catch (error) {
       console.error('Error fetching blog posts:', error);
       // Return mock data for development
@@ -39,8 +42,8 @@ export const blogApi = {
         throw new Error('Blog post not found');
       }
 
-      const data = await response.json();
-      return data.post;
+      const post = await response.json();
+      return this.transformPost(post);
     } catch (error) {
       console.error('Error fetching blog post:', error);
       // Return mock data for development
@@ -84,6 +87,44 @@ export const blogApi = {
       console.error('Error submitting contact form:', error);
       throw error;
     }
+  },
+
+  /**
+   * Transform CRM blog post to add missing fields expected by frontend
+   * @param {Object} post - Raw post from CRM API
+   * @returns {Object} Transformed post with all required fields
+   */
+  transformPost(post) {
+    // Calculate estimated read time from content (average reading speed: 200 words/min)
+    const readTimeMinutes = post.content
+      ? Math.max(1, Math.ceil(post.content.split(/\s+/).length / 200))
+      : 5;
+
+    // Extract category from keywords (first keyword becomes category)
+    const category = post.keywords && post.keywords.length > 0
+      ? post.keywords[0]
+      : 'Aviation';
+
+    // Use keywords as tags
+    const tags = post.keywords || [];
+
+    // Enhance author data with defaults
+    const author = {
+      id: post.author.id,
+      name: post.author.name || 'PennJets Team',
+      email: post.author.email || 'info@pennjets.com',
+      title: 'Aviation Consultant',
+      bio: `Aviation expert at PennJets, dedicated to providing insights and guidance on private aviation.`,
+      avatar: null, // No avatar in CRM yet
+    };
+
+    return {
+      ...post,
+      category,
+      tags,
+      readTimeMinutes,
+      author,
+    };
   },
 
   /**
