@@ -172,11 +172,11 @@ const Home = () => {
           <Container>
             <div className="text-white">
               <h1 className="text-3xl font-semibold md:text-5xl">
-                Private Aviation, Done Right
+                Access, You Deserve
               </h1>
               <p className="mt-3 max-w-2xl text-base md:text-lg">
-                Aviation brokerage and consulting — with transparent costs
-                and deal-maker expertise. Partnering with vetted Part 135 certified
+                Aviation consulting and brokerage — with our transparent costs
+                and deal making team. We partner with vetted Part 135 certified
                 operators throughout the Domestic US.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
