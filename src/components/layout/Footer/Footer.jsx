@@ -1,8 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaInstagram, FaFacebookF, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
+import { HiPhotograph } from 'react-icons/hi';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  // Map icon components
+  const iconMap = {
+    gallery: <HiPhotograph className="w-4 h-4" />,
+    instagram: <FaInstagram className="w-4 h-4" />,
+    facebook: <FaFacebookF className="w-4 h-4" />,
+    linkedin: <FaLinkedinIn className="w-4 h-4" />,
+    twitter: <FaXTwitter className="w-4 h-4" />,
+  };
 
   const footerSections = [
     {
@@ -33,6 +44,16 @@ const Footer = () => {
       ]
     },
     {
+      title: 'Social',
+      links: [
+        { name: 'Gallery', href: '/gallery', iconKey: 'gallery' },
+        { name: 'Instagram', href: 'https://instagram.com/pennjets', external: true, iconKey: 'instagram' },
+        { name: 'Facebook', href: 'https://facebook.com/pennjets', external: true, iconKey: 'facebook' },
+        { name: 'LinkedIn', href: 'https://linkedin.com/pennjets', external: true, iconKey: 'linkedin' },
+        { name: 'X (Twitter)', href: 'https://twitter.com/pennjets', external: true, iconKey: 'twitter' },
+      ]
+    },
+    {
       title: 'Legal',
       links: [
         { name: 'Privacy Policy', href: '/privacy-policy' },
@@ -54,7 +75,7 @@ const Footer = () => {
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto container-padding">
         <div className="py-12 lg:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
             {/* Company Info */}
             <div className="lg:col-span-2">
               <Link to="/" className="flex items-center space-x-2 mb-4">
@@ -94,12 +115,25 @@ const Footer = () => {
                 <ul className="space-y-3">
                   {section.links.map((link) => (
                     <li key={link.name}>
-                      <Link
-                        to={link.href}
-                        className="text-gray-400 hover:text-white transition-colors"
-                      >
-                        {link.name}
-                      </Link>
+                      {link.external ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                        >
+                          {link.iconKey && iconMap[link.iconKey]}
+                          {link.name}
+                        </a>
+                      ) : (
+                        <Link
+                          to={link.href}
+                          className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                        >
+                          {link.iconKey && iconMap[link.iconKey]}
+                          {link.name}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

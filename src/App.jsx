@@ -12,6 +12,7 @@ import Contact from './components/pages/Contact/Contact';
 import Blog from './components/pages/Blog/Blog';
 import BlogList from './components/pages/Blog/BlogList';
 import BlogArticle from './components/pages/Blog/BlogArticle';
+import Gallery from './components/pages/Gallery/Gallery';
 import PennShare from './components/pages/PennShare/PennShare';
 import Charter from './components/pages/Charter/Charter';
 import PrivacyPolicy from './components/pages/Legal/PrivacyPolicy';
@@ -40,6 +41,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<BlogList />} />
               <Route path="/blog/:slug" element={<BlogArticle />} />
+              <Route path="/gallery" element={<Gallery />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/cookie-policy" element={<CookiePolicy />} />

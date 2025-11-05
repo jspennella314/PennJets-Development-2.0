@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
 
@@ -88,19 +89,19 @@ const Contact = () => {
       title: 'Phone',
       info: '(973) 868-8425',
       description: 'Available 24/7 for urgent inquiries',
-      icon: '📞'
+      icon: HiPhone
     },
     {
       title: 'Email',
-      info: 'INFO@PENNJETS.COM',
+      info: 'info@pennjets.com',
       description: 'We respond within 2 hours',
-      icon: '✉️'
+      icon: HiMail
     },
     {
       title: 'Address',
       info: '690 SW 1st Ct #1030\nMiami, FL 33130',
       description: 'Visit our offices by appointment',
-      icon: '📍'
+      icon: HiLocationMarker
     }
   ];
 
@@ -243,45 +244,30 @@ const Contact = () => {
               <div>
                 <h2 className="text-2xl font-semibold mb-6">Get in Touch</h2>
                 <div className="space-y-6">
-                  {contactInfo.map((item, index) => (
-                    <div key={index} className="flex items-start">
-                      <div className="text-2xl mr-4">{item.icon}</div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
-                        <p className="text-gray-600 whitespace-pre-line mb-1">{item.info}</p>
-                        <p className="text-sm text-gray-500">{item.description}</p>
+                  {contactInfo.map((item, index) => {
+                    const IconComponent = item.icon;
+                    return (
+                      <div key={index} className="flex items-start">
+                        <div className="text-primary-600 mr-4">
+                          <IconComponent className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                          <p className="text-gray-600 whitespace-pre-line mb-1">{item.info}</p>
+                          <p className="text-sm text-gray-500">{item.description}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
-
-              {/* Business Hours */}
-              <Card>
-                <h3 className="text-xl font-semibold mb-4">Business Hours</h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span>Monday - Friday</span>
-                    <span>8:00 AM - 8:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Saturday</span>
-                    <span>9:00 AM - 5:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday</span>
-                    <span>By Appointment</span>
-                  </div>
-                  <div className="pt-2 border-t text-primary-600">
-                    <span>24/7 Emergency Support Available</span>
-                  </div>
-                </div>
-              </Card>
 
               {/* Quick Response */}
               <Card className="bg-primary-50">
                 <div className="text-center">
-                  <div className="text-primary-600 text-4xl mb-3">⚡</div>
+                  <div className="text-primary-600 mb-3 flex justify-center">
+                    <HiClock className="w-10 h-10" />
+                  </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Quick Response</h3>
                   <p className="text-gray-600 text-sm">
                     We typically respond to all inquiries within 2 hours during business hours.
@@ -331,7 +317,9 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto">
           <div className="aspect-video bg-gray-200 flex items-center justify-center">
             <div className="text-center text-gray-500">
-              <div className="text-4xl mb-4">🗺️</div>
+              <div className="mb-4 flex justify-center">
+                <HiLocationMarker className="w-12 h-12" />
+              </div>
               <div className="text-xl">Interactive Map</div>
               <div className="text-sm">Google Maps integration would go here</div>
             </div>
