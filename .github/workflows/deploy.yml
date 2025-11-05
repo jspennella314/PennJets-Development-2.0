@@ -29,7 +29,7 @@ jobs:
       run: npm run build
       env:
         VITE_CRM_API_URL: https://www.pennforce.pennjets.com
-        VITE_CONTACT_FORM_SECRET: ${{ secrets.VITE_CONTACT_FORM_SECRET }}
+        VITE_CONTACT_FORM_SECRET: ${{ secrets.CONTACT_FORM_SECRET }}
 
     - name: Copy CNAME file
       run: cp public/CNAME dist/CNAME
