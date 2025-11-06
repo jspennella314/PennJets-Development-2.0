@@ -59,34 +59,64 @@ export const blogApi = {
    */
   async submitContactForm(authorId, formData, blogPostSlug) {
     try {
-      const response = await fetch(
-        'https://pennforce-crm-development-beta2-4.vercel.app/api/webhooks/blog-contact',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-form-secret': FORM_SECRET,
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone || undefined,
-            company: formData.company || undefined,
-            message: formData.message,
-            blogPostSlug: blogPostSlug, // REQUIRED field
-          }),
-        }
-      );
+      const url = 'https://pennforce-crm-development-beta2-4.vercel.app/api/webhooks/blog-contact';
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        company: formData.company || undefined,
+        message: formData.message,
+        blogPostSlug: blogPostSlug, // REQUIRED field
+      };
 
-      const data = await response.json();
+      console.log('📤 Submitting to:', url);
+      console.log('📦 Payload:', JSON.stringify(payload, null, 2));
+      console.log('🔐 Secret present:', !!FORM_SECRET);
+      console.log('🔐 Secret value:', FORM_SECRET ? `${FORM_SECRET.substring(0, 10)}...` : 'MISSING');
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-form-secret': FORM_SECRET,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      console.log('📨 Response status:', response.status);
+      console.log('📨 Response statusText:', response.statusText);
+      console.log('📨 Response headers:', Object.fromEntries(response.headers.entries()));
+
+      // Try to get the response text first
+      const responseText = await response.text();
+      console.log('📄 Response text:', responseText);
+
+      // Try to parse as JSON
+      let data;
+      try {
+        data = JSON.parse(responseText);
+        console.log('✅ Parsed response data:', data);
+      } catch (parseError) {
+        console.error('❌ Failed to parse response as JSON:', parseError);
+        throw new Error(`Invalid JSON response: ${responseText}`);
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to submit form');
+        console.error('❌ Response not OK:', response.status, data);
+        throw new Error(data.error || `Server returned ${response.status}: ${JSON.stringify(data)}`);
       }
 
       return data;
     } catch (error) {
-      console.error('Error submitting contact form:', error);
+      console.error('❌ Error submitting contact form:', error);
+      console.error('Error type:', error.constructor.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+
+      // Re-throw with more context
+      if (error.message.includes('Failed to fetch')) {
+        throw new Error('Network error - unable to reach the server. Please check your connection.');
+      }
       throw error;
     }
   },
