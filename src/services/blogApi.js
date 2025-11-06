@@ -89,6 +89,23 @@ export const blogApi = {
   },
 
   /**
+   * Get author avatar from website team photos based on email
+   * @param {string} email - Author email
+   * @returns {string|null} Avatar URL
+   */
+  getAuthorAvatar(email) {
+    const teamPhotos = {
+      'joe@pennjets.com': '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
+      'steven@pennjets.com': '/images/Meet-The-Team/steven-smyth.jpg',
+      'charles@pennjets.com': '/images/Meet-The-Team/CHARLES-BRENNAN.JPEG',
+      'jameswofford@pennjets.com': '/images/Meet-The-Team/james-wofford.jpg',
+      'joedelisio@pennjets.com': '/images/Meet-The-Team/joe-delisio.jpg',
+    };
+
+    return teamPhotos[email?.toLowerCase()] || null;
+  },
+
+  /**
    * Transform CRM blog post to add missing fields expected by frontend
    * @param {Object} post - Raw post from CRM API
    * @returns {Object} Transformed post with all required fields
@@ -107,14 +124,17 @@ export const blogApi = {
     // Use keywords as tags
     const tags = post.keywords || [];
 
+    // Get author avatar from website team photos
+    const avatar = this.getAuthorAvatar(post.author.email);
+
     // Enhance author data with defaults
     const author = {
       id: post.author.id,
       name: post.author.name || 'PennJets Team',
       email: post.author.email || 'info@pennjets.com',
-      title: 'Aviation Consultant',
-      bio: `Aviation expert at PennJets, dedicated to providing insights and guidance on private aviation.`,
-      avatar: null, // No avatar in CRM yet
+      title: post.author.title || 'Aviation Consultant',
+      bio: post.author.bio || `Aviation expert at PennJets, dedicated to providing insights and guidance on private aviation.`,
+      avatar: avatar,
     };
 
     return {

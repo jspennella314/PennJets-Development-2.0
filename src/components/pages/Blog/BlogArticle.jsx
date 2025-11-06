@@ -291,9 +291,21 @@ const BlogArticle = () => {
 
               {/* Contact Form */}
               <Card>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  Contact {article.author.name.split(' ')[0]}
-                </h3>
+                <div className="flex items-center gap-3 mb-4">
+                  {article.author?.avatar && (
+                    <img
+                      src={article.author.avatar}
+                      alt={article.author.name}
+                      className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+                    />
+                  )}
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      Contact {article.author?.name?.split(' ')[0] || 'Us'}
+                    </h3>
+                    <p className="text-sm text-gray-600">{article.author?.title || ''}</p>
+                  </div>
+                </div>
                 <p className="text-gray-600 mb-6 text-sm">
                   Have questions about this article? Get in touch and I'll respond within 24 hours.
                 </p>
