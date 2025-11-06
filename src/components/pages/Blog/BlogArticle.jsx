@@ -224,7 +224,8 @@ const BlogArticle = () => {
                 prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
                 prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-5
                 prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-4
-                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
+                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:mt-0 prose-p:text-lg
+                prose-p:first:mt-0
                 prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium
                 prose-strong:text-gray-900 prose-strong:font-semibold
                 prose-em:text-gray-700
@@ -238,7 +239,9 @@ const BlogArticle = () => {
                 prose-hr:border-gray-300 prose-hr:my-12
                 prose-table:border-collapse prose-table:my-8
                 prose-th:bg-gray-100 prose-th:border prose-th:border-gray-300 prose-th:px-4 prose-th:py-2 prose-th:text-left
-                prose-td:border prose-td:border-gray-300 prose-td:px-4 prose-td:py-2"
+                prose-td:border prose-td:border-gray-300 prose-td:px-4 prose-td:py-2
+                [&_p]:mb-6 [&_p]:leading-relaxed [&_p]:text-lg [&_p]:text-gray-700
+                [&_p+p]:mt-6"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
 

@@ -93,13 +93,13 @@ const Header = () => {
         (isScrolled || !isDarkHeroPage) ? 'top-10 bg-white/95 backdrop-blur-lg shadow-lg' : 'top-16 bg-transparent'
       }`}>
         <nav className="max-w-7xl mx-auto container-padding">
-          <div className="flex items-center justify-between h-20 lg:h-24 py-4">
+          <div className="flex items-center justify-between h-16 lg:h-20 py-2">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center h-full">
             <img
               src="/images/PennJets-Website-Logo.png"
               alt="PennJets"
-              className="h-24 lg:h-30 w-auto transition-all duration-300"
+              className="h-12 lg:h-16 w-auto transition-all duration-300"
               style={{
                 filter: (isScrolled || !isDarkHeroPage)
                   ? 'brightness(0) saturate(100%)'

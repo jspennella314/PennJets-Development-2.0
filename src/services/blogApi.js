@@ -89,20 +89,35 @@ export const blogApi = {
   },
 
   /**
-   * Get author avatar from website team photos based on email
+   * Get author details from website team data based on email
    * @param {string} email - Author email
-   * @returns {string|null} Avatar URL
+   * @returns {Object} Author details with name and avatar
    */
-  getAuthorAvatar(email) {
-    const teamPhotos = {
-      'joe@pennjets.com': '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
-      'steven@pennjets.com': '/images/Meet-The-Team/steven-smyth.jpg',
-      'charles@pennjets.com': '/images/Meet-The-Team/CHARLES-BRENNAN.JPEG',
-      'jameswofford@pennjets.com': '/images/Meet-The-Team/james-wofford.jpg',
-      'joedelisio@pennjets.com': '/images/Meet-The-Team/joe-delisio.jpg',
+  getAuthorDetails(email) {
+    const teamData = {
+      'joe@pennjets.com': {
+        name: 'Joseph Pennella',
+        avatar: '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
+      },
+      'steven@pennjets.com': {
+        name: 'Steven J Smyth',
+        avatar: '/images/Meet-The-Team/steven-smyth.jpg',
+      },
+      'charles@pennjets.com': {
+        name: 'Charles Brennan',
+        avatar: '/images/Meet-The-Team/CHARLES-BRENNAN.JPEG',
+      },
+      'jameswofford@pennjets.com': {
+        name: 'James Wofford',
+        avatar: '/images/Meet-The-Team/james-wofford.jpg',
+      },
+      'joedelisio@pennjets.com': {
+        name: 'Joe Delisio',
+        avatar: '/images/Meet-The-Team/joe-delisio.jpg',
+      },
     };
 
-    return teamPhotos[email?.toLowerCase()] || null;
+    return teamData[email?.toLowerCase()] || { name: null, avatar: null };
   },
 
   /**
@@ -124,17 +139,17 @@ export const blogApi = {
     // Use keywords as tags
     const tags = post.keywords || [];
 
-    // Get author avatar from website team photos
-    const avatar = this.getAuthorAvatar(post.author.email);
+    // Get author details from website team data (name and avatar)
+    const authorDetails = this.getAuthorDetails(post.author.email);
 
-    // Enhance author data with defaults
+    // Enhance author data with defaults, prioritizing website team data
     const author = {
       id: post.author.id,
-      name: post.author.name || 'PennJets Team',
+      name: authorDetails.name || post.author.name || 'PennJets Team',
       email: post.author.email || 'info@pennjets.com',
       title: post.author.title || 'Aviation Consultant',
       bio: post.author.bio || `Aviation expert at PennJets, dedicated to providing insights and guidance on private aviation.`,
-      avatar: avatar,
+      avatar: authorDetails.avatar,
     };
 
     return {
