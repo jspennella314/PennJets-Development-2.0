@@ -51,16 +51,16 @@ export const blogApi = {
   },
 
   /**
-   * Submit contact form for specific blog author
-   * @param {string} authorId - Author's user ID
+   * Submit contact form for blog post
+   * @param {string} authorId - Author's user ID (not used, kept for compatibility)
    * @param {Object} formData - Contact form data
-   * @param {string} articleSlug - Article slug for attribution
+   * @param {string} blogPostSlug - Article slug for attribution
    * @returns {Promise<Object>} Response data
    */
-  async submitContactForm(authorId, formData, articleSlug) {
+  async submitContactForm(authorId, formData, blogPostSlug) {
     try {
       const response = await fetch(
-        `${CRM_API_URL}/api/webhooks/blog-contact/${authorId}`,
+        'https://pennforce-crm-development-beta2-4.vercel.app/api/webhooks/blog-contact',
         {
           method: 'POST',
           headers: {
@@ -68,9 +68,12 @@ export const blogApi = {
             'x-form-secret': FORM_SECRET,
           },
           body: JSON.stringify({
-            ...formData,
-            articleSlug,
-            source: `Blog - ${articleSlug}`,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || undefined,
+            company: formData.company || undefined,
+            message: formData.message,
+            blogPostSlug: blogPostSlug, // REQUIRED field
           }),
         }
       );

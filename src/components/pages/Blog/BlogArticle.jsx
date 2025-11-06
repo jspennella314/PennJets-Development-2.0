@@ -56,7 +56,8 @@ const BlogArticle = () => {
     setSubmitStatus(null);
 
     try {
-      await blogApi.submitContactForm(article.author.id, formData, slug);
+      const result = await blogApi.submitContactForm(article.author.id, formData, slug);
+      console.log('Form submitted successfully:', result);
       setSubmitStatus('success');
       alert(`Thank you for your message! ${article.author.name} will contact you shortly.`);
 
@@ -69,7 +70,8 @@ const BlogArticle = () => {
         message: ''
       });
     } catch (error) {
-      console.error('Form submission failed:', error);
+      console.error('Form submission error details:', error);
+      console.error('Error message:', error.message);
       setSubmitStatus('error');
       alert(`Sorry, there was an error sending your message. Please try again or contact ${article.author.name} directly at ${article.author.email}`);
     } finally {
