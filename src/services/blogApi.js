@@ -91,33 +91,43 @@ export const blogApi = {
   /**
    * Get author details from website team data based on email
    * @param {string} email - Author email
-   * @returns {Object} Author details with name and avatar
+   * @returns {Object} Author details with name, title, bio, and avatar
    */
   getAuthorDetails(email) {
     const teamData = {
       'joe@pennjets.com': {
         name: 'Joseph Pennella',
+        title: 'Managing Director',
+        bio: 'Aviation enthusiast and founder of PennJets LLC, dedicated to making private aviation accessible, profitable, and hassle-free. With a passion for deal-making and client success, Joseph brings innovative approaches to aircraft brokerage and fractional ownership.',
         avatar: '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
       },
       'steven@pennjets.com': {
         name: 'Steven J Smyth',
+        title: 'Partner Operator Liaison',
+        bio: 'Partner Operator Liaison and Captain at KLM Aviation, established in 1991. Brings over three decades of aviation expertise to the PennJets partnership network. Coordinates with Part 135 certified operators to ensure the highest standards of safety, compliance, and service for PennJets clients.',
         avatar: '/images/Meet-The-Team/steven-smyth.jpg',
       },
       'charles@pennjets.com': {
         name: 'Charles Brennan',
+        title: 'Chief Technology Officer',
+        bio: 'Chief Technology Officer driving digital innovation and technological advancement at PennJets. Specializes in aviation technology integration, digital platforms, and modernizing private aviation operations through cutting-edge solutions and strategic technology implementation.',
         avatar: '/images/Meet-The-Team/CHARLES-BRENNAN.JPEG',
       },
       'jameswofford@pennjets.com': {
         name: 'James Wofford',
+        title: 'Aviation Consultant',
+        bio: 'James Wofford is a results-driven leader with a foundation in Aviation Management from Auburn University and a proven track record in sales, operations, and project leadership. With experience managing multimillion-dollar initiatives and leading cross-functional teams across industries—from aviation and energy efficiency to healthcare consulting—James combines strategic planning and data-driven decision-making to drive efficiency and growth. Known for his ability to streamline operations and enhance client satisfaction, he brings a disciplined, aviation-inspired approach to leadership and performance optimization.',
         avatar: '/images/Meet-The-Team/james-wofford.jpg',
       },
       'joedelisio@pennjets.com': {
         name: 'Joe Delisio',
+        title: 'Aviation Consultant',
+        bio: 'Experienced aviation consultant focused on helping clients navigate aircraft acquisitions and sales. Joe provides personalized service and strategic guidance throughout the entire transaction process.',
         avatar: '/images/Meet-The-Team/joe-delisio.jpg',
       },
     };
 
-    return teamData[email?.toLowerCase()] || { name: null, avatar: null };
+    return teamData[email?.toLowerCase()] || { name: null, title: null, bio: null, avatar: null };
   },
 
   /**
@@ -139,7 +149,7 @@ export const blogApi = {
     // Use keywords as tags
     const tags = post.keywords || [];
 
-    // Get author details from website team data (name and avatar)
+    // Get author details from website team data (name, title, bio, and avatar)
     const authorDetails = this.getAuthorDetails(post.author.email);
 
     // Enhance author data with defaults, prioritizing website team data
@@ -147,8 +157,8 @@ export const blogApi = {
       id: post.author.id,
       name: authorDetails.name || post.author.name || 'PennJets Team',
       email: post.author.email || 'info@pennjets.com',
-      title: post.author.title || 'Aviation Consultant',
-      bio: post.author.bio || `Aviation expert at PennJets, dedicated to providing insights and guidance on private aviation.`,
+      title: authorDetails.title || post.author.title || 'Aviation Consultant',
+      bio: authorDetails.bio || post.author.bio || `Aviation expert at PennJets, dedicated to providing insights and guidance on private aviation.`,
       avatar: authorDetails.avatar,
     };
 
