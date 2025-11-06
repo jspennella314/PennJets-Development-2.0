@@ -220,15 +220,25 @@ const BlogArticle = () => {
             <div
               className="prose prose-lg max-w-none mb-12
                 prose-headings:font-bold prose-headings:text-gray-900
+                prose-h1:text-4xl prose-h1:mt-12 prose-h1:mb-8
                 prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
-                prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline
+                prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-5
+                prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-4
+                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
+                prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium
                 prose-strong:text-gray-900 prose-strong:font-semibold
-                prose-blockquote:border-l-4 prose-blockquote:border-primary-600 prose-blockquote:pl-6 prose-blockquote:italic
-                prose-ul:list-disc prose-ul:pl-6
-                prose-ol:list-decimal prose-ol:pl-6
-                prose-li:text-gray-700 prose-li:mb-2"
+                prose-em:text-gray-700
+                prose-blockquote:border-l-4 prose-blockquote:border-primary-600 prose-blockquote:pl-6 prose-blockquote:py-2 prose-blockquote:italic prose-blockquote:text-gray-600 prose-blockquote:bg-gray-50 prose-blockquote:my-8
+                prose-ul:list-disc prose-ul:pl-6 prose-ul:my-6 prose-ul:space-y-2
+                prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-6 prose-ol:space-y-2
+                prose-li:text-gray-700 prose-li:leading-relaxed prose-li:text-lg
+                prose-code:text-primary-600 prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-base
+                prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-6
+                prose-img:rounded-lg prose-img:shadow-md prose-img:my-8
+                prose-hr:border-gray-300 prose-hr:my-12
+                prose-table:border-collapse prose-table:my-8
+                prose-th:bg-gray-100 prose-th:border prose-th:border-gray-300 prose-th:px-4 prose-th:py-2 prose-th:text-left
+                prose-td:border prose-td:border-gray-300 prose-td:px-4 prose-td:py-2"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
 
