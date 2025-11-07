@@ -59,7 +59,7 @@ export const blogApi = {
    */
   async submitContactForm(authorId, formData, blogPostSlug) {
     try {
-      const url = 'https://pennforce-crm-development-beta2-4.vercel.app/api/webhooks/blog-contact';
+      const url = `${CRM_API_URL}/api/webhooks/blog-contact`;
       const payload = {
         name: formData.name,
         email: formData.email,
