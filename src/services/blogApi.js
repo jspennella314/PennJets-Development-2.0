@@ -3,6 +3,7 @@
 
 const CRM_API_URL = import.meta.env.VITE_CRM_API_URL || 'http://localhost:3001';
 const FORM_SECRET = import.meta.env.VITE_CONTACT_FORM_SECRET || '';
+const CRM_API_KEY = import.meta.env.VITE_CRM_API_KEY || '';
 
 export const blogApi = {
   /**
@@ -11,7 +12,11 @@ export const blogApi = {
    */
   async getPosts() {
     try {
-      const response = await fetch(`${CRM_API_URL}/api/public/blog`);
+      const response = await fetch(`${CRM_API_URL}/api/public/blog`, {
+        headers: {
+          'x-api-key': CRM_API_KEY,
+        },
+      });
 
       if (!response.ok) {
         throw new Error('Failed to fetch blog posts');
@@ -36,7 +41,11 @@ export const blogApi = {
    */
   async getPost(slug) {
     try {
-      const response = await fetch(`${CRM_API_URL}/api/public/blog/${slug}`);
+      const response = await fetch(`${CRM_API_URL}/api/public/blog/${slug}`, {
+        headers: {
+          'x-api-key': CRM_API_KEY,
+        },
+      });
 
       if (!response.ok) {
         throw new Error('Blog post not found');
