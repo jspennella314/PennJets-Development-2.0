@@ -58,12 +58,10 @@ export const blogApi = {
   getAuthorWebhookId(authorEmail) {
     const webhookMap = {
       'joe@pennjets.com': import.meta.env.VITE_WEBHOOK_JOE_PENNELLA,
-      'steven@pennjets.com': import.meta.env.VITE_WEBHOOK_STEVEN_SMYTH,
-      'charles@pennjets.com': import.meta.env.VITE_WEBHOOK_CHARLES_BRENNAN,
       'jameswofford@pennjets.com': import.meta.env.VITE_WEBHOOK_JAMES_WOFFORD,
-      'joedelisio@pennjets.com': import.meta.env.VITE_WEBHOOK_JOE_DELISIO,
     };
 
+    // Fallback to main contact form webhook for other authors
     return webhookMap[authorEmail?.toLowerCase()] || import.meta.env.VITE_CONTACT_WEBHOOK_ID;
   },
 
