@@ -27,18 +27,23 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      // Get CRM API endpoint from environment or use default
-      const crmApiUrl = import.meta.env.VITE_CRM_API_URL || 'https://www.pennforce.pennjets.com';
-      const webhookUrl = `${crmApiUrl}/api/webhooks/contact-form`;
+      // Get CRM API endpoint and webhook ID from environment
+      const crmApiUrl = import.meta.env.VITE_CRM_API_URL || 'https://crm.pennjets.com';
+      const webhookId = import.meta.env.VITE_CONTACT_WEBHOOK_ID;
 
-      console.log('Submitting to CRM:', webhookUrl);
+      if (!webhookId) {
+        throw new Error('Webhook not configured. Please contact support.');
+      }
 
-      // Send to CRM webhook with security token
+      const webhookUrl = `${crmApiUrl}/api/webhooks/incoming/${webhookId}`;
+
+      console.log('Submitting to CRM webhook:', webhookUrl);
+
+      // Send to CRM webhook using new multi-tenant endpoint
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-form-secret': import.meta.env.VITE_CONTACT_FORM_SECRET || '',
         },
         body: JSON.stringify({
           name: formData.name,
@@ -47,6 +52,7 @@ const Contact = () => {
           company: formData.company || undefined,
           service: formData.service || undefined,
           message: formData.message,
+          pageUrl: window.location.href,
           // Add UTM parameters if available (from URL query params)
           utm_source: new URLSearchParams(window.location.search).get('utm_source') || undefined,
           utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || undefined,
@@ -58,7 +64,7 @@ const Contact = () => {
 
       const data = await response.json();
 
-      if (!response.ok) {
+      if (!response.ok || !data.success) {
         throw new Error(data.error || 'Failed to submit form');
       }
 

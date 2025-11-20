@@ -61,7 +61,7 @@ const BlogArticle = () => {
     console.log('Form data:', formData);
 
     try {
-      const result = await blogApi.submitContactForm(article.author.id, formData, slug);
+      const result = await blogApi.submitContactForm(article.author.id, formData, slug, article.author.email);
       console.log('✅ Form submitted successfully:', result);
       setSubmitStatus('success');
       alert(`Thank you for your message! ${article.author.name} will contact you shortly.`);

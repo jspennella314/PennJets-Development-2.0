@@ -51,41 +51,69 @@ export const blogApi = {
   },
 
   /**
-   * Submit contact form for blog post
+   * Get webhook ID for specific author based on email
+   * @param {string} authorEmail - Author's email address
+   * @returns {string} Webhook ID for the author
+   */
+  getAuthorWebhookId(authorEmail) {
+    const webhookMap = {
+      'joe@pennjets.com': import.meta.env.VITE_WEBHOOK_JOE_PENNELLA,
+      'steven@pennjets.com': import.meta.env.VITE_WEBHOOK_STEVEN_SMYTH,
+      'charles@pennjets.com': import.meta.env.VITE_WEBHOOK_CHARLES_BRENNAN,
+      'jameswofford@pennjets.com': import.meta.env.VITE_WEBHOOK_JAMES_WOFFORD,
+      'joedelisio@pennjets.com': import.meta.env.VITE_WEBHOOK_JOE_DELISIO,
+    };
+
+    return webhookMap[authorEmail?.toLowerCase()] || import.meta.env.VITE_CONTACT_WEBHOOK_ID;
+  },
+
+  /**
+   * Submit contact form for blog post - Routes to specific broker webhook
    * @param {string} authorId - Author's user ID (not used, kept for compatibility)
    * @param {Object} formData - Contact form data
    * @param {string} blogPostSlug - Article slug for attribution
+   * @param {string} authorEmail - Author email to route to correct webhook
    * @returns {Promise<Object>} Response data
    */
-  async submitContactForm(authorId, formData, blogPostSlug) {
+  async submitContactForm(authorId, formData, blogPostSlug, authorEmail) {
     try {
-      const url = `${CRM_API_URL}/api/webhooks/blog-contact`;
+      // Get the webhook ID for this specific author
+      const webhookId = this.getAuthorWebhookId(authorEmail);
+
+      if (!webhookId) {
+        throw new Error('Webhook not configured for this author. Please contact support.');
+      }
+
+      const url = `${CRM_API_URL}/api/webhooks/incoming/${webhookId}`;
       const payload = {
         name: formData.name,
         email: formData.email,
         phone: formData.phone || undefined,
         company: formData.company || undefined,
         message: formData.message,
-        blogPostSlug: blogPostSlug, // REQUIRED field
+        blogPostSlug: blogPostSlug,
+        pageUrl: window.location.href,
+        // Add UTM parameters if available
+        utm_source: new URLSearchParams(window.location.search).get('utm_source') || undefined,
+        utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || undefined,
+        utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || undefined,
       };
 
-      console.log('📤 Submitting to:', url);
+      console.log('📤 Submitting to broker webhook:', url);
       console.log('📦 Payload:', JSON.stringify(payload, null, 2));
-      console.log('🔐 Secret present:', !!FORM_SECRET);
-      console.log('🔐 Secret value:', FORM_SECRET ? `${FORM_SECRET.substring(0, 10)}...` : 'MISSING');
+      console.log('👤 Author email:', authorEmail);
+      console.log('🔗 Webhook ID:', webhookId);
 
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-form-secret': FORM_SECRET,
         },
         body: JSON.stringify(payload),
       });
 
       console.log('📨 Response status:', response.status);
       console.log('📨 Response statusText:', response.statusText);
-      console.log('📨 Response headers:', Object.fromEntries(response.headers.entries()));
 
       // Try to get the response text first
       const responseText = await response.text();
@@ -101,7 +129,7 @@ export const blogApi = {
         throw new Error(`Invalid JSON response: ${responseText}`);
       }
 
-      if (!response.ok) {
+      if (!response.ok || !data.success) {
         console.error('❌ Response not OK:', response.status, data);
         throw new Error(data.error || `Server returned ${response.status}: ${JSON.stringify(data)}`);
       }
