@@ -3,8 +3,52 @@ import { Helmet } from 'react-helmet-async';
 import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
 
+const NEWSLETTER_API = 'https://www.pennforce.pennjets.com/api/public/newsletter/subscribe';
+
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+
+  // Newsletter form state
+  const [email, setEmail] = useState('');
+  const [honeypot, setHoneypot] = useState(''); // Bot trap - must stay empty
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+
+    // Don't submit if honeypot is filled (bot detected)
+    if (honeypot) return;
+
+    if (!email || !email.includes('@')) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid email address.' });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: '', message: '' });
+
+    try {
+      const response = await fetch(NEWSLETTER_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, honeypot }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus({ type: 'success', message: 'Thank you for subscribing!' });
+        setEmail('');
+      } else {
+        setSubmitStatus({ type: 'error', message: data.error || 'Subscription failed. Please try again.' });
+      }
+    } catch (error) {
+      setSubmitStatus({ type: 'error', message: 'Network error. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const categories = ['All', 'Market Insights', 'Aircraft Reviews', 'Industry News', 'Buying Guide', 'Maintenance'];
 
@@ -232,19 +276,47 @@ const Blog = () => {
           <div className="max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
             <p className="text-primary-100 mb-8">
-              Subscribe to our newsletter for the latest aviation insights, market updates, 
+              Subscribe to our newsletter for the latest aviation insights, market updates,
               and exclusive industry analysis delivered to your inbox.
             </p>
-            <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
+            <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
+              {/* Honeypot field - hidden from users, bots will fill it */}
               <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-primary-300 focus:outline-none"
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ position: 'absolute', left: '-9999px' }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
               />
-              <Button variant="secondary" size="md" className="px-6">
-                Subscribe
-              </Button>
-            </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isSubmitting}
+                  className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-primary-300 focus:outline-none disabled:opacity-50"
+                  required
+                />
+                <Button
+                  type="submit"
+                  variant="secondary"
+                  size="md"
+                  className="px-6"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                </Button>
+              </div>
+              {submitStatus.message && (
+                <p className={`text-sm mt-3 ${submitStatus.type === 'success' ? 'text-green-300' : 'text-red-300'}`}>
+                  {submitStatus.message}
+                </p>
+              )}
+            </form>
             <p className="text-xs text-primary-200 mt-4">
               No spam, unsubscribe at any time.
             </p>
