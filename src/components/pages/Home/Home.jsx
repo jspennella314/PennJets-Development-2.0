@@ -55,7 +55,7 @@ const Home = () => {
       year: 1982,
       make: "Mitsubishi",
       model: "Diamond 1A",
-      price: "$225,000 OBO",
+      price: "$159,000 OBO",
       pax: 7,
       rangeNm: 1700,
       location: "Sanford, FL",
