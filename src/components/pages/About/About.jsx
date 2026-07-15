@@ -19,16 +19,6 @@ const About = () => {
       specialties: ['Aircraft Brokerage', 'Deal Structuring', 'Fractional Ownership']
     },
     {
-      name: 'Steven J Smyth',
-      title: 'Partner Operator Liaison',
-      credentials: 'KLM Aviation - Est. 1991',
-      bio: 'Partner Operator Liaison and Captain at KLM Aviation, established in 1991. Brings over three decades of aviation expertise to the PennJets partnership network. Coordinates with Part 135 certified operators to ensure the highest standards of safety, compliance, and service for PennJets clients.',
-      image: '/images/Meet-The-Team/steven-smyth.jpg',
-      phone: '(954) 881-4799',
-      email: 'steven@pennjets.com',
-      specialties: ['Operator Coordination', 'Safety Standards', 'Quality Assurance', 'Compliance Oversight']
-    },
-    {
       name: 'Charles Brennan',
       title: 'Chief Technology Officer',
       credentials: 'Technology & Innovation Leader',

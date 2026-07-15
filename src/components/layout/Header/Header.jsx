@@ -23,7 +23,7 @@ const Header = () => {
   // Countdown timer for bonus depreciation
   useEffect(() => {
     const calculateTimeRemaining = () => {
-      const endDate = new Date('2025-12-31T23:59:59');
+      const endDate = new Date('2026-12-31T23:59:59');
       const now = new Date();
       const difference = endDate - now;
 
@@ -64,7 +64,7 @@ const Header = () => {
       {/* Bonus Depreciation Countdown Banner */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary-600 to-primary-800 text-white py-2 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-4 text-sm lg:text-base">
-          <span className="font-semibold">100% Bonus Depreciation Ending:</span>
+          <span className="font-semibold">Calendar Year Ending:</span>
           <div className="flex gap-3 font-mono">
             <div className="flex flex-col items-center">
               <span className="text-lg lg:text-xl font-bold">{timeRemaining.days || 0}</span>

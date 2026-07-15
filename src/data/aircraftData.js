@@ -8,7 +8,7 @@ export const aircraftDatabase = [
     price: 3300000,
     priceFormatted: '$3,300,000',
     category: 'Mid-Size',
-    status: 'Available',
+    status: 'No Longer Available',
     location: 'Miami, FL',
     images: [
       '/images/Hawker-night - Copy.jpg',
