@@ -87,6 +87,13 @@ const Gallery = () => {
         category: 'Branding',
         description: 'PennJets Logo',
       },
+      {
+        id: 11,
+        name: 'n400hh-wide-hero.jpg',
+        url: '/images/Gallery/n400hh-wide-hero.jpg',
+        category: 'Aircraft',
+        description: 'N400HH Wide Hero',
+      },
     ];
 
     setImages(galleryImages);
