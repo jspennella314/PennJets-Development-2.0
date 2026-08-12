@@ -41,10 +41,10 @@ export const aircraftDatabase = [
     manufacturer: 'Mitsubishi',
     model: 'Diamond 1A',
     year: 1982,
-    price: 250000,
-    priceFormatted: '$250,000 OBO',
+    price: 0,
+    priceFormatted: 'Under Contract',
     category: 'Light Jet',
-    status: 'Available',
+    status: 'Under Contract',
     location: 'Sanford, FL',
     images: [
       '/images/Diamond-1A/diamond-1a-ramp.JPEG',
