@@ -55,7 +55,7 @@ const Home = () => {
       year: 1982,
       make: "Mitsubishi",
       model: "Diamond 1A",
-      price: "$250,000 OBO",
+      status: "UNDER CONTRACT",
       pax: 7,
       rangeNm: 1700,
       location: "Sanford, FL",
@@ -89,6 +89,7 @@ const Home = () => {
 
   const AircraftCard = ({ a }) => {
     const isSold = a.status === "SOLD";
+    const isUnderContract = a.status === "UNDER CONTRACT";
     return (
       <article className={`overflow-hidden rounded-2xl border shadow-sm ${
         a.featured ? "border-2 border-yellow-400 shadow-lg" : ""
@@ -121,12 +122,17 @@ const Home = () => {
                 SOLD
               </span>
             )}
+            {isUnderContract && (
+              <span className="text-xs font-semibold uppercase tracking-wide text-amber-600">
+                Under Contract
+              </span>
+            )}
           </div>
           <h3 className="text-lg font-semibold">
             {a.year} {a.make} {a.model}
           </h3>
           <p className="text-sm text-gray-600">
-            {a.price ?? (isSold ? "" : "Call for price")}
+            {isUnderContract ? "Under Contract" : a.price ?? (isSold ? "" : "Call for price")}
             {a.pax ? ` · ${a.pax} pax` : ""}
             {a.rangeNm ? ` · ~${a.rangeNm} nm` : ""}
           </p>

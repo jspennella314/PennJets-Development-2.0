@@ -73,6 +73,20 @@ const Gallery = () => {
         category: 'Aviation',
         description: 'Sunset Jet',
       },
+      {
+        id: 9,
+        name: 'n400hh-ramp.jpg',
+        url: '/images/Gallery/n400hh-ramp.jpg',
+        category: 'Aircraft',
+        description: 'N400HH on the Ramp',
+      },
+      {
+        id: 10,
+        name: 'PennJets-Website-Logo.png',
+        url: '/images/PennJets-Website-Logo.png',
+        category: 'Branding',
+        description: 'PennJets Logo',
+      },
     ];
 
     setImages(galleryImages);
