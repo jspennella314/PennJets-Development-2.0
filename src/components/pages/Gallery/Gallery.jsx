@@ -46,13 +46,6 @@ const Gallery = () => {
         description: 'Gulfstream',
       },
       {
-        id: 5,
-        name: 'lukas-souza-V-0dyZEU3Pg-unsplash.jpg',
-        url: '/images/Gallery/lukas-souza-V-0dyZEU3Pg-unsplash.jpg',
-        category: 'Aviation',
-        description: 'Private Jet',
-      },
-      {
         id: 6,
         name: 'pc12.jpg',
         url: '/images/Gallery/pc12.jpg',
@@ -93,6 +86,13 @@ const Gallery = () => {
         url: '/images/Gallery/n400hh-wide-hero.jpg',
         category: 'Aircraft',
         description: 'N400HH Wide Hero',
+      },
+      {
+        id: 12,
+        name: 'Bombardier_Challenger_650.jpg',
+        url: '/images/Gallery/Bombardier_Challenger_650.jpg',
+        category: 'Aircraft',
+        description: 'Bombardier Challenger 650',
       },
     ];
 
