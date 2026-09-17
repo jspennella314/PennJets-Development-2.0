@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 
@@ -6,6 +6,8 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState({});
+  const bannerRef = useRef(null);
+  const [bannerHeight, setBannerHeight] = useState(0);
   const location = useLocation();
 
   // Determine if current page has a dark hero section
@@ -18,6 +20,25 @@ const Header = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // The header used to be offset with hardcoded top-10 / top-16. The banner
+  // above it is ~60px on a phone (the countdown stacks a number over a label)
+  // but top-10 is only 40px, so the banner -- which is z-50 against the
+  // header's z-40 -- sat over the top of the header and sliced the PennJets
+  // logo in half. The banner's height also changes with the breakpoint and
+  // when its contents wrap, so no fixed number is right at every width.
+  // Measure it instead.
+  useEffect(() => {
+    const el = bannerRef.current;
+    if (!el) return;
+
+    const measure = () => setBannerHeight(el.offsetHeight);
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   // Countdown timer for bonus depreciation
@@ -62,7 +83,10 @@ const Header = () => {
   return (
     <>
       {/* Bonus Depreciation Countdown Banner */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary-600 to-primary-800 text-white py-2 px-4">
+      <div
+        ref={bannerRef}
+        className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary-600 to-primary-800 text-white py-2 px-4"
+      >
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-4 text-sm lg:text-base">
           <span className="font-semibold">Calendar Year Ending:</span>
           <div className="flex gap-3 font-mono">
@@ -89,9 +113,15 @@ const Header = () => {
         </div>
       </div>
 
-      <header className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
-        (isScrolled || !isDarkHeroPage) ? 'top-10 bg-white/95 backdrop-blur-lg shadow-lg' : 'top-16 bg-transparent'
-      }`}>
+      <header
+        // Sit flush beneath the banner when docked; on a dark hero the header
+        // floats a little lower, but never higher than the banner's bottom
+        // edge, which is what was clipping the logo.
+        style={{ top: (isScrolled || !isDarkHeroPage) ? bannerHeight : Math.max(bannerHeight, 64) }}
+        className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
+          (isScrolled || !isDarkHeroPage) ? 'bg-white/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+        }`}
+      >
         <nav className="max-w-7xl mx-auto container-padding">
           <div className="flex items-center justify-between h-16 lg:h-20 py-2">
           {/* Logo */}
