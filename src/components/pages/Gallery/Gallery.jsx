@@ -94,6 +94,13 @@ const Gallery = () => {
         category: 'Aircraft',
         description: 'Bombardier Challenger 650',
       },
+      {
+        id: 13,
+        name: 'Embraer_Phenom_300.jpg',
+        url: '/images/Gallery/Embraer_Phenom_300.jpg',
+        category: 'Aircraft',
+        description: 'Embraer Phenom 300',
+      },
     ];
 
     setImages(galleryImages);
