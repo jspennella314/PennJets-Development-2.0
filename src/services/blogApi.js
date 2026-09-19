@@ -4,6 +4,25 @@
 const CRM_API_URL = import.meta.env.VITE_CRM_API_URL || 'http://localhost:3001';
 const FORM_SECRET = import.meta.env.VITE_CONTACT_FORM_SECRET || '';
 
+// Session-scoped id for the view beacon. Lives in sessionStorage only (cleared when
+// the tab closes) so a re-fire within the same session updates the CRM row instead
+// of creating a duplicate. Not personal data.
+const VIEW_SESSION_KEY = 'pj_view_session';
+function getViewSessionId() {
+  try {
+    let id = window.sessionStorage.getItem(VIEW_SESSION_KEY);
+    if (!id) {
+      id = (window.crypto && typeof window.crypto.randomUUID === 'function')
+        ? window.crypto.randomUUID()
+        : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+      window.sessionStorage.setItem(VIEW_SESSION_KEY, id);
+    }
+    return id;
+  } catch (e) {
+    return undefined;
+  }
+}
+
 export const blogApi = {
   /**
    * Get all published blog posts
@@ -144,6 +163,34 @@ export const blogApi = {
         throw new Error('Network error - unable to reach the server. Please check your connection.');
       }
       throw error;
+    }
+  },
+
+  /**
+   * View beacon. POST /api/public/blog/{slug}/view with the UTM parameters from the
+   * current URL, the document referrer, and the session id. Fire-and-forget: it never
+   * blocks rendering and never throws. Contract: CLAUDE.md "Integration facts".
+   * @param {string} slug - Article slug
+   */
+  recordView(slug) {
+    try {
+      if (!slug || typeof window === 'undefined') return;
+      const params = new URLSearchParams(window.location.search);
+      const payload = {
+        utm_source: params.get('utm_source') || undefined,
+        utm_medium: params.get('utm_medium') || undefined,
+        utm_campaign: params.get('utm_campaign') || undefined,
+        referrer: document.referrer || '',
+        sessionId: getViewSessionId(),
+      };
+      fetch(`${CRM_API_URL}/api/public/blog/${encodeURIComponent(slug)}/view`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      }).catch(() => {});
+    } catch (e) {
+      // Never let the beacon affect the page.
     }
   },
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../common/Card/Card';
@@ -26,6 +26,18 @@ const BlogArticle = () => {
   useEffect(() => {
     loadArticle();
   }, [slug]);
+
+  // View beacon: fire once per article view, after the article has rendered.
+  // Guards: the loaded article must match the current slug (so a slug change does
+  // not fire against the previous article), and the same slug never fires twice
+  // for this mounted component (React StrictMode double-runs effects in dev).
+  const viewedSlugRef = useRef(null);
+  useEffect(() => {
+    if (!article || article.slug !== slug) return;
+    if (viewedSlugRef.current === slug) return;
+    viewedSlugRef.current = slug;
+    blogApi.recordView(slug);
+  }, [article, slug]);
 
   const loadArticle = async () => {
     try {
