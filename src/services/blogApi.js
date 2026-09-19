@@ -180,7 +180,7 @@ export const blogApi = {
         utm_source: params.get('utm_source') || undefined,
         utm_medium: params.get('utm_medium') || undefined,
         utm_campaign: params.get('utm_campaign') || undefined,
-        referrer: document.referrer || '',
+        referrer: document.referrer || undefined,
         sessionId: getViewSessionId(),
       };
       fetch(`${CRM_API_URL}/api/public/blog/${encodeURIComponent(slug)}/view`, {
