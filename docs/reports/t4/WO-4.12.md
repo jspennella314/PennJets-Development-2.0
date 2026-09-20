@@ -2,8 +2,8 @@
 wo: WO-4.12
 terminal: T4
 branch: t4/work
-commit: 4a1f0c9
-tested_against: "site: measurement against production deploy 9ee9adc; page rendered on local dev (vite 5173) at 4a1f0c9 — NOT yet a production deploy, see Known gaps. Browser profile: a fresh Playwright Chrome context, no cookies, storage or cache carried in."
+commit: bb96840
+tested_against: "site: measurement against production deploy 9ee9adc; page rendered on local dev (vite 5173) at bb96840 — NOT yet a production deploy, see Known gaps. Browser profile: a fresh Playwright Chrome context, no cookies, storage or cache carried in."
 date: 2026-09-20
 status: reported
 ---
@@ -17,7 +17,7 @@ cookies at all. Every one of those claims was false.
 
 ## Commit
 
-`4a1f0c9` WO-4.12: cookie policy rewritten from a measurement.
+`bb96840` WO-4.12: cookie policy rewritten from a measurement.
 On `t4/work`, pushed. Not merged.
 
 ## Data evidence — the measured inventory
@@ -163,7 +163,7 @@ Nothing in the PennForce repository was written.
    `docs/drafts/t4/for-joseph-WO-4.12.md` for relaying. Per the standing
    instruction the rest of the order continued.
 
-2. **The rendered page was verified locally**, at `4a1f0c9`. The *measurement*
+2. **The rendered page was verified locally**, at `bb96840`. The *measurement*
    behind the copy was taken against the production deploy `9ee9adc`, which is
    what a reader gets today. The page itself does not exist on production until
    this branch is merged.
