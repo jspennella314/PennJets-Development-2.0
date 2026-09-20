@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
@@ -120,11 +119,6 @@ const Contact = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Contact PennJets - Get in Touch with Aviation Experts</title>
-        <meta name="description" content="Contact PennJets for all your aviation needs. Speak with our expert team about aircraft sales, acquisitions, charter brokerage, and consulting services." />
-      </Helmet>
-
       {/* Hero Section */}
       <section className="bg-gray-900 text-white py-24 mt-24">
         <div className="max-w-7xl mx-auto container-padding">

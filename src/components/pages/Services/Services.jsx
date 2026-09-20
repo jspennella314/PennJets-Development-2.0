@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 
@@ -178,11 +177,6 @@ const Services = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Aviation Services - Aircraft Sales, Charter Brokerage & Consulting | PennJets</title>
-        <meta name="description" content="Comprehensive aviation services including aircraft sales, acquisitions, charter brokerage, and consulting. Partnering with vetted Part 135 operators. Expert guidance for all your private aviation needs." />
-      </Helmet>
-
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-32 mt-24 overflow-hidden">
         <div className="absolute inset-0 opacity-10">

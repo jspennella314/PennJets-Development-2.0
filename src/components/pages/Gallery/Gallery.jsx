@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Button from '../../common/Button/Button';
 
 const Gallery = () => {
@@ -86,11 +85,6 @@ const Gallery = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Image Gallery | PennJets</title>
-        <meta name="description" content="Image library for PennJets Market Notes." />
-      </Helmet>
-
       {/* Hero Section */}
       <section className="bg-gray-900 text-white py-24 mt-16">
         <div className="max-w-7xl mx-auto container-padding">

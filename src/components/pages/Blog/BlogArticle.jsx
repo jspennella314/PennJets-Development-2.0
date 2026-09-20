@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
 import { blogApi } from '../../../services/blogApi';
+import { articleMeta } from '../../../seo/siteMeta';
 
 const BlogArticle = () => {
   const { slug } = useParams();
@@ -124,19 +125,27 @@ const BlogArticle = () => {
     );
   }
 
+  const seo = articleMeta(article);
+
   return (
     <>
       <Helmet>
-        <title>{article.title} | PennJets Market Notes</title>
-        <meta name="description" content={article.excerpt} />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
         <meta name="keywords" content={article.tags?.join(', ')} />
         <meta name="author" content={article.author.name} />
+        <link rel="canonical" href={seo.url} />
 
-        {/* Open Graph */}
+        {/* Open Graph / Twitter */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={article.title} />
-        <meta property="og:description" content={article.excerpt} />
-        {article.featuredImage && <meta property="og:image" content={article.featuredImage} />}
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:url" content={seo.url} />
+        <meta property="og:image" content={seo.image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
+        <meta name="twitter:image" content={seo.image} />
         <meta property="article:published_time" content={article.publishedAt} />
         <meta property="article:author" content={article.author.name} />
 
@@ -146,8 +155,9 @@ const BlogArticle = () => {
             "@context": "https://schema.org",
             "@type": "Article",
             "headline": article.title,
-            "description": article.excerpt,
-            "image": article.featuredImage,
+            "description": seo.description,
+            "image": seo.image,
+            "mainEntityOfPage": seo.url,
             "datePublished": article.publishedAt,
             "author": {
               "@type": "Person",

@@ -92,12 +92,7 @@ const BlogList = () => {
   return (
     <>
       <Helmet>
-        <title>Market Notes | PennJets</title>
-        <meta name="description" content="Stay informed with the latest aviation industry insights, aircraft reviews, market analysis, and expert guidance from PennJets aviation consultants." />
         <meta name="keywords" content="market notes, private jets, aircraft market, aviation insights, industry trends" />
-        <meta property="og:title" content="PennJets Market Notes" />
-        <meta property="og:description" content="Expert insights on private aviation, aircraft ownership, and industry trends" />
-        <meta property="og:type" content="website" />
       </Helmet>
 
       {/* Hero Section */}

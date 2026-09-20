@@ -1,14 +1,8 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 
 const PrivacyPolicy = () => {
   return (
     <>
-      <Helmet>
-        <title>Privacy Policy - PennJets LLC</title>
-        <meta name="description" content="PennJets privacy policy detailing how we collect, use, and protect your personal information." />
-      </Helmet>
-
       <div className="bg-gray-900 text-white py-24 mt-16">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center max-w-3xl mx-auto">

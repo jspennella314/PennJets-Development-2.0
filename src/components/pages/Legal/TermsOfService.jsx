@@ -1,14 +1,8 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 
 const TermsOfService = () => {
   return (
     <>
-      <Helmet>
-        <title>Terms of Service - PennJets LLC</title>
-        <meta name="description" content="PennJets terms of service outlining the conditions for using our aviation brokerage services." />
-      </Helmet>
-
       <div className="bg-gray-900 text-white py-24 mt-16">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center max-w-3xl mx-auto">

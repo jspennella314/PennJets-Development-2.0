@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { Link, useSearchParams } from "react-router-dom";
 import { blogApi } from "../../../services/blogApi";
 
@@ -301,13 +300,6 @@ const FooterCta = () => (
 const Charter = () => {
   return (
     <>
-      <Helmet>
-        <title>Private Jet Charter | PennJets</title>
-        <meta
-          name="description"
-          content="Request a private jet charter quote. Penn Jets is an air charter broker; every flight is operated by a licensed Part 135 direct air carrier."
-        />
-      </Helmet>
       <main>
         <Hero />
         <Benefits />

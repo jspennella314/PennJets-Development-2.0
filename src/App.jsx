@@ -20,11 +20,13 @@ import TermsOfService from './components/pages/Legal/TermsOfService';
 import CookiePolicy from './components/pages/Legal/CookiePolicy';
 import Compliance from './components/pages/Legal/Compliance';
 import ScrollToTop from './components/common/ScrollToTop/ScrollToTop';
+import PageMeta from './components/common/PageMeta/PageMeta';
 
 function App() {
   return (
     <HelmetProvider>
       <Router>
+        <PageMeta />
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Header />

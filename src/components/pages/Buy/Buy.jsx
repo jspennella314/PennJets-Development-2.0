@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link, useSearchParams } from 'react-router-dom';
 import { blogApi } from '../../../services/blogApi';
 
@@ -67,14 +66,6 @@ const Buy = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Buy an Aircraft | PennJets</title>
-        <meta
-          name="description"
-          content="Tell PennJets the mission and we'll tell you what's available. Sole and fractional ownership, including aircraft that aren't publicly listed."
-        />
-      </Helmet>
-
       <div className="bg-white pt-32 pb-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <header className="mb-8 max-w-3xl">

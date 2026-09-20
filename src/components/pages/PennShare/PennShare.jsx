@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
@@ -54,11 +53,6 @@ const PennShare = () => {
 
   return (
     <>
-      <Helmet>
-        <title>PennShare - Fractional Aircraft Ownership | PennJets</title>
-        <meta name="description" content="PennShare fractional aircraft ownership: shares structured by PennJets and flown by a licensed Part 135 operator. Share the costs, not the convenience." />
-      </Helmet>
-
       {/* Hero Section */}
       <section className="relative bg-white py-20 lg:py-24">
         <div className="max-w-7xl mx-auto container-padding">

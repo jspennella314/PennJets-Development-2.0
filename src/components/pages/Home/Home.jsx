@@ -109,14 +109,7 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>PennJets — Private Jet Brokerage & Aviation Consulting</title>
-        <meta name="description" content="PennJets is a private aviation brokerage and consulting firm specializing in aircraft sales, acquisitions, and charter brokerage. Partnering with vetted Part 135 operators. Call (973) 868‑8425." />
         <meta name="keywords" content="private aviation, aircraft brokerage, aviation consulting, charter broker, Premier 1A" />
-        <meta property="og:title" content="PennJets — Private Jet Brokerage & Aviation Consulting" />
-        <meta property="og:description" content="Private aviation. Done right. Brokerage, consulting, and charter connections." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.pennjets.com" />
-        <meta name="twitter:card" content="summary_large_image" />
 
         {/* Schema.org structured data for better SEO */}
         <script type="application/ld+json">
