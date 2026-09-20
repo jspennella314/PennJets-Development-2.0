@@ -1,5 +1,10 @@
 # For Joseph — WO-4.15, two ambiguous dropdown labels
 
+> **DECIDED 2026-09-20.** Joseph: "your proposal is right. 'Selling my
+> aircraft' / 'Buying an aircraft'. Label by what the visitor is doing."
+> Not yet built: copy changes need an order, and one has been requested in
+> `order-request-labels-and-hero.md` beside this file.
+
 **Belongs in `docs/orders/joseph.md` in the PennForce repo. T4 cannot write
 there**, so it is queued here and needs relaying. Same constraint as the other
 files beside this one.

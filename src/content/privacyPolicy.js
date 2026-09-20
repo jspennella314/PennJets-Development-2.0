@@ -1,6 +1,6 @@
 // Privacy policy copy, WO-4.10.
 //
-// DRAFT AWAITING JOSEPH'S APPROVAL of the wording. It is written from the lead
+// APPROVED AS WRITTEN by Joseph, 2026-09-20. Written from the lead
 // engineer's verification of the CRM schema and production on 2026-09-20, plus
 // what this site was measured doing on production the same day, and from
 // nothing else.

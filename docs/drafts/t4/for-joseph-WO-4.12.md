@@ -11,6 +11,8 @@ as it stands.
 
 ## Approve the wording
 
+> **RESOLVED 2026-09-20.** Approved as written.
+
 Draft: `docs/drafts/t4/cookie-policy.md`, generated from
 `src/content/cookiePolicy.js`, which is what the page renders. About 600 words,
 six sections.

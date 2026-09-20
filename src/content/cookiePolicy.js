@@ -1,6 +1,6 @@
 // Cookie policy copy, WO-4.12.
 //
-// DRAFT AWAITING JOSEPH'S APPROVAL of the wording. Written from a measurement,
+// APPROVED AS WRITTEN by Joseph, 2026-09-20. Written from a measurement,
 // not from a template: a fresh browser profile walked home, the Market Notes
 // index, a Market Note arrived at from a social link, charter, buy, contact and
 // both legal pages on 2026-09-20. The cookie jar was empty at the end of that

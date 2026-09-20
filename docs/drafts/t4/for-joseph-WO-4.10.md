@@ -12,6 +12,8 @@ waiting on these.
 
 ## 1. Approve the wording
 
+> **RESOLVED 2026-09-20.** Approved as written.
+
 The draft is `docs/drafts/t4/privacy-policy.md`, generated from
 `src/content/privacyPolicy.js`, which is what the page renders. Roughly 850
 words, eight sections.
@@ -28,6 +30,11 @@ not the accuracy.
 ---
 
 ## 2. The address for access and deletion requests
+
+> **STILL OPEN.** Joseph's reply on 2026-09-20 carried an unfilled placeholder
+> here: "privacy@pennjets.com: [confirm whether that inbox exists and you
+> monitor it]". The square brackets are his, not mine, so the question came
+> back unanswered. It is the last thing outstanding on this page.
 
 The draft uses `privacy@pennjets.com`, which the previous version of this page
 already published, so it is not a new claim. Confirm it is monitored, or give
