@@ -239,15 +239,15 @@ export const blogApi = {
     const teamData = {
       'joe@pennjets.com': {
         name: 'Joseph Pennella',
-        title: 'Managing Director',
+        title: 'Founder and Principal Broker',
         bio: 'Aviation enthusiast and founder of PennJets LLC, dedicated to making private aviation accessible, profitable, and hassle-free. With a passion for deal-making and client success, Joseph brings innovative approaches to aircraft brokerage and fractional ownership.',
-        avatar: '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
+        avatar: '/images/Meet-The-Team/joseph-pennella-96.webp',
       },
       'charles@pennjets.com': {
         name: 'Charles Brennan',
         title: 'Chief Technology Officer',
         bio: 'Chief Technology Officer driving digital innovation and technological advancement at PennJets. Specializes in aviation technology integration, digital platforms, and modernizing private aviation operations through cutting-edge solutions and strategic technology implementation.',
-        avatar: '/images/Meet-The-Team/CHARLES-BRENNAN.JPEG',
+        avatar: '/images/Meet-The-Team/charles-brennan-96.webp',
       },
       'joedelisio@pennjets.com': {
         name: 'Joe Delisio',

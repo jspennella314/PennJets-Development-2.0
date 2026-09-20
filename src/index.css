@@ -62,6 +62,56 @@
   .body-md {
     @apply text-base text-gray-600 leading-relaxed;
   }
+
+  /* ---- Market Note article typography -------------------------------------
+     The note body arrives from the CRM as HTML (p, h2, h3, ul, li, strong, em,
+     br). @tailwindcss/typography is not installed, so these rules are what
+     actually styles it. Keep the measure narrow and the rhythm even. */
+
+  .note-lede {
+    @apply text-xl sm:text-2xl leading-relaxed text-gray-900 font-normal;
+  }
+
+  .note-body {
+    @apply text-lg leading-relaxed text-gray-700;
+  }
+  .note-body p {
+    @apply mb-6;
+  }
+  .note-body > div:last-child p:last-child {
+    @apply mb-0;
+  }
+  .note-body h2 {
+    @apply mt-12 mb-4 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900;
+  }
+  .note-body h3 {
+    @apply mt-10 mb-3 text-xl sm:text-2xl font-semibold tracking-tight text-gray-900;
+  }
+  .note-body ul {
+    @apply my-6 pl-6 list-disc space-y-2;
+  }
+  .note-body ol {
+    @apply my-6 pl-6 list-decimal space-y-2;
+  }
+  .note-body li {
+    @apply leading-relaxed;
+  }
+  .note-body a {
+    @apply text-primary-700 underline underline-offset-2 decoration-primary-300 hover:decoration-primary-700;
+  }
+  .note-body strong {
+    @apply font-semibold text-gray-900;
+  }
+  .note-body em {
+    @apply italic;
+  }
+  .note-body hr {
+    @apply my-12 border-gray-200;
+  }
+  /* If the CRM editor ever emits a real blockquote, it gets the pull-quote look. */
+  .note-body blockquote {
+    @apply my-10 border-l-2 border-primary-600 pl-6 text-xl sm:text-2xl leading-snug text-gray-900;
+  }
 }
 
 @layer utilities {

@@ -101,9 +101,22 @@ try {
   console.warn(`[postbuild] CRM fetch failed (${err.message}); article pages skipped.`);
 }
 
+// A note's featuredImage is set in the CRM and can point at a file this repo no
+// longer ships (an image pulled for a visible tail number, say). A dead og:image
+// means a blank social preview, so fall back to the default and say so in the log.
+const missingImages = [];
+function resolvePreviewImage(url) {
+  if (!url || !url.startsWith(SITE_URL + '/')) return url || SITE_URL + DEFAULT_IMAGE;
+  const local = path.join('public', url.slice(SITE_URL.length + 1));
+  if (fs.existsSync(local)) return url;
+  missingImages.push(url.slice(SITE_URL.length));
+  return SITE_URL + DEFAULT_IMAGE;
+}
+
 for (const post of posts) {
   if (!post.slug) continue;
   const a = articleMeta(post);
+  a.image = resolvePreviewImage(a.image);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -143,3 +156,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
 writeFile('sitemap.xml', sitemap);
 
 console.log(`[postbuild] wrote ${written.length} HTML files (${posts.length} Market Notes) and sitemap.xml with ${urls.length} URLs`);
+if (missingImages.length) {
+  console.warn(`[postbuild] ${missingImages.length} note image(s) not in this repo; social preview fell back to the default:`);
+  for (const u of [...new Set(missingImages)]) console.warn(`  ${u}`);
+}

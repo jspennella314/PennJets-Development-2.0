@@ -9,8 +9,8 @@ const About = () => {
   const teamMembers = [
     {
       name: 'Joseph Pennella',
-      title: 'Managing Director',
-      credentials: 'Aviation Entrepreneur',
+      title: 'Founder and Principal Broker',
+      credentials: null,
       bio: 'Aviation enthusiast and founder of PennJets LLC, dedicated to making private aviation accessible, profitable, and hassle-free. With a passion for deal-making and client success, Joseph brings innovative approaches to aircraft brokerage and fractional ownership.',
       image: '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
       phone: '(973) 868-8425',
@@ -120,9 +120,11 @@ const About = () => {
                 <div className="text-primary-600 font-medium mb-1">
                   {member.title}
                 </div>
-                <div className="text-sm text-gray-500 mb-3">
-                  {member.credentials}
-                </div>
+                {member.credentials && (
+                  <div className="text-sm text-gray-500 mb-3">
+                    {member.credentials}
+                  </div>
+                )}
                 <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                   {member.bio}
                 </p>
