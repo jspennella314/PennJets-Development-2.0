@@ -26,6 +26,16 @@ export const ROUTES = {
     description:
       "Sole and fractional ownership, including aircraft that aren't publicly listed. Tell us the mission and we'll tell you what's available.",
   },
+  '/sell': {
+    title: 'Sell Your Aircraft | PennJets',
+    description:
+      "Tell us what you have and we'll come back with where it sits in the current market and what a realistic timeline looks like.",
+  },
+  '/consulting': {
+    title: 'Aviation Consulting | PennJets',
+    description:
+      'Cost of ownership, mission fit, ownership structure, or a second opinion on a deal in front of you.',
+  },
   '/pennshare': {
     title: 'PennShare Fractional Ownership | PennJets',
     description:

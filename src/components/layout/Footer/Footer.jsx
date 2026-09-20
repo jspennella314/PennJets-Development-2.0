@@ -22,13 +22,14 @@ const Footer = () => {
         { name: 'Aircraft Sales', href: '/services#sales' },
         { name: 'Aircraft Acquisition', href: '/services#acquisition' },
         { name: 'Charter Services', href: '/services#charter' },
+        { name: 'Consulting', href: '/consulting' },
       ]
     },
     {
       title: 'Aircraft',
       links: [
         { name: 'Browse Aircraft', href: '/aircraft' },
-        { name: 'Sell Your Aircraft', href: '/contact' },
+        { name: 'Sell Your Aircraft', href: '/sell' },
         { name: 'Market Analysis', href: '/services#analysis' },
         { name: 'Valuation Services', href: '/services#analysis' },
       ]

@@ -169,12 +169,13 @@ export const blogApi = {
   },
 
   /**
-   * Submit a lead from a service page (charter, buy, PennShare) to the main
+   * Submit a lead from a service page (charter, buy, sell, consulting,
+   * PennShare) to the main
    * contact webhook. Same payload shape as the Contact page. Structured
    * fields are packed into `message` as labeled lines so the payload does
    * not change (CLAUDE.md, integration facts). Resolves with { success, leadId }.
    */
-  async submitLead({ name, email, phone, company, service, message }) {
+  async submitLead({ name, email, phone, company, service, message, blogPostSlug }) {
     const webhookId = import.meta.env.VITE_CONTACT_WEBHOOK_ID;
     if (!webhookId) {
       throw new Error('Webhook not configured. Please contact support.');
@@ -187,6 +188,7 @@ export const blogApi = {
       company: company || undefined,
       service: service || undefined,
       message,
+      blogPostSlug: blogPostSlug || undefined,
       pageUrl: window.location.href,
       utm_source: params.get('utm_source') || undefined,
       utm_medium: params.get('utm_medium') || undefined,

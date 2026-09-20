@@ -14,6 +14,8 @@ import Gallery from './components/pages/Gallery/Gallery';
 import PennShare from './components/pages/PennShare/PennShare';
 import Charter from './components/pages/Charter/Charter';
 import Buy from './components/pages/Buy/Buy';
+import Sell from './components/pages/Sell/Sell';
+import Consulting from './components/pages/Consulting/Consulting';
 import NotFound from './components/pages/NotFound/NotFound';
 import PrivacyPolicy from './components/pages/Legal/PrivacyPolicy';
 import TermsOfService from './components/pages/Legal/TermsOfService';
@@ -40,6 +42,8 @@ function App() {
               <Route path="/pennshare" element={<PennShare />} />
               <Route path="/charter" element={<Charter />} />
               <Route path="/buy" element={<Buy />} />
+              <Route path="/sell" element={<Sell />} />
+              <Route path="/consulting" element={<Consulting />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<BlogList />} />
               <Route path="/blog/:slug" element={<BlogArticle />} />
