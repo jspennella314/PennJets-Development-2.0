@@ -31,10 +31,17 @@ not the accuracy.
 
 ## 2. The address for access and deletion requests
 
-> **STILL OPEN.** Joseph's reply on 2026-09-20 carried an unfilled placeholder
-> here: "privacy@pennjets.com: [confirm whether that inbox exists and you
-> monitor it]". The square brackets are his, not mine, so the question came
-> back unanswered. It is the last thing outstanding on this page.
+> **STILL OPEN, asked twice.** Both replies on 2026-09-20 carried an unfilled
+> placeholder where the answer should be:
+>
+> 1. "privacy@pennjets.com: [confirm whether that inbox exists and you monitor it]"
+> 2. "privacy@pennjets.com: [yes, it exists and I monitor it / no, use joe@pennjets.com instead]"
+>
+> The square brackets are his in both, so the template came back with the
+> choice still in it. It is the last thing outstanding on this page, and it
+> matters: the address is published as the route for access and deletion
+> requests, so somebody has to read it. **One word does it: keep, or swap to
+> joe@pennjets.com.**
 
 The draft uses `privacy@pennjets.com`, which the previous version of this page
 already published, so it is not a new claim. Confirm it is monitored, or give

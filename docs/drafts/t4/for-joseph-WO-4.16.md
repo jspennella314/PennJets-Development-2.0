@@ -34,6 +34,9 @@ Done. `og-default.jpg` is deleted and `DEFAULT_IMAGE` points at the card.
 
 ## New, and this one needs you: a Market Note is using the 1.32 MB logo as its preview
 
+> **RESOLVED 2026-09-20.** Joseph: "The Market Note with the logo as its
+> featured image was me. I will clear it in the CMS." Nothing for T4 to do.
+
 Found while counting the fallbacks. `why-we-publish-market-notes` had
 `Gallery/falcon.jpg` as its featured image this morning. The CRM now returns
 `/images/PennJets-Website-Logo.png`.

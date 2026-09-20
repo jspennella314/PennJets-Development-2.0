@@ -70,7 +70,18 @@ aircraft point is not a problem. The file stays. Only its weight is at issue.
 3,400 kbps for a 3.4-second silent loop at 720p is several times what it needs.
 That alone is the compression case.
 
-### The thing worth deciding alongside it
+### Joseph's disposition, 2026-09-20
+
+> "I'll look for the original footage and see if I can give you a landscape
+> export. If I can't, compress the portrait version. Delete
+> Falcon-Hero-Flyover3.mp4 if nothing references it."
+
+So the order has a branch in it, and should say so rather than assume: **use a
+landscape export if Joseph produces one, otherwise compress the portrait file
+in place.** Either way the target is the same, well under 200 KB for a
+3.4-second silent loop.
+
+### Why the landscape export is worth his looking
 
 **It is a portrait phone video used as a landscape hero.** `Home.jsx` renders
 it `h-[60vh] w-full object-cover`, so on a 1440-wide screen a 720-wide frame is
@@ -86,8 +97,9 @@ So the order could reasonably cover two things:
    export if he still has the original. Encoding a portrait frame and then
    throwing 80% of it away is paying twice.
 
-The second is Joseph's call, not mine to assume, so the order should either
-name it or route it back to him.
+He is looking. If the original turns up, the hero gets a frame that is actually
+the shape of the space it fills; if not, nothing is lost by compressing what is
+there.
 
 ### A prerequisite the order needs to account for
 
@@ -96,12 +108,30 @@ name it or route it back to him.
 installing `ffmpeg`, or say the re-encode happens elsewhere and T4 only swaps
 the file in and measures the result. I have not installed anything.
 
-### Also: a second video file nothing references
+### Also: delete the second video file — confirmed, pending an order
 
-`public/videos/Falcon-Hero-Flyover3.mp4`, **1,594,832 bytes**, is referenced by
-no source file. It is dead weight in the repository, though not in any page
-load. Worth naming in the order so it is dealt with deliberately rather than
-left.
+`public/videos/Falcon-Hero-Flyover3.mp4`, **1,594,832 bytes**. Joseph:
+"Delete Falcon-Hero-Flyover3.mp4 if nothing references it."
+
+Nothing does. Checked:
+
+```
+$ grep -rn 'Flyover3' src public index.html scripts
+(no matches; the only hits anywhere are in docs/, describing it)
+```
+
+It is worse than dead weight in the repository. Vite copies `public/`
+wholesale, so it **ships in the build and is live on production right now**:
+
+```
+$ curl -I https://www.pennjets.com/videos/Falcon-Hero-Flyover3.mp4
+200, 1,594,832 bytes
+```
+
+No page requests it, so it costs no visitor anything, but it is 1.5 MB of
+deployed bytes serving no purpose. The condition Joseph set is met and the
+deletion is uncontroversial; it needs an order only because a chat line is not
+one.
 
 ### Evidence worth asking for
 
