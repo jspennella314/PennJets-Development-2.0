@@ -4,6 +4,33 @@ import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
 import MoreFields from '../../common/MoreFields/MoreFields';
 
+// The CRM filters leads on exactly four service values. This page's dropdown
+// predates them, so each option is mapped to one of the four before the lead is
+// posted; an option with no home among them sends no service at all rather than
+// inventing a fifth value the filter would not know. WO-4.15.
+//
+// Sales and Acquisition follow this site's own definitions on /services:
+// Aircraft Sales is selling an owner's aircraft, Aircraft Acquisition is
+// finding and buying one for a client.
+const SERVICE_MAP = {
+  'aircraft-sales': 'sell',
+  'aircraft-acquisition': 'buy',
+  'charter-brokerage': 'charter',
+  consulting: 'consulting',
+  other: undefined,
+  '': undefined,
+};
+
+// What the reader saw, so the broker can still read their actual choice even
+// when it maps to no service.
+const SERVICE_LABELS = {
+  'aircraft-sales': 'Aircraft Sales',
+  'aircraft-acquisition': 'Aircraft Acquisition',
+  'charter-brokerage': 'Charter Brokerage',
+  consulting: 'Consulting',
+  other: 'Other',
+};
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -50,8 +77,10 @@ const Contact = () => {
           email: formData.email,
           phone: formData.phone || undefined,
           company: formData.company || undefined,
-          service: formData.service || undefined,
-          message: formData.message,
+          service: SERVICE_MAP[formData.service],
+          message: SERVICE_LABELS[formData.service]
+            ? `Service interest: ${SERVICE_LABELS[formData.service]}\n\n${formData.message}`
+            : formData.message,
           pageUrl: window.location.href,
           // Add UTM parameters if available (from URL query params)
           utm_source: new URLSearchParams(window.location.search).get('utm_source') || undefined,
