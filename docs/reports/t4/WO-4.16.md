@@ -2,8 +2,8 @@
 wo: WO-4.16
 terminal: T4
 branch: t4/work
-commit: PENDING
-tested_against: "site: local dev (vite 5173) at PENDING. The card is built and committed but NOT applied — the order gates that on Joseph, and he has not answered. See Known gaps."
+commit: f1497e7
+tested_against: "site: local dev (vite 5173) at f1497e7. The card is built and committed but NOT applied — the order gates that on Joseph, and he has not answered. See Known gaps."
 date: 2026-09-20
 status: reported
 ---
@@ -17,7 +17,7 @@ standing instruction, that part waits and the rest continued.
 
 ## Commit
 
-`PENDING` WO-4.16: build the link-preview card, not yet applied.
+`f1497e7` WO-4.16: build the link-preview card, not yet applied.
 On `t4/work`, pushed. Not merged.
 
 ## Route evidence
