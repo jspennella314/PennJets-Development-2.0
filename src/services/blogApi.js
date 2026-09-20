@@ -243,12 +243,6 @@ export const blogApi = {
         bio: 'Aviation enthusiast and founder of PennJets LLC, dedicated to making private aviation accessible, profitable, and hassle-free. With a passion for deal-making and client success, Joseph brings innovative approaches to aircraft brokerage and fractional ownership.',
         avatar: '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
       },
-      'steven@pennjets.com': {
-        name: 'Steven J Smyth',
-        title: 'Partner Operator Liaison',
-        bio: 'Partner Operator Liaison and Captain at KLM Aviation, established in 1991. Brings over three decades of aviation expertise to the PennJets partnership network. Coordinates with Part 135 certified operators to ensure the highest standards of safety, compliance, and service for PennJets clients.',
-        avatar: null,
-      },
       'charles@pennjets.com': {
         name: 'Charles Brennan',
         title: 'Chief Technology Officer',

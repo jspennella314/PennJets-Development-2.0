@@ -3,9 +3,9 @@ import { Helmet } from "react-helmet-async";
 import { Link, useSearchParams } from "react-router-dom";
 import { blogApi } from "../../../services/blogApi";
 
-// 14 CFR 295.23 air charter broker disclosure. Wording pending Joseph's approval.
+// 14 CFR 295.23 air charter broker disclosure. Wording approved by Joseph 2026-09-20.
 const BROKER_DISCLOSURE =
-  "Penn Jets LLC is an air charter broker, not a direct air carrier. Penn Jets does not own, operate, or have operational control of any aircraft. All charter flights arranged by Penn Jets are operated by properly licensed FAA Part 135 direct air carriers, which have exclusive operational control of each flight.";
+  "Penn Jets LLC is an air charter broker, not a direct air carrier or direct foreign air carrier, and does not own, operate, or have operational control of any aircraft. All charter flights arranged by Penn Jets are operated by properly licensed direct air carriers or direct foreign air carriers, which have exclusive operational control of each flight.";
 
 // ---------- Helper UI ----------
 

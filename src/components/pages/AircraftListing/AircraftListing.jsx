@@ -39,7 +39,7 @@ const AircraftListing = () => {
       // Price range filter
       if (filters.priceRange !== 'All') {
         const selectedRange = priceRanges.find(range => range.label === filters.priceRange);
-        if (selectedRange && (aircraft.price < selectedRange.min || aircraft.price > selectedRange.max)) {
+        if (selectedRange && aircraft.price != null && (aircraft.price < selectedRange.min || aircraft.price > selectedRange.max)) {
           return false;
         }
       }

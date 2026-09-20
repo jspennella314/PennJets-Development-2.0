@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { aircraftDatabase } from '../../../data/aircraftData';
 
+// Detail-page hero image per aircraft id. Ids without an entry show the neutral panel.
+const DETAIL_IMAGES = {
+  3: '/images/PENNSHARE/PREMIER-1A.jpg',
+  4: '/images/Diamond-1A/diamond-1a-ramp.JPEG',
+};
+
 const AircraftDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -74,39 +80,9 @@ const AircraftDetail = () => {
           {/* Image Section */}
           <div className="mb-8">
             <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden">
-              {aircraft.id === 1 ? (
+              {DETAIL_IMAGES[aircraft.id] ? (
                 <img
-                  src="/images/PENNSHARE/HAWKER-800XP.jpg"
-                  alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                />
-              ) : aircraft.id === 2 ? (
-                <img
-                  src="/images/Cessna-182/CESSNA-182.jpg"
-                  alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                />
-              ) : aircraft.id === 3 ? (
-                <img
-                  src="/images/PENNSHARE/PREMIER-1A.jpg"
-                  alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                />
-              ) : aircraft.id === 4 ? (
-                <img
-                  src="/images/Diamond-1A/diamond-1a-ramp.JPEG"
+                  src={DETAIL_IMAGES[aircraft.id]}
                   alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -115,7 +91,7 @@ const AircraftDetail = () => {
                   }}
                 />
               ) : null}
-              <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500 text-xl" style={{display: (aircraft.id === 1 || aircraft.id === 2 || aircraft.id === 3 || aircraft.id === 4) ? 'none' : 'flex'}}>
+              <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500 text-xl" style={{display: DETAIL_IMAGES[aircraft.id] ? 'none' : 'flex'}}>
                 Aircraft Image
               </div>
             </div>

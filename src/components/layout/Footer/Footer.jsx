@@ -139,13 +139,10 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Air charter broker disclosure (14 CFR 295.23). Wording pending Joseph's approval. */}
+        {/* Air charter broker disclosure (14 CFR 295.23). Wording approved by Joseph 2026-09-20. */}
         <div className="py-5 border-t border-gray-800">
           <p className="text-xs leading-relaxed text-gray-400 max-w-4xl">
-            Penn Jets LLC is an air charter broker, not a direct air carrier. Penn Jets does not own,
-            operate, or have operational control of any aircraft. All charter flights arranged by
-            Penn Jets are operated by properly licensed FAA Part 135 direct air carriers, which have
-            exclusive operational control of each flight.
+            Penn Jets LLC is an air charter broker, not a direct air carrier or direct foreign air carrier, and does not own, operate, or have operational control of any aircraft. All charter flights arranged by Penn Jets are operated by properly licensed direct air carriers or direct foreign air carriers, which have exclusive operational control of each flight.
           </p>
         </div>
 

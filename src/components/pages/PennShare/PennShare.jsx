@@ -95,7 +95,7 @@ const PennShare = () => {
 
             <div className="relative">
               <div className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Featured Opportunity</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Current Share Offering</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">
                     <span className="text-gray-600 font-medium">Aircraft:</span>
