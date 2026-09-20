@@ -2,8 +2,8 @@
 wo: WO-4.17
 terminal: T4
 branch: t4/work
-commit: PENDING
-tested_against: "site: built output served from dist on localhost:5055 at PENDING, compared against production deploy 9ee9adc as the before — NOT yet a production deploy, see Known gaps"
+commit: d96b9d6
+tested_against: "site: built output served from dist on localhost:5055 at d96b9d6, compared against production deploy 9ee9adc as the before — NOT yet a production deploy, see Known gaps"
 date: 2026-09-20
 status: reported
 ---
@@ -15,7 +15,7 @@ twice, at 1.32 MB each time.
 
 ## Commit
 
-`PENDING` WO-4.17: web-sized logo and a real favicon set.
+`d96b9d6` WO-4.17: web-sized logo and a real favicon set.
 On `t4/work`, pushed. Not merged.
 
 ## Data evidence — the number that justifies the order
