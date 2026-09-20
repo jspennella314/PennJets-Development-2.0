@@ -29,34 +29,14 @@ const About = () => {
       specialties: ['Aviation Technology', 'Digital Innovation', 'System Integration', 'Data Analytics']
     },
     {
-      name: 'James Wofford',
-      title: 'Aviation Consultant',
-      credentials: 'Private Aviation Advisor',
-      bio: 'James Wofford is a results-driven leader with a foundation in Aviation Management from Auburn University and a proven track record in sales, operations, and project leadership. With experience managing multimillion-dollar initiatives and leading cross-functional teams across industries—from aviation and energy efficiency to healthcare consulting—James combines strategic planning and data-driven decision-making to drive efficiency and growth. Known for his ability to streamline operations and enhance client satisfaction, he brings a disciplined, aviation-inspired approach to leadership and performance optimization.',
-      image: '/images/Meet-The-Team/james-wofford.jpg',
-      phone: '(310) 994-4060',
-      email: 'jameswofford@pennjets.com',
-      specialties: ['Aircraft Sales', 'Client Advisory', 'Market Analysis', 'Transaction Management']
-    },
-    {
       name: 'Joe Delisio',
       title: 'Aviation Consultant',
       credentials: 'Private Aviation Advisor',
       bio: 'Experienced aviation consultant focused on helping clients navigate aircraft acquisitions and sales. Joe provides personalized service and strategic guidance throughout the entire transaction process.',
-      image: '/images/Meet-The-Team/joe-delisio.jpg',
+      image: null,
       phone: '(954) 546-0763',
       email: 'joedelisio@pennjets.com',
       specialties: ['Aircraft Acquisitions', 'Client Relations', 'Deal Negotiation', 'Market Intelligence']
-    },
-    {
-      name: 'Aviation Team',
-      title: 'Specialists & Support',
-      credentials: 'Industry Professionals',
-      bio: 'Our extended team includes certified mechanics, avionics specialists, insurance experts, and administrative professionals who ensure every aspect of your aviation needs is handled with expertise and attention to detail.',
-      image: '/images/Meet-The-Team/aviation-team.jpg',
-      phone: '(954) 546-0763',
-      email: 'info@pennjets.com',
-      specialties: ['Maintenance', 'Avionics', 'Insurance', 'Administration']
     }
   ];
 
@@ -65,8 +45,8 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About PennJets - Premier Aviation Brokerage Since 1998</title>
-        <meta name="description" content="Learn about PennJets' 25+ year history in aviation brokerage. Meet our expert team and discover why we're trusted for luxury aircraft transactions worldwide." />
+        <title>About PennJets | Private Aviation Sales and Consulting</title>
+        <meta name="description" content="Meet the PennJets team. Private aviation sales and consulting: sole ownership, fractional, charter brokerage, and advisory." />
       </Helmet>
 
       {/* Hero Section */}
@@ -75,9 +55,9 @@ const About = () => {
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="heading-lg mb-6">About PennJets</h1>
             <p className="body-lg text-gray-300">
-              Since 1998, PennJets has been at the forefront of luxury aviation, 
-              connecting discerning clients with exceptional aircraft through unmatched 
-              expertise and personalized service.
+              Founded in 2025, PennJets is a private aviation sales and consulting firm.
+              We connect clients with the right aircraft through straightforward advice
+              and personal service.
             </p>
           </div>
         </div>
@@ -124,16 +104,18 @@ const About = () => {
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <div className="relative mb-6">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary-100">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextSibling.style.display = 'flex';
-                      }}
-                    />
-                    <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center text-primary-600 text-2xl font-semibold" style={{display: 'none'}}>
+                    {member.image && (
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                    )}
+                    <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center text-primary-600 text-2xl font-semibold" style={{display: member.image ? 'none' : 'flex'}}>
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </div>
                   </div>
@@ -180,8 +162,8 @@ const About = () => {
           <div className="text-center mb-12">
             <h2 className="heading-lg mb-4">Collective Expertise</h2>
             <p className="body-lg max-w-3xl mx-auto">
-              Our team brings together decades of combined experience across all aspects
-              of private aviation, from aircraft operations to deal structuring.
+              Our team brings together experience across private aviation, from flight
+              operations to deal structuring.
             </p>
           </div>
 

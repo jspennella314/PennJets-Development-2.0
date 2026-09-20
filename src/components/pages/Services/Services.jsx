@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 
 const Services = () => {
   const navigate = useNavigate();
-  const [hoveredService, setHoveredService] = useState(null);
 
   const services = [
     {
@@ -158,7 +157,7 @@ const Services = () => {
   const advantages = [
     {
       title: 'Industry Expertise',
-      description: '30+ years of combined experience in luxury aviation and aircraft transactions',
+      description: 'Hands-on experience across aircraft transactions, charter brokerage, and fractional structures',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -218,8 +217,8 @@ const Services = () => {
               Comprehensive Solutions for <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-blue-400">Sophisticated</span> Aviation Needs
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              From strategic acquisitions to expert management, we deliver tailored aviation solutions
-              backed by decades of industry expertise and an unwavering commitment to excellence.
+              From acquisitions and sales to charter brokerage and consulting, we deliver tailored
+              aviation solutions with straightforward advice and a commitment to getting it right.
             </p>
           </div>
         </div>
@@ -241,8 +240,6 @@ const Services = () => {
                 key={index}
                 id={service.id}
                 className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-primary-200 overflow-hidden"
-                onMouseEnter={() => setHoveredService(index)}
-                onMouseLeave={() => setHoveredService(null)}
               >
                 {/* Gradient overlay on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br from-primary-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
@@ -295,7 +292,7 @@ const Services = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Approach</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A proven methodology refined over decades to deliver exceptional results
+              A clear process, followed the same way on every engagement
             </p>
           </div>
 

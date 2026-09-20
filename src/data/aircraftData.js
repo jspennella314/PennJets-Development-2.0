@@ -1,41 +1,5 @@
 export const aircraftDatabase = [
   {
-    id: 1,
-    name: '800XP',
-    manufacturer: 'Hawker',
-    model: '800XP',
-    year: 2003,
-    price: 3300000,
-    priceFormatted: '$3,300,000',
-    category: 'Mid-Size',
-    status: 'No Longer Available',
-    location: 'Miami, FL',
-    images: [
-      '/images/Hawker-night - Copy.jpg',
-      '/images/Hawker-night - Copy.jpg',
-      '/images/Hawker-night - Copy.jpg',
-    ],
-    specifications: {
-      range: '2,540 nm',
-      averageBlockSpeed: '419 kts',
-      normalCruiseSpeed: '419 kts',
-      longRangeCruiseSpeed: '392 kts',
-      fuelUsage: '281 gal/hr',
-      serviceCeiling: '41,000 ft',
-      passengers: '9',
-      baggage: '50 cu ft',
-      runway: '5,000 ft'
-    },
-    features: [
-      'Collins Pro Line 21 Avionics',
-      'Executive Interior',
-      'Enclosed Lavatory',
-      'Refreshment Center',
-      'Climate Control System'
-    ],
-    description: 'The Hawker 800XP is a proven mid-size business jet offering excellent performance and reliability. With its spacious cabin and impressive range, it provides an ideal solution for regional and transcontinental travel.'
-  },
-  {
     id: 4,
     name: '1A',
     manufacturer: 'Mitsubishi',

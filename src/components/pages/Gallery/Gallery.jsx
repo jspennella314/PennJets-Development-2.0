@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
 
 const Gallery = () => {

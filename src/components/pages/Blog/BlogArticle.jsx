@@ -25,6 +25,7 @@ const BlogArticle = () => {
 
   useEffect(() => {
     loadArticle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   // View beacon: fire once per article view, after the article has rendered.
@@ -76,7 +77,6 @@ const BlogArticle = () => {
       const result = await blogApi.submitContactForm(article.author.id, formData, slug, article.author.email);
       console.log('✅ Form submitted successfully:', result);
       setSubmitStatus('success');
-      alert(`Thank you for your message! ${article.author.name} will contact you shortly.`);
 
       // Reset form
       setFormData({
@@ -91,7 +91,6 @@ const BlogArticle = () => {
       console.error('Error message:', error.message);
       console.error('Full error object:', JSON.stringify(error, null, 2));
       setSubmitStatus('error');
-      alert(`Sorry, there was an error sending your message. Please try again or contact ${article.author.name} directly at ${article.author.email}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -407,6 +406,12 @@ const BlogArticle = () => {
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
+                  {submitStatus === 'success' && (
+                    <p className="text-sm text-green-700" role="status">Thank you. {article.author.name} will be in touch shortly.</p>
+                  )}
+                  {submitStatus === 'error' && (
+                    <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again or email {article.author.email}.</p>
+                  )}
                 </form>
               </Card>
             </div>
