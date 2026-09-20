@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { blogApi } from '../../../services/blogApi';
+import MoreFields from '../../common/MoreFields/MoreFields';
 
 const inputClass =
   'mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900';
@@ -86,11 +87,6 @@ const Buy = () => {
                   <span className="text-sm font-medium">Email *</span>
                   <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className={inputClass} />
                 </label>
-                <label className="block sm:col-span-2">
-                  <span className="text-sm font-medium">Phone</span>
-                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
-                </label>
-
                 <fieldset className="sm:col-span-2">
                   <legend className="text-sm font-medium">Ownership</legend>
                   <div className="mt-2 flex flex-wrap gap-4">
@@ -114,22 +110,29 @@ const Buy = () => {
                   <span className="text-sm font-medium">Aircraft or category of interest</span>
                   <input value={aircraft} onChange={(e) => setAircraft(e.target.value)} placeholder="e.g. Hawker 400XP, or light jet" className={inputClass} />
                 </label>
-                <label className="block">
-                  <span className="text-sm font-medium">Typical passengers</span>
-                  <input type="number" min={1} max={19} value={pax} onChange={(e) => setPax(e.target.value)} className={inputClass} />
-                </label>
-                <label className="block">
-                  <span className="text-sm font-medium">Typical trip length</span>
-                  <select value={tripLength} onChange={(e) => setTripLength(e.target.value)} className={inputClass}>
-                    {TRIP_LENGTHS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
-                  </select>
-                </label>
                 <label className="block sm:col-span-2">
                   <span className="text-sm font-medium">Timeline</span>
                   <select value={timeline} onChange={(e) => setTimeline(e.target.value)} className={inputClass}>
                     {TIMELINES.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
                   </select>
                 </label>
+
+                <MoreFields summary="Add phone, passengers and trip length">
+                  <label className="block sm:col-span-2">
+                    <span className="text-sm font-medium">Phone</span>
+                    <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
+                  </label>
+                  <label className="block">
+                    <span className="text-sm font-medium">Typical passengers</span>
+                    <input type="number" min={1} max={19} value={pax} onChange={(e) => setPax(e.target.value)} className={inputClass} />
+                  </label>
+                  <label className="block">
+                    <span className="text-sm font-medium">Typical trip length</span>
+                    <select value={tripLength} onChange={(e) => setTripLength(e.target.value)} className={inputClass}>
+                      {TRIP_LENGTHS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+                    </select>
+                  </label>
+                </MoreFields>
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

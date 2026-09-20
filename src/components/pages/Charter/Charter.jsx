@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { blogApi } from "../../../services/blogApi";
+import useNarrowViewport from "../../../hooks/useNarrowViewport";
 
 // 14 CFR 295.23 air charter broker disclosure. Wording approved by Joseph 2026-09-20.
 const BROKER_DISCLOSURE =
@@ -157,6 +158,23 @@ const QuoteForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
 
+  // Nine fields is too many above a submit button on a phone, so below sm the
+  // form runs in two steps: the trip, then who you are. Both steps show five
+  // fields or fewer. On a wider screen the whole form renders at once and
+  // there is no Continue. WO-4.11.
+  const narrow = useNarrowViewport();
+  const [step, setStep] = useState(1);
+  const formRef = useRef(null);
+  const showTrip = !narrow || step === 1;
+  const showContact = !narrow || step === 2;
+
+  const continueToContact = () => {
+    // Only the trip fields are mounted at this point, so native validation
+    // checks exactly them.
+    if (formRef.current && !formRef.current.reportValidity()) return;
+    setStep(2);
+  };
+
   const canSubmit = useMemo(
     () => name && email && from && to && date && pax > 0 && !isSubmitting,
     [name, email, from, to, date, pax, isSubmitting]
@@ -184,6 +202,7 @@ const QuoteForm = () => {
       setStatus("success");
       setName(""); setEmail(""); setPhone(""); setFrom(""); setTo("");
       setDate(""); setRetDate(""); setPax(4); setNotes("");
+      setStep(1);
     } catch (err) {
       console.error("Charter quote submission failed:", err);
       setStatus("error");
@@ -196,55 +215,89 @@ const QuoteForm = () => {
     <Section id="quote" title="Request a Charter Quote" subtitle="Tell us the trip. We'll come back with options and a firm quote. The Premier 1A is available for charter through a licensed operator Penn Jets works with.">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Form */}
-        <form onSubmit={handleSubmit} className="rounded-2xl border p-6 shadow-sm lg:col-span-2">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <label className="block">
-              <span className="text-sm font-medium">Name *</span>
-              <input required value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Email *</span>
-              <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className={inputClass} />
-            </label>
-            <label className="block sm:col-span-2">
-              <span className="text-sm font-medium">Phone</span>
-              <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">From (airport or city) *</span>
-              <input required value={from} onChange={(e) => setFrom(e.target.value)} placeholder="FLL / Fort Lauderdale" className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">To (airport or city) *</span>
-              <input required value={to} onChange={(e) => setTo(e.target.value)} placeholder="TEB / Teterboro" className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Departure Date *</span>
-              <input required type="date" value={date} onChange={(e) => setDate(e.target.value)} className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Return Date (optional)</span>
-              <input type="date" value={retDate} onChange={(e) => setRetDate(e.target.value)} className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Passengers *</span>
-              <input required type="number" min={1} max={19} value={pax} onChange={(e) => setPax(parseInt(e.target.value || "0", 10))} className={inputClass} />
-            </label>
-            <label className="block sm:col-span-2">
-              <span className="text-sm font-medium">Notes (pets, catering, ground, etc.)</span>
-              <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={3} className={inputClass} />
-            </label>
-          </div>
+        <form ref={formRef} onSubmit={handleSubmit} className="rounded-2xl border p-6 shadow-sm lg:col-span-2">
+          {narrow && (
+            <p className="mb-4 text-xs font-medium uppercase tracking-wide text-gray-500">
+              Step {step} of 2 — {step === 1 ? "the trip" : "your details"}
+            </p>
+          )}
+
+          {showTrip && (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <label className="block">
+                <span className="text-sm font-medium">From (airport or city) *</span>
+                <input required value={from} onChange={(e) => setFrom(e.target.value)} placeholder="FLL / Fort Lauderdale" className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">To (airport or city) *</span>
+                <input required value={to} onChange={(e) => setTo(e.target.value)} placeholder="TEB / Teterboro" className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">Departure Date *</span>
+                <input required type="date" value={date} onChange={(e) => setDate(e.target.value)} className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">Return Date (optional)</span>
+                <input type="date" value={retDate} onChange={(e) => setRetDate(e.target.value)} className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">Passengers *</span>
+                <input required type="number" min={1} max={19} value={pax} onChange={(e) => setPax(parseInt(e.target.value || "0", 10))} className={inputClass} />
+              </label>
+            </div>
+          )}
+
+          {showContact && (
+            <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${showTrip ? "mt-4" : ""}`}>
+              <label className="block">
+                <span className="text-sm font-medium">Name *</span>
+                <input required value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">Email *</span>
+                <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className={inputClass} />
+              </label>
+              <label className="block sm:col-span-2">
+                <span className="text-sm font-medium">Phone</span>
+                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
+              </label>
+              <label className="block sm:col-span-2">
+                <span className="text-sm font-medium">Notes (pets, catering, ground, etc.)</span>
+                <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={3} className={inputClass} />
+              </label>
+            </div>
+          )}
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets about this request.</p>
-            <button
-              type="submit"
-              disabled={!canSubmit}
-              className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40"
-            >
-              {isSubmitting ? "Sending..." : "Send Request"}
-            </button>
+            {narrow && step === 1 ? (
+              <button
+                type="button"
+                onClick={continueToContact}
+                className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-black"
+              >
+                Continue
+              </button>
+            ) : (
+              <div className="flex items-center gap-3">
+                {narrow && (
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="rounded-2xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  >
+                    Back
+                  </button>
+                )}
+                <button
+                  type="submit"
+                  disabled={!canSubmit}
+                  className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40"
+                >
+                  {isSubmitting ? "Sending..." : "Send Request"}
+                </button>
+              </div>
+            )}
           </div>
 
           {status === "success" && (

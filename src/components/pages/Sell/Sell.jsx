@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { blogApi } from '../../../services/blogApi';
+import MoreFields from '../../common/MoreFields/MoreFields';
 
 const inputClass =
   'mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900';
@@ -72,11 +73,6 @@ const Sell = () => {
                 <span className="text-sm font-medium">Email *</span>
                 <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className={inputClass} />
               </label>
-              <label className="block sm:col-span-2">
-                <span className="text-sm font-medium">Phone</span>
-                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
-              </label>
-
               <label className="block">
                 <span className="text-sm font-medium">Make</span>
                 <input value={make} onChange={(e) => setMake(e.target.value)} placeholder="Beechcraft" className={inputClass} />
@@ -89,14 +85,20 @@ const Sell = () => {
                 <span className="text-sm font-medium">Year</span>
                 <input type="number" min={1950} max={2100} value={year} onChange={(e) => setYear(e.target.value)} placeholder="2006" className={inputClass} />
               </label>
-              <label className="block">
-                <span className="text-sm font-medium">Total time</span>
-                <input value={totalTime} onChange={(e) => setTotalTime(e.target.value)} placeholder="4,200 hours" className={inputClass} />
-              </label>
-              <label className="block sm:col-span-2">
-                <span className="text-sm font-medium">Location</span>
-                <input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Fort Lauderdale, FL" className={inputClass} />
-              </label>
+              <MoreFields summary="Add phone, total time and location">
+                <label className="block sm:col-span-2">
+                  <span className="text-sm font-medium">Phone</span>
+                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-medium">Total time</span>
+                  <input value={totalTime} onChange={(e) => setTotalTime(e.target.value)} placeholder="4,200 hours" className={inputClass} />
+                </label>
+                <label className="block sm:col-span-2">
+                  <span className="text-sm font-medium">Location</span>
+                  <input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Fort Lauderdale, FL" className={inputClass} />
+                </label>
+              </MoreFields>
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

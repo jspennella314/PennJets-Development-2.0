@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
 import { blogApi } from '../../../services/blogApi';
+import MoreFields from '../../common/MoreFields/MoreFields';
 
 const PennShare = () => {
   const navigate = useNavigate();
@@ -266,7 +267,7 @@ const PennShare = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 lg:py-20 bg-primary-600">
+      <section id="inquire" className="py-16 lg:py-20 bg-primary-600">
         <div className="max-w-4xl mx-auto container-padding">
           <div className="text-center text-white mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -280,73 +281,68 @@ const PennShare = () => {
           <div className="bg-white rounded-2xl p-8 shadow-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name *
-                  </label>
+                <label className="block">
+                  <span className="block text-sm font-medium text-gray-700 mb-2">Full Name *</span>
                   <input
                     type="text"
                     name="name"
                     required
+                    autoComplete="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder="Your full name"
                   />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address *
-                  </label>
+                </label>
+                <label className="block">
+                  <span className="block text-sm font-medium text-gray-700 mb-2">Email Address *</span>
                   <input
                     type="email"
                     name="email"
                     required
+                    autoComplete="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder="your@email.com"
                   />
-                </div>
+                </label>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number
+                <MoreFields summary="Add phone and share size">
+                  <label className="block">
+                    <span className="block text-sm font-medium text-gray-700 mb-2">Phone Number</span>
+                    <input
+                      type="tel"
+                      name="phone"
+                      autoComplete="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      placeholder="(973) 868-8425"
+                    />
                   </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    placeholder="(973) 868-8425"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Interest Level
+                  <label className="block">
+                    <span className="block text-sm font-medium text-gray-700 mb-2">Interest Level</span>
+                    <select
+                      name="interest"
+                      value={formData.interest}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    >
+                      <option value="">Select option</option>
+                      <option value="1/4-share">1/4 Share Interest</option>
+                      <option value="1/2-share">1/2 Share Interest</option>
+                      <option value="full-ownership">Full Ownership</option>
+                      <option value="information">General Information</option>
+                    </select>
                   </label>
-                  <select
-                    name="interest"
-                    value={formData.interest}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  >
-                    <option value="">Select option</option>
-                    <option value="1/4-share">1/4 Share Interest</option>
-                    <option value="1/2-share">1/2 Share Interest</option>
-                    <option value="full-ownership">Full Ownership</option>
-                    <option value="information">General Information</option>
-                  </select>
-                </div>
+                </MoreFields>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Additional Comments
-                </label>
+              <label className="block">
+                <span className="block text-sm font-medium text-gray-700 mb-2">Additional Comments</span>
                 <textarea
                   name="comments"
                   rows={4}
@@ -355,7 +351,7 @@ const PennShare = () => {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
                   placeholder="Tell us about your aviation needs and timeline..."
                 ></textarea>
-              </div>
+              </label>
 
               <div className="flex items-center gap-3">
                 <input

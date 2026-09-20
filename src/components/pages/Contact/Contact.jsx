@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
+import MoreFields from '../../common/MoreFields/MoreFields';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -141,61 +142,57 @@ const Contact = () => {
               <h2 className="text-2xl font-semibold mb-6">Send us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Name *
-                    </label>
+                  <label className="block">
+                    <span className="block text-sm font-medium text-gray-700 mb-1">Name *</span>
                     <input
                       type="text"
                       required
+                      autoComplete="name"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Email *
-                    </label>
+                  </label>
+                  <label className="block">
+                    <span className="block text-sm font-medium text-gray-700 mb-1">Email *</span>
                     <input
                       type="email"
                       required
+                      autoComplete="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     />
-                  </div>
+                  </label>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone
+                  <MoreFields summary="Add phone and company">
+                    <label className="block">
+                      <span className="block text-sm font-medium text-gray-700 mb-1">Phone</span>
+                      <input
+                        type="tel"
+                        autoComplete="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      />
                     </label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Company
+                    <label className="block">
+                      <span className="block text-sm font-medium text-gray-700 mb-1">Company</span>
+                      <input
+                        type="text"
+                        autoComplete="organization"
+                        value={formData.company}
+                        onChange={(e) => handleInputChange('company', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      />
                     </label>
-                    <input
-                      type="text"
-                      value={formData.company}
-                      onChange={(e) => handleInputChange('company', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                    />
-                  </div>
+                  </MoreFields>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Service Interest
-                  </label>
+                <label className="block">
+                  <span className="block text-sm font-medium text-gray-700 mb-1">Service Interest</span>
                   <select
                     value={formData.service}
                     onChange={(e) => handleInputChange('service', e.target.value)}
@@ -208,12 +205,10 @@ const Contact = () => {
                     <option value="consulting">Consulting</option>
                     <option value="other">Other</option>
                   </select>
-                </div>
+                </label>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Message *
-                  </label>
+                <label className="block">
+                  <span className="block text-sm font-medium text-gray-700 mb-1">Message *</span>
                   <textarea
                     rows={5}
                     required
@@ -222,7 +217,7 @@ const Contact = () => {
                     placeholder="Tell us about your aviation needs..."
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   />
-                </div>
+                </label>
 
                 <Button
                   type="submit"

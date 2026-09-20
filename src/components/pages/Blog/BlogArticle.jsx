@@ -280,7 +280,7 @@ const BlogArticle = () => {
         </article>
 
         {/* 1. Talk to a Broker */}
-        <section className="mt-16 bg-gray-50 py-12 sm:py-16">
+        <section id="talk-to-a-broker" className="mt-16 bg-gray-50 py-12 sm:py-16">
           <div className="max-w-6xl mx-auto container-padding">
             <div className="mx-auto mb-8 max-w-3xl">
               <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">

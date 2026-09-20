@@ -23,6 +23,7 @@ import CookiePolicy from './components/pages/Legal/CookiePolicy';
 import Compliance from './components/pages/Legal/Compliance';
 import ScrollToTop from './components/common/ScrollToTop/ScrollToTop';
 import PageMeta from './components/common/PageMeta/PageMeta';
+import StickyContactBar from './components/common/StickyContactBar/StickyContactBar';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Header />
-          <main className="flex-1">
+          <main className="flex-1 pb-24">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -56,6 +57,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <StickyContactBar />
         </div>
       </Router>
     </HelmetProvider>
