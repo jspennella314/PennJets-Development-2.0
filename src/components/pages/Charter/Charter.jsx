@@ -33,15 +33,7 @@ const Section = ({ id, title, subtitle, children }) => (
 
 const Hero = () => (
   <header className="relative">
-    <img
-      src="/images/Gallery/n400hh-wide-hero.jpg"
-      alt="Private jet on the ramp"
-      width={1920}
-      height={1080}
-      loading="eager"
-      className="h-[50vh] w-full object-cover sm:h-[65vh]"
-    />
-    <div className="absolute inset-0 bg-black/40" aria-hidden />
+    <div className="h-[50vh] w-full bg-gradient-to-br from-gray-950 via-gray-900 to-primary-900 sm:h-[65vh]" aria-hidden />
     <div className="absolute inset-0 flex items-center">
       <Container>
         <div className="max-w-2xl text-white">

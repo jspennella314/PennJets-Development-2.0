@@ -5,7 +5,6 @@ import { aircraftDatabase } from '../../../data/aircraftData';
 // Detail-page hero image per aircraft id. Ids without an entry show the neutral panel.
 const DETAIL_IMAGES = {
   3: '/images/PENNSHARE/PREMIER-1A.jpg',
-  4: '/images/Diamond-1A/diamond-1a-ramp.JPEG',
 };
 
 const AircraftDetail = () => {
@@ -92,7 +91,7 @@ const AircraftDetail = () => {
                 />
               ) : null}
               <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500 text-xl" style={{display: DETAIL_IMAGES[aircraft.id] ? 'none' : 'flex'}}>
-                Aircraft Image
+                {aircraft.manufacturer} {aircraft.name}
               </div>
             </div>
           </div>

@@ -38,13 +38,6 @@ const Gallery = () => {
         description: 'Future of Aviation',
       },
       {
-        id: 4,
-        name: 'gulfstream.jpg',
-        url: '/images/Gallery/gulfstream.jpg',
-        category: 'Aircraft',
-        description: 'Gulfstream',
-      },
-      {
         id: 6,
         name: 'pc12.jpg',
         url: '/images/Gallery/pc12.jpg',
@@ -66,32 +59,11 @@ const Gallery = () => {
         description: 'Sunset Jet',
       },
       {
-        id: 9,
-        name: 'n400hh-ramp.jpg',
-        url: '/images/Gallery/n400hh-ramp.jpg',
-        category: 'Aircraft',
-        description: 'N400HH on the Ramp',
-      },
-      {
         id: 10,
         name: 'PennJets-Website-Logo.png',
         url: '/images/PennJets-Website-Logo.png',
         category: 'Branding',
         description: 'PennJets Logo',
-      },
-      {
-        id: 11,
-        name: 'n400hh-wide-hero.jpg',
-        url: '/images/Gallery/n400hh-wide-hero.jpg',
-        category: 'Aircraft',
-        description: 'N400HH Wide Hero',
-      },
-      {
-        id: 12,
-        name: 'Bombardier_Challenger_650.jpg',
-        url: '/images/Gallery/Bombardier_Challenger_650.jpg',
-        category: 'Aircraft',
-        description: 'Bombardier Challenger 650',
       },
       {
         id: 13,
@@ -116,7 +88,7 @@ const Gallery = () => {
     <>
       <Helmet>
         <title>Image Gallery | PennJets</title>
-        <meta name="description" content="Browse and manage images for PennJets blog articles and content." />
+        <meta name="description" content="Image library for PennJets Market Notes." />
       </Helmet>
 
       {/* Hero Section */}

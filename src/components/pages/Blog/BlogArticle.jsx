@@ -117,7 +117,7 @@ const BlogArticle = () => {
             The article you're looking for doesn't exist or has been removed.
           </p>
           <Button variant="primary" onClick={() => navigate('/blog')}>
-            Back to Blog
+            Back to Market Notes
           </Button>
         </div>
       </div>
@@ -127,7 +127,7 @@ const BlogArticle = () => {
   return (
     <>
       <Helmet>
-        <title>{article.title} | PennJets Blog</title>
+        <title>{article.title} | PennJets Market Notes</title>
         <meta name="description" content={article.excerpt} />
         <meta name="keywords" content={article.tags?.join(', ')} />
         <meta name="author" content={article.author.name} />
@@ -176,7 +176,7 @@ const BlogArticle = () => {
                 onClick={() => navigate('/blog')}
                 className="text-primary-600 hover:text-primary-700 text-sm font-medium"
               >
-                ← Back to Blog
+                ← Back to Market Notes
               </button>
             </div>
 
@@ -422,7 +422,7 @@ const BlogArticle = () => {
         <section className="py-12">
           <div className="max-w-4xl mx-auto container-padding text-center">
             <Button variant="outline" onClick={() => navigate('/blog')}>
-              ← Back to All Articles
+              ← Back to All Market Notes
             </Button>
           </div>
         </section>

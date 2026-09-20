@@ -73,7 +73,7 @@ const Header = () => {
     { name: 'PennShare', href: '/pennshare' },
     { name: 'Services', href: '/services' },
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Market Notes', href: '/blog' },
   ];
 
   const isActive = (href) => {

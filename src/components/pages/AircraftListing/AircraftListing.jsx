@@ -224,7 +224,7 @@ const AircraftListing = () => {
                       />
                     ) : null}
                     <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500" style={{display: aircraft.images && aircraft.images.length > 0 ? 'none' : 'flex'}}>
-                      Aircraft Image
+                      {aircraft.manufacturer} {aircraft.name}
                     </div>
                   </div>
                   

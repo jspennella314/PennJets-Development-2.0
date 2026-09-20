@@ -10,10 +10,7 @@ export const aircraftDatabase = [
     category: 'Light Jet',
     status: 'Under Contract',
     location: 'Sanford, FL',
-    images: [
-      '/images/Diamond-1A/diamond-1a-ramp.JPEG',
-      '/images/Diamond-1A/diamond-1a-ramp.JPEG',
-    ],
+    images: [],
     specifications: {
       engines: '2× Pratt & Whitney JT15D-4D',
       thrust: '2,200 lbf each',
@@ -56,11 +53,8 @@ export const aircraftDatabase = [
     location: 'Miami, FL',
     images: [
       '/images/PREMIER-1A-FEATURED.jpg',
-      '/images/premier-1a-hangar.jpg',
-      '/images/premier-1a-entry.jpg',
       '/images/premier-1a-cabin.jpg',
       '/images/premier-1a-seating.jpg',
-      '/images/premier-1a-hangar - Copy.jpg',
     ],
     specifications: {
       range: '1,460 nm',

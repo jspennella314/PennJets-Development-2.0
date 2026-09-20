@@ -92,10 +92,10 @@ const BlogList = () => {
   return (
     <>
       <Helmet>
-        <title>Aviation Insights & Industry News | PennJets Blog</title>
+        <title>Market Notes | PennJets</title>
         <meta name="description" content="Stay informed with the latest aviation industry insights, aircraft reviews, market analysis, and expert guidance from PennJets aviation consultants." />
-        <meta name="keywords" content="aviation blog, private jets, aircraft news, aviation insights, industry trends" />
-        <meta property="og:title" content="PennJets Aviation Blog" />
+        <meta name="keywords" content="market notes, private jets, aircraft market, aviation insights, industry trends" />
+        <meta property="og:title" content="PennJets Market Notes" />
         <meta property="og:description" content="Expert insights on private aviation, aircraft ownership, and industry trends" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -104,7 +104,7 @@ const BlogList = () => {
       <section className="bg-gray-900 text-white py-24 mt-16">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="heading-lg mb-6">Aviation Insights</h1>
+            <h1 className="heading-lg mb-6">Market Notes</h1>
             <p className="body-lg text-gray-300">
               Stay informed with the latest industry trends, aircraft reviews, and expert
               insights from our team of aviation professionals.
@@ -139,7 +139,7 @@ const BlogList = () => {
         <div className="max-w-7xl mx-auto container-padding">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl font-bold">
-              {selectedCategory === 'All' ? 'Latest Articles' : selectedCategory}
+              {selectedCategory === 'All' ? 'Latest Market Notes' : selectedCategory}
             </h2>
             <span className="text-gray-600">
               {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
@@ -157,7 +157,7 @@ const BlogList = () => {
               <h3 className="text-xl font-semibold text-gray-900 mb-2">No articles found</h3>
               <p className="text-gray-600 mb-6">Try selecting a different category.</p>
               <Button variant="primary" onClick={() => setSelectedCategory('All')}>
-                View All Articles
+                View All Market Notes
               </Button>
             </div>
           ) : (
@@ -235,7 +235,7 @@ const BlogList = () => {
       <section className="section-padding bg-primary-600 text-white">
         <div className="max-w-7xl mx-auto container-padding text-center">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+            <h2 className="text-3xl font-bold mb-4">Newsletter</h2>
             <p className="text-primary-100 mb-8">
               Subscribe to our newsletter for the latest aviation insights, market updates,
               and exclusive industry analysis delivered to your inbox.

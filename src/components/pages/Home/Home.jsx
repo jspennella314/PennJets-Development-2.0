@@ -114,7 +114,6 @@ const Home = () => {
         <meta name="keywords" content="private aviation, aircraft brokerage, aviation consulting, charter broker, Premier 1A" />
         <meta property="og:title" content="PennJets — Private Jet Brokerage & Aviation Consulting" />
         <meta property="og:description" content="Private aviation. Done right. Brokerage, consulting, and charter connections." />
-        <meta property="og:image" content="https://www.pennjets.com/images/Gallery/n400hh-wide-hero.jpg" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.pennjets.com" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -169,9 +168,10 @@ const Home = () => {
                 Access, You Deserve
               </h1>
               <p className="mt-3 max-w-2xl text-base md:text-lg">
-                Aviation consulting and brokerage — with our transparent costs
-                and deal making team. We partner with vetted Part 135 certified
-                operators throughout the Domestic US.
+                Independent aircraft brokerage and consulting. Buy, sell, or charter with someone who shows you the numbers.
+              </p>
+              <p className="mt-2 max-w-2xl text-sm text-white/85 md:text-base">
+                Charter flights are arranged through vetted, FAA-certificated Part 135 operators across the United States.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
@@ -210,7 +210,7 @@ const Home = () => {
       <section aria-labelledby="off-market" className="py-16">
         <Container>
           <h2 id="off-market" className="max-w-3xl text-2xl font-semibold">
-            We source aircraft that aren't publicly listed. Tell us the mission and we'll tell you what's available.
+            The best aircraft rarely reach the open market. Tell us your mission and we'll tell you what's available.
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {OFF_MARKET_TYPES.map((t) => (
