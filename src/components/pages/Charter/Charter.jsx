@@ -34,7 +34,7 @@ const Section = ({ id, title, subtitle, children }) => (
 const Hero = () => (
   <header className="relative">
     <div className="h-[50vh] w-full bg-gradient-to-br from-gray-950 via-gray-900 to-primary-900 sm:h-[65vh]" aria-hidden />
-    <div className="absolute inset-0 flex items-center">
+    <div className="absolute inset-0 flex items-center pt-28 sm:pt-20">
       <Container>
         <div className="max-w-2xl text-white">
           <h1 className="text-3xl font-semibold sm:text-5xl">Charter, Simplified.</h1>
