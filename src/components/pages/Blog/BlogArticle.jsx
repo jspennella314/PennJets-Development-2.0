@@ -185,12 +185,20 @@ const BlogArticle = () => {
               </button>
             </div>
 
-            {/* Category label and date, above the headline */}
+            {/* Category label and date, above the headline. A note with no
+                category shows no label. */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-              <span className="font-semibold uppercase tracking-wide text-primary-700">
-                {category}
-              </span>
-              <span className="text-gray-300" aria-hidden="true">·</span>
+              {category && (
+                <>
+                  <button
+                    onClick={() => navigate(`/blog?category=${category.slug}`)}
+                    className="font-semibold uppercase tracking-wide text-primary-700 hover:text-primary-800"
+                  >
+                    {category.label}
+                  </button>
+                  <span className="text-gray-300" aria-hidden="true">·</span>
+                </>
+              )}
               <time dateTime={article.publishedAt} className="text-gray-500">
                 {formatNoteDate(article.publishedAt)}
               </time>
@@ -406,9 +414,11 @@ const BlogArticle = () => {
                       </div>
                     </button>
                     <div className="flex flex-1 flex-col p-5">
-                      <div className="text-xs font-semibold uppercase tracking-wide text-primary-700">
-                        {categoryFor(note)}
-                      </div>
+                      {categoryFor(note) && (
+                        <div className="text-xs font-semibold uppercase tracking-wide text-primary-700">
+                          {categoryFor(note).label}
+                        </div>
+                      )}
                       <h3
                         className="mt-2 cursor-pointer text-lg font-semibold leading-snug text-gray-900 hover:text-primary-700"
                         onClick={() => navigate(`/blog/${note.slug}`)}

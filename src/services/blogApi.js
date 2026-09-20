@@ -1,6 +1,8 @@
 // Blog API Service
 // Handles all communication with PennForce CRM blog endpoints
 
+import { displayTags } from '../utils/marketNotes';
+
 const CRM_API_URL = import.meta.env.VITE_CRM_API_URL || 'https://www.pennforce.pennjets.com';
 
 // Session-scoped id for the view beacon. Lives in sessionStorage only (cleared when
@@ -27,9 +29,11 @@ export const blogApi = {
    * Get all published blog posts
    * @returns {Promise<Array>} Array of blog posts
    */
-  async getPosts() {
+  async getPosts(keyword) {
     try {
-      const response = await fetch(`${CRM_API_URL}/api/public/blog`);
+      const url = new URL(`${CRM_API_URL}/api/public/blog`);
+      if (keyword) url.searchParams.set('keyword', keyword);
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error('Failed to fetch blog posts');
@@ -240,7 +244,7 @@ export const blogApi = {
       'joe@pennjets.com': {
         name: 'Joseph Pennella',
         title: 'Founder and Principal Broker',
-        bio: 'Aviation enthusiast and founder of PennJets LLC, dedicated to making private aviation accessible, profitable, and hassle-free. With a passion for deal-making and client success, Joseph brings innovative approaches to aircraft brokerage and fractional ownership.',
+        bio: "Joseph Pennella founded Penn Jets LLC in 2025. He brokers whole-aircraft and fractional transactions, arranges charter through certificated operators, and advises owners on acquisition strategy. He publishes market studies on specific models and segments: how many airframes exist, how many are actually available, and what that means for a buyer's timeline.",
         avatar: '/images/Meet-The-Team/joseph-pennella-96.webp',
       },
       'charles@pennjets.com': {
@@ -271,13 +275,10 @@ export const blogApi = {
       ? Math.max(1, Math.ceil(post.content.split(/\s+/).length / 200))
       : 5;
 
-    // Extract category from keywords (first keyword becomes category)
-    const category = post.keywords && post.keywords.length > 0
-      ? post.keywords[0]
-      : 'Aviation';
-
-    // Use keywords as tags
-    const tags = post.keywords || [];
+    // Category lives in the keywords array as "category:<slug>" and is read by
+    // categoryFor() in utils/marketNotes. Keywords that are not categories are
+    // shown as tags; the category keyword itself is not.
+    const tags = displayTags(post);
 
     // Get author details from website team data (name, title, bio, and avatar)
     const authorDetails = this.getAuthorDetails(post.author.email);
@@ -294,7 +295,6 @@ export const blogApi = {
 
     return {
       ...post,
-      category,
       tags,
       readTimeMinutes,
       author,

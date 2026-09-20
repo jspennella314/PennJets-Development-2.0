@@ -13,7 +13,7 @@ Reference structure: an analysis piece, not a news item. 600 to 800 words.
    "Why Smaller Business Jets Could Lead the Next Decade". The reader should
    know what you think before they click.
 2. **Category and date.** The template puts both above the headline. Categories
-   are **Market Notes**, **Transactions**, **Aircraft Overviews**.
+   are **Market Studies**, **Market Notes**, **Transactions**.
 3. **Lede that names the conventional view.** The first paragraph renders
    larger than the body. Use it to state what most people assume, plainly, so
    the rest of the note has something to push against.
@@ -79,10 +79,27 @@ Below the note, in this order, with nothing to author:
 2. **Newsletter** signup, the email subscribe product.
 3. **Three related Market Notes**, same category first, then most recent.
 
-## Open question
+## Setting a category
 
-How a category is stored in the CRM has not been settled. Until it is, the
-label is derived from the note's keywords when one of them matches a category
-name, and falls back to "Market Notes". Seven of the nine current notes have no
-keywords at all, so nearly everything reads "Market Notes" today. The lead owns
-the answer; see the T4 report of 2026-09-20.
+A note's category lives in its existing **keywords** array as a prefixed value
+(T1, 2026-09-20). Add exactly one of these to the keywords field in PennForce:
+
+| Keyword to store | Label readers see |
+|---|---|
+| `category:market-studies` | Market Studies |
+| `category:market-notes` | Market Notes |
+| `category:transactions` | Transactions |
+
+A note with none of these has no category: it shows no label and still appears
+in the unfiltered list on the index. The keyword itself is never shown as a
+tag. Readers filter the index with the label buttons, which set
+`/blog?category=<slug>`, so a filtered view can be linked and shared.
+
+The index requests `GET /api/public/blog?keyword=category:<slug>`, then
+re-checks each returned note against the exact keyword. That endpoint is a
+loose substring search (`?keyword=jet` returns every note), so the second check
+is what keeps a note out of the wrong category.
+
+As of 2026-09-20 no published note carries one of these keywords yet, so the
+site shows no labels and no filter bar. Both appear on their own as notes are
+tagged.
