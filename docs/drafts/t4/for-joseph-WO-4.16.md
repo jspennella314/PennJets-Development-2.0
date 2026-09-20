@@ -1,5 +1,9 @@
 # For Joseph — WO-4.16, the link-preview card
 
+> **RESOLVED 2026-09-20.** Joseph chose card A, the logo alone. It is applied
+> and the Falcon crop is deleted. One new item below needs him: a Market Note
+> now points at the 1.32 MB source logo as its preview image.
+
 **Belongs in `docs/orders/joseph.md` in the PennForce repo. T4 cannot write
 there**, so it is queued here and needs relaying.
 
@@ -64,3 +68,23 @@ CRM have not landed yet:
 
 Set those three and only a note you have genuinely left blank will show the
 card.
+
+
+---
+
+## New, 2026-09-20: one Market Note is using the 1.32 MB logo as its preview
+
+Found while counting the fallbacks.  had
+ as its featured image this morning; the CRM now returns
+.
+
+That is a poor preview image for three reasons, none of them your fault:
+
+- it is **1.32 MB**, the file WO-4.17 just took out of every render path
+- it is **1024x1024**, and previews want about 1.91:1, so platforms will crop it
+- it is **black on transparent**, so anything compositing it on a dark
+  background shows almost nothing
+
+One field in the CRM, and it is yours: either clear it so the Note falls back
+to the new card, or set it to
+.

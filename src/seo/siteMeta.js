@@ -5,7 +5,10 @@
 
 export const SITE_URL = 'https://www.pennjets.com';
 export const SITE_NAME = 'PennJets';
-export const DEFAULT_IMAGE = '/images/og-default.jpg'; // 1200x630, from a photo already on the site
+// The branded link-preview card: the mark in white on primary.600, 1200x630.
+// WO-4.16, Joseph chose the logo alone over a logo-plus-wordmark lockup,
+// because the mark is itself the word PennJets and the lockup said it twice.
+export const DEFAULT_IMAGE = '/images/og-card.png';
 export const DEFAULT_TITLE = 'PennJets | Private Jet Brokerage & Aviation Consulting';
 export const DEFAULT_DESCRIPTION =
   'Independent aircraft brokerage and consulting. Buy, sell, or charter with someone who shows you the numbers.';
