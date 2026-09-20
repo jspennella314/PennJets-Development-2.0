@@ -51,7 +51,7 @@ const Sell = () => {
   };
 
   return (
-    <div className="bg-white pt-32 pb-16">
+    <div className="bg-white pt-36 pb-16 sm:pt-40">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <header className="mb-8 max-w-3xl">
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Sell Your Aircraft</h1>
