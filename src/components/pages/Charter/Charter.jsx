@@ -1,40 +1,10 @@
 import React, { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { blogApi } from "../../../services/blogApi";
 
-// ---------- Mock fleet data (swap for your real assets/links) ----------
-
-const FLEET = [
-  {
-    id: "premier-1a",
-    name: "Beechcraft Premier 1A",
-    pax: 7,
-    rangeNm: 1500,
-    speedKt: 450,
-    image: "/images/premier-1a-cabin.jpg",
-    note: "FLL‑based • On Part 135",
-    url: "/aircraft/premier-1a",
-  },
-  {
-    id: "hawker-800xp",
-    name: "Hawker 800XP",
-    pax: 8,
-    rangeNm: 2540,
-    speedKt: 450,
-    image: "/images/hawker-800xp-exterior.jpg",
-    note: "Midsize comfort & range",
-    url: "/aircraft",
-  },
-  {
-    id: "diamond-1a",
-    name: "Diamond 1A",
-    pax: 7,
-    rangeNm: 1500,
-    speedKt: 450,
-    image: "/images/Diamond-1A/diamond-1a-ramp.JPEG",
-    note: "Light jet efficiency",
-    url: "/aircraft",
-  },
-];
+// 14 CFR 295.23 air charter broker disclosure. Wording approved by Joseph 2026-09-20.
+const BROKER_DISCLOSURE =
+  "Penn Jets LLC is an air charter broker, not a direct air carrier or direct foreign air carrier, and does not own, operate, or have operational control of any aircraft. All charter flights arranged by Penn Jets are operated by properly licensed direct air carriers or direct foreign air carriers, which have exclusive operational control of each flight.";
 
 // ---------- Helper UI ----------
 
@@ -62,23 +32,14 @@ const Section = ({ id, title, subtitle, children }) => (
 
 const Hero = () => (
   <header className="relative">
-    {/* Ensure your hero image is exported with fixed dimensions to avoid CLS */}
-    <img
-      src="/images/night-flight-hero.jpg"
-      alt="Private jet on ramp at sunset"
-      width={1920}
-      height={1080}
-      loading="eager"
-      className="h-[50vh] w-full object-cover sm:h-[65vh]"
-    />
-    <div className="absolute inset-0 bg-black/40" aria-hidden />
-    <div className="absolute inset-0 flex items-center">
+    <div className="h-[50vh] w-full bg-gradient-to-br from-gray-950 via-gray-900 to-primary-900 sm:h-[65vh]" aria-hidden />
+    <div className="absolute inset-0 flex items-center pt-28 sm:pt-20">
       <Container>
         <div className="max-w-2xl text-white">
           <h1 className="text-3xl font-semibold sm:text-5xl">Charter, Simplified.</h1>
           <p className="mt-3 text-base sm:text-lg">
-            On‑demand private jet charter with transparent pricing and responsive
-            coordination. Light to midsize jets with vetted operators.
+            On‑demand private jet charter, arranged by a broker who works for you.
+            Light to midsize jets flown by vetted, licensed operators.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
@@ -88,10 +49,10 @@ const Hero = () => (
               Get a Charter Quote
             </a>
             <a
-              href="#fleet"
+              href="tel:+19738688425"
               className="rounded-2xl px-5 py-3 text-sm font-medium text-white ring-1 ring-white/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/80"
             >
-              View Fleet
+              Call (973) 868‑8425
             </a>
           </div>
         </div>
@@ -105,20 +66,20 @@ const Hero = () => (
 const Benefits = () => {
   const items = [
     {
+      title: "Broker, Not Operator",
+      body: "Penn Jets arranges your flight and represents you. Every trip is flown by a licensed Part 135 direct air carrier with operational control.",
+    },
+    {
       title: "Vetted Operators",
-      body: "Trusted crews, strong maintenance programs, and repeat‑client safety culture.",
+      body: "We source from licensed operators with strong safety records, and we tell you who is flying you.",
     },
     {
       title: "Transparent Quotes",
       body: "Fuel, FBO fees, overnights, de‑icing—disclosed up front. No surprises.",
     },
     {
-      title: "24/7 Coordination",
-      body: "Concierge for ground transfers, catering, pets, and itinerary changes.",
-    },
-    {
-      title: "Premier 1A Access",
-      body: "Flagship FLL‑based Premier 1A—efficient and charter‑ready.",
+      title: "Trip Coordination",
+      body: "We coordinate with the operator on ground transfers, catering, pets, and itinerary changes.",
     },
   ];
 
@@ -136,7 +97,7 @@ const Benefits = () => {
   );
 };
 
-// ---------- Popular routes (static sample) ----------
+// ---------- Popular routes (indicative) ----------
 
 const POPULAR_ROUTES = [
   { from: "FLL", to: "TEB", miles: 1070, hours: 2.4, className: "Light/Midsize" },
@@ -176,136 +137,137 @@ const PopularRoutes = () => (
   </Section>
 );
 
-// ---------- Fleet grid ----------
+// ---------- Quote form ----------
 
-const Fleet = () => (
-  <Section id="fleet" title="Fleet Access" subtitle="Light to midsize jets, matched to mission and budget.">
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {FLEET.map((f) => (
-        <article key={f.id} className="overflow-hidden rounded-2xl border shadow-sm">
-          <img
-            src={f.image}
-            alt={`${f.name} cabin for up to ${f.pax} passengers`}
-            width={900}
-            height={600}
-            loading="lazy"
-            className="aspect-[3/2] w-full object-cover"
-          />
-          <div className="p-4">
-            <h3 className="text-lg font-semibold">{f.name}</h3>
-            <p className="text-sm text-gray-600">{f.pax} pax · ~{f.rangeNm} nm · ~{f.speedKt} kt</p>
-            {f.note && <p className="mt-1 text-sm text-gray-700">{f.note}</p>}
-            {f.url && (
-              <Link to={f.url} className="mt-3 inline-block text-sm font-medium underline">
-                View Details
-              </Link>
-            )}
-          </div>
-        </article>
-      ))}
-    </div>
-  </Section>
-);
-
-// ---------- Quote form with simple estimator ----------
-
-function useCharterEstimate(hours, pax, cabin) {
-  // Very simple heuristic ranges; replace with your pricing logic or API call
-  const base = cabin === "midsize" ? 6300 : 4200; // per flight hour (USD)
-  const est = hours * base;
-  const fees = 650; // buffer for FBO/overnight/etc
-  const catering = pax * 35;
-  const total = Math.max(0, Math.round(est + fees + catering));
-  return { base, est, fees, catering, total };
-}
+const inputClass =
+  "mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900";
 
 const QuoteForm = () => {
+  const [searchParams] = useSearchParams();
+  const prefilledModel = searchParams.get("model");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [date, setDate] = useState("");
   const [retDate, setRetDate] = useState("");
   const [pax, setPax] = useState(4);
-  const [hours, setHours] = useState(2);
-  const [cabin, setCabin] = useState("light");
-  const [notes, setNotes] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [notes, setNotes] = useState(prefilledModel ? `Aircraft of interest: ${prefilledModel}` : "");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState(null); // 'success' | 'error' | null
 
-  const { base, est, fees, catering, total } = useCharterEstimate(hours, pax, cabin);
+  const canSubmit = useMemo(
+    () => name && email && from && to && date && pax > 0 && !isSubmitting,
+    [name, email, from, to, date, pax, isSubmitting]
+  );
 
-  const canSubmit = useMemo(() => from && to && date && pax > 0, [from, to, date, pax]);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Replace with your POST to backend or email service
-    console.log({ from, to, date, retDate, pax, hours, cabin, notes, estimate: total });
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setStatus(null);
+    // Structured fields are packed into `message` as labeled lines so the
+    // webhook payload does not change (see CLAUDE.md, integration facts).
+    const message = [
+      "Charter quote request",
+      `From: ${from}`,
+      `To: ${to}`,
+      `Departure: ${date}`,
+      `Return: ${retDate || "one-way"}`,
+      `Passengers: ${pax}`,
+      notes ? `Notes: ${notes}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    try {
+      await blogApi.submitLead({ name, email, phone, service: "charter", message });
+      setStatus("success");
+      setName(""); setEmail(""); setPhone(""); setFrom(""); setTo("");
+      setDate(""); setRetDate(""); setPax(4); setNotes("");
+    } catch (err) {
+      console.error("Charter quote submission failed:", err);
+      setStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <Section id="quote" title="Request a Charter Quote" subtitle="We'll respond quickly with live availability and a firm price.">
+    <Section id="quote" title="Request a Charter Quote" subtitle="Tell us the trip. We'll come back with options and a firm quote. The Premier 1A is available for charter through a licensed operator Penn Jets works with.">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Form */}
         <form onSubmit={handleSubmit} className="rounded-2xl border p-6 shadow-sm lg:col-span-2">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <label className="block">
-              <span className="text-sm font-medium">From (ICAO/IATA/City)</span>
-              <input value={from} onChange={(e) => setFrom(e.target.value)} placeholder="FLL / Fort Lauderdale" className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900" />
+              <span className="text-sm font-medium">Name *</span>
+              <input required value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" className={inputClass} />
             </label>
             <label className="block">
-              <span className="text-sm font-medium">To (ICAO/IATA/City)</span>
-              <input value={to} onChange={(e) => setTo(e.target.value)} placeholder="TPA / Tampa" className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900" />
+              <span className="text-sm font-medium">Email *</span>
+              <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className={inputClass} />
+            </label>
+            <label className="block sm:col-span-2">
+              <span className="text-sm font-medium">Phone</span>
+              <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
             </label>
             <label className="block">
-              <span className="text-sm font-medium">Departure Date</span>
-              <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900" />
+              <span className="text-sm font-medium">From (airport or city) *</span>
+              <input required value={from} onChange={(e) => setFrom(e.target.value)} placeholder="FLL / Fort Lauderdale" className={inputClass} />
+            </label>
+            <label className="block">
+              <span className="text-sm font-medium">To (airport or city) *</span>
+              <input required value={to} onChange={(e) => setTo(e.target.value)} placeholder="TEB / Teterboro" className={inputClass} />
+            </label>
+            <label className="block">
+              <span className="text-sm font-medium">Departure Date *</span>
+              <input required type="date" value={date} onChange={(e) => setDate(e.target.value)} className={inputClass} />
             </label>
             <label className="block">
               <span className="text-sm font-medium">Return Date (optional)</span>
-              <input type="date" value={retDate} onChange={(e) => setRetDate(e.target.value)} className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900" />
+              <input type="date" value={retDate} onChange={(e) => setRetDate(e.target.value)} className={inputClass} />
             </label>
             <label className="block">
-              <span className="text-sm font-medium">Passengers</span>
-              <input type="number" min={1} max={9} value={pax} onChange={(e) => setPax(parseInt(e.target.value || "0", 10))} className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900" />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Estimated Block Hours</span>
-              <input type="number" min={0.5} step={0.1} value={hours} onChange={(e) => setHours(parseFloat(e.target.value || "0"))} className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900" />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Preferred Cabin</span>
-              <select value={cabin} onChange={(e) => setCabin(e.target.value)} className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900">
-                <option value="light">Light Jet</option>
-                <option value="midsize">Midsize Jet</option>
-              </select>
+              <span className="text-sm font-medium">Passengers *</span>
+              <input required type="number" min={1} max={19} value={pax} onChange={(e) => setPax(parseInt(e.target.value || "0", 10))} className={inputClass} />
             </label>
             <label className="block sm:col-span-2">
               <span className="text-sm font-medium">Notes (pets, catering, ground, etc.)</span>
-              <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4} className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900" />
+              <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={3} className={inputClass} />
             </label>
           </div>
 
-          <div className="mt-6 flex items-center justify-between">
-            <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets. We respond quickly.</p>
-            <button disabled={!canSubmit} className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40">Send Request</button>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets about this request.</p>
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40"
+            >
+              {isSubmitting ? "Sending..." : "Send Request"}
+            </button>
           </div>
 
-          {submitted && (
-            <p className="mt-3 text-sm text-green-700">Thanks! Your request has been recorded. We'll follow up shortly.</p>
+          {status === "success" && (
+            <p className="mt-3 text-sm text-green-700" role="status">
+              Thanks. Your request is in. We'll follow up shortly.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="mt-3 text-sm text-red-700" role="alert">
+              Sorry, that didn't go through. Please try again or call (973) 868‑8425.
+            </p>
           )}
         </form>
 
-        {/* Estimator Card */}
+        {/* What happens next */}
         <aside className="rounded-2xl border p-6 shadow-sm">
-          <h3 className="text-base font-semibold">Quick Estimate</h3>
-          <p className="mt-1 text-sm text-gray-600">Not a quote. Final price depends on day/time, repositioning, and availability.</p>
-          <dl className="mt-4 space-y-2 text-sm">
-            <div className="flex justify-between"><dt>Cabin base (per hr)</dt><dd>${base.toLocaleString()}</dd></div>
-            <div className="flex justify-between"><dt>Flight time</dt><dd>~{hours} hr</dd></div>
-            <div className="flex justify-between"><dt>Est. flight subtotal</dt><dd>${est.toLocaleString()}</dd></div>
-            <div className="flex justify-between"><dt>Ops fees (est.)</dt><dd>${fees.toLocaleString()}</dd></div>
-            <div className="flex justify-between"><dt>Catering ({pax})</dt><dd>${catering.toLocaleString()}</dd></div>
-            <div className="mt-3 border-t pt-3 flex justify-between font-semibold"><dt>Total (est.)</dt><dd>${total.toLocaleString()}</dd></div>
-          </dl>
+          <h3 className="text-base font-semibold">What happens next</h3>
+          <ol className="mt-4 space-y-3 text-sm text-gray-700">
+            <li className="flex gap-3"><span className="font-semibold">1.</span><span>We confirm the itinerary and passenger count with you.</span></li>
+            <li className="flex gap-3"><span className="font-semibold">2.</span><span>We source options from licensed Part 135 operators and send you a firm quote with the operator named.</span></li>
+            <li className="flex gap-3"><span className="font-semibold">3.</span><span>You approve. The operator flies the trip; we coordinate the details.</span></li>
+          </ol>
+          <p className="mt-4 text-xs text-gray-500">{BROKER_DISCLOSURE}</p>
           <Link to="/contact" className="mt-4 inline-block text-sm font-medium underline">Prefer to talk? Contact us</Link>
         </aside>
       </div>
@@ -328,7 +290,7 @@ const FooterCta = () => (
           <Link to="/aircraft" className="rounded-2xl px-5 py-3 text-sm font-medium ring-1 ring-white/70 hover:bg-white/10">Browse Aircraft</Link>
         </div>
       </div>
-      <p className="mt-3 text-xs text-white/60">PennJets is a broker and does not operate aircraft.</p>
+      <p className="mt-3 text-xs text-white/60">{BROKER_DISCLOSURE}</p>
     </div>
   </Section>
 );
@@ -337,13 +299,15 @@ const FooterCta = () => (
 
 const Charter = () => {
   return (
-    <main>
-      <Hero />
-      <Benefits />
-      <PopularRoutes />
-      <QuoteForm />
-      <FooterCta />
-    </main>
+    <>
+      <main>
+        <Hero />
+        <Benefits />
+        <PopularRoutes />
+        <QuoteForm />
+        <FooterCta />
+      </main>
+    </>
   );
 };
 

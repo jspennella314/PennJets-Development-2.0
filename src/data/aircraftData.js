@@ -1,41 +1,5 @@
 export const aircraftDatabase = [
   {
-    id: 1,
-    name: '800XP',
-    manufacturer: 'Hawker',
-    model: '800XP',
-    year: 2003,
-    price: 3300000,
-    priceFormatted: '$3,300,000',
-    category: 'Mid-Size',
-    status: 'No Longer Available',
-    location: 'Miami, FL',
-    images: [
-      '/images/Hawker-night - Copy.jpg',
-      '/images/Hawker-night - Copy.jpg',
-      '/images/Hawker-night - Copy.jpg',
-    ],
-    specifications: {
-      range: '2,540 nm',
-      averageBlockSpeed: '419 kts',
-      normalCruiseSpeed: '419 kts',
-      longRangeCruiseSpeed: '392 kts',
-      fuelUsage: '281 gal/hr',
-      serviceCeiling: '41,000 ft',
-      passengers: '9',
-      baggage: '50 cu ft',
-      runway: '5,000 ft'
-    },
-    features: [
-      'Collins Pro Line 21 Avionics',
-      'Executive Interior',
-      'Enclosed Lavatory',
-      'Refreshment Center',
-      'Climate Control System'
-    ],
-    description: 'The Hawker 800XP is a proven mid-size business jet offering excellent performance and reliability. With its spacious cabin and impressive range, it provides an ideal solution for regional and transcontinental travel.'
-  },
-  {
     id: 4,
     name: '1A',
     manufacturer: 'Mitsubishi',
@@ -46,10 +10,7 @@ export const aircraftDatabase = [
     category: 'Light Jet',
     status: 'Under Contract',
     location: 'Sanford, FL',
-    images: [
-      '/images/Diamond-1A/diamond-1a-ramp.JPEG',
-      '/images/Diamond-1A/diamond-1a-ramp.JPEG',
-    ],
+    images: [],
     specifications: {
       engines: '2× Pratt & Whitney JT15D-4D',
       thrust: '2,200 lbf each',
@@ -85,18 +46,15 @@ export const aircraftDatabase = [
     manufacturer: 'Beechcraft',
     model: 'Premier 1A',
     year: 2006,
-    price: 550000,
-    priceFormatted: '$550,000 (1/4 Share)',
+    price: null,
+    priceFormatted: 'Price on request (1/4 share)',
     category: 'Light Jet',
     status: 'Available',
     location: 'Miami, FL',
     images: [
       '/images/PREMIER-1A-FEATURED.jpg',
-      '/images/premier-1a-hangar.jpg',
-      '/images/premier-1a-entry.jpg',
       '/images/premier-1a-cabin.jpg',
       '/images/premier-1a-seating.jpg',
-      '/images/premier-1a-hangar - Copy.jpg',
     ],
     specifications: {
       range: '1,460 nm',
@@ -119,41 +77,6 @@ export const aircraftDatabase = [
       'Leather Seating'
     ],
     description: 'This 2006 Beechcraft Premier 1A is a sophisticated light jet offering exceptional performance and comfort. With its composite construction and advanced avionics, it delivers impressive speed and efficiency for business travel. The spacious cabin features executive seating and modern amenities. Available as a 1/4 share ownership.'
-  },
-  {
-    id: 2,
-    name: '182',
-    manufacturer: 'Cessna',
-    model: '182 Skylane',
-    year: 2006,
-    price: 50000,
-    priceFormatted: '$50,000 (1/10th Share)',
-    category: 'Piston Single',
-    status: 'Available',
-    location: 'TBD',
-    images: [
-      '/images/Cessna-182/CESSNA-182.jpg',
-      '/images/Cessna-182/CESSNA-182.jpg',
-      '/images/Cessna-182/CESSNA-182.jpg',
-    ],
-    specifications: {
-      range: '915 nm',
-      maxSpeed: '182 kts',
-      cruiseSpeed: '145 kts',
-      maxAltitude: '18,100 ft',
-      passengers: '4',
-      baggage: '120 lbs',
-      runway: '1,365 ft'
-    },
-    features: [
-      'Garmin G1000 Glass Cockpit',
-      'Fixed Landing Gear',
-      'High Wing Configuration',
-      'Fuel Injection',
-      'Club Seating',
-      'Cargo Door Access'
-    ],
-    description: 'This 2006 Cessna 182 Skylane represents an excellent opportunity for fractional ownership. As a 1/10th share, you gain access to one of aviation\'s most reliable and versatile single-engine aircraft. Perfect for personal transportation, training, or recreational flying. The 182 is known for its forgiving flight characteristics, spacious cabin, and excellent load-carrying capability.'
   },
   {
     id: 5,
@@ -191,8 +114,6 @@ export const aircraftDatabase = [
 export const manufacturers = [
   'All',
   'Beechcraft',
-  'Cessna',
-  'Hawker',
   'Mitsubishi'
 ];
 

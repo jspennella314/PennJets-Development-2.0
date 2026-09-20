@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 
 const Services = () => {
   const navigate = useNavigate();
-  const [hoveredService, setHoveredService] = useState(null);
 
   const services = [
     {
@@ -21,7 +19,7 @@ const Services = () => {
         'Professional photography and marketing materials',
         'Global buyer network and targeted outreach',
         'Expert negotiation and deal structuring',
-        'Complete transaction management'
+        'Transaction support through closing'
       ],
       id: 'sales'
     },
@@ -51,30 +49,13 @@ const Services = () => {
         </svg>
       ),
       features: [
-        'Certified Part 135 operator partnerships',
-        'Comprehensive safety vetting and standards',
-        '24/7 concierge and trip support',
-        'Transparent pricing with no hidden fees',
-        'Flexible scheduling and routing options'
+        'Flights arranged with licensed Part 135 operators',
+        'Operator safety records reviewed before we quote',
+        'Trip coordination with the operator',
+        'Transparent quotes with no hidden fees',
+        'Routing options matched to the mission'
       ],
       id: 'charter'
-    },
-    {
-      title: 'Aircraft Management',
-      description: 'Full-service aircraft management to maximize your investment and minimize complexity.',
-      icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-        </svg>
-      ),
-      features: [
-        'Maintenance coordination and oversight',
-        'Professional crew recruitment and management',
-        'Insurance, registration, and regulatory compliance',
-        'Detailed financial reporting and analysis',
-        'Charter revenue optimization strategies'
-      ],
-      id: 'management'
     },
     {
       title: 'Market Analysis',
@@ -102,11 +83,11 @@ const Services = () => {
         </svg>
       ),
       features: [
-        'Fleet planning and optimization',
+        'Aircraft selection and mission fit',
         'Comprehensive cost-benefit analysis',
-        'Regulatory and compliance guidance',
-        'Tax strategy and legal structuring',
-        'Risk management and mitigation'
+        'Ownership structure options',
+        'Coordination with your tax and legal advisors',
+        'Budget and cost-of-ownership modeling'
       ],
       id: 'consulting'
     }
@@ -158,7 +139,7 @@ const Services = () => {
   const advantages = [
     {
       title: 'Industry Expertise',
-      description: '30+ years of combined experience in luxury aviation and aircraft transactions',
+      description: 'Hands-on experience across aircraft transactions, charter brokerage, and fractional structures',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -196,11 +177,6 @@ const Services = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Aviation Services - Aircraft Sales, Charter Brokerage & Consulting | PennJets</title>
-        <meta name="description" content="Comprehensive aviation services including aircraft sales, acquisitions, charter brokerage, and consulting. Partnering with vetted Part 135 operators. Expert guidance for all your private aviation needs." />
-      </Helmet>
-
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-32 mt-24 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -218,8 +194,8 @@ const Services = () => {
               Comprehensive Solutions for <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-blue-400">Sophisticated</span> Aviation Needs
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              From strategic acquisitions to expert management, we deliver tailored aviation solutions
-              backed by decades of industry expertise and an unwavering commitment to excellence.
+              From acquisitions and sales to charter brokerage and consulting, we deliver tailored
+              aviation solutions with straightforward advice and a commitment to getting it right.
             </p>
           </div>
         </div>
@@ -241,8 +217,6 @@ const Services = () => {
                 key={index}
                 id={service.id}
                 className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-primary-200 overflow-hidden"
-                onMouseEnter={() => setHoveredService(index)}
-                onMouseLeave={() => setHoveredService(null)}
               >
                 {/* Gradient overlay on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br from-primary-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
@@ -295,7 +269,7 @@ const Services = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Approach</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A proven methodology refined over decades to deliver exceptional results
+              A clear process, followed the same way on every engagement
             </p>
           </div>
 

@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
@@ -39,7 +38,7 @@ const AircraftListing = () => {
       // Price range filter
       if (filters.priceRange !== 'All') {
         const selectedRange = priceRanges.find(range => range.label === filters.priceRange);
-        if (selectedRange && (aircraft.price < selectedRange.min || aircraft.price > selectedRange.max)) {
+        if (selectedRange && aircraft.price != null && (aircraft.price < selectedRange.min || aircraft.price > selectedRange.max)) {
           return false;
         }
       }
@@ -82,11 +81,6 @@ const AircraftListing = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Aircraft for Sale - Premium Private Jets | PennJets</title>
-        <meta name="description" content="Browse our exclusive selection of premium private jets and aircraft for sale. Find your perfect aircraft with expert guidance from PennJets aviation consultants." />
-      </Helmet>
-
       {/* Header Section */}
       <section className="bg-gray-900 text-white py-24 mt-24">
         <div className="max-w-7xl mx-auto container-padding">
@@ -224,7 +218,7 @@ const AircraftListing = () => {
                       />
                     ) : null}
                     <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500" style={{display: aircraft.images && aircraft.images.length > 0 ? 'none' : 'flex'}}>
-                      Aircraft Image
+                      {aircraft.manufacturer} {aircraft.name}
                     </div>
                   </div>
                   

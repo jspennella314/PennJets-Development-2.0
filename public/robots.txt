@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /gallery
+
+Sitemap: https://www.pennjets.com/sitemap.xml

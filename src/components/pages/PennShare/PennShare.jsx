@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
+import { blogApi } from '../../../services/blogApi';
 
 const PennShare = () => {
   const navigate = useNavigate();
@@ -10,8 +10,11 @@ const PennShare = () => {
     name: '',
     email: '',
     phone: '',
-    interest: ''
+    interest: '',
+    comments: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -20,18 +23,36 @@ const PennShare = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/contact');
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    // Structured fields packed into `message` as labeled lines; payload unchanged.
+    const message = [
+      'PennShare inquiry',
+      `Interest: ${formData.interest || 'not specified'}`,
+      `Comments: ${formData.comments || '(none)'}`,
+    ].join('\n');
+    try {
+      await blogApi.submitLead({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: 'buy',
+        message,
+      });
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', interest: '', comments: '' });
+    } catch (err) {
+      console.error('PennShare inquiry submission failed:', err);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <>
-      <Helmet>
-        <title>PennShare - Fractional Aircraft Ownership | PennJets</title>
-        <meta name="description" content="Discover PennShare fractional aircraft ownership. Reduce costs, enjoy professional management, and access private aviation with flexible ownership options." />
-      </Helmet>
-
       {/* Hero Section */}
       <section className="relative bg-white py-20 lg:py-24">
         <div className="max-w-7xl mx-auto container-padding">
@@ -46,7 +67,7 @@ const PennShare = () => {
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Experience private aviation through intelligent fractional ownership.
-                Share the costs, not the convenience. Professional management Exclusively through Part 135-Charter Operators
+                Share the costs, not the convenience. Aircraft flown and maintained by licensed Part 135 operators.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -68,7 +89,7 @@ const PennShare = () => {
 
             <div className="relative">
               <div className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Featured Opportunity</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Current Share Offering</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">
                     <span className="text-gray-600 font-medium">Aircraft:</span>
@@ -79,8 +100,8 @@ const PennShare = () => {
                     <span className="font-semibold text-gray-900">1/4 Ownership</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-gray-600 font-medium">Investment:</span>
-                    <span className="font-bold text-2xl text-primary-600">$550,000</span>
+                    <span className="text-gray-600 font-medium">Pricing:</span>
+                    <span className="font-semibold text-gray-900">On request</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
                     <span className="text-gray-600 font-medium">Annual Hours:</span>
@@ -123,7 +144,7 @@ const PennShare = () => {
                 Cost-Effective
               </h3>
               <p className="text-gray-600">
-                Share acquisition, operating, and maintenance costs while enjoying all the benefits of private aviation.
+                Share the acquisition and operating costs while enjoying the benefits of private aviation.
               </p>
             </Card>
 
@@ -134,10 +155,10 @@ const PennShare = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900">
-                Professional Management
+                Flown by Part 135 Operators
               </h3>
               <p className="text-gray-600">
-                PennJets handles all operational aspects including scheduling, maintenance, and regulatory compliance.
+                A licensed Part 135 operator flies and maintains the aircraft. PennJets structures the share and stays your point of contact.
               </p>
             </Card>
 
@@ -148,10 +169,10 @@ const PennShare = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900">
-                Guaranteed Access
+                Scheduled Access
               </h3>
               <p className="text-gray-600">
-                Enjoy priority booking and guaranteed aircraft availability with our advanced scheduling system.
+                Defined annual hours and booking priority under the share agreement.
               </p>
             </Card>
 
@@ -190,9 +211,6 @@ const PennShare = () => {
             </div>
 
             <div>
-              <div className="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-4">
-                AVAILABLE NOW
-              </div>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
                 2006 Beechcraft Premier 1A
               </h2>
@@ -241,91 +259,6 @@ const PennShare = () => {
                 >
                   View Complete Details
                 </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Hawker 800XP Section */}
-      <section className="py-16 lg:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
-                MID-SIZE JET
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                2004 Hawker 800XP
-              </h2>
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 mb-8">
-                <div className="flex justify-between items-center py-2 border-b border-blue-200">
-                  <span className="text-gray-600 font-medium">Share Available:</span>
-                  <span className="font-semibold text-gray-900">1/4 Ownership</span>
-                </div>
-                <div className="flex justify-between items-center py-2">
-                  <span className="text-gray-600 font-medium">Investment:</span>
-                  <span className="font-bold text-2xl text-blue-600">$750,000</span>
-                </div>
-              </div>
-              <p className="text-xl text-gray-600 mb-8">
-                Step up to mid-size luxury with exceptional range and performance.
-                Perfect for transcontinental business travel with executive amenities.
-              </p>
-
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600">2,540</div>
-                  <div className="text-sm text-gray-600">Nautical Mile Range</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600">9</div>
-                  <div className="text-sm text-gray-600">Passenger Capacity</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600">419</div>
-                  <div className="text-sm text-gray-600">Cruise Speed (kts)</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600">41K</div>
-                  <div className="text-sm text-gray-600">Service Ceiling (ft)</div>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div
-                  className="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition-shadow"
-                  onClick={() => navigate('/aircraft/1')}
-                >
-                  <img
-                    src="/images/PENNSHARE/HAWKER-800XP.jpg"
-                    alt="Hawker 800XP Details"
-                    className="w-full h-32 object-cover hover:scale-105 transition-transform"
-                    onError={(e) => {
-                      e.target.src = '/api/placeholder/400/200';
-                    }}
-                  />
-                </div>
-                <Button
-                  variant="primary"
-                  size="lg"
-                  onClick={() => navigate('/aircraft/1')}
-                >
-                  View Hawker Details
-                </Button>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img
-                  src="/images/PENNSHARE/HAWKER-800XP.jpg"
-                  alt="2004 Hawker 800XP"
-                  className="w-full h-96 object-cover"
-                  onError={(e) => {
-                    e.target.src = '/api/placeholder/600/400';
-                  }}
-                />
               </div>
             </div>
           </div>
@@ -417,6 +350,8 @@ const PennShare = () => {
                 <textarea
                   name="comments"
                   rows={4}
+                  value={formData.comments}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
                   placeholder="Tell us about your aviation needs and timeline..."
                 ></textarea>
@@ -439,9 +374,16 @@ const PennShare = () => {
                 variant="primary"
                 size="lg"
                 className="w-full font-semibold"
+                disabled={isSubmitting}
               >
-                Send Inquiry
+                {isSubmitting ? 'Sending...' : 'Send Inquiry'}
               </Button>
+              {submitStatus === 'success' && (
+                <p className="text-sm text-green-700" role="status">Thanks. Your inquiry is in. We'll follow up shortly.</p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again or call (973) 868-8425.</p>
+              )}
             </form>
           </div>
         </div>

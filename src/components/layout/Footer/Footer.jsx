@@ -22,7 +22,6 @@ const Footer = () => {
         { name: 'Aircraft Sales', href: '/services#sales' },
         { name: 'Aircraft Acquisition', href: '/services#acquisition' },
         { name: 'Charter Services', href: '/services#charter' },
-        { name: 'Aircraft Management', href: '/services#management' },
       ]
     },
     {
@@ -39,14 +38,13 @@ const Footer = () => {
       links: [
         { name: 'About Us', href: '/about' },
         { name: 'Our Team', href: '/about#team' },
-        { name: 'News & Insights', href: '/blog' },
+        { name: 'Market Notes', href: '/blog' },
         { name: 'Contact', href: '/contact' },
       ]
     },
     {
       title: 'Social',
       links: [
-        { name: 'Gallery', href: '/gallery', iconKey: 'gallery' },
         { name: 'Instagram', href: 'https://instagram.com/pennjets', external: true, iconKey: 'instagram' },
         { name: 'Facebook', href: 'https://facebook.com/pennjets', external: true, iconKey: 'facebook' },
         { name: 'LinkedIn', href: 'https://linkedin.com/pennjets', external: true, iconKey: 'linkedin' },
@@ -85,9 +83,8 @@ const Footer = () => {
                 <span className="text-xl font-bold">PennJets</span>
               </Link>
               <p className="text-gray-400 mb-6 max-w-md">
-                Premier aviation brokerage services with over two decades of experience. 
-                We connect buyers and sellers in the luxury aircraft market with unmatched 
-                expertise and personalized service.
+                Private aviation sales and consulting. We help clients buy, sell, and charter
+                aircraft with straightforward advice and personal service.
               </p>
               {socialLinks.length > 0 && (
                 <div className="flex space-x-4">
@@ -140,6 +137,13 @@ const Footer = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Air charter broker disclosure (14 CFR 295.23). Wording approved by Joseph 2026-09-20. */}
+        <div className="py-5 border-t border-gray-800">
+          <p className="text-xs leading-relaxed text-gray-400 max-w-4xl">
+            Penn Jets LLC is an air charter broker, not a direct air carrier or direct foreign air carrier, and does not own, operate, or have operational control of any aircraft. All charter flights arranged by Penn Jets are operated by properly licensed direct air carriers or direct foreign air carriers, which have exclusive operational control of each flight.
+          </p>
         </div>
 
         {/* Bottom Section */}

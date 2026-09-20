@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
@@ -28,7 +27,7 @@ const Contact = () => {
 
     try {
       // Get CRM API endpoint and webhook ID from environment
-      const crmApiUrl = import.meta.env.VITE_CRM_API_URL || 'https://crm.pennjets.com';
+      const crmApiUrl = import.meta.env.VITE_CRM_API_URL || 'https://www.pennforce.pennjets.com';
       const webhookId = import.meta.env.VITE_CONTACT_WEBHOOK_ID;
 
       if (!webhookId) {
@@ -70,7 +69,6 @@ const Contact = () => {
 
       console.log('Lead created successfully:', data);
       setSubmitStatus('success');
-      alert('Thank you for your message! We will contact you shortly.');
 
       // Reset form
       setFormData({
@@ -84,7 +82,6 @@ const Contact = () => {
     } catch (error) {
       console.error('Form submission failed:', error);
       setSubmitStatus('error');
-      alert('Sorry, there was an error sending your message. Please try again or contact us directly at info@pennjets.com or call (973) 868-8425.');
     } finally {
       setIsSubmitting(false);
     }
@@ -122,11 +119,6 @@ const Contact = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Contact PennJets - Get in Touch with Aviation Experts</title>
-        <meta name="description" content="Contact PennJets for all your aviation needs. Speak with our expert team about aircraft sales, acquisitions, charter brokerage, and consulting services." />
-      </Helmet>
-
       {/* Hero Section */}
       <section className="bg-gray-900 text-white py-24 mt-24">
         <div className="max-w-7xl mx-auto container-padding">
@@ -213,7 +205,6 @@ const Contact = () => {
                     <option value="aircraft-sales">Aircraft Sales</option>
                     <option value="aircraft-acquisition">Aircraft Acquisition</option>
                     <option value="charter-brokerage">Charter Brokerage</option>
-                    <option value="aircraft-management">Aircraft Management</option>
                     <option value="consulting">Consulting</option>
                     <option value="other">Other</option>
                   </select>
@@ -242,6 +233,12 @@ const Contact = () => {
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
+                {submitStatus === 'success' && (
+                  <p className="text-sm text-green-700" role="status">Thank you. Your message is in. We'll be in touch shortly.</p>
+                )}
+                {submitStatus === 'error' && (
+                  <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email info@pennjets.com, or call (973) 868-8425.</p>
+                )}
               </form>
             </Card>
 
@@ -318,20 +315,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="aspect-video bg-gray-200 flex items-center justify-center">
-            <div className="text-center text-gray-500">
-              <div className="mb-4 flex justify-center">
-                <HiLocationMarker className="w-12 h-12" />
-              </div>
-              <div className="text-xl">Interactive Map</div>
-              <div className="text-sm">Google Maps integration would go here</div>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 };

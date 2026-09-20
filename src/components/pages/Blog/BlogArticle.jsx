@@ -3,12 +3,17 @@ import { Helmet } from 'react-helmet-async';
 import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
+import NewsletterSignup from '../../common/NewsletterSignup/NewsletterSignup';
+import NoteBody from './NoteBody';
 import { blogApi } from '../../../services/blogApi';
+import { articleMeta, safeImage } from '../../../seo/siteMeta';
+import { categoryFor, formatNoteDate, relatedNotes } from '../../../utils/marketNotes';
 
 const BlogArticle = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [article, setArticle] = useState(null);
+  const [allNotes, setAllNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -25,7 +30,19 @@ const BlogArticle = () => {
 
   useEffect(() => {
     loadArticle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
+
+  // Related notes come from the list endpoint; a failure here must not affect
+  // the article, so the list simply stays empty and the section does not render.
+  useEffect(() => {
+    let cancelled = false;
+    blogApi
+      .getPosts()
+      .then((posts) => { if (!cancelled) setAllNotes(posts || []); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
   // View beacon: fire once per article view, after the article has rendered.
   // Guards: the loaded article must match the current slug (so a slug change does
@@ -53,11 +70,6 @@ const BlogArticle = () => {
     }
   };
 
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
-
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
@@ -67,31 +79,13 @@ const BlogArticle = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    console.log('🚀 Starting form submission...');
-    console.log('Article slug:', slug);
-    console.log('Author ID:', article.author.id);
-    console.log('Form data:', formData);
-
     try {
-      const result = await blogApi.submitContactForm(article.author.id, formData, slug, article.author.email);
-      console.log('✅ Form submitted successfully:', result);
+      await blogApi.submitContactForm(article.author.id, formData, slug, article.author.email);
       setSubmitStatus('success');
-      alert(`Thank you for your message! ${article.author.name} will contact you shortly.`);
-
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        message: ''
-      });
+      setFormData({ name: '', email: '', phone: '', company: '', message: '' });
     } catch (error) {
-      console.error('❌ Form submission error details:', error);
-      console.error('Error message:', error.message);
-      console.error('Full error object:', JSON.stringify(error, null, 2));
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
-      alert(`Sorry, there was an error sending your message. Please try again or contact ${article.author.name} directly at ${article.author.email}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -102,7 +96,7 @@ const BlogArticle = () => {
       <div className="min-h-screen bg-white pt-32">
         <div className="max-w-4xl mx-auto container-padding text-center py-12">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-          <p className="mt-4 text-gray-600">Loading article...</p>
+          <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
     );
@@ -112,32 +106,43 @@ const BlogArticle = () => {
     return (
       <div className="min-h-screen bg-white pt-32">
         <div className="max-w-4xl mx-auto container-padding text-center py-12">
-          <div className="text-gray-400 text-6xl mb-4">📰</div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Article Not Found</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Note Not Found</h1>
           <p className="text-gray-600 mb-6">
-            The article you're looking for doesn't exist or has been removed.
+            That Market Note doesn&apos;t exist or has been removed.
           </p>
           <Button variant="primary" onClick={() => navigate('/blog')}>
-            Back to Blog
+            Back to Market Notes
           </Button>
         </div>
       </div>
     );
   }
 
+  const seo = articleMeta(article);
+  const category = categoryFor(article);
+  const related = relatedNotes(allNotes, article, 3);
+  const authorFirstName = article.author?.name?.split(' ')[0] || 'us';
+  const heroImage = safeImage(article.featuredImage);
+
   return (
     <>
       <Helmet>
-        <title>{article.title} | PennJets Blog</title>
-        <meta name="description" content={article.excerpt} />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
         <meta name="keywords" content={article.tags?.join(', ')} />
         <meta name="author" content={article.author.name} />
+        <link rel="canonical" href={seo.url} />
 
-        {/* Open Graph */}
+        {/* Open Graph / Twitter */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={article.title} />
-        <meta property="og:description" content={article.excerpt} />
-        {article.featuredImage && <meta property="og:image" content={article.featuredImage} />}
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:url" content={seo.url} />
+        <meta property="og:image" content={seo.image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
+        <meta name="twitter:image" content={seo.image} />
         <meta property="article:published_time" content={article.publishedAt} />
         <meta property="article:author" content={article.author.name} />
 
@@ -147,8 +152,9 @@ const BlogArticle = () => {
             "@context": "https://schema.org",
             "@type": "Article",
             "headline": article.title,
-            "description": article.excerpt,
-            "image": article.featuredImage,
+            "description": seo.description,
+            "image": seo.image,
+            "mainEntityOfPage": seo.url,
             "datePublished": article.publishedAt,
             "author": {
               "@type": "Person",
@@ -168,114 +174,103 @@ const BlogArticle = () => {
       </Helmet>
 
       <div className="bg-white min-h-screen">
-        {/* Article Header */}
-        <article className="pt-32 pb-12">
-          <div className="max-w-4xl mx-auto container-padding">
-            {/* Breadcrumb */}
-            <div className="mb-8">
+        <article className="pt-28 pb-4 sm:pt-32">
+          {/* Headline block */}
+          <header className="max-w-3xl mx-auto container-padding">
+            <div className="mb-6">
               <button
                 onClick={() => navigate('/blog')}
-                className="text-primary-600 hover:text-primary-700 text-sm font-medium"
+                className="text-sm font-medium text-primary-700 hover:text-primary-800"
               >
-                ← Back to Blog
+                ← Back to Market Notes
               </button>
             </div>
 
-            {/* Category & Tags */}
-            <div className="flex flex-wrap items-center gap-2 mb-6">
-              {article.category && (
-                <span className="bg-primary-100 text-primary-800 text-sm font-medium px-3 py-1 rounded">
-                  {article.category}
-                </span>
+            {/* Category label and date, above the headline. A note with no
+                category shows no label. */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+              {category && (
+                <>
+                  <button
+                    onClick={() => navigate(`/blog?category=${category.slug}`)}
+                    className="font-semibold uppercase tracking-wide text-primary-700 hover:text-primary-800"
+                  >
+                    {category.label}
+                  </button>
+                  <span className="text-gray-300" aria-hidden="true">·</span>
+                </>
               )}
-              {article.tags?.map((tag, index) => (
-                <span key={index} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Title */}
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              {article.title}
-            </h1>
-
-            {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-8 pb-8 border-b">
-              <div className="flex items-center gap-2">
-                {article.author.avatar && (
-                  <img
-                    src={article.author.avatar}
-                    alt={article.author.name}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                )}
-                <div>
-                  <p className="font-medium text-gray-900">{article.author.name}</p>
-                  <p className="text-xs">{article.author.title}</p>
-                </div>
-              </div>
-              <span>•</span>
-              <span>{formatDate(article.publishedAt)}</span>
+              <time dateTime={article.publishedAt} className="text-gray-500">
+                {formatNoteDate(article.publishedAt)}
+              </time>
               {article.readTimeMinutes && (
                 <>
-                  <span>•</span>
-                  <span>{article.readTimeMinutes} min read</span>
+                  <span className="text-gray-300" aria-hidden="true">·</span>
+                  <span className="text-gray-500">{article.readTimeMinutes} min read</span>
                 </>
               )}
             </div>
 
-            {/* Featured Image */}
-            {article.featuredImage && (
-              <div className="mb-12 rounded-xl overflow-hidden">
+            <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+              {article.title}
+            </h1>
+
+            {/* Byline */}
+            <div className="mt-8 flex items-center gap-4 border-t border-gray-200 pt-6">
+              {article.author.avatar ? (
                 <img
-                  src={article.featuredImage}
-                  alt={article.title}
-                  className="w-full h-auto"
+                  src={article.author.avatar}
+                  alt=""
+                  width={96}
+                  height={96}
+                  loading="lazy"
+                  className="h-12 w-12 flex-shrink-0 rounded-full object-cover"
+                />
+              ) : (
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary-100 text-sm font-semibold text-primary-700">
+                  {article.author.name?.split(' ').map((n) => n[0]).join('').slice(0, 2)}
+                </div>
+              )}
+              <div className="min-w-0">
+                <p className="font-medium text-gray-900">{article.author.name}</p>
+                <p className="text-sm text-gray-500">{article.author.title}</p>
+              </div>
+            </div>
+          </header>
+
+          {/* Hero image, fixed crop */}
+          {heroImage && (
+            <div className="mt-10 max-w-4xl mx-auto container-padding">
+              <div className="aspect-[16/9] w-full overflow-hidden rounded-xl bg-gray-100">
+                {/* A note's image is set in the CRM and may point at a file this
+                    repo no longer ships; degrade to the empty panel, never to a
+                    broken-image icon. */}
+                <img
+                  src={heroImage}
+                  alt=""
+                  className="h-full w-full object-cover"
+                  onError={(e) => { e.target.style.display = 'none'; }}
                 />
               </div>
-            )}
+            </div>
+          )}
 
-            {/* Article Content */}
-            <div
-              className="prose prose-lg max-w-none mb-12
-                prose-headings:font-bold prose-headings:text-gray-900
-                prose-h1:text-4xl prose-h1:mt-12 prose-h1:mb-8
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-                prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-5
-                prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-4
-                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:mt-0 prose-p:text-lg
-                prose-p:first:mt-0
-                prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium
-                prose-strong:text-gray-900 prose-strong:font-semibold
-                prose-em:text-gray-700
-                prose-blockquote:border-l-4 prose-blockquote:border-primary-600 prose-blockquote:pl-6 prose-blockquote:py-2 prose-blockquote:italic prose-blockquote:text-gray-600 prose-blockquote:bg-gray-50 prose-blockquote:my-8
-                prose-ul:list-disc prose-ul:pl-6 prose-ul:my-6 prose-ul:space-y-2
-                prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-6 prose-ol:space-y-2
-                prose-li:text-gray-700 prose-li:leading-relaxed prose-li:text-lg
-                prose-code:text-primary-600 prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-base
-                prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-6
-                prose-img:rounded-lg prose-img:shadow-md prose-img:my-8
-                prose-hr:border-gray-300 prose-hr:my-12
-                prose-table:border-collapse prose-table:my-8
-                prose-th:bg-gray-100 prose-th:border prose-th:border-gray-300 prose-th:px-4 prose-th:py-2 prose-th:text-left
-                prose-td:border prose-td:border-gray-300 prose-td:px-4 prose-td:py-2
-                [&_p]:mb-6 [&_p]:leading-relaxed [&_p]:text-lg [&_p]:text-gray-700
-                [&_p+p]:mt-6"
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+          {/* Body: lede, paragraphs, optional pull quote and sourced statistic */}
+          <div className="mt-10 max-w-3xl mx-auto container-padding">
+            {/* contentHtml is the marked-up body. For most notes it is identical
+                to content, but where a note was stored as plain text, content has
+                no tags at all and would render as one unbroken blob. */}
+            <NoteBody html={article.contentHtml || article.content} />
 
-            {/* Tags */}
             {article.tags && article.tags.length > 0 && (
-              <div className="pt-8 border-t">
-                <h3 className="text-sm font-semibold text-gray-900 mb-3">Tagged:</h3>
+              <div className="mt-12 border-t border-gray-200 pt-6">
                 <div className="flex flex-wrap gap-2">
                   {article.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="bg-gray-100 text-gray-700 text-sm px-3 py-1 rounded-full hover:bg-gray-200 cursor-pointer"
+                      className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600"
                     >
-                      #{tag}
+                      {tag}
                     </span>
                   ))}
                 </div>
@@ -284,143 +279,166 @@ const BlogArticle = () => {
           </div>
         </article>
 
-        {/* Author Bio & Contact Form */}
-        <section className="bg-gray-50 py-12">
+        {/* 1. Talk to a Broker */}
+        <section className="mt-16 bg-gray-50 py-12 sm:py-16">
           <div className="max-w-6xl mx-auto container-padding">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Author Bio */}
+            <div className="mx-auto mb-8 max-w-3xl">
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                Talk to a Broker
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Questions about this note, or about an aircraft? Send {authorFirstName} a
+                message and you&apos;ll hear back within one business day.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
               <Card>
                 <div className="flex items-start gap-4 mb-4">
                   {article.author.avatar && (
                     <img
                       src={article.author.avatar}
-                      alt={article.author.name}
-                      className="w-16 h-16 rounded-full object-cover flex-shrink-0"
+                      alt=""
+                      width={96}
+                      height={96}
+                      loading="lazy"
+                      className="h-16 w-16 flex-shrink-0 rounded-full object-cover"
                     />
                   )}
                   <div>
                     <h3 className="text-xl font-bold text-gray-900">{article.author.name}</h3>
-                    <p className="text-primary-600 font-medium">{article.author.title}</p>
+                    <p className="font-medium text-primary-700">{article.author.title}</p>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">{article.author.bio}</p>
-                <a
-                  href={`mailto:${article.author.email}`}
-                  className="text-primary-600 hover:text-primary-700 text-sm font-medium"
-                >
-                  {article.author.email}
-                </a>
+                <p className="mb-4 text-gray-700">{article.author.bio}</p>
+                <div className="flex flex-col gap-2 text-sm">
+                  <a href={`mailto:${article.author.email}`} className="font-medium text-primary-700 hover:text-primary-800">
+                    {article.author.email}
+                  </a>
+                  <a href="tel:+19738688425" className="font-medium text-primary-700 hover:text-primary-800">
+                    (973) 868-8425
+                  </a>
+                </div>
               </Card>
 
-              {/* Contact Form */}
               <Card>
-                <div className="flex items-center gap-3 mb-4">
-                  {article.author?.avatar && (
-                    <img
-                      src={article.author.avatar}
-                      alt={article.author.name}
-                      className="w-12 h-12 rounded-full object-cover flex-shrink-0"
-                    />
-                  )}
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">
-                      Contact {article.author?.name?.split(' ')[0] || 'Us'}
-                    </h3>
-                    <p className="text-sm text-gray-600">{article.author?.title || ''}</p>
-                  </div>
-                </div>
-                <p className="text-gray-600 mb-6 text-sm">
-                  Have questions about this article? Get in touch and I'll respond within 24 hours.
-                </p>
-
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Name *
-                    </label>
+                    <label className="mb-1 block text-sm font-medium text-gray-700">Name *</label>
                     <input
                       type="text"
                       required
+                      autoComplete="name"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Email *
-                    </label>
+                    <label className="mb-1 block text-sm font-medium text-gray-700">Email *</label>
                     <input
                       type="email"
                       required
+                      autoComplete="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone
-                    </label>
+                    <label className="mb-1 block text-sm font-medium text-gray-700">Phone</label>
                     <input
                       type="tel"
+                      autoComplete="tel"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Company
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.company}
-                      onChange={(e) => handleInputChange('company', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Message *
-                    </label>
+                    <label className="mb-1 block text-sm font-medium text-gray-700">Message *</label>
                     <textarea
                       rows={4}
                       required
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       placeholder="Your question or message..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
 
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="md"
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
+                  <Button type="submit" variant="primary" size="md" className="w-full" disabled={isSubmitting}>
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
+
+                  {submitStatus === 'success' && (
+                    <p className="text-sm text-green-700" role="status">
+                      Thank you. {article.author.name} will be in touch shortly.
+                    </p>
+                  )}
+                  {submitStatus === 'error' && (
+                    <p className="text-sm text-red-700" role="alert">
+                      Sorry, that didn&apos;t go through. Please try again or email {article.author.email}.
+                    </p>
+                  )}
                 </form>
               </Card>
             </div>
           </div>
         </section>
 
-        {/* Back to Blog */}
-        <section className="py-12">
-          <div className="max-w-4xl mx-auto container-padding text-center">
-            <Button variant="outline" onClick={() => navigate('/blog')}>
-              ← Back to All Articles
-            </Button>
-          </div>
-        </section>
+        {/* 2. Newsletter */}
+        <NewsletterSignup compact />
+
+        {/* 3. Three related Market Notes */}
+        {related.length > 0 && (
+          <section className="py-12 sm:py-16">
+            <div className="max-w-6xl mx-auto container-padding">
+              <h2 className="mb-8 text-2xl font-bold tracking-tight text-gray-900">
+                More Market Notes
+              </h2>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {related.map((note) => (
+                  <article key={note.slug} className="flex flex-col overflow-hidden rounded-xl border border-gray-200">
+                    <button
+                      onClick={() => navigate(`/blog/${note.slug}`)}
+                      className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      aria-label={note.title}
+                    >
+                      <div className="aspect-[16/9] w-full overflow-hidden bg-gray-100">
+                        {safeImage(note.featuredImage) && (
+                          <img
+                            src={safeImage(note.featuredImage)}
+                            alt=""
+                            loading="lazy"
+                            className="h-full w-full object-cover"
+                            onError={(e) => { e.target.style.display = 'none'; }}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className="flex flex-1 flex-col p-5">
+                      {categoryFor(note) && (
+                        <div className="text-xs font-semibold uppercase tracking-wide text-primary-700">
+                          {categoryFor(note).label}
+                        </div>
+                      )}
+                      <h3
+                        className="mt-2 cursor-pointer text-lg font-semibold leading-snug text-gray-900 hover:text-primary-700"
+                        onClick={() => navigate(`/blog/${note.slug}`)}
+                      >
+                        {note.title}
+                      </h3>
+                      <time dateTime={note.publishedAt} className="mt-2 text-sm text-gray-500">
+                        {formatNoteDate(note.publishedAt)}
+                      </time>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </div>
     </>
   );

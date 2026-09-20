@@ -1,6 +1,6 @@
 # PennJets Development 2.0
 
-A modern aviation brokerage website built with React, Vite, and Tailwind CSS. This project provides a complete solution for luxury aircraft sales, acquisitions, charter services, and management.
+The public website for Penn Jets LLC (private aviation sales and consulting), built with React, Vite, and Tailwind CSS. Leads and blog content flow through the PennForce CRM; see CLAUDE.md for the integration contract and working rules.
 
 ## 🚀 Features
 
@@ -92,66 +92,18 @@ PennJets-Development-2.0/
 
 ## 🚢 Deployment
 
-### Digital Ocean Deployment
+The site deploys to **GitHub Pages** automatically on every push to `main`
+(`.github/workflows/deploy.yml`): install, `vite build`, copy `public/CNAME`,
+publish `dist/` to the `gh-pages` branch. The custom domain is
+`www.pennjets.com` (the apex redirects to `www`).
 
-#### Option 1: Docker Deployment
-
-1. **Build and deploy with Docker**
-   ```bash
-   # Build the Docker image
-   docker build -t pennjets-app .
-   
-   # Run the container
-   docker run -p 80:80 pennjets-app
-   ```
-
-2. **Using Docker Compose**
-   ```bash
-   docker-compose up -d
-   ```
-
-#### Option 2: Static Site Deployment
-
-1. **Build the application**
-   ```bash
-   npm run build
-   ```
-
-2. **Upload the `dist` folder** to your Digital Ocean Droplet or use Digital Ocean Spaces for static hosting
-
-3. **Configure Nginx** (if using a Droplet)
-   ```nginx
-   server {
-       listen 80;
-       server_name your-domain.com;
-       root /path/to/dist;
-       index index.html;
-       
-       location / {
-           try_files $uri $uri/ /index.html;
-       }
-   }
-   ```
-
-### Digital Ocean App Platform
-
-1. **Create a new app** in Digital Ocean App Platform
-2. **Connect your repository**
-3. **Configure build settings**:
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-4. **Deploy**
-
-### Environment Variables
-
-Create a `.env` file for environment-specific configurations:
-
-```env
-VITE_APP_NAME=PennJets
-VITE_API_URL=https://api.pennjets.com
-VITE_GOOGLE_MAPS_API_KEY=your_api_key_here
-VITE_GOOGLE_ANALYTICS_ID=your_ga_id_here
-```
+- There is no preview environment. Review changes locally on a `site/<topic>`
+  branch with `npx vite --port 5173`; Joseph merges and deploys.
+- Build-time environment (`VITE_CRM_API_URL` and the webhook IDs) is set in
+  the workflow, not in GitHub Pages settings.
+- Deep links work through `public/404.html`, which redirects to `/?/path`
+  and is decoded by the script in `index.html` before React mounts. Query
+  strings (including `utm_*`) survive that hop.
 
 ## 🔧 Configuration
 
