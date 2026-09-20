@@ -91,7 +91,7 @@ const Contact = () => {
   const contactInfo = [
     {
       title: 'Phone',
-      info: '(973) 868-8425',
+      info: '(954) 546-0763',
       description: 'Available 24/7 for urgent inquiries',
       icon: HiPhone
     },
@@ -113,7 +113,7 @@ const Contact = () => {
     {
       city: 'Miami, FL',
       address: '690 SW 1st Ct #1030\nMiami, FL 33130',
-      phone: '(973) 868-8425',
+      phone: '(954) 546-0763',
       isHQ: true
     },
   ];
@@ -232,7 +232,7 @@ const Contact = () => {
                   <p className="text-sm text-green-700" role="status">Thank you. Your message is in. We'll be in touch shortly.</p>
                 )}
                 {submitStatus === 'error' && (
-                  <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email info@pennjets.com, or call (973) 868-8425.</p>
+                  <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email info@pennjets.com, or call (954) 546-0763.</p>
                 )}
               </form>
             </Card>

@@ -54,7 +54,7 @@ export const ROUTES = {
   '/contact': {
     title: 'Contact PennJets',
     description:
-      'Talk to a broker about buying, selling, or chartering an aircraft. Call (973) 868-8425 or send a message.',
+      'Talk to a broker about buying, selling, or chartering an aircraft. Call (954) 546-0763 or send a message.',
   },
   '/blog': {
     title: 'Market Notes | PennJets',

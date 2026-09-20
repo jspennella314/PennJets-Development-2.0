@@ -315,8 +315,8 @@ const BlogArticle = () => {
                   <a href={`mailto:${article.author.email}`} className="font-medium text-primary-700 hover:text-primary-800">
                     {article.author.email}
                   </a>
-                  <a href="tel:+19738688425" className="font-medium text-primary-700 hover:text-primary-800">
-                    (973) 868-8425
+                  <a href="tel:+19545460763" className="font-medium text-primary-700 hover:text-primary-800">
+                    (954) 546-0763
                   </a>
                 </div>
               </Card>

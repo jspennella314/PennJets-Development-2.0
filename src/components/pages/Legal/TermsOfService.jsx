@@ -103,7 +103,7 @@ const TermsOfService = () => {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <p className="text-gray-700 mb-2"><strong>Penn Jets LLC</strong></p>
                 <p className="text-gray-700 mb-2">Email: <a href="mailto:info@pennjets.com" className="text-primary-600 hover:text-primary-700">info@pennjets.com</a></p>
-                <p className="text-gray-700">Phone: <a href="tel:+19738688425" className="text-primary-600 hover:text-primary-700">(973) 868-8425</a></p>
+                <p className="text-gray-700">Phone: <a href="tel:+19545460763" className="text-primary-600 hover:text-primary-700">(954) 546-0763</a></p>
               </div>
             </section>
 

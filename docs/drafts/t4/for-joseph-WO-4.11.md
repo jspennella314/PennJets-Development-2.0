@@ -1,5 +1,9 @@
 # For Joseph — WO-4.11, the sticky contact bar
 
+> **RESOLVED 2026-09-20 by WO-4.13.** (954) 546-0763 is the number Joseph
+> answers, and it is now the only number on the site. The bar already dialled
+> it. Nothing below needs a decision; it is kept for the record.
+
 **Belongs in `docs/orders/joseph.md` in the PennForce repo. T4 cannot write
 there**, so it is queued here and needs relaying. Same constraint as the
 WO-4.10 items in the file beside this one.

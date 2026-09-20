@@ -13,7 +13,7 @@ const About = () => {
       credentials: null,
       bio: "Joseph Pennella founded Penn Jets LLC in 2025. He brokers whole-aircraft and fractional transactions, arranges charter through certificated operators, and advises owners on acquisition strategy. He publishes market studies on specific models and segments: how many airframes exist, how many are actually available, and what that means for a buyer's timeline.",
       image: '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
-      phone: '(973) 868-8425',
+      phone: '(954) 546-0763',
       email: 'joe@pennjets.com',
       specialties: ['Aircraft Brokerage', 'Deal Structuring', 'Fractional Ownership']
     },

@@ -130,7 +130,7 @@ const Home = () => {
             },
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+1-973-868-8425",
+              "telephone": "+1-954-546-0763",
               "contactType": "Sales",
               "areaServed": "US",
               "availableLanguage": "English"
@@ -233,7 +233,7 @@ const Home = () => {
           <div className="py-8 text-sm text-gray-700">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <p>
-                <strong>Call:</strong> (973) 868‑8425 · <strong>Email:</strong>{" "}
+                <strong>Call:</strong> (954) 546‑0763 · <strong>Email:</strong>{" "}
                 <a className="underline" href="mailto:inquiries@pennjets.com">
                   inquiries@pennjets.com
                 </a>

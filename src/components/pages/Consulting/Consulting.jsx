@@ -94,7 +94,7 @@ const Consulting = () => {
             )}
             {status === 'error' && (
               <p className="mt-3 text-sm text-red-700" role="alert">
-                Sorry, that didn&apos;t go through. Please try again or call (973) 868-8425.
+                Sorry, that didn&apos;t go through. Please try again or call (954) 546-0763.
               </p>
             )}
           </form>

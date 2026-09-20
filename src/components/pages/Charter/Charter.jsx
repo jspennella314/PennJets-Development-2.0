@@ -50,10 +50,10 @@ const Hero = () => (
               Get a Charter Quote
             </a>
             <a
-              href="tel:+19738688425"
+              href="tel:+19545460763"
               className="rounded-2xl px-5 py-3 text-sm font-medium text-white ring-1 ring-white/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/80"
             >
-              Call (973) 868‑8425
+              Call (954) 546‑0763
             </a>
           </div>
         </div>
@@ -307,7 +307,7 @@ const QuoteForm = () => {
           )}
           {status === "error" && (
             <p className="mt-3 text-sm text-red-700" role="alert">
-              Sorry, that didn't go through. Please try again or call (973) 868‑8425.
+              Sorry, that didn't go through. Please try again or call (954) 546‑0763.
             </p>
           )}
         </form>
@@ -336,7 +336,7 @@ const FooterCta = () => (
       <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
         <div>
           <h3 className="text-xl font-semibold">Ready to go wheels up?</h3>
-          <p className="mt-1 text-sm text-white/80">Call (973) 868‑8425 or send your itinerary for a fast quote.</p>
+          <p className="mt-1 text-sm text-white/80">Call (954) 546‑0763 or send your itinerary for a fast quote.</p>
         </div>
         <div className="flex gap-3">
           <a href="#quote" className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md">Get a Quote</a>
