@@ -127,7 +127,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center h-full">
             <img
-              src="/images/PennJets-Website-Logo.png"
+              src="/images/pennjets-logo-192.png"
               alt="PennJets"
               className="h-12 lg:h-16 w-auto transition-all duration-300"
               style={{

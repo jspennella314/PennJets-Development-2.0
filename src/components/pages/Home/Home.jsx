@@ -118,7 +118,7 @@ const Home = () => {
             "@type": "Organization",
             "name": "PennJets",
             "url": "https://www.pennjets.com",
-            "logo": "https://www.pennjets.com/images/PennJets-Website-Logo.png",
+            "logo": "https://www.pennjets.com/images/pennjets-logo-192.png",
             "description": "Private aviation brokerage and consulting firm specializing in aircraft sales, acquisitions, and charter brokerage",
             "address": {
               "@type": "PostalAddress",
