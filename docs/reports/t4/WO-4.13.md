@@ -2,8 +2,8 @@
 wo: WO-4.13
 terminal: T4
 branch: t4/work
-commit: PENDING
-tested_against: "site: local dev (vite 5173) at PENDING — NOT yet a production deploy, see Known gaps"
+commit: 19ae1fa
+tested_against: "site: local dev (vite 5173) at 19ae1fa — NOT yet a production deploy, see Known gaps"
 date: 2026-09-20
 status: reported
 ---
@@ -16,7 +16,7 @@ structured data.
 
 ## Commit
 
-`PENDING` WO-4.13: one phone number sitewide.
+`19ae1fa` WO-4.13: one phone number sitewide.
 On `t4/work`, pushed. Not merged.
 
 ## Route evidence
