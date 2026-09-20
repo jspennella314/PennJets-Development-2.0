@@ -257,7 +257,10 @@ const BlogArticle = () => {
 
           {/* Body: lede, paragraphs, optional pull quote and sourced statistic */}
           <div className="mt-10 max-w-3xl mx-auto container-padding">
-            <NoteBody html={article.content} />
+            {/* contentHtml is the marked-up body. For most notes it is identical
+                to content, but where a note was stored as plain text, content has
+                no tags at all and would render as one unbroken blob. */}
+            <NoteBody html={article.contentHtml || article.content} />
 
             {article.tags && article.tags.length > 0 && (
               <div className="mt-12 border-t border-gray-200 pt-6">
