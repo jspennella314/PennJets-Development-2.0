@@ -2,8 +2,8 @@
 wo: WO-4.16
 terminal: T4
 branch: t4/work
-commit: PENDING
-tested_against: "site: built output at PENDING — NOT yet a production deploy, see Known gaps. Fallback state checked against the live CRM, production dpl_FsRLBXmS8bFju1c5tEwGi18Kxapp (5b95295)."
+commit: 293b8ed
+tested_against: "site: built output at 293b8ed — NOT yet a production deploy, see Known gaps. Fallback state checked against the live CRM, production dpl_FsRLBXmS8bFju1c5tEwGi18Kxapp (5b95295)."
 date: 2026-09-20
 status: reported
 ---
@@ -15,7 +15,7 @@ cropped photograph of a Falcon. Joseph chose **card A**, the logo alone.
 
 ## Commit
 
-`PENDING` WO-4.16: apply card A and delete the Falcon crop.
+`293b8ed` WO-4.16: apply card A and delete the Falcon crop.
 Built in `f1497e7`, applied here. On `t4/work`, pushed. Not merged.
 
 ## UI evidence — the card
