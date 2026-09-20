@@ -18,7 +18,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {
   SITE_URL, SITE_NAME, DEFAULT_IMAGE, STATIC_ROUTES, ROUTES,
-  canonicalFor, absoluteImage, articleMeta,
+  canonicalFor, absoluteImage, articleMeta, isAllowedImage,
 } from '../src/seo/siteMeta.js';
 
 const DIST = path.resolve('dist');
@@ -105,6 +105,7 @@ try {
 // longer ships (an image pulled for a visible tail number, say). A dead og:image
 // means a blank social preview, so fall back to the default and say so in the log.
 const missingImages = [];
+const blockedImages = [];
 function resolvePreviewImage(url) {
   if (!url || !url.startsWith(SITE_URL + '/')) return url || SITE_URL + DEFAULT_IMAGE;
   const local = path.join('public', url.slice(SITE_URL.length + 1));
@@ -115,6 +116,9 @@ function resolvePreviewImage(url) {
 
 for (const post of posts) {
   if (!post.slug) continue;
+  if (post.featuredImage && !isAllowedImage(post.featuredImage)) {
+    blockedImages.push(`${post.slug}: ${post.featuredImage}`);
+  }
   const a = articleMeta(post);
   a.image = resolvePreviewImage(a.image);
   const jsonLd = {
@@ -156,6 +160,10 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
 writeFile('sitemap.xml', sitemap);
 
 console.log(`[postbuild] wrote ${written.length} HTML files (${posts.length} Market Notes) and sitemap.xml with ${urls.length} URLs`);
+if (blockedImages.length) {
+  console.warn(`[postbuild] ${blockedImages.length} note image(s) hotlinked from another site and were not used:`);
+  for (const u of blockedImages) console.warn(`  ${u}`);
+}
 if (missingImages.length) {
   console.warn(`[postbuild] ${missingImages.length} note image(s) not in this repo; social preview fell back to the default:`);
   for (const u of [...new Set(missingImages)]) console.warn(`  ${u}`);

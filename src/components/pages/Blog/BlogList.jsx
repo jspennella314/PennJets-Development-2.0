@@ -5,6 +5,7 @@ import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
 import { blogApi } from '../../../services/blogApi';
 import { CATEGORIES, categoryFor, categoryKeyword, hasCategory } from '../../../utils/marketNotes';
+import { safeImage } from '../../../seo/siteMeta';
 
 const NEWSLETTER_API = 'https://www.pennforce.pennjets.com/api/public/newsletter/subscribe';
 
@@ -185,10 +186,10 @@ const BlogList = () => {
               {posts.map((post) => (
                 <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                   {/* Featured Image */}
-                  {post.featuredImage && (
+                  {safeImage(post.featuredImage) && (
                     <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden">
                       <img
-                        src={post.featuredImage}
+                        src={safeImage(post.featuredImage)}
                         alt={post.title}
                         className="w-full h-full object-cover"
                         onError={(e) => {

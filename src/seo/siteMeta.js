@@ -76,6 +76,27 @@ export function absoluteImage(src) {
   return SITE_URL + (src.startsWith('/') ? src : '/' + src);
 }
 
+// Images are served from this site only. A note's featuredImage is set in the
+// CRM and can point anywhere; hotlinking a third party's image ships something
+// we hold no licence for, so the site refuses to render it. Relative paths are
+// ours by definition.
+const ALLOWED_IMAGE_HOSTS = new Set(['www.pennjets.com', 'pennjets.com']);
+
+export function isAllowedImage(src) {
+  if (!src) return false;
+  if (!/^https?:\/\//i.test(src)) return true;
+  try {
+    return ALLOWED_IMAGE_HOSTS.has(new URL(src).host.toLowerCase());
+  } catch (e) {
+    return false;
+  }
+}
+
+// The image to render, or null when it is not one we serve.
+export function safeImage(src) {
+  return isAllowedImage(src) ? src : null;
+}
+
 export function metaForPath(pathname) {
   const clean = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
   if (ROUTES[clean]) return { ...ROUTES[clean], type: 'website' };
@@ -91,7 +112,7 @@ export function articleMeta(post) {
   return {
     title: /penn\s?jets/i.test(title) ? title : `${title} | PennJets Market Notes`,
     description,
-    image: absoluteImage(post.featuredImage),
+    image: absoluteImage(safeImage(post.featuredImage)),
     url: `${SITE_URL}/blog/${post.slug}`,
     publishedAt: post.publishedAt,
     authorName: (post.author && post.author.name) || 'PennJets',

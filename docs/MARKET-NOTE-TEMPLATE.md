@@ -66,8 +66,11 @@ too. Nothing needs to change.
 - If the featured image is missing from the site, the hero degrades to an empty
   panel and the social preview falls back to `/images/og-default.jpg`. The
   build prints a warning naming the note, so check the build log.
-- Do not hotlink images from other sites. One note currently points at
-  `wallpaperaccess.com`; that needs replacing.
+- Do not hotlink images from other sites. The site only renders images served
+  from pennjets.com; anything else is ignored, the hero is left out, and the
+  build warns. As of 2026-09-20 one note does this:
+  `september-11-and-the-evolution-of-private-aviation` has its Featured Image
+  set to `wallpaperaccess.com`. Replace it in PennForce.
 
 ## What the template adds on its own
 

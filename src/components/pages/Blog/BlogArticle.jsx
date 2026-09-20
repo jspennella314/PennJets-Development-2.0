@@ -6,7 +6,7 @@ import Button from '../../common/Button/Button';
 import NewsletterSignup from '../../common/NewsletterSignup/NewsletterSignup';
 import NoteBody from './NoteBody';
 import { blogApi } from '../../../services/blogApi';
-import { articleMeta } from '../../../seo/siteMeta';
+import { articleMeta, safeImage } from '../../../seo/siteMeta';
 import { categoryFor, formatNoteDate, relatedNotes } from '../../../utils/marketNotes';
 
 const BlogArticle = () => {
@@ -122,6 +122,7 @@ const BlogArticle = () => {
   const category = categoryFor(article);
   const related = relatedNotes(allNotes, article, 3);
   const authorFirstName = article.author?.name?.split(' ')[0] || 'us';
+  const heroImage = safeImage(article.featuredImage);
 
   return (
     <>
@@ -238,14 +239,14 @@ const BlogArticle = () => {
           </header>
 
           {/* Hero image, fixed crop */}
-          {article.featuredImage && (
+          {heroImage && (
             <div className="mt-10 max-w-4xl mx-auto container-padding">
               <div className="aspect-[16/9] w-full overflow-hidden rounded-xl bg-gray-100">
                 {/* A note's image is set in the CRM and may point at a file this
                     repo no longer ships; degrade to the empty panel, never to a
                     broken-image icon. */}
                 <img
-                  src={article.featuredImage}
+                  src={heroImage}
                   alt=""
                   className="h-full w-full object-cover"
                   onError={(e) => { e.target.style.display = 'none'; }}
@@ -402,9 +403,9 @@ const BlogArticle = () => {
                       aria-label={note.title}
                     >
                       <div className="aspect-[16/9] w-full overflow-hidden bg-gray-100">
-                        {note.featuredImage && (
+                        {safeImage(note.featuredImage) && (
                           <img
-                            src={note.featuredImage}
+                            src={safeImage(note.featuredImage)}
                             alt=""
                             loading="lazy"
                             className="h-full w-full object-cover"
