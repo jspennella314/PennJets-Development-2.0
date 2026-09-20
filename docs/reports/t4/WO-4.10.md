@@ -104,7 +104,7 @@ Touched, all within `PennJets-Development-2.0`:
 ```
 src/content/privacyPolicy.js                       new, the copy
 src/components/pages/Legal/PrivacyPolicy.jsx       rewritten, renders the copy
-scripts/privacy-draft.mjs                          new, generates the draft
+scripts/legal-drafts.mjs                          new, generates the draft
 docs/drafts/t4/privacy-policy.md                   generated draft for approval
 docs/drafts/t4/for-joseph-WO-4.10.md               items needing Joseph
 docs/reports/t4/WO-4.10.md                         this report
@@ -113,7 +113,7 @@ docs/reports/t4/WO-4.10.md                         this report
 Nothing in the PennForce repository was written. Its order files were read only.
 
 The copy lives in a content module and the draft is generated from it by
-`node scripts/privacy-draft.mjs`, so the wording Joseph approves and the wording
+`node scripts/legal-drafts.mjs`, so the wording Joseph approves and the wording
 the page renders cannot drift apart.
 
 ## Known gaps
