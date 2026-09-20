@@ -66,10 +66,37 @@ date instead, give me the date and the wording.
 
 ---
 
-## Not for you, for the lead — a related finding
+## 5. The cookie policy contradicts the new page, and needs its own order
 
-The existing live privacy policy is materially false. It claims a payment
-processor, cookie identifiers, advertising and analytics partners, and sharing
-with advertising or analytics partners. None of those exist on this site. That
-page is live right now and the replacement above is what fixes it, which is
-worth knowing when scheduling the merge.
+`/cookie-policy` is live right now and says, among other things:
+
+- "uses cookies and similar tracking technologies"
+- "Performance & Analytics Cookies ... (e.g., Google Analytics)"
+- "Advertising & Targeting Cookies ... deliver relevant ads"
+- "third-party cookies from our partners ... analytics platforms and
+  advertising networks"
+- and it sends readers to `optout.networkadvertising.org`
+
+Measured on production on 2026-09-20: **this site sets no cookies at all**,
+`document.cookie` is empty, there is no Google Analytics, and there are no
+advertising networks. Every one of those statements is false.
+
+The new privacy policy says there are no cookies. Both pages are linked from
+the same footer, so once this ships the two contradict each other in public.
+
+I have not touched it, because a work order exists only as a file and there
+isn't one for the cookie policy. It needs either a short order to rewrite it
+from what the site actually does, or an order to remove the page and its
+footer link, since a site with no cookies arguably does not need a cookie
+policy at all. I would suggest rewriting it: one short page saying no cookies
+are set and naming the single session storage value.
+
+---
+
+## Note for the lead
+
+The existing live privacy policy is also materially false: it claims a payment
+processor, cookie identifiers, and advertising and analytics partners, none of
+which exist. The replacement above is what fixes it, which is worth knowing
+when scheduling the merge. Item 5 is the same problem on the neighbouring
+page and is not fixed.
