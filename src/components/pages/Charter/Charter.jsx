@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { blogApi } from "../../../services/blogApi";
 
 // 14 CFR 295.23 air charter broker disclosure. Wording pending Joseph's approval.
@@ -80,7 +80,7 @@ const Benefits = () => {
     },
     {
       title: "Vetted Operators",
-      body: "We source from operators with strong safety records and maintenance programs, and we tell you who is flying you.",
+      body: "We source from licensed operators with strong safety records, and we tell you who is flying you.",
     },
     {
       title: "Transparent Quotes",
@@ -88,7 +88,7 @@ const Benefits = () => {
     },
     {
       title: "Trip Coordination",
-      body: "Ground transfers, catering, pets, and itinerary changes, handled for you.",
+      body: "We coordinate with the operator on ground transfers, catering, pets, and itinerary changes.",
     },
   ];
 
@@ -152,6 +152,8 @@ const inputClass =
   "mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900";
 
 const QuoteForm = () => {
+  const [searchParams] = useSearchParams();
+  const prefilledModel = searchParams.get("model");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -160,7 +162,7 @@ const QuoteForm = () => {
   const [date, setDate] = useState("");
   const [retDate, setRetDate] = useState("");
   const [pax, setPax] = useState(4);
-  const [notes, setNotes] = useState("");
+  const [notes, setNotes] = useState(prefilledModel ? `Aircraft of interest: ${prefilledModel}` : "");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
 
@@ -200,7 +202,7 @@ const QuoteForm = () => {
   };
 
   return (
-    <Section id="quote" title="Request a Charter Quote" subtitle="Tell us the trip. We'll come back with options and a firm quote.">
+    <Section id="quote" title="Request a Charter Quote" subtitle="Tell us the trip. We'll come back with options and a firm quote. The Premier 1A is available for charter through a licensed operator Penn Jets works with.">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Form */}
         <form onSubmit={handleSubmit} className="rounded-2xl border p-6 shadow-sm lg:col-span-2">

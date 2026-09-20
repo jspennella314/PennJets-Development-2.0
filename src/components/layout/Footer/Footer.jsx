@@ -22,7 +22,6 @@ const Footer = () => {
         { name: 'Aircraft Sales', href: '/services#sales' },
         { name: 'Aircraft Acquisition', href: '/services#acquisition' },
         { name: 'Charter Services', href: '/services#charter' },
-        { name: 'Aircraft Management', href: '/services#management' },
       ]
     },
     {
@@ -46,7 +45,6 @@ const Footer = () => {
     {
       title: 'Social',
       links: [
-        { name: 'Gallery', href: '/gallery', iconKey: 'gallery' },
         { name: 'Instagram', href: 'https://instagram.com/pennjets', external: true, iconKey: 'instagram' },
         { name: 'Facebook', href: 'https://facebook.com/pennjets', external: true, iconKey: 'facebook' },
         { name: 'LinkedIn', href: 'https://linkedin.com/pennjets', external: true, iconKey: 'linkedin' },

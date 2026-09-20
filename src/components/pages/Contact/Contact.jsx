@@ -211,7 +211,6 @@ const Contact = () => {
                     <option value="aircraft-sales">Aircraft Sales</option>
                     <option value="aircraft-acquisition">Aircraft Acquisition</option>
                     <option value="charter-brokerage">Charter Brokerage</option>
-                    <option value="aircraft-management">Aircraft Management</option>
                     <option value="consulting">Consulting</option>
                     <option value="other">Other</option>
                   </select>

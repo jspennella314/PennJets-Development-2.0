@@ -20,7 +20,7 @@ const Services = () => {
         'Professional photography and marketing materials',
         'Global buyer network and targeted outreach',
         'Expert negotiation and deal structuring',
-        'Complete transaction management'
+        'Transaction support through closing'
       ],
       id: 'sales'
     },
@@ -50,30 +50,13 @@ const Services = () => {
         </svg>
       ),
       features: [
-        'Certified Part 135 operator partnerships',
-        'Comprehensive safety vetting and standards',
-        '24/7 concierge and trip support',
-        'Transparent pricing with no hidden fees',
-        'Flexible scheduling and routing options'
+        'Flights arranged with licensed Part 135 operators',
+        'Operator safety records reviewed before we quote',
+        'Trip coordination with the operator',
+        'Transparent quotes with no hidden fees',
+        'Routing options matched to the mission'
       ],
       id: 'charter'
-    },
-    {
-      title: 'Aircraft Management',
-      description: 'Full-service aircraft management to maximize your investment and minimize complexity.',
-      icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-        </svg>
-      ),
-      features: [
-        'Maintenance coordination and oversight',
-        'Professional crew recruitment and management',
-        'Insurance, registration, and regulatory compliance',
-        'Detailed financial reporting and analysis',
-        'Charter revenue optimization strategies'
-      ],
-      id: 'management'
     },
     {
       title: 'Market Analysis',
@@ -101,11 +84,11 @@ const Services = () => {
         </svg>
       ),
       features: [
-        'Fleet planning and optimization',
+        'Aircraft selection and mission fit',
         'Comprehensive cost-benefit analysis',
-        'Regulatory and compliance guidance',
-        'Tax strategy and legal structuring',
-        'Risk management and mitigation'
+        'Ownership structure options',
+        'Coordination with your tax and legal advisors',
+        'Budget and cost-of-ownership modeling'
       ],
       id: 'consulting'
     }

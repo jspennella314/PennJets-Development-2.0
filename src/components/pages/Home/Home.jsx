@@ -20,7 +20,7 @@ const INVENTORY = [
 // ---------------------------------------------------------------------------
 const OFF_MARKET_TYPES = [
   { id: 'falcon-900',  model: 'Falcon 900',   category: 'Large cabin', seats: 12, rangeNm: 4000, image: '/images/aircraft/falcon-900.webp' },
-  { id: 'premier-1a',  model: 'Premier 1A',   category: 'Light jet',   seats: 6,  rangeNm: 1400, image: '/images/aircraft/premier-1a.webp' },
+  { id: 'premier-1a',  model: 'Premier 1A',   category: 'Light jet',   seats: 6,  rangeNm: 1400, image: '/images/aircraft/premier-1a.webp', inquiry: 'charter' },
   { id: 'hawker-800xp', model: 'Hawker 800XP', category: 'Midsize',    seats: 8,  rangeNm: 2500, image: '/images/aircraft/hawker-800xp.webp' },
   { id: 'hawker-400xp', model: 'Hawker 400XP', category: 'Light jet',  seats: 7,  rangeNm: 1500, image: '/images/aircraft/hawker-400xp.webp' },
   { id: 'citation-ii', model: 'Citation II',  category: 'Light jet',   seats: 7,  rangeNm: 1700, image: '/images/aircraft/citation-ii.webp' },
@@ -97,7 +97,7 @@ const Home = () => {
           <li>Typical range ~{t.rangeNm.toLocaleString()} nm</li>
         </ul>
         <button
-          onClick={() => navigate(`/buy?model=${encodeURIComponent(t.model)}`)}
+          onClick={() => navigate(t.inquiry === 'charter' ? `/charter?model=${encodeURIComponent(t.model)}#quote` : `/buy?model=${encodeURIComponent(t.model)}`)}
           className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
         >
           Tell us what you're looking for
@@ -228,7 +228,7 @@ const Home = () => {
           <ul className="mt-4 grid list-disc gap-3 pl-5 sm:grid-cols-2">
             <li>Deal‑maker brokerage across light‑to‑midsize jets</li>
             <li>Transparent pro‑formas and lifecycle cost guidance</li>
-            <li>Access to vetted operators and maintenance networks</li>
+            <li>Access to vetted Part 135 operators</li>
             <li>Fast, responsive, white‑glove service</li>
           </ul>
         </Container>

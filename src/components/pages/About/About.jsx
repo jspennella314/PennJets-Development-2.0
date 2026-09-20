@@ -75,10 +75,9 @@ const About = () => {
                   emerging aviation broker.
                 </p>
                 <p>
-                  Whether you're buying your first light jet, looking for fractional ownership
-                  with 100% bonus depreciation, or liquidating a legacy aircraft, PennJets
-                  provides the expertise, negotiation power, and end-to-end management to
-                  maximize your return and minimize your risk.
+                  Whether you're buying your first light jet, looking at fractional ownership,
+                  or selling a legacy aircraft, PennJets provides the expertise and
+                  negotiation power to get the deal done and protect your interests.
                 </p>
               </div>
             </div>
@@ -200,8 +199,8 @@ const About = () => {
               <div className="text-4xl mb-4">📊</div>
               <h3 className="text-xl font-semibold mb-3">Fractional Ownership</h3>
               <p className="text-gray-600 text-sm">
-                Smart ownership solutions with professional management and charter revenue
-                opportunities.
+                Fractional shares structured by PennJets and flown by a licensed Part 135
+                operator.
               </p>
             </Card>
             <Card className="text-center">
@@ -236,9 +235,9 @@ const About = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                onClick={() => navigate('/aircraft')}
+                onClick={() => navigate('/buy')}
               >
-                View Our Aircraft
+                Tell Us What You're Looking For
               </Button>
             </div>
           </div>

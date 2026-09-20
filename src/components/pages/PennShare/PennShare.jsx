@@ -39,7 +39,7 @@ const PennShare = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        service: 'fractional',
+        service: 'buy',
         message,
       });
       setSubmitStatus('success');
@@ -56,7 +56,7 @@ const PennShare = () => {
     <>
       <Helmet>
         <title>PennShare - Fractional Aircraft Ownership | PennJets</title>
-        <meta name="description" content="Discover PennShare fractional aircraft ownership. Reduce costs, enjoy professional management, and access private aviation with flexible ownership options." />
+        <meta name="description" content="PennShare fractional aircraft ownership: shares structured by PennJets and flown by a licensed Part 135 operator. Share the costs, not the convenience." />
       </Helmet>
 
       {/* Hero Section */}
@@ -73,7 +73,7 @@ const PennShare = () => {
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Experience private aviation through intelligent fractional ownership.
-                Share the costs, not the convenience. Professional management Exclusively through Part 135-Charter Operators
+                Share the costs, not the convenience. Aircraft flown and maintained by licensed Part 135 operators.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -150,7 +150,7 @@ const PennShare = () => {
                 Cost-Effective
               </h3>
               <p className="text-gray-600">
-                Share acquisition, operating, and maintenance costs while enjoying all the benefits of private aviation.
+                Share the acquisition and operating costs while enjoying the benefits of private aviation.
               </p>
             </Card>
 
@@ -161,10 +161,10 @@ const PennShare = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900">
-                Professional Management
+                Flown by Part 135 Operators
               </h3>
               <p className="text-gray-600">
-                The Part 135 operator that flies the aircraft handles scheduling, maintenance, and regulatory compliance. PennJets structures the share and stays your point of contact.
+                A licensed Part 135 operator flies and maintains the aircraft. PennJets structures the share and stays your point of contact.
               </p>
             </Card>
 
@@ -178,7 +178,7 @@ const PennShare = () => {
                 Scheduled Access
               </h3>
               <p className="text-gray-600">
-                Priority scheduling and defined annual hours under the share agreement.
+                Defined annual hours and booking priority under the share agreement.
               </p>
             </Card>
 
