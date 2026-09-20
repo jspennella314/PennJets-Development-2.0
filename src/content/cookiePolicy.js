@@ -62,9 +62,9 @@ export const SECTIONS = [
     id: 'other-companies',
     title: 'Requests your browser makes to other companies',
     body: [
-      'Loading a page on this site fetches the typeface from Google Fonts, which means your browser contacts Google and Google receives your IP address. Google sets no cookie in that exchange, and we measured that, but the request is still a request to a third party.',
-      'We are moving those font files onto this site so the request stops happening. When that is done this paragraph will say so, and until then it says what is true.',
-      'The only other company your browser contacts is our own CRM, at pennforce.pennjets.com, which is where Market Notes are loaded from and where form submissions go.',
+      'One, and it is ours. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go.',
+      'Nothing else. The typeface used to be fetched from Google Fonts, which meant your browser contacted Google and Google received your IP address on every page. We moved those font files onto this site, so that request no longer happens.',
+      'There is no analytics provider, no advertising network, no tag manager and no embedded third-party content on this site to contact.',
     ],
   },
   {

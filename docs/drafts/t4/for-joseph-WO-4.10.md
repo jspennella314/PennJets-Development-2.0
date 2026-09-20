@@ -39,6 +39,10 @@ If nobody reads that mailbox, say so and I will point it at one that is read.
 
 ## 3. Google Fonts, a decision with two options
 
+> **RESOLVED 2026-09-20 by WO-4.14.** Joseph chose self-hosting and the order
+> was written and worked. The fonts are now served from pennjets.com and no
+> request reaches Google. Nothing below needs a decision; kept for the record.
+
 Measured on production, 2026-09-20: loading any page on pennjets.com makes a
 request to `fonts.googleapis.com` and `fonts.gstatic.com` for the Inter
 typeface. That means a reader's browser contacts Google on every page view and
@@ -67,6 +71,9 @@ date instead, give me the date and the wording.
 ---
 
 ## 5. The cookie policy contradicts the new page, and needs its own order
+
+> **RESOLVED 2026-09-20 by WO-4.12.** The order was written and worked; the
+> cookie policy now matches a measurement. Kept for the record.
 
 `/cookie-policy` is live right now and says, among other things:
 

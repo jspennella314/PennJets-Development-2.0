@@ -37,11 +37,11 @@ It is an identifier on your device for as long as the tab is open, and we would 
 
 ## Requests your browser makes to other companies
 
-Loading a page on this site fetches the typeface from Google Fonts, which means your browser contacts Google and Google receives your IP address. Google sets no cookie in that exchange, and we measured that, but the request is still a request to a third party.
+One, and it is ours. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go.
 
-We are moving those font files onto this site so the request stops happening. When that is done this paragraph will say so, and until then it says what is true.
+Nothing else. The typeface used to be fetched from Google Fonts, which meant your browser contacted Google and Google received your IP address on every page. We moved those font files onto this site, so that request no longer happens.
 
-The only other company your browser contacts is our own CRM, at pennforce.pennjets.com, which is where Market Notes are loaded from and where form submissions go.
+There is no analytics provider, no advertising network, no tag manager and no embedded third-party content on this site to contact.
 
 ## Two things that sound like tracking and are not
 
