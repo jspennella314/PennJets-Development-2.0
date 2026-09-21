@@ -222,8 +222,18 @@ const QuoteForm = () => {
     }
   };
 
+  // "Takes under a minute" in the subtitle below is measured, not assumed.
+  // Filling this form and submitting it took 13.6s at 1280 and 16.0s at 390
+  // arriving from a route link, and 20.8s and 23.4s typing From and To as
+  // well. Typing at 180ms per character with a 900ms pause between fields, a
+  // scripted stand-in for a reader rather than a user test. The slowest of the
+  // four is the one the line has to be true of. Recheck when the form changes.
+  // WO-4.22 item 8.
+  //
+  // It replaced "The Premier 1A is available for charter through a licensed
+  // operator Penn Jets works with.", removed by Joseph 2026-09-21.
   return (
-    <Section id="quote" title="Request a Charter Quote" subtitle="Tell us the trip. We'll come back with options and a firm quote. The Premier 1A is available for charter through a licensed operator Penn Jets works with.">
+    <Section id="quote" title="Request a Charter Quote" subtitle="Tell us the trip. We'll come back with options and a firm quote. Takes under a minute.">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Form */}
         <form ref={formRef} onSubmit={handleSubmit} className="rounded-2xl border p-6 shadow-sm lg:col-span-2">
@@ -307,16 +317,6 @@ const QuoteForm = () => {
                 >
                   {isSubmitting ? "Sending..." : "Send Request"}
                 </button>
-                {/*
-                  Measured, not assumed. Filling this form and submitting it
-                  took 13.6s at 1280 and 16.0s at 390 arriving from a route
-                  link, and 20.8s and 23.4s typing From and To as well. Typing
-                  at 180ms per character with a 900ms pause between fields,
-                  which is a scripted stand-in for a reader rather than a user
-                  test. The slowest of the four is the one this line has to be
-                  true of. WO-4.22 item 8.
-                */}
-                <p className="mt-2 text-xs text-gray-500">Takes under a minute.</p>
               </div>
             )}
           </div>

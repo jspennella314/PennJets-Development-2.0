@@ -156,8 +156,20 @@ I measured the direct-arrival case specifically because the route-link case
 flatters us: it starts with two fields already filled. **The line on the page
 has to be true of the slowest case, 23.4 seconds**, and it is, with room.
 
-The page now says **"Takes under a minute."** under the button, and the method
-is in a comment beside it so it can be rechecked when the form next changes.
+The page now says **"Takes under a minute."** It sits in the form's subtitle,
+where a reader meets it before starting rather than after filling everything
+in. The method is in a comment above the section so it can be rechecked when
+the form next changes.
+
+**It replaced a sentence Joseph struck on 2026-09-21.** The subtitle read
+"Tell us the trip. We'll come back with options and a firm quote. The Premier
+1A is available for charter through a licensed operator Penn Jets works with."
+That last sentence is gone at his instruction and the timing line took its
+place. Worth noting why it was the right thing to remove: it named a specific
+aircraft as available on the page that carries the broker disclosure, which is
+the same class of claim as the `premier-1a.webp` hero that item 4 of this
+order exists to prevent. Item 4 was already satisfied; this was the same claim
+in prose, three lines below the form, and the order did not catch it.
 
 ### 9. The header phone, and whether it doubles up
 
