@@ -5,7 +5,10 @@
 
 export const SITE_URL = 'https://www.pennjets.com';
 export const SITE_NAME = 'PennJets';
-export const DEFAULT_IMAGE = '/images/og-default.jpg'; // 1200x630, from a photo already on the site
+// The branded link-preview card: the mark in white on primary.600, 1200x630.
+// WO-4.16, Joseph chose the logo alone over a logo-plus-wordmark lockup,
+// because the mark is itself the word PennJets and the lockup said it twice.
+export const DEFAULT_IMAGE = '/images/og-card.png';
 export const DEFAULT_TITLE = 'PennJets | Private Jet Brokerage & Aviation Consulting';
 export const DEFAULT_DESCRIPTION =
   'Independent aircraft brokerage and consulting. Buy, sell, or charter with someone who shows you the numbers.';
@@ -17,7 +20,12 @@ export const ROUTES = {
     description: DEFAULT_DESCRIPTION,
   },
   '/charter': {
-    title: 'Private Jet Charter Quotes | PennJets',
+    // 50 characters, against the 60 an ordinary search result shows. The
+    // description is still Joseph's to choose: the approved 14 CFR 295.23
+    // disclosure is 352 characters and will not fit beside the geography in
+    // 160, so the trade-off is costed in docs/drafts/t4/wo-4.22-charter-copy.md
+    // rather than resolved by trimming approved wording. WO-4.22.
+    title: 'Light & Midsize Jet Charter from NY/NJ | Penn Jets',
     description:
       'Request a private jet charter quote. Penn Jets is an air charter broker; every flight is operated by a licensed direct air carrier.',
   },
@@ -25,6 +33,16 @@ export const ROUTES = {
     title: 'Buy an Aircraft | PennJets',
     description:
       "Sole and fractional ownership, including aircraft that aren't publicly listed. Tell us the mission and we'll tell you what's available.",
+  },
+  '/sell': {
+    title: 'Sell Your Aircraft | PennJets',
+    description:
+      "Tell us what you have and we'll come back with where it sits in the current market and what a realistic timeline looks like.",
+  },
+  '/consulting': {
+    title: 'Aviation Consulting | PennJets',
+    description:
+      'Cost of ownership, mission fit, ownership structure, or a second opinion on a deal in front of you.',
   },
   '/pennshare': {
     title: 'PennShare Fractional Ownership | PennJets',
@@ -44,7 +62,7 @@ export const ROUTES = {
   '/contact': {
     title: 'Contact PennJets',
     description:
-      'Talk to a broker about buying, selling, or chartering an aircraft. Call (973) 868-8425 or send a message.',
+      'Talk to a broker about buying, selling, or chartering an aircraft. Call (954) 546-0763 or send a message.',
   },
   '/blog': {
     title: 'Market Notes | PennJets',

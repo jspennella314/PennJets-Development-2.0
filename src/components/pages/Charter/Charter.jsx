@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { blogApi } from "../../../services/blogApi";
+import useNarrowViewport from "../../../hooks/useNarrowViewport";
 
 // 14 CFR 295.23 air charter broker disclosure. Wording approved by Joseph 2026-09-20.
 const BROKER_DISCLOSURE =
@@ -49,10 +50,10 @@ const Hero = () => (
               Get a Charter Quote
             </a>
             <a
-              href="tel:+19738688425"
+              href="tel:+19545460763"
               className="rounded-2xl px-5 py-3 text-sm font-medium text-white ring-1 ring-white/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/80"
             >
-              Call (973) 868‑8425
+              Call (954) 546‑0763
             </a>
           </div>
         </div>
@@ -97,59 +98,65 @@ const Benefits = () => {
   );
 };
 
-// ---------- Popular routes (indicative) ----------
-
+// ---------- Popular routes ----------
+//
+// City pairs only. The old table published distances, block times and
+// aircraft classes as if they were ours, on a page for a broker that does
+// not operate aircraft. Joseph dropped them. WO-4.22.
+//
+// Codes are what the form expects: free text, shown in the same
+// "CODE / City" shape as its placeholders, so a prefilled field reads the
+// way a typed one does.
 const POPULAR_ROUTES = [
-  { from: "FLL", to: "TEB", miles: 1070, hours: 2.4, className: "Light/Midsize" },
-  { from: "FLL", to: "ATL", miles: 580, hours: 1.8, className: "Light Jet" },
-  { from: "FLL", to: "PBI", miles: 40, hours: 0.3, className: "Light Jet" },
-  { from: "FLL", to: "MYEF", miles: 180, hours: 0.8, className: "Light Jet" },
-  { from: "FLL", to: "MYNN", miles: 50, hours: 0.4, className: "Light Jet" },
-  { from: "FLL", to: "TNCM", miles: 1040, hours: 2.3, className: "Light/Midsize" },
+  { from: "TEB / Teterboro",   to: "PBI / Palm Beach" },
+  { from: "HPN / Westchester", to: "PBI / Palm Beach" },
+  { from: "TEB / Teterboro",   to: "APF / Naples" },
+  { from: "TEB / Teterboro",   to: "CHS / Charleston" },
+  { from: "TEB / Teterboro",   to: "PWK / Chicago Executive" },
+  { from: "HPN / Westchester", to: "ACK / Nantucket" },
+  { from: "ISP / Islip",       to: "MVY / Martha's Vineyard" },
 ];
 
+const cityOf = (s) => s.split(" / ")[1];
+
 const PopularRoutes = () => (
-  <Section title="Popular Routes" subtitle="Indicative flight times for planning. Request a quote for live pricing.">
-    <div className="overflow-hidden rounded-2xl border">
-      <table className="min-w-full divide-y divide-gray-200 text-sm">
-        <thead className="bg-gray-50">
-          <tr>
-            <th className="px-4 py-3 text-left font-semibold">From</th>
-            <th className="px-4 py-3 text-left font-semibold">To</th>
-            <th className="px-4 py-3 text-left font-semibold">Distance</th>
-            <th className="px-4 py-3 text-left font-semibold">Block Time</th>
-            <th className="px-4 py-3 text-left font-semibold">Typical Class</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-100">
-          {POPULAR_ROUTES.map((r) => (
-            <tr key={`${r.from}-${r.to}`} className="odd:bg-white even:bg-gray-50">
-              <td className="px-4 py-3 font-medium">{r.from}</td>
-              <td className="px-4 py-3">{r.to}</td>
-              <td className="px-4 py-3">{r.miles} nm</td>
-              <td className="px-4 py-3">~{r.hours.toFixed(1)} hr</td>
-              <td className="px-4 py-3">{r.className}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+  <Section title="Popular routes from New York and New Jersey">
+    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {POPULAR_ROUTES.map((r) => (
+        <li key={`${r.from}-${r.to}`}>
+          {/* Same page, so this is a query-parameter link the form reads on
+              mount and on change, rather than shared state. It survives a
+              copied URL and a new tab, which state would not. */}
+          <Link
+            to={`/charter?from=${encodeURIComponent(r.from)}&to=${encodeURIComponent(r.to)}#quote`}
+            className="flex items-center justify-between rounded-2xl border px-4 py-3 text-sm hover:border-gray-400 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
+          >
+            <span className="font-medium">
+              {cityOf(r.from)} <span aria-hidden="true">&rarr;</span>
+              <span className="sr-only">to</span> {cityOf(r.to)}
+            </span>
+            <span className="text-gray-500">Request a charter quote</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
   </Section>
 );
-
-// ---------- Quote form ----------
-
 const inputClass =
   "mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900";
 
 const QuoteForm = () => {
   const [searchParams] = useSearchParams();
   const prefilledModel = searchParams.get("model");
+  // Set by the route links above. Read on every change, not just on mount,
+  // because clicking a second route does not remount this component.
+  const prefilledFrom = searchParams.get("from") || "";
+  const prefilledTo = searchParams.get("to") || "";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [from, setFrom] = useState(prefilledFrom);
+  const [to, setTo] = useState(prefilledTo);
   const [date, setDate] = useState("");
   const [retDate, setRetDate] = useState("");
   const [pax, setPax] = useState(4);
@@ -157,9 +164,31 @@ const QuoteForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
 
+  // Nine fields is too many above a submit button on a phone, so below sm the
+  // form runs in two steps: the trip, then who you are. Both steps show five
+  // fields or fewer. On a wider screen the whole form renders at once and
+  // there is no Continue. WO-4.11.
+  useEffect(() => {
+    if (prefilledFrom) setFrom(prefilledFrom);
+    if (prefilledTo) setTo(prefilledTo);
+  }, [prefilledFrom, prefilledTo]);
+
+  const narrow = useNarrowViewport();
+  const [step, setStep] = useState(1);
+  const formRef = useRef(null);
+  const showTrip = !narrow || step === 1;
+  const showContact = !narrow || step === 2;
+
+  const continueToContact = () => {
+    // Only the trip fields are mounted at this point, so native validation
+    // checks exactly them.
+    if (formRef.current && !formRef.current.reportValidity()) return;
+    setStep(2);
+  };
+
   const canSubmit = useMemo(
-    () => name && email && from && to && date && pax > 0 && !isSubmitting,
-    [name, email, from, to, date, pax, isSubmitting]
+    () => name && email && phone && from && to && date && pax > 0 && !isSubmitting,
+    [name, email, phone, from, to, date, pax, isSubmitting]
   );
 
   const handleSubmit = async (e) => {
@@ -184,6 +213,7 @@ const QuoteForm = () => {
       setStatus("success");
       setName(""); setEmail(""); setPhone(""); setFrom(""); setTo("");
       setDate(""); setRetDate(""); setPax(4); setNotes("");
+      setStep(1);
     } catch (err) {
       console.error("Charter quote submission failed:", err);
       setStatus("error");
@@ -192,59 +222,103 @@ const QuoteForm = () => {
     }
   };
 
+  // "Takes under a minute" in the subtitle below is measured, not assumed.
+  // Filling this form and submitting it took 13.6s at 1280 and 16.0s at 390
+  // arriving from a route link, and 20.8s and 23.4s typing From and To as
+  // well. Typing at 180ms per character with a 900ms pause between fields, a
+  // scripted stand-in for a reader rather than a user test. The slowest of the
+  // four is the one the line has to be true of. Recheck when the form changes.
+  // WO-4.22 item 8.
+  //
+  // It replaced "The Premier 1A is available for charter through a licensed
+  // operator Penn Jets works with.", removed by Joseph 2026-09-21.
   return (
-    <Section id="quote" title="Request a Charter Quote" subtitle="Tell us the trip. We'll come back with options and a firm quote. The Premier 1A is available for charter through a licensed operator Penn Jets works with.">
+    <Section id="quote" title="Request a Charter Quote" subtitle="Tell us the trip. We'll come back with options and a firm quote. Takes under a minute.">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Form */}
-        <form onSubmit={handleSubmit} className="rounded-2xl border p-6 shadow-sm lg:col-span-2">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <label className="block">
-              <span className="text-sm font-medium">Name *</span>
-              <input required value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Email *</span>
-              <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className={inputClass} />
-            </label>
-            <label className="block sm:col-span-2">
-              <span className="text-sm font-medium">Phone</span>
-              <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">From (airport or city) *</span>
-              <input required value={from} onChange={(e) => setFrom(e.target.value)} placeholder="FLL / Fort Lauderdale" className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">To (airport or city) *</span>
-              <input required value={to} onChange={(e) => setTo(e.target.value)} placeholder="TEB / Teterboro" className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Departure Date *</span>
-              <input required type="date" value={date} onChange={(e) => setDate(e.target.value)} className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Return Date (optional)</span>
-              <input type="date" value={retDate} onChange={(e) => setRetDate(e.target.value)} className={inputClass} />
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium">Passengers *</span>
-              <input required type="number" min={1} max={19} value={pax} onChange={(e) => setPax(parseInt(e.target.value || "0", 10))} className={inputClass} />
-            </label>
-            <label className="block sm:col-span-2">
-              <span className="text-sm font-medium">Notes (pets, catering, ground, etc.)</span>
-              <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={3} className={inputClass} />
-            </label>
-          </div>
+        <form ref={formRef} onSubmit={handleSubmit} className="rounded-2xl border p-6 shadow-sm lg:col-span-2">
+          {narrow && (
+            <p className="mb-4 text-xs font-medium uppercase tracking-wide text-gray-500">
+              Step {step} of 2 — {step === 1 ? "the trip" : "your details"}
+            </p>
+          )}
+
+          {showTrip && (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <label className="block">
+                <span className="text-sm font-medium">From (airport or city) *</span>
+                <input required value={from} onChange={(e) => setFrom(e.target.value)} placeholder="TEB / Teterboro" className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">To (airport or city) *</span>
+                <input required value={to} onChange={(e) => setTo(e.target.value)} placeholder="PBI / Palm Beach" className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">Departure Date *</span>
+                <input required type="date" value={date} onChange={(e) => setDate(e.target.value)} className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">Return Date (optional)</span>
+                <input type="date" value={retDate} onChange={(e) => setRetDate(e.target.value)} className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">Passengers *</span>
+                <input required type="number" min={1} max={19} value={pax} onChange={(e) => setPax(parseInt(e.target.value || "0", 10))} className={inputClass} />
+              </label>
+            </div>
+          )}
+
+          {showContact && (
+            <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${showTrip ? "mt-4" : ""}`}>
+              <label className="block">
+                <span className="text-sm font-medium">Name *</span>
+                <input required value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" className={inputClass} />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium">Email *</span>
+                <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className={inputClass} />
+              </label>
+              <label className="block sm:col-span-2">
+                <span className="text-sm font-medium">Phone *</span>
+                <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
+              </label>
+              <label className="block sm:col-span-2">
+                <span className="text-sm font-medium">Notes (pets, catering, ground, etc.)</span>
+                <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={3} className={inputClass} />
+              </label>
+            </div>
+          )}
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets about this request.</p>
-            <button
-              type="submit"
-              disabled={!canSubmit}
-              className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40"
-            >
-              {isSubmitting ? "Sending..." : "Send Request"}
-            </button>
+            {narrow && step === 1 ? (
+              <button
+                type="button"
+                onClick={continueToContact}
+                className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-black"
+              >
+                Continue
+              </button>
+            ) : (
+              <div className="flex items-center gap-3">
+                {narrow && (
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="rounded-2xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  >
+                    Back
+                  </button>
+                )}
+                <button
+                  type="submit"
+                  disabled={!canSubmit}
+                  className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40"
+                >
+                  {isSubmitting ? "Sending..." : "Send Request"}
+                </button>
+              </div>
+            )}
           </div>
 
           {status === "success" && (
@@ -254,7 +328,7 @@ const QuoteForm = () => {
           )}
           {status === "error" && (
             <p className="mt-3 text-sm text-red-700" role="alert">
-              Sorry, that didn't go through. Please try again or call (973) 868‑8425.
+              Sorry, that didn't go through. Please try again or call (954) 546‑0763.
             </p>
           )}
         </form>
@@ -283,7 +357,7 @@ const FooterCta = () => (
       <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
         <div>
           <h3 className="text-xl font-semibold">Ready to go wheels up?</h3>
-          <p className="mt-1 text-sm text-white/80">Call (973) 868‑8425 or send your itinerary for a fast quote.</p>
+          <p className="mt-1 text-sm text-white/80">Call (954) 546‑0763 or send your itinerary for a fast quote.</p>
         </div>
         <div className="flex gap-3">
           <a href="#quote" className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md">Get a Quote</a>

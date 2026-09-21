@@ -127,7 +127,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center h-full">
             <img
-              src="/images/PennJets-Website-Logo.png"
+              src="/images/pennjets-logo-192.png"
               alt="PennJets"
               className="h-12 lg:h-16 w-auto transition-all duration-300"
               style={{
@@ -161,6 +161,24 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
+            {/*
+              Joseph asked for the number in the header on every page. It is
+              the third phone affordance alongside the sticky bar's Call action
+              (WO-4.11) and the footer, which is noted in the WO-4.22 report
+              rather than resolved here: he asked for this one, so the bar is
+              not removed without him. Desktop only, because at 390 the sticky
+              bar already puts Call under the reader's thumb.
+            */}
+            <a
+              href="tel:+19545460763"
+              className={`text-sm font-medium transition-colors ${
+                (isScrolled || !isDarkHeroPage)
+                  ? 'text-gray-700 hover:text-primary-700'
+                  : 'text-white/90 hover:text-white'
+              }`}
+            >
+              (954) 546-0763
+            </a>
             <Link to="/contact">
               <Button variant={(isScrolled || !isDarkHeroPage) ? 'primary' : 'outline'} size="md">
                 Contact Us

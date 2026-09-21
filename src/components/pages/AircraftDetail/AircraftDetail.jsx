@@ -199,8 +199,8 @@ const AircraftDetail = () => {
                   <div className="text-sm text-gray-600">Private Jet Advisor</div>
                 </div>
                 <div className="space-y-2 text-sm mb-4">
-                  <div>📞 (973) 868-8425</div>
-                  <div>✉️ info@pennjets.com</div>
+                  <div>📞 (954) 546-0763</div>
+                  <div>✉️ joe@pennjets.com</div>
                 </div>
                 <button
                   onClick={() => navigate('/contact')}

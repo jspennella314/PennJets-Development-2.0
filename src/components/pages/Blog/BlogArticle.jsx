@@ -121,7 +121,11 @@ const BlogArticle = () => {
   const seo = articleMeta(article);
   const category = categoryFor(article);
   const related = relatedNotes(allNotes, article, 3);
-  const authorFirstName = article.author?.name?.split(' ')[0] || 'us';
+  // "Send Joseph a message" when a person wrote the note; "send us a message"
+  // when it carries the house byline, which has no first name. WO-4.24.
+  const authorFirstName = article.author?.isPerson
+    ? article.author.name.split(' ')[0]
+    : 'us';
   const heroImage = safeImage(article.featuredImage);
 
   return (
@@ -129,7 +133,9 @@ const BlogArticle = () => {
       <Helmet>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
-        <meta name="keywords" content={article.tags?.join(', ')} />
+        {article.tags?.length > 0 && (
+          <meta name="keywords" content={article.tags.join(', ')} />
+        )}
         <meta name="author" content={article.author.name} />
         <link rel="canonical" href={seo.url} />
 
@@ -156,17 +162,24 @@ const BlogArticle = () => {
             "image": seo.image,
             "mainEntityOfPage": seo.url,
             "datePublished": article.publishedAt,
-            "author": {
-              "@type": "Person",
-              "name": article.author.name,
-              "jobTitle": article.author.title
-            },
+            // A note published under the house byline is an Organization
+            // here, not a Person with an empty job title. WO-4.24.
+            "author": article.author.isPerson
+              ? {
+                  "@type": "Person",
+                  "name": article.author.name,
+                  "jobTitle": article.author.title
+                }
+              : {
+                  "@type": "Organization",
+                  "name": article.author.name
+                },
             "publisher": {
               "@type": "Organization",
               "name": "PennJets",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.pennjets.com/images/PennJets-Website-Logo.png"
+                "url": "https://www.pennjets.com/images/pennjets-logo-192.png"
               }
             }
           })}
@@ -233,7 +246,9 @@ const BlogArticle = () => {
               )}
               <div className="min-w-0">
                 <p className="font-medium text-gray-900">{article.author.name}</p>
-                <p className="text-sm text-gray-500">{article.author.title}</p>
+                {article.author.title && (
+                  <p className="text-sm text-gray-500">{article.author.title}</p>
+                )}
               </div>
             </div>
           </header>
@@ -280,7 +295,7 @@ const BlogArticle = () => {
         </article>
 
         {/* 1. Talk to a Broker */}
-        <section className="mt-16 bg-gray-50 py-12 sm:py-16">
+        <section id="talk-to-a-broker" className="mt-16 bg-gray-50 py-12 sm:py-16">
           <div className="max-w-6xl mx-auto container-padding">
             <div className="mx-auto mb-8 max-w-3xl">
               <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
@@ -307,16 +322,18 @@ const BlogArticle = () => {
                   )}
                   <div>
                     <h3 className="text-xl font-bold text-gray-900">{article.author.name}</h3>
-                    <p className="font-medium text-primary-700">{article.author.title}</p>
+                    {article.author.title && (
+                      <p className="font-medium text-primary-700">{article.author.title}</p>
+                    )}
                   </div>
                 </div>
-                <p className="mb-4 text-gray-700">{article.author.bio}</p>
+                {article.author.bio && <p className="mb-4 text-gray-700">{article.author.bio}</p>}
                 <div className="flex flex-col gap-2 text-sm">
                   <a href={`mailto:${article.author.email}`} className="font-medium text-primary-700 hover:text-primary-800">
                     {article.author.email}
                   </a>
-                  <a href="tel:+19738688425" className="font-medium text-primary-700 hover:text-primary-800">
-                    (973) 868-8425
+                  <a href="tel:+19545460763" className="font-medium text-primary-700 hover:text-primary-800">
+                    (954) 546-0763
                   </a>
                 </div>
               </Card>

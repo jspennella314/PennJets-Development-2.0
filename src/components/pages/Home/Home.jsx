@@ -118,7 +118,7 @@ const Home = () => {
             "@type": "Organization",
             "name": "PennJets",
             "url": "https://www.pennjets.com",
-            "logo": "https://www.pennjets.com/images/PennJets-Website-Logo.png",
+            "logo": "https://www.pennjets.com/images/pennjets-logo-192.png",
             "description": "Private aviation brokerage and consulting firm specializing in aircraft sales, acquisitions, and charter brokerage",
             "address": {
               "@type": "PostalAddress",
@@ -130,12 +130,14 @@ const Home = () => {
             },
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+1-973-868-8425",
+              "telephone": "+1-954-546-0763",
               "contactType": "Sales",
               "areaServed": "US",
               "availableLanguage": "English"
             },
-            "email": "info@pennjets.com",
+            // was info@pennjets.com. This is the address search engines and
+            // assistants surface as the way to reach the company. WO-4.20.
+            "email": "joe@pennjets.com",
             "sameAs": [
               "https://www.pennjets.com"
             ]
@@ -144,13 +146,33 @@ const Home = () => {
       </Helmet>
 
       {/* Hero Section */}
+      {/*
+        public/videos/ holds a second file, Falcon-Hero-Flyover3.mp4, that
+        nothing references. It is 1,594,832 bytes and it ships in every build.
+
+        KEEP IT. Joseph decided on 2026-09-20, after it was put forward for
+        deletion: "keep it, I may use it." It is footage he shot himself.
+
+        An unreferenced 1.5 MB video is exactly what an asset audit flags, so
+        this note exists to be found before someone deletes it correctly and
+        irreversibly. WO-4.21.
+      */}
       <header className="relative">
+        {/*
+          The poster is a 17 KB still of the same frame. It paints immediately
+          and the heading sits on it, so first paint never waits on video even
+          on a slow connection or where autoplay is refused. WO-4.19.
+          aria-hidden because this is decoration; the heading below carries the
+          meaning, and a silent three-second loop has nothing to describe.
+        */}
         <video
           src="/videos/Falcon-Hero-Flyover.MP4"
+          poster="/videos/falcon-hero-poster.webp"
           autoPlay
           muted
           loop
           playsInline
+          aria-hidden="true"
           className="h-[60vh] w-full object-cover md:h-[80vh]"
         />
         <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
@@ -233,9 +255,9 @@ const Home = () => {
           <div className="py-8 text-sm text-gray-700">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <p>
-                <strong>Call:</strong> (973) 868‑8425 · <strong>Email:</strong>{" "}
-                <a className="underline" href="mailto:inquiries@pennjets.com">
-                  inquiries@pennjets.com
+                <strong>Call:</strong> (954) 546‑0763 · <strong>Email:</strong>{" "}
+                <a className="underline" href="mailto:joe@pennjets.com">
+                  joe@pennjets.com
                 </a>
               </p>
               <p>PennJets LLC — Private aviation. Simplified. Monetized.</p>

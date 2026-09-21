@@ -22,13 +22,14 @@ const Footer = () => {
         { name: 'Aircraft Sales', href: '/services#sales' },
         { name: 'Aircraft Acquisition', href: '/services#acquisition' },
         { name: 'Charter Services', href: '/services#charter' },
+        { name: 'Consulting', href: '/consulting' },
       ]
     },
     {
       title: 'Aircraft',
       links: [
         { name: 'Browse Aircraft', href: '/aircraft' },
-        { name: 'Sell Your Aircraft', href: '/contact' },
+        { name: 'Sell Your Aircraft', href: '/sell' },
         { name: 'Market Analysis', href: '/services#analysis' },
         { name: 'Valuation Services', href: '/services#analysis' },
       ]
@@ -37,7 +38,7 @@ const Footer = () => {
       title: 'Company',
       links: [
         { name: 'About Us', href: '/about' },
-        { name: 'Our Team', href: '/about#team' },
+        { name: 'Who You\'ll Work With', href: '/about#team' },
         { name: 'Market Notes', href: '/blog' },
         { name: 'Contact', href: '/contact' },
       ]
@@ -154,7 +155,9 @@ const Footer = () => {
             </div>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
               <span>📞 Call: (954) 546-0763</span>
-              <span>✉️ Email: info@pennjets.com</span>
+              {/* was info@pennjets.com, a dead mailbox. See WO-4.20: all four
+                  published addresses collapse to joe@ until real aliases exist. */}
+              <span>✉️ Email: joe@pennjets.com</span>
             </div>
           </div>
         </div>

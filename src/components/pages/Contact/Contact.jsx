@@ -2,6 +2,36 @@ import React, { useState } from 'react';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
+import MoreFields from '../../common/MoreFields/MoreFields';
+
+// The CRM filters leads on exactly four service values. This page's dropdown
+// predates them, so each option is mapped to one of the four before the lead is
+// posted; an option with no home among them sends no service at all rather than
+// inventing a fifth value the filter would not know. WO-4.15.
+//
+// The two labels a visitor reads are phrased as what they are doing, not as
+// what the business calls it. "Aircraft Sales" means representing an owner
+// who is selling and posts `sell`, but a reader hears "aircraft you have for
+// sale", so buyers were picking it and landing under `sell`. The values and
+// this map are unchanged, so no CRM behaviour moves. WO-4.18.
+const SERVICE_MAP = {
+  'aircraft-sales': 'sell',
+  'aircraft-acquisition': 'buy',
+  'charter-brokerage': 'charter',
+  consulting: 'consulting',
+  other: undefined,
+  '': undefined,
+};
+
+// What the reader saw, so the broker can still read their actual choice even
+// when it maps to no service.
+const SERVICE_LABELS = {
+  'aircraft-sales': 'Selling my aircraft',
+  'aircraft-acquisition': 'Buying an aircraft',
+  'charter-brokerage': 'Charter Brokerage',
+  consulting: 'Consulting',
+  other: 'Other',
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -49,8 +79,10 @@ const Contact = () => {
           email: formData.email,
           phone: formData.phone || undefined,
           company: formData.company || undefined,
-          service: formData.service || undefined,
-          message: formData.message,
+          service: SERVICE_MAP[formData.service],
+          message: SERVICE_LABELS[formData.service]
+            ? `Service interest: ${SERVICE_LABELS[formData.service]}\n\n${formData.message}`
+            : formData.message,
           pageUrl: window.location.href,
           // Add UTM parameters if available (from URL query params)
           utm_source: new URLSearchParams(window.location.search).get('utm_source') || undefined,
@@ -90,13 +122,13 @@ const Contact = () => {
   const contactInfo = [
     {
       title: 'Phone',
-      info: '(973) 868-8425',
+      info: '(954) 546-0763',
       description: 'Available 24/7 for urgent inquiries',
       icon: HiPhone
     },
     {
       title: 'Email',
-      info: 'info@pennjets.com',
+      info: 'joe@pennjets.com',
       description: 'We respond within 2 hours',
       icon: HiMail
     },
@@ -112,7 +144,7 @@ const Contact = () => {
     {
       city: 'Miami, FL',
       address: '690 SW 1st Ct #1030\nMiami, FL 33130',
-      phone: '(973) 868-8425',
+      phone: '(954) 546-0763',
       isHQ: true
     },
   ];
@@ -141,79 +173,73 @@ const Contact = () => {
               <h2 className="text-2xl font-semibold mb-6">Send us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Name *
-                    </label>
+                  <label className="block">
+                    <span className="block text-sm font-medium text-gray-700 mb-1">Name *</span>
                     <input
                       type="text"
                       required
+                      autoComplete="name"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Email *
-                    </label>
+                  </label>
+                  <label className="block">
+                    <span className="block text-sm font-medium text-gray-700 mb-1">Email *</span>
                     <input
                       type="email"
                       required
+                      autoComplete="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     />
-                  </div>
+                  </label>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone
+                  <MoreFields summary="Add phone and company">
+                    <label className="block">
+                      <span className="block text-sm font-medium text-gray-700 mb-1">Phone</span>
+                      <input
+                        type="tel"
+                        autoComplete="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      />
                     </label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Company
+                    <label className="block">
+                      <span className="block text-sm font-medium text-gray-700 mb-1">Company</span>
+                      <input
+                        type="text"
+                        autoComplete="organization"
+                        value={formData.company}
+                        onChange={(e) => handleInputChange('company', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      />
                     </label>
-                    <input
-                      type="text"
-                      value={formData.company}
-                      onChange={(e) => handleInputChange('company', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                    />
-                  </div>
+                  </MoreFields>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Service Interest
-                  </label>
+                <label className="block">
+                  <span className="block text-sm font-medium text-gray-700 mb-1">Service Interest</span>
                   <select
                     value={formData.service}
                     onChange={(e) => handleInputChange('service', e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   >
                     <option value="">Select a service</option>
-                    <option value="aircraft-sales">Aircraft Sales</option>
-                    <option value="aircraft-acquisition">Aircraft Acquisition</option>
+                    <option value="aircraft-sales">Selling my aircraft</option>
+                    <option value="aircraft-acquisition">Buying an aircraft</option>
                     <option value="charter-brokerage">Charter Brokerage</option>
                     <option value="consulting">Consulting</option>
                     <option value="other">Other</option>
                   </select>
-                </div>
+                </label>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Message *
-                  </label>
+                <label className="block">
+                  <span className="block text-sm font-medium text-gray-700 mb-1">Message *</span>
                   <textarea
                     rows={5}
                     required
@@ -222,7 +248,7 @@ const Contact = () => {
                     placeholder="Tell us about your aviation needs..."
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   />
-                </div>
+                </label>
 
                 <Button
                   type="submit"
@@ -237,7 +263,7 @@ const Contact = () => {
                   <p className="text-sm text-green-700" role="status">Thank you. Your message is in. We'll be in touch shortly.</p>
                 )}
                 {submitStatus === 'error' && (
-                  <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email info@pennjets.com, or call (973) 868-8425.</p>
+                  <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email joe@pennjets.com, or call (954) 546-0763.</p>
                 )}
               </form>
             </Card>

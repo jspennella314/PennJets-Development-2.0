@@ -14,6 +14,8 @@ import Gallery from './components/pages/Gallery/Gallery';
 import PennShare from './components/pages/PennShare/PennShare';
 import Charter from './components/pages/Charter/Charter';
 import Buy from './components/pages/Buy/Buy';
+import Sell from './components/pages/Sell/Sell';
+import Consulting from './components/pages/Consulting/Consulting';
 import NotFound from './components/pages/NotFound/NotFound';
 import PrivacyPolicy from './components/pages/Legal/PrivacyPolicy';
 import TermsOfService from './components/pages/Legal/TermsOfService';
@@ -21,6 +23,7 @@ import CookiePolicy from './components/pages/Legal/CookiePolicy';
 import Compliance from './components/pages/Legal/Compliance';
 import ScrollToTop from './components/common/ScrollToTop/ScrollToTop';
 import PageMeta from './components/common/PageMeta/PageMeta';
+import StickyContactBar from './components/common/StickyContactBar/StickyContactBar';
 
 function App() {
   return (
@@ -30,7 +33,7 @@ function App() {
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Header />
-          <main className="flex-1">
+          <main className="flex-1 pb-24">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -40,6 +43,8 @@ function App() {
               <Route path="/pennshare" element={<PennShare />} />
               <Route path="/charter" element={<Charter />} />
               <Route path="/buy" element={<Buy />} />
+              <Route path="/sell" element={<Sell />} />
+              <Route path="/consulting" element={<Consulting />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<BlogList />} />
               <Route path="/blog/:slug" element={<BlogArticle />} />
@@ -52,6 +57,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <StickyContactBar />
         </div>
       </Router>
     </HelmetProvider>
