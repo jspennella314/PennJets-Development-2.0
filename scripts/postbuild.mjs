@@ -111,7 +111,11 @@ let posts = [];
 let usingCache = false;
 try {
   posts = await fetchAllPosts();
-  fs.writeFileSync(POSTS_CACHE, JSON.stringify(posts, null, 2) + '\n');
+  // viewCount and leadCount move on their own as readers arrive, and nothing
+  // here reads them. Storing them made the cache dirty after every build and
+  // put traffic numbers into the repository's history. Dropped.
+  const cacheable = posts.map(({ viewCount, leadCount, ...rest }) => rest);
+  fs.writeFileSync(POSTS_CACHE, JSON.stringify(cacheable, null, 2) + '\n');
 } catch (err) {
   if (!fs.existsSync(POSTS_CACHE)) {
     console.error(`[postbuild] CRM fetch failed (${err.message}) and there is no cache to fall back on.`);

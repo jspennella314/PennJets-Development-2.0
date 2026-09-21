@@ -158,12 +158,21 @@ const Home = () => {
         irreversibly. WO-4.21.
       */}
       <header className="relative">
+        {/*
+          The poster is a 17 KB still of the same frame. It paints immediately
+          and the heading sits on it, so first paint never waits on video even
+          on a slow connection or where autoplay is refused. WO-4.19.
+          aria-hidden because this is decoration; the heading below carries the
+          meaning, and a silent three-second loop has nothing to describe.
+        */}
         <video
           src="/videos/Falcon-Hero-Flyover.MP4"
+          poster="/videos/falcon-hero-poster.webp"
           autoPlay
           muted
           loop
           playsInline
+          aria-hidden="true"
           className="h-[60vh] w-full object-cover md:h-[80vh]"
         />
         <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
