@@ -212,6 +212,38 @@ anything, since Google stopped using it for ranking in 2009.
 to `scripts/crm-posts.cache.json`, falls back to it loudly when the CRM is
 unreachable, and exits 1 if there is no cache either.
 
+## It broke the deploy, on the first merge
+
+**PR #2 merged on 2026-09-21 and failed to deploy.** Run 35562421317, step
+"Install Chromium for the prerender stage". Production kept serving the build
+from PR #1, fourteen hours earlier, and gh-pages did not move. Twenty commits
+sat undeployed, including everything in this report.
+
+**Cause: the workflow pins Node 18 and playwright 1.63 declares
+.**  does not enforce engines, so the
+dependency installed cleanly and the CLI refused to run. It passed here
+because this machine is on Node 22. I added that step and did not check the
+runner's Node against the package I was adding to it.
+
+Fixed in , two ways:
+
+- **Node 20 in the workflow.** That is the actual bug.
+- **The prerender no longer takes a deploy down when the browser will not
+  start.** It prints a banner and exits 0, leaving every route with the head
+  postbuild.mjs wrote, which is what the site served before this order. The
+  install step is  to match.
+
+A content problem still fails the build, and that distinction is the point: a
+note that rendered as "Note Not Found" must stop a deploy, a browser download
+that 404s must not. Verified by building with 
+pointed at an empty directory: exit 0, 25 heads intact, 9 note pages, 24
+sitemap URLs, no prerendered bodies.
+
+**The honest lesson.** This report already said the approach cost "one dev
+dependency and a browser in CI" and treated that as cheap. It was not cheap
+on the day it landed: it put a browser download on the critical path of every
+deploy of a site whose deploys had never depended on one.
+
 ## Known gaps
 
 1. **Not verified on a production deploy.** T4 does not merge. Everything above
