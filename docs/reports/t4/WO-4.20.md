@@ -2,8 +2,8 @@
 wo: WO-4.20
 terminal: T4
 branch: t4/work
-commit: PENDING
-tested_against: "site: local dev (vite 5173) and the built output, at PENDING — NOT yet a production deploy, see Known gaps"
+commit: 277eb7c
+tested_against: "site: local dev (vite 5173) and the built output, at 277eb7c — NOT yet a production deploy, see Known gaps"
 date: 2026-09-20
 status: reported
 ---
@@ -16,7 +16,7 @@ eight files, covering displayed text, every `mailto:` href, the structured-data
 
 ## Commit
 
-`PENDING` WO-4.20: every published address becomes joe@pennjets.com.
+`277eb7c` WO-4.20: every published address becomes joe@pennjets.com.
 On `t4/work`, pushed. Not merged.
 
 ## Route evidence
