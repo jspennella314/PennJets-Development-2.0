@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { blogApi } from "../../../services/blogApi";
 import useNarrowViewport from "../../../hooks/useNarrowViewport";
@@ -98,59 +98,65 @@ const Benefits = () => {
   );
 };
 
-// ---------- Popular routes (indicative) ----------
-
+// ---------- Popular routes ----------
+//
+// City pairs only. The old table published distances, block times and
+// aircraft classes as if they were ours, on a page for a broker that does
+// not operate aircraft. Joseph dropped them. WO-4.22.
+//
+// Codes are what the form expects: free text, shown in the same
+// "CODE / City" shape as its placeholders, so a prefilled field reads the
+// way a typed one does.
 const POPULAR_ROUTES = [
-  { from: "FLL", to: "TEB", miles: 1070, hours: 2.4, className: "Light/Midsize" },
-  { from: "FLL", to: "ATL", miles: 580, hours: 1.8, className: "Light Jet" },
-  { from: "FLL", to: "PBI", miles: 40, hours: 0.3, className: "Light Jet" },
-  { from: "FLL", to: "MYEF", miles: 180, hours: 0.8, className: "Light Jet" },
-  { from: "FLL", to: "MYNN", miles: 50, hours: 0.4, className: "Light Jet" },
-  { from: "FLL", to: "TNCM", miles: 1040, hours: 2.3, className: "Light/Midsize" },
+  { from: "TEB / Teterboro",   to: "PBI / Palm Beach" },
+  { from: "HPN / Westchester", to: "PBI / Palm Beach" },
+  { from: "TEB / Teterboro",   to: "APF / Naples" },
+  { from: "TEB / Teterboro",   to: "CHS / Charleston" },
+  { from: "TEB / Teterboro",   to: "PWK / Chicago Executive" },
+  { from: "HPN / Westchester", to: "ACK / Nantucket" },
+  { from: "ISP / Islip",       to: "MVY / Martha's Vineyard" },
 ];
 
+const cityOf = (s) => s.split(" / ")[1];
+
 const PopularRoutes = () => (
-  <Section title="Popular Routes" subtitle="Indicative flight times for planning. Request a quote for live pricing.">
-    <div className="overflow-hidden rounded-2xl border">
-      <table className="min-w-full divide-y divide-gray-200 text-sm">
-        <thead className="bg-gray-50">
-          <tr>
-            <th className="px-4 py-3 text-left font-semibold">From</th>
-            <th className="px-4 py-3 text-left font-semibold">To</th>
-            <th className="px-4 py-3 text-left font-semibold">Distance</th>
-            <th className="px-4 py-3 text-left font-semibold">Block Time</th>
-            <th className="px-4 py-3 text-left font-semibold">Typical Class</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-100">
-          {POPULAR_ROUTES.map((r) => (
-            <tr key={`${r.from}-${r.to}`} className="odd:bg-white even:bg-gray-50">
-              <td className="px-4 py-3 font-medium">{r.from}</td>
-              <td className="px-4 py-3">{r.to}</td>
-              <td className="px-4 py-3">{r.miles} nm</td>
-              <td className="px-4 py-3">~{r.hours.toFixed(1)} hr</td>
-              <td className="px-4 py-3">{r.className}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+  <Section title="Popular routes from New York and New Jersey">
+    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {POPULAR_ROUTES.map((r) => (
+        <li key={`${r.from}-${r.to}`}>
+          {/* Same page, so this is a query-parameter link the form reads on
+              mount and on change, rather than shared state. It survives a
+              copied URL and a new tab, which state would not. */}
+          <Link
+            to={`/charter?from=${encodeURIComponent(r.from)}&to=${encodeURIComponent(r.to)}#quote`}
+            className="flex items-center justify-between rounded-2xl border px-4 py-3 text-sm hover:border-gray-400 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
+          >
+            <span className="font-medium">
+              {cityOf(r.from)} <span aria-hidden="true">&rarr;</span>
+              <span className="sr-only">to</span> {cityOf(r.to)}
+            </span>
+            <span className="text-gray-500">Request a charter quote</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
   </Section>
 );
-
-// ---------- Quote form ----------
-
 const inputClass =
   "mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900";
 
 const QuoteForm = () => {
   const [searchParams] = useSearchParams();
   const prefilledModel = searchParams.get("model");
+  // Set by the route links above. Read on every change, not just on mount,
+  // because clicking a second route does not remount this component.
+  const prefilledFrom = searchParams.get("from") || "";
+  const prefilledTo = searchParams.get("to") || "";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [from, setFrom] = useState(prefilledFrom);
+  const [to, setTo] = useState(prefilledTo);
   const [date, setDate] = useState("");
   const [retDate, setRetDate] = useState("");
   const [pax, setPax] = useState(4);
@@ -162,6 +168,11 @@ const QuoteForm = () => {
   // form runs in two steps: the trip, then who you are. Both steps show five
   // fields or fewer. On a wider screen the whole form renders at once and
   // there is no Continue. WO-4.11.
+  useEffect(() => {
+    if (prefilledFrom) setFrom(prefilledFrom);
+    if (prefilledTo) setTo(prefilledTo);
+  }, [prefilledFrom, prefilledTo]);
+
   const narrow = useNarrowViewport();
   const [step, setStep] = useState(1);
   const formRef = useRef(null);
@@ -176,8 +187,8 @@ const QuoteForm = () => {
   };
 
   const canSubmit = useMemo(
-    () => name && email && from && to && date && pax > 0 && !isSubmitting,
-    [name, email, from, to, date, pax, isSubmitting]
+    () => name && email && phone && from && to && date && pax > 0 && !isSubmitting,
+    [name, email, phone, from, to, date, pax, isSubmitting]
   );
 
   const handleSubmit = async (e) => {
@@ -226,11 +237,11 @@ const QuoteForm = () => {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <label className="block">
                 <span className="text-sm font-medium">From (airport or city) *</span>
-                <input required value={from} onChange={(e) => setFrom(e.target.value)} placeholder="FLL / Fort Lauderdale" className={inputClass} />
+                <input required value={from} onChange={(e) => setFrom(e.target.value)} placeholder="TEB / Teterboro" className={inputClass} />
               </label>
               <label className="block">
                 <span className="text-sm font-medium">To (airport or city) *</span>
-                <input required value={to} onChange={(e) => setTo(e.target.value)} placeholder="TEB / Teterboro" className={inputClass} />
+                <input required value={to} onChange={(e) => setTo(e.target.value)} placeholder="PBI / Palm Beach" className={inputClass} />
               </label>
               <label className="block">
                 <span className="text-sm font-medium">Departure Date *</span>
@@ -258,8 +269,8 @@ const QuoteForm = () => {
                 <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" className={inputClass} />
               </label>
               <label className="block sm:col-span-2">
-                <span className="text-sm font-medium">Phone</span>
-                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
+                <span className="text-sm font-medium">Phone *</span>
+                <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" className={inputClass} />
               </label>
               <label className="block sm:col-span-2">
                 <span className="text-sm font-medium">Notes (pets, catering, ground, etc.)</span>
@@ -296,6 +307,16 @@ const QuoteForm = () => {
                 >
                   {isSubmitting ? "Sending..." : "Send Request"}
                 </button>
+                {/*
+                  Measured, not assumed. Filling this form and submitting it
+                  took 13.6s at 1280 and 16.0s at 390 arriving from a route
+                  link, and 20.8s and 23.4s typing From and To as well. Typing
+                  at 180ms per character with a 900ms pause between fields,
+                  which is a scripted stand-in for a reader rather than a user
+                  test. The slowest of the four is the one this line has to be
+                  true of. WO-4.22 item 8.
+                */}
+                <p className="mt-2 text-xs text-gray-500">Takes under a minute.</p>
               </div>
             )}
           </div>
