@@ -2,8 +2,8 @@
 wo: WO-4.22
 terminal: T4
 branch: t4/work
-commit: PENDING
-tested_against: "site: the built output at PENDING served locally at 1440, 1280 and 390, with the copy Joseph approved 2026-09-21; CRM: the production deploy at https://www.pennforce.pennjets.com, which accepted three test leads — NOT a production site deploy, see Known gaps"
+commit: ef573fd
+tested_against: "site: the built output at ef573fd served locally at 1440, 1280 and 390, with the copy Joseph approved 2026-09-21; CRM: the production deploy at https://www.pennforce.pennjets.com, which accepted three test leads — NOT a production site deploy, see Known gaps"
 date: 2026-09-21
 status: reported — all nine items built, one sentence still Joseph's to settle
 ---
@@ -24,7 +24,7 @@ Two, both on `t4/work`, pushed, not merged.
 
 - `c3e6bc1` the structural work: routes list, prefill, required phone, title,
   header phone, the measured timing line.
-- `PENDING` the copy Joseph approved: description, opener, three blocks, one
+- `ef573fd` the copy Joseph approved: description, opener, three blocks, one
   repeated call to action.
 
 ## What is done, and what is not
