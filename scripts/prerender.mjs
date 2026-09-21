@@ -33,6 +33,18 @@ const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY || 1);
 // page, and overwriting it would break every deep link on the site.
 const NEVER_PRERENDER = new Set(['404.html']);
 
+// Article bodies, written by postbuild.mjs, served to the browser below so the
+// page never calls the CRM for one. Missing or unreadable means every note
+// fetches for itself: correct pages, and one ContentAnalytics row each, which
+// the summary reports rather than hides. WO-4.25.
+const ARTICLES_CACHE = path.resolve('scripts/crm-articles.cache.json');
+let ARTICLES = {};
+try {
+  ARTICLES = JSON.parse(fs.readFileSync(ARTICLES_CACHE, 'utf8'));
+} catch {
+  console.warn('[prerender] no readable article cache; notes will fetch their own bodies.');
+}
+
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
   '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png',
@@ -173,7 +185,37 @@ async function renderRoute(browser, route) {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
   const page = await context.newPage();
   const beaconAttempts = [];
+  const articleHits = [];
+  const articleMisses = [];
   const consoleErrors = [];
+
+  // The article fetch, answered from the cache postbuild.mjs filled.
+  //
+  // GET /api/public/blog/{slug} writes a ContentAnalytics row on every
+  // request, so a browser loading nine Market Notes added nine rows to the
+  // CRM on every build, for ever. The beacon was already intercepted; this is
+  // the other call the page makes, and it was not. WO-4.25.
+  //
+  // A slug with no cached body is let through rather than faked. One
+  // analytics row is a smaller problem than an article that renders empty,
+  // and the miss is reported so it cannot pass unnoticed.
+  await page.route(
+    (url) => /\/api\/public\/blog\/[^/?]+$/.test(url.pathname),
+    (r) => {
+      const slug = new URL(r.request().url()).pathname.split('/').pop();
+      const cached = ARTICLES[slug];
+      if (!cached || !cached.body) {
+        articleMisses.push(slug);
+        return r.continue();
+      }
+      articleHits.push(slug);
+      return r.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(cached.body),
+      });
+    },
+  );
 
   // The view beacon must never fire from a build. It is stopped here rather
   // than left to the CRM's CORS allow-list, which lives in another repository
@@ -194,7 +236,7 @@ async function renderRoute(browser, route) {
     await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle', timeout: 45000 });
     await page.waitForTimeout(300);
     const html = '<!DOCTYPE html>\n' + (await page.evaluate(() => document.documentElement.outerHTML)) + '\n';
-    return { html, beaconAttempts, consoleErrors };
+    return { html, beaconAttempts, articleHits, articleMisses, consoleErrors };
   } finally {
     await context.close();
   }
@@ -219,7 +261,7 @@ async function worker() {
     const { file, route } = jobs[i];
     const built = fs.readFileSync(file, 'utf8');
     try {
-      const { html, beaconAttempts, consoleErrors } = await renderRoute(browser, route);
+      const { html, beaconAttempts, articleHits, articleMisses, consoleErrors } = await renderRoute(browser, route);
 
       const beforeText = bodyText(built);
       const afterText = bodyText(html);
@@ -227,7 +269,7 @@ async function worker() {
       // Never trade content for less content. If the render came back thinner
       // than what postbuild wrote, something failed and the built page wins.
       if (afterText.length <= beforeText.length) {
-        results.push({ route, skipped: true, beaconAttempts, consoleErrors,
+        results.push({ route, skipped: true, beaconAttempts, articleHits, articleMisses, consoleErrors,
           reason: `rendered body (${afterText.length}) not longer than built (${beforeText.length})` });
         continue;
       }
@@ -241,7 +283,7 @@ async function worker() {
       // data. If the rendered page does not contain it, this is not that page.
       const expected = headlineOf(built);
       if (expected && !afterText.includes(expected)) {
-        results.push({ route, skipped: true, beaconAttempts, consoleErrors,
+        results.push({ route, skipped: true, beaconAttempts, articleHits, articleMisses, consoleErrors,
           reason: `rendered page does not contain its headline "${expected}"` });
         continue;
       }
@@ -255,16 +297,16 @@ async function worker() {
       const lostHead = headRegressions(built, out);
       const dupes = duplicateSlots(out);
       if (lostHead.length || dupes.length) {
-        results.push({ route, skipped: true, lostHead, dupes, beaconAttempts, consoleErrors,
+        results.push({ route, skipped: true, lostHead, dupes, beaconAttempts, articleHits, articleMisses, consoleErrors,
           reason: 'head check failed, nothing written' });
         continue;
       }
 
       fs.writeFileSync(file, out);
       results.push({ route, skipped: false, before: beforeText.length, after: afterText.length,
-        added, beaconAttempts, consoleErrors, bytes: Buffer.byteLength(out), lostHead: [], dupes: [] });
+        added, beaconAttempts, articleHits, articleMisses, consoleErrors, bytes: Buffer.byteLength(out), lostHead: [], dupes: [] });
     } catch (err) {
-      results.push({ route, skipped: true, reason: err.message, beaconAttempts: [], consoleErrors: [] });
+      results.push({ route, skipped: true, reason: err.message, beaconAttempts: [], articleHits: [], articleMisses: [], consoleErrors: [] });
     }
   }
 }
@@ -279,6 +321,8 @@ const written = results.filter((r) => !r.skipped);
 const skipped = results.filter((r) => r.skipped);
 const grew = written.reduce((n, r) => n + (r.after - r.before), 0);
 const beacons = results.flatMap((r) => r.beaconAttempts || []);
+const articleHits = results.flatMap((r) => r.articleHits || []);
+const articleMisses = results.flatMap((r) => r.articleMisses || []);
 const errors = results.filter((r) => (r.consoleErrors || []).length);
 
 console.log(`[prerender] ${written.length} of ${jobs.length} routes rendered in ` +
@@ -290,6 +334,15 @@ for (const r of written) {
 
 if (beacons.length) {
   console.log(`[prerender] ${beacons.length} view beacon(s) intercepted; none reached the CRM.`);
+}
+if (articleHits.length) {
+  console.log(`[prerender] ${articleHits.length} article fetch(es) answered from cache; ` +
+    'none reached the CRM, so none wrote a ContentAnalytics row.');
+}
+if (articleMisses.length) {
+  console.warn(`[prerender] ${articleMisses.length} article fetch(es) NOT cached and allowed ` +
+    'through; each one writes a ContentAnalytics row:');
+  for (const slug of articleMisses) console.warn(`  ${slug}`);
 }
 if (errors.length) {
   console.warn('[prerender] console errors during render:');

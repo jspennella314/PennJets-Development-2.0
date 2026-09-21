@@ -131,6 +131,85 @@ try {
   console.warn('='.repeat(72));
 }
 
+// ---- article bodies, so the prerenderer never calls the CRM ---------------
+//
+// GET /api/public/blog/{slug} writes a ContentAnalytics row on every request.
+// The prerender browser loads all nine Market Notes, so every build was adding
+// nine rows for ever: 173 of 212 rows in that table were builds, not readers.
+// WO-4.25.
+//
+// The list endpoint above writes nothing, but it carries no article body, no
+// author email and no updatedAt, so it cannot answer the page's own fetch.
+// The bodies are cached here instead and scripts/prerender.mjs serves them to
+// the browser, which makes a steady-state build cost zero rows.
+//
+// A body is refetched only when the list says something about the post
+// changed, when it has never been cached, or when it is older than MAX_AGE.
+// That last one exists because the list has no updatedAt: an edit that touches
+// only the body is invisible from here, so staleness is bounded by time rather
+// than detected. Making it unconditional needs updatedAt on the list endpoint,
+// which is a CRM change and a request to the lead, not something this repo can
+// do.
+const ARTICLES_CACHE = path.resolve('scripts/crm-articles.cache.json');
+const MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
+const FORCE_REFRESH = process.env.CRM_REFRESH_ARTICLES === '1';
+
+// Everything about a post that the list can see. If none of it moved, assume
+// the body did not either.
+const fingerprint = (p) => JSON.stringify([
+  p.title, p.excerpt, p.metaTitle, p.metaDescription,
+  p.featuredImage, p.publishedAt, p.keywords, p.author && p.author.name,
+]);
+
+let articles = {};
+if (fs.existsSync(ARTICLES_CACHE)) {
+  try {
+    articles = JSON.parse(fs.readFileSync(ARTICLES_CACHE, 'utf8'));
+  } catch {
+    console.warn('[postbuild] article cache unreadable; refetching all bodies.');
+    articles = {};
+  }
+}
+
+const articleStats = { reused: 0, fetched: 0, failed: 0 };
+if (!usingCache) {
+  for (const post of posts) {
+    if (!post.slug) continue;
+    const have = articles[post.slug];
+    const fresh = have
+      && have.fingerprint === fingerprint(post)
+      && Date.now() - Date.parse(have.fetchedAt || 0) < MAX_AGE_MS;
+    if (fresh && !FORCE_REFRESH) { articleStats.reused += 1; continue; }
+    try {
+      const res = await fetch(`${CRM}/api/public/blog/${post.slug}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      // viewCount and leadCount are dropped for the same reason they are
+      // dropped from the posts cache: nothing in the site renders them, they
+      // move on their own, and storing them writes the site's traffic figures
+      // into the repository's permanent history.
+      const { viewCount, leadCount, ...body } = await res.json();
+      articles[post.slug] = {
+        fetchedAt: new Date().toISOString(),
+        fingerprint: fingerprint(post),
+        body,
+      };
+      articleStats.fetched += 1;
+    } catch (e) {
+      articleStats.failed += 1;
+      console.warn(`[postbuild] could not fetch body for ${post.slug} (${e.message});` +
+        (have ? ' keeping the cached one.' : ' the prerenderer will fetch it itself.'));
+    }
+  }
+  // Drop bodies for posts the CRM no longer lists.
+  const live = new Set(posts.map((p) => p.slug));
+  for (const slug of Object.keys(articles)) if (!live.has(slug)) delete articles[slug];
+  fs.writeFileSync(ARTICLES_CACHE, JSON.stringify(articles, null, 2) + '\n');
+}
+
+console.log(`[postbuild] article bodies: ${articleStats.reused} from cache, ` +
+  `${articleStats.fetched} fetched${articleStats.failed ? `, ${articleStats.failed} failed` : ''}` +
+  ` (each fetch writes one ContentAnalytics row; reuse writes none)`);
+
 // A note's featuredImage is set in the CRM and can point at a file this repo no
 // longer ships (an image pulled for a visible tail number, say). A dead og:image
 // means a blank social preview, so fall back to the default and say so in the log.
