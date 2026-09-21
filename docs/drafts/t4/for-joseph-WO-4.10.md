@@ -31,23 +31,12 @@ not the accuracy.
 
 ## 2. The address for access and deletion requests
 
-> **STILL OPEN, asked twice.** Both replies on 2026-09-20 carried an unfilled
-> placeholder where the answer should be:
+> **RESOLVED 2026-09-20.** Asked three times; the first two replies came back
+> with the template placeholder unfilled. Joseph: "Use joe@pennjets.com.
+> Replace privacy@pennjets.com everywhere on the legal pages."
 >
-> 1. "privacy@pennjets.com: [confirm whether that inbox exists and you monitor it]"
-> 2. "privacy@pennjets.com: [yes, it exists and I monitor it / no, use joe@pennjets.com instead]"
->
-> The square brackets are his in both, so the template came back with the
-> choice still in it. It is the last thing outstanding on this page, and it
-> matters: the address is published as the route for access and deletion
-> requests, so somebody has to read it. **One word does it: keep, or swap to
-> joe@pennjets.com.**
-
-The draft uses `privacy@pennjets.com`, which the previous version of this page
-already published, so it is not a new claim. Confirm it is monitored, or give
-another address.
-
-If nobody reads that mailbox, say so and I will point it at one that is read.
+> Not yet built: copy changes need an order, requested as item 3 in
+> order-request-labels-and-hero.md beside this file.
 
 ---
 

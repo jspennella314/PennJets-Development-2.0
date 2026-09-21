@@ -1,12 +1,21 @@
-# Order request — two decided changes
+# Order request — four decided changes
 
 **For the lead, to write as orders in `docs/orders/t4/`.** T4 cannot write
 there, so this is queued in the site repo and needs relaying.
 
-**Both decided by Joseph in chat on 2026-09-20**, and he asked for them to be
-written as orders rather than acted on from the message. Nothing is built.
+**All four decided by Joseph in chat on 2026-09-20**, and he asked for them to
+be written as orders rather than acted on from the message. **Nothing is
+built.**
 
-They are unrelated and would be cleaner as two orders than one.
+They are unrelated to each other. Requests 3 and 4 are one-line changes and
+could reasonably be a single small order; 1 and 2 deserve their own.
+
+| | Request | Size |
+|---|---|---|
+| 1 | Relabel the contact dropdown | small, one file |
+| 2 | Compress the hero video | needs an encoder, see the prerequisite |
+| 3 | Privacy contact address to `joe@pennjets.com` | one line |
+| 4 | Delete an unreferenced 1.5 MB video | one file |
 
 ---
 
@@ -73,13 +82,11 @@ That alone is the compression case.
 ### Joseph's disposition, 2026-09-20
 
 > "I'll look for the original footage and see if I can give you a landscape
-> export. If I can't, compress the portrait version. Delete
-> Falcon-Hero-Flyover3.mp4 if nothing references it."
+> export. If I can't, compress the portrait version."
 
-So the order has a branch in it, and should say so rather than assume: **use a
+So the order has a branch in it and should say so rather than assume: **use a
 landscape export if Joseph produces one, otherwise compress the portrait file
-in place.** Either way the target is the same, well under 200 KB for a
-3.4-second silent loop.
+in place.** Either way the target is the same, well under 200 KB.
 
 ### Why the landscape export is worth his looking
 
@@ -87,33 +94,81 @@ in place.** Either way the target is the same, well under 200 KB for a
 it `h-[60vh] w-full object-cover`, so on a 1440-wide screen a 720-wide frame is
 stretched to double width and cropped to roughly the middle fifth of its
 height. Most of what Joseph shot is never seen, and what is seen is upscaled.
+Encoding a portrait frame and then throwing most of it away is paying twice.
 
-So the order could reasonably cover two things:
-
-1. **Compress it.** A 3.4-second silent loop should sit comfortably under
-   200 KB, and plausibly near 100 KB, with no visible loss at the size it is
-   actually displayed.
-2. **Consider re-cropping to landscape**, or asking Joseph for a landscape
-   export if he still has the original. Encoding a portrait frame and then
-   throwing 80% of it away is paying twice.
-
-He is looking. If the original turns up, the hero gets a frame that is actually
-the shape of the space it fills; if not, nothing is lost by compressing what is
-there.
+If the original turns up, the hero gets a frame that is the shape of the space
+it fills. If not, nothing is lost by compressing what is there.
 
 ### A prerequisite the order needs to account for
 
 **There is no encoder on this machine.** `ffmpeg` and `ffprobe` are not on
-`PATH`. Compressing video needs one, so the order should either permit
-installing `ffmpeg`, or say the re-encode happens elsewhere and T4 only swaps
-the file in and measures the result. I have not installed anything.
+`PATH`. The order should either permit installing `ffmpeg`, or say the
+re-encode happens elsewhere and T4 only swaps the file in and measures the
+result. I have not installed anything.
 
-### Also: delete the second video file — confirmed, pending an order
+### Evidence worth asking for
 
-`public/videos/Falcon-Hero-Flyover3.mp4`, **1,594,832 bytes**. Joseph:
-"Delete Falcon-Hero-Flyover3.mp4 if nothing references it."
+Before and after bytes; the home page total transfer before and after; and the
+hero rendered at 390 and 1440 showing no visible loss.
 
-Nothing does. Checked:
+---
+
+## Request 3 — the privacy contact address becomes `joe@pennjets.com`
+
+**Joseph:** "Use joe@pennjets.com. Replace privacy@pennjets.com everywhere on
+the legal pages."
+
+### Why
+
+The privacy policy publishes an address as the route for access and deletion
+requests. It has to be a mailbox somebody reads. Asked twice whether
+`privacy@pennjets.com` was monitored; on the third exchange Joseph answered
+that it should be his own address instead.
+
+### What it would deliver
+
+Smaller than "everywhere" suggests. The address appears in **exactly one
+place**:
+
+```
+src/content/privacyPolicy.js:22
+export const PRIVACY_EMAIL = 'privacy@pennjets.com';
+```
+
+One exported constant, consumed twice on the page: once in the "Asking for a
+copy, or asking us to delete it" section, once in the contact block at the
+foot. Changing the constant changes both, and regenerating
+`docs/drafts/t4/privacy-policy.md` keeps the approved draft in step.
+
+**One thing for the order to decide.** Two other addresses appear on the legal
+pages and Joseph did not mention either:
+
+| Address | Where | Count |
+|---|---|---|
+| `compliance@pennjets.com` | the compliance page | 2 |
+| `info@pennjets.com` | legal pages and the footer | 2 |
+
+They have the same problem in principle: a published address nobody reads
+loses the message silently. I have **not** touched them, since the instruction
+named `privacy@` only. Worth the order either extending to them or explicitly
+leaving them.
+
+### Evidence worth asking for
+
+`grep -rn 'privacy@pennjets' src public` returning nothing; the rendered
+address in both places on the page; and the regenerated approved draft.
+
+---
+
+## Request 4 — delete the unreferenced second video
+
+**Joseph:** "Falcon-Hero-Flyover3.mp4: confirmed for deletion, nothing
+references it."
+
+### Why
+
+`public/videos/Falcon-Hero-Flyover3.mp4`, **1,594,832 bytes**. Nothing
+references it:
 
 ```
 $ grep -rn 'Flyover3' src public index.html scripts
@@ -121,7 +176,7 @@ $ grep -rn 'Flyover3' src public index.html scripts
 ```
 
 It is worse than dead weight in the repository. Vite copies `public/`
-wholesale, so it **ships in the build and is live on production right now**:
+wholesale, so it ships in every build and is **live on production now**:
 
 ```
 $ curl -I https://www.pennjets.com/videos/Falcon-Hero-Flyover3.mp4
@@ -129,18 +184,20 @@ $ curl -I https://www.pennjets.com/videos/Falcon-Hero-Flyover3.mp4
 ```
 
 No page requests it, so it costs no visitor anything, but it is 1.5 MB of
-deployed bytes serving no purpose. The condition Joseph set is met and the
-deletion is uncontroversial; it needs an order only because a chat line is not
-one.
+deployed bytes serving no purpose.
+
+### What it would deliver
+
+Delete the file. That is the whole order. It needs to be an order only because
+a chat line is not one.
 
 ### Evidence worth asking for
 
-Before and after bytes; the home page total transfer before and after; the
-hero rendered at 390 and 1440 showing no visible loss; and `grep` confirming
-what happened to the unreferenced second file.
+`grep` showing no reference; the file absent from `dist/` after a build; and a
+404 from the production URL once merged.
 
 ---
 
 ## Status
 
-Nothing built for either. Awaiting order files.
+Nothing built for any of the four. Awaiting order files.
