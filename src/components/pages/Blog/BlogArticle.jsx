@@ -133,7 +133,9 @@ const BlogArticle = () => {
       <Helmet>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
-        <meta name="keywords" content={article.tags?.join(', ')} />
+        {article.tags?.length > 0 && (
+          <meta name="keywords" content={article.tags.join(', ')} />
+        )}
         <meta name="author" content={article.author.name} />
         <link rel="canonical" href={seo.url} />
 

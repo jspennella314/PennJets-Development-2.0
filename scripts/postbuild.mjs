@@ -9,10 +9,15 @@
 //   dist/blog/<slug>.html      (one per published Market Note, fetched from the CRM)
 //   dist/sitemap.xml
 //
-// Every file is the same SPA shell; only the <head> differs. Tags carry
-// data-rh="true" so react-helmet-async adopts and replaces them on the client.
-// A CRM fetch failure never fails the build: those articles simply fall back
-// to the 404.html redirect path they use today.
+// Tags carry data-rh="true" so react-helmet-async adopts and replaces them on
+// the client. The <body> of each file is filled in afterwards by
+// scripts/prerender.mjs (WO-4.23); this stage owns the <head> and that one
+// stays authoritative, because it is the only stage that can check whether a
+// note's featured image is a file this repository actually ships.
+//
+// A CRM fetch failure falls back to scripts/crm-posts.cache.json and says so
+// loudly. With no cache either, the build fails rather than quietly publishing
+// a site with no Market Notes.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -94,11 +99,32 @@ async function fetchAllPosts() {
   return posts;
 }
 
+// The last set of posts a build saw, committed so a fresh CI checkout has one.
+//
+// Before this, a build with the CRM unreachable warned, exited 0, and shipped
+// a site with no Market Note pages at all: no per-route head, no og cards, and
+// a sitemap missing every note, because the sitemap is built from this same
+// array. The warning scrolled past and the deploy succeeded. WO-4.23.
+const POSTS_CACHE = path.resolve('scripts/crm-posts.cache.json');
+
 let posts = [];
+let usingCache = false;
 try {
   posts = await fetchAllPosts();
+  fs.writeFileSync(POSTS_CACHE, JSON.stringify(posts, null, 2) + '\n');
 } catch (err) {
-  console.warn(`[postbuild] CRM fetch failed (${err.message}); article pages skipped.`);
+  if (!fs.existsSync(POSTS_CACHE)) {
+    console.error(`[postbuild] CRM fetch failed (${err.message}) and there is no cache to fall back on.`);
+    console.error('[postbuild] Refusing to publish a site with no Market Notes. Fix the CRM or restore scripts/crm-posts.cache.json.');
+    process.exit(1);
+  }
+  posts = JSON.parse(fs.readFileSync(POSTS_CACHE, 'utf8'));
+  usingCache = true;
+  console.warn('='.repeat(72));
+  console.warn(`[postbuild] CRM UNREACHABLE (${err.message}).`);
+  console.warn(`[postbuild] Falling back to ${posts.length} cached post(s) from scripts/crm-posts.cache.json.`);
+  console.warn('[postbuild] Market Note pages will be as of the last successful build, not current.');
+  console.warn('='.repeat(72));
 }
 
 // A note's featuredImage is set in the CRM and can point at a file this repo no
@@ -159,7 +185,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
   .join('\n')}\n</urlset>\n`;
 writeFile('sitemap.xml', sitemap);
 
-console.log(`[postbuild] wrote ${written.length} HTML files (${posts.length} Market Notes) and sitemap.xml with ${urls.length} URLs`);
+console.log(`[postbuild] wrote ${written.length} HTML files (${posts.length} Market Notes${usingCache ? ', FROM CACHE' : ''}) and sitemap.xml with ${urls.length} URLs`);
 if (blockedImages.length) {
   console.warn(`[postbuild] ${blockedImages.length} note image(s) hotlinked from another site and were not used:`);
   for (const u of blockedImages) console.warn(`  ${u}`);

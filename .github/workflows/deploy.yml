@@ -29,6 +29,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    # The build's prerender stage renders every route in this browser and
+    # writes the result into dist. Without it the build fails. WO-4.23.
+    - name: Install Chromium for the prerender stage
+      run: npx playwright install --with-deps chromium
+
     - name: Build
       run: npm run build
       env:
