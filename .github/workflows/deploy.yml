@@ -35,7 +35,6 @@ jobs:
         VITE_CRM_API_URL: https://www.pennforce.pennjets.com
         VITE_CONTACT_WEBHOOK_ID: cmi7ljjn50001vsesrk6f58p6
         VITE_WEBHOOK_JOE_PENNELLA: cmi7ljjow0003vsesltpym6s3
-        VITE_WEBHOOK_JAMES_WOFFORD: cmi7ljjpj0005vses5l113dpe
 
     - name: Copy CNAME file
       run: cp public/CNAME dist/CNAME

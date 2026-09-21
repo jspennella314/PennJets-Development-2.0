@@ -2,19 +2,19 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
+import { JOSEPH_NAME, JOSEPH_TITLE, JOSEPH_BIO, JOSEPH_EMAIL, JOSEPH_PHONE } from '../../../content/joseph';
 
 const About = () => {
   const navigate = useNavigate();
 
   const teamMembers = [
     {
-      name: 'Joseph Pennella',
-      title: 'Founder and Principal Broker',
+      name: JOSEPH_NAME,
+      title: JOSEPH_TITLE,
       credentials: null,
-      bio: "Joseph Pennella founded Penn Jets LLC in 2025. He brokers whole-aircraft and fractional transactions, arranges charter through certificated operators, and advises owners on acquisition strategy. He publishes market studies on specific models and segments: how many airframes exist, how many are actually available, and what that means for a buyer's timeline.",
-      image: '/images/Meet-The-Team/JOSEPH-PENNELLA.JPEG',
-      phone: '(954) 546-0763',
-      email: 'joe@pennjets.com',
+      image: '/images/Meet-The-Team/joseph-pennella-256.webp',
+      phone: JOSEPH_PHONE,
+      email: JOSEPH_EMAIL,
       specialties: ['Aircraft Brokerage', 'Deal Structuring', 'Fractional Ownership']
     }
   ];
@@ -44,10 +44,12 @@ const About = () => {
             <div>
               <h2 className="heading-md mb-6">Our Story</h2>
               <div className="space-y-4 text-gray-600">
-                <p>
-                  Founded in 2025 by Aviation Enthusiast Joseph Pennella, Penn Jets LLC, an
-                  emerging aviation broker.
-                </p>
+                {/* Joseph's approved biography, from src/content/joseph.js. It
+                    replaced "Founded in 2025 by Aviation Enthusiast Joseph
+                    Pennella, Penn Jets LLC, an emerging aviation broker." which
+                    gave him a different title from the rest of the site and had
+                    no verb. Joseph's decision, 2026-09-20. */}
+                <p>{JOSEPH_BIO}</p>
                 <p>
                   Whether you're buying your first light jet, looking at fractional ownership,
                   or selling a legacy aircraft, PennJets provides the expertise and
@@ -65,11 +67,7 @@ const About = () => {
       <section className="section-padding bg-white" id="team">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center mb-12">
-            <h2 className="heading-lg mb-4">Meet Our Team</h2>
-            <p className="body-lg max-w-2xl mx-auto">
-              Our experienced team of aviation professionals is dedicated to providing
-              exceptional service and expertise in every aspect of private aviation.
-            </p>
+            <h2 className="heading-lg mb-4">Who You&apos;ll Work With</h2>
           </div>
 
           {/* Column count follows the roster. One person centres rather than
@@ -111,9 +109,6 @@ const About = () => {
                     {member.credentials}
                   </div>
                 )}
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                  {member.bio}
-                </p>
 
                 {/* Specialties */}
                 <div className="mb-4">
@@ -137,29 +132,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Expertise Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="max-w-7xl mx-auto container-padding">
-          <div className="text-center mb-12">
-            <h2 className="heading-lg mb-4">Collective Expertise</h2>
-            <p className="body-lg max-w-3xl mx-auto">
-              Our team brings together experience across private aviation, from flight
-              operations to deal structuring.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-8 text-center max-w-2xl mx-auto">
-            <div>
-              <div className="text-4xl font-bold text-primary-600 mb-2">30+</div>
-              <div className="text-sm text-gray-600">Years Combined Experience</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-primary-600 mb-2">24/7</div>
-              <div className="text-sm text-gray-600">Client Support</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Professional Services Section */}
       <section className="section-padding bg-white">
@@ -203,7 +175,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto">
             <h2 className="heading-lg mb-6">Ready to Work With Us?</h2>
             <p className="body-lg text-gray-600 mb-8">
-              Whether you're buying, selling, or connecting with charter operators, our team is ready to provide
+              Whether you're buying, selling, or connecting with charter operators, PennJets is ready to provide
               the expertise and personalized service you deserve.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -212,7 +184,7 @@ const About = () => {
                 size="lg"
                 onClick={() => navigate('/contact')}
               >
-                Contact Our Team
+                Contact PennJets
               </Button>
               <Button 
                 variant="outline" 
