@@ -208,7 +208,29 @@ const jobs = htmlFiles(DIST)
   .sort((a, b) => a.route.localeCompare(b.route));
 
 const server = await serve();
-const browser = await chromium.launch();
+
+// A browser that will not start is infrastructure, not content. Failing here
+// would take the whole deploy down over a download, which is what happened on
+// 2026-09-21 when the workflow ran Node 18 against a playwright that needs 20.
+// So this degrades instead: every route keeps the head postbuild.mjs wrote,
+// which is exactly what the site served before WO-4.23, and the deploy
+// proceeds. A content problem still fails the build further down; only a
+// missing browser is survivable.
+let browser;
+try {
+  browser = await chromium.launch();
+} catch (err) {
+  console.warn('='.repeat(72));
+  console.warn('[prerender] CHROMIUM WOULD NOT START: ' + String(err.message).split('\n')[0]);
+  console.warn('[prerender] Page bodies are NOT prerendered in this build.');
+  console.warn('[prerender] The site is still correct and still deploys: every route keeps');
+  console.warn('[prerender] the head postbuild.mjs wrote. Crawlers that do not run');
+  console.warn('[prerender] JavaScript will see a title and no body text, as before WO-4.23.');
+  console.warn('[prerender] Fix the browser install and rebuild to restore it.');
+  console.warn('='.repeat(72));
+  server.close();
+  process.exit(0);
+}
 
 const results = [];
 let cursor = 0;

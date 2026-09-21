@@ -23,15 +23,27 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        # 20, not 18, because playwright declares engines >= 20 and its CLI
+        # refuses to run below that. npm ci does not enforce engines, so the
+        # install succeeded and the browser install failed instead, which took
+        # the deploy down on 2026-09-21 without touching the site's own code.
+        node-version: '20'
         cache: 'npm'
 
     - name: Install dependencies
       run: npm ci
 
-    # The build's prerender stage renders every route in this browser and
-    # writes the result into dist. Without it the build fails. WO-4.23.
+    # The build's prerender stage renders every route in this browser.
+    #
+    # continue-on-error, deliberately. A browser download is infrastructure,
+    # not this site's content, and a deploy should never be hostage to it. If
+    # this step fails the build still runs: scripts/prerender.mjs cannot launch
+    # Chromium, says so loudly, and leaves every route with the head
+    # postbuild.mjs wrote, which is exactly what production served before
+    # WO-4.23. A content problem still fails the build; only a missing browser
+    # degrades. WO-4.23.
     - name: Install Chromium for the prerender stage
+      continue-on-error: true
       run: npx playwright install --with-deps chromium
 
     - name: Build
