@@ -23,27 +23,25 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        # 20, not 18, because playwright declares engines >= 20 and its CLI
-        # refuses to run below that. npm ci does not enforce engines, so the
-        # install succeeded and the browser install failed instead, which took
-        # the deploy down on 2026-09-21 without touching the site's own code.
-        node-version: '20'
+        # 22, not 18. playwright 1.63 declares engines >= 20 and its CLI
+        # refuses to run below that, so npm ci installed it cleanly and the
+        # browser install failed 21 seconds in, taking the deploy down on
+        # 2026-09-21 without touching a line of the site's own code.
+        #
+        # 22 rather than the minimum 20 because 22 is what this project is
+        # built and evidenced on locally. The bug was not the floor itself, it
+        # was a runner running something different from where the work was
+        # checked; matching them removes that whole class of failure rather
+        # than clearing this one instance of it. WO-4.26.
+        node-version: '22'
         cache: 'npm'
 
     - name: Install dependencies
       run: npm ci
 
-    # The build's prerender stage renders every route in this browser.
-    #
-    # continue-on-error, deliberately. A browser download is infrastructure,
-    # not this site's content, and a deploy should never be hostage to it. If
-    # this step fails the build still runs: scripts/prerender.mjs cannot launch
-    # Chromium, says so loudly, and leaves every route with the head
-    # postbuild.mjs wrote, which is exactly what production served before
-    # WO-4.23. A content problem still fails the build; only a missing browser
-    # degrades. WO-4.23.
+    # The build's prerender stage renders every route in this browser and
+    # writes the result into dist. Without it the build fails. WO-4.23.
     - name: Install Chromium for the prerender stage
-      continue-on-error: true
       run: npx playwright install --with-deps chromium
 
     - name: Build
