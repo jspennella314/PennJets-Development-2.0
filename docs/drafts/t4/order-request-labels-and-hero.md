@@ -14,7 +14,7 @@ could reasonably be a single small order; 1 and 2 deserve their own.
 |---|---|---|
 | 1 | Relabel the contact dropdown | small, one file |
 | 2 | Compress the hero video | needs an encoder, see the prerequisite |
-| 3 | Privacy contact address to `joe@pennjets.com` | one line |
+| 3 | **All dead email addresses to `joe@pennjets.com`** | 11 places, 6 files |
 | 4 | Delete an unreferenced 1.5 MB video | one file |
 
 ---
@@ -113,50 +113,75 @@ hero rendered at 390 and 1440 showing no visible loss.
 
 ---
 
-## Request 3 — the privacy contact address becomes `joe@pennjets.com`
+## Request 3 — every dead email address becomes `joe@pennjets.com`
 
-**Joseph:** "Use joe@pennjets.com. Replace privacy@pennjets.com everywhere on
-the legal pages."
+**Joseph, 2026-09-20, in two steps.** First: "Use joe@pennjets.com. Replace
+privacy@pennjets.com everywhere on the legal pages." Then, when the grep turned
+up two more: "Neither compliance@pennjets.com nor info@pennjets.com is active.
+Extend the order: replace all three with joe@pennjets.com, everywhere they
+appear, including the footer. We'll split them into real aliases later when
+they exist."
 
-### Why
+### Why this is bigger than it looked
 
-The privacy policy publishes an address as the route for access and deletion
-requests. It has to be a mailbox somebody reads. Asked twice whether
-`privacy@pennjets.com` was monitored; on the third exchange Joseph answered
-that it should be his own address instead.
+This is the email version of WO-4.13. A published address nobody reads loses
+the message silently: no bounce, no error, no record that anyone tried. The
+site currently publishes **three confirmed-dead addresses in 11 places**, one
+of them in the footer of every page.
+
+### The full inventory
+
+| Address | Occurrences | Where |
+|---|---|---|
+| `info@pennjets.com` | **8** | the global footer, every page; Aircraft Detail; the Contact page's contact block; a Contact error message; the home page **JSON-LD `email`**; the Terms of Service `mailto:`; and the **author fallback** in `blogApi.js` |
+| `compliance@pennjets.com` | 2 | the Compliance page, display and `mailto:` |
+| `privacy@pennjets.com` | 1 | `src/content/privacyPolicy.js`, one constant used twice on the page |
+
+Two of those deserve a note in the order because they are not visible copy:
+
+- **`Home.jsx` JSON-LD `"email"`** is structured data. A dead address there is
+  what search engines and assistants surface as the way to contact the company.
+- **`blogApi.js` author fallback** is used when a CRM post has no author email.
+  It becomes the `mailto:` under a Market Note byline, so a reader replying to
+  an article hits it.
+
+### A fourth address Joseph has not ruled on
+
+`inquiries@pennjets.com`, twice, in the home page's own inline footer:
+
+```
+Home.jsx:237   <a href="mailto:inquiries@pennjets.com">inquiries@pennjets.com</a>
+```
+
+He named three and this is a fourth. Given the other three are dead it is
+likely dead too, but **I have not assumed it** and have not touched it. The
+order should either include it or say explicitly that it stays.
+
+### Two addresses that should not change
+
+`charles@pennjets.com` and `joedelisio@pennjets.com` are the team members'
+own addresses on the About page and in the Market Note author data. They are
+people, not aliases, and nothing suggests they are dead. Leave them.
 
 ### What it would deliver
 
-Smaller than "everywhere" suggests. The address appears in **exactly one
-place**:
+All occurrences of the three confirmed-dead addresses replaced with
+`joe@pennjets.com`, across 6 files: `Footer.jsx`, `AircraftDetail.jsx`,
+`Contact.jsx`, `Home.jsx`, `Legal/Compliance.jsx`, `Legal/TermsOfService.jsx`,
+plus `src/content/privacyPolicy.js` and `src/services/blogApi.js`.
 
-```
-src/content/privacyPolicy.js:22
-export const PRIVACY_EMAIL = 'privacy@pennjets.com';
-```
+Both the displayed text and the `mailto:` href in every case, which is the
+WO-4.13 failure mode: a corrected label over a stale link.
 
-One exported constant, consumed twice on the page: once in the "Asking for a
-copy, or asking us to delete it" section, once in the contact block at the
-foot. Changing the constant changes both, and regenerating
-`docs/drafts/t4/privacy-policy.md` keeps the approved draft in step.
-
-**One thing for the order to decide.** Two other addresses appear on the legal
-pages and Joseph did not mention either:
-
-| Address | Where | Count |
-|---|---|---|
-| `compliance@pennjets.com` | the compliance page | 2 |
-| `info@pennjets.com` | legal pages and the footer | 2 |
-
-They have the same problem in principle: a published address nobody reads
-loses the message silently. I have **not** touched them, since the instruction
-named `privacy@` only. Worth the order either extending to them or explicitly
-leaving them.
+Joseph's note that these become real aliases later is worth carrying into the
+order as a comment in the code, so whoever splits them knows the consolidation
+was deliberate rather than an accident.
 
 ### Evidence worth asking for
 
-`grep -rn 'privacy@pennjets' src public` returning nothing; the rendered
-address in both places on the page; and the regenerated approved draft.
+`grep -rn 'info@pennjets\|compliance@pennjets\|privacy@pennjets' src public`
+returning nothing; the rendered address and its `mailto:` on the footer and on
+two legal pages; and the home page JSON-LD `email` read back from the DOM.
 
 ---
 
