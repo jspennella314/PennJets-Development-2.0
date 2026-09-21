@@ -121,7 +121,11 @@ const BlogArticle = () => {
   const seo = articleMeta(article);
   const category = categoryFor(article);
   const related = relatedNotes(allNotes, article, 3);
-  const authorFirstName = article.author?.name?.split(' ')[0] || 'us';
+  // "Send Joseph a message" when a person wrote the note; "send us a message"
+  // when it carries the house byline, which has no first name. WO-4.24.
+  const authorFirstName = article.author?.isPerson
+    ? article.author.name.split(' ')[0]
+    : 'us';
   const heroImage = safeImage(article.featuredImage);
 
   return (
@@ -156,11 +160,18 @@ const BlogArticle = () => {
             "image": seo.image,
             "mainEntityOfPage": seo.url,
             "datePublished": article.publishedAt,
-            "author": {
-              "@type": "Person",
-              "name": article.author.name,
-              "jobTitle": article.author.title
-            },
+            // A note published under the house byline is an Organization
+            // here, not a Person with an empty job title. WO-4.24.
+            "author": article.author.isPerson
+              ? {
+                  "@type": "Person",
+                  "name": article.author.name,
+                  "jobTitle": article.author.title
+                }
+              : {
+                  "@type": "Organization",
+                  "name": article.author.name
+                },
             "publisher": {
               "@type": "Organization",
               "name": "PennJets",
@@ -233,7 +244,9 @@ const BlogArticle = () => {
               )}
               <div className="min-w-0">
                 <p className="font-medium text-gray-900">{article.author.name}</p>
-                <p className="text-sm text-gray-500">{article.author.title}</p>
+                {article.author.title && (
+                  <p className="text-sm text-gray-500">{article.author.title}</p>
+                )}
               </div>
             </div>
           </header>
@@ -307,10 +320,12 @@ const BlogArticle = () => {
                   )}
                   <div>
                     <h3 className="text-xl font-bold text-gray-900">{article.author.name}</h3>
-                    <p className="font-medium text-primary-700">{article.author.title}</p>
+                    {article.author.title && (
+                      <p className="font-medium text-primary-700">{article.author.title}</p>
+                    )}
                   </div>
                 </div>
-                <p className="mb-4 text-gray-700">{article.author.bio}</p>
+                {article.author.bio && <p className="mb-4 text-gray-700">{article.author.bio}</p>}
                 <div className="flex flex-col gap-2 text-sm">
                   <a href={`mailto:${article.author.email}`} className="font-medium text-primary-700 hover:text-primary-800">
                     {article.author.email}

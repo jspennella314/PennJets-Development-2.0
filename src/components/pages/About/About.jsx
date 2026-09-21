@@ -16,26 +16,6 @@ const About = () => {
       phone: '(954) 546-0763',
       email: 'joe@pennjets.com',
       specialties: ['Aircraft Brokerage', 'Deal Structuring', 'Fractional Ownership']
-    },
-    {
-      name: 'Charles Brennan',
-      title: 'Chief Technology Officer',
-      credentials: 'Technology & Innovation Leader',
-      bio: 'Chief Technology Officer driving digital innovation and technological advancement at PennJets. Specializes in aviation technology integration, digital platforms, and modernizing private aviation operations through cutting-edge solutions and strategic technology implementation.',
-      image: '/images/Meet-The-Team/CHARLES-BRENNAN.JPEG',
-      phone: '(908) 655-7075',
-      email: 'charles@pennjets.com',
-      specialties: ['Aviation Technology', 'Digital Innovation', 'System Integration', 'Data Analytics']
-    },
-    {
-      name: 'Joe Delisio',
-      title: 'Aviation Consultant',
-      credentials: 'Private Aviation Advisor',
-      bio: 'Experienced aviation consultant focused on helping clients navigate aircraft acquisitions and sales. Joe provides personalized service and strategic guidance throughout the entire transaction process.',
-      image: null,
-      phone: '(954) 546-0763',
-      email: 'joedelisio@pennjets.com',
-      specialties: ['Aircraft Acquisitions', 'Client Relations', 'Deal Negotiation', 'Market Intelligence']
     }
   ];
 
@@ -92,7 +72,13 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Column count follows the roster. One person centres rather than
+              sitting in the left third of an empty three-column grid. WO-4.24. */}
+          <div
+            className={`grid gap-8 ${
+              teamMembers.length > 1 ? 'grid-cols-1 lg:grid-cols-3' : 'mx-auto max-w-md grid-cols-1'
+            }`}
+          >
             {teamMembers.map((member, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <div className="relative mb-6">
