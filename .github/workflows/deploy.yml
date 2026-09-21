@@ -23,7 +23,17 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        # 22, not 18. playwright 1.63 declares engines >= 20 and its CLI
+        # refuses to run below that, so npm ci installed it cleanly and the
+        # browser install failed 21 seconds in, taking the deploy down on
+        # 2026-09-21 without touching a line of the site's own code.
+        #
+        # 22 rather than the minimum 20 because 22 is what this project is
+        # built and evidenced on locally. The bug was not the floor itself, it
+        # was a runner running something different from where the work was
+        # checked; matching them removes that whole class of failure rather
+        # than clearing this one instance of it. WO-4.26.
+        node-version: '22'
         cache: 'npm'
 
     - name: Install dependencies

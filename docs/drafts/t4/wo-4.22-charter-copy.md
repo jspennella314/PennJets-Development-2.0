@@ -1,3 +1,16 @@
+# RESOLVED 2026-09-21 — Joseph approved with changes
+
+Built and reported in docs/reports/t4/WO-4.22.md. He rejected options A, B
+and C for the description and wrote his own, 120 characters, which names all
+three places and leaves the full disclosure to the page and the footer.
+
+One thing is still open: block two's sentence, where both options were left
+inside the brackets. The approved-as-written one is on the site.
+
+Kept below as the record of what was proposed and what it cost.
+
+---
+
 # WO-4.22 — charter page copy, for Joseph's approval
 
 **Nothing is built. This is the copy the order says must be routed to you

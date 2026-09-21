@@ -29,6 +29,12 @@ const Section = ({ id, title, subtitle, children }) => (
   </section>
 );
 
+// One call to action, repeated. A constant rather than a string typed four
+// times, because the order asks for identical wording every time and typing
+// it again is how "Get a Quote" and "Get a Charter Quote" came to share a
+// page. Approved by Joseph 2026-09-21. WO-4.22 item 7.
+const CTA_LABEL = "Request a charter quote";
+
 // ---------- Hero ----------
 
 const Hero = () => (
@@ -38,16 +44,24 @@ const Hero = () => (
       <Container>
         <div className="max-w-2xl text-white">
           <h1 className="text-3xl font-semibold sm:text-5xl">Charter, Simplified.</h1>
+          {/*
+            Who charter is for, not what Penn Jets is. It replaced
+            "On-demand private jet charter, arranged by a broker who works for
+            you. Light to midsize jets flown by vetted, licensed operators.",
+            which described the firm to a reader still deciding whether they
+            are on the right page. Approved by Joseph 2026-09-21.
+          */}
           <p className="mt-3 text-base sm:text-lg">
-            On‑demand private jet charter, arranged by a broker who works for you.
-            Light to midsize jets flown by vetted, licensed operators.
+            Charter is for the trip an airline schedule cannot carry: a same‑day
+            return, a closing that moved, four people to a field with no
+            commercial service.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href="#quote"
               className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/80"
             >
-              Get a Charter Quote
+              {CTA_LABEL}
             </a>
             <a
               href="tel:+19545460763"
@@ -64,29 +78,52 @@ const Hero = () => (
 
 // ---------- Benefits ----------
 
+// The same call to action after each section, in the same words.
+const SectionCta = () => (
+  <div className="mt-8 flex justify-center">
+    <a
+      href="#quote"
+      className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+    >
+      {CTA_LABEL}
+    </a>
+  </div>
+);
+
+
+// Three blocks, Joseph's substance, approved 2026-09-21. They replaced four
+// cards headed "Why Charter with PennJets" with the subtitle "Deal-maker
+// expertise, white-glove execution", which was self-description and an
+// unsupported claim on a page that has to be careful about both.
+//
+// Block three restates the footer disclosure in plain language. The two must
+// not drift apart: if BROKER_DISCLOSURE changes, read this again.
 const Benefits = () => {
   const items = [
     {
-      title: "Broker, Not Operator",
-      body: "Penn Jets arranges your flight and represents you. Every trip is flown by a licensed Part 135 direct air carrier with operational control.",
+      title: "You talk to the broker who books your trip",
+      body:
+        "No call center and no ticket queue. The person who answers is the person who sources the aircraft and stays with the trip until you land.",
     },
     {
-      title: "Vetted Operators",
-      body: "We source from licensed operators with strong safety records, and we tell you who is flying you.",
+      title: "We compare operators and show you the numbers",
+      // Joseph left this one unresolved: his note offered "approved as
+      // written" or "We compare certificated operators and tell you why we
+      // recommend the one we do." and both were still in the brackets. This
+      // is the first, the one he marked approved. Swapping is one line.
+      body:
+        "You see what each certificated operator quoted and why one is recommended, not a single price with the reasoning left out.",
     },
     {
-      title: "Transparent Quotes",
-      body: "Fuel, FBO fees, overnights, de‑icing—disclosed up front. No surprises.",
-    },
-    {
-      title: "Trip Coordination",
-      body: "We coordinate with the operator on ground transfers, catering, pets, and itinerary changes.",
+      title: "Every flight is operated by a licensed Part 135 carrier",
+      body:
+        "Penn Jets arranges the flight and does not operate it. A properly licensed direct air carrier has operational control of every leg.",
     },
   ];
 
   return (
-    <Section title="Why Charter with PennJets" subtitle="Deal‑maker expertise, white‑glove execution.">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <Section title="Why charter through a broker">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {items.map((it) => (
           <article key={it.title} className="rounded-2xl border p-5 shadow-sm">
             <h3 className="text-base font-semibold">{it.title}</h3>
@@ -94,10 +131,10 @@ const Benefits = () => {
           </article>
         ))}
       </div>
+      <SectionCta />
     </Section>
   );
 };
-
 // ---------- Popular routes ----------
 //
 // City pairs only. The old table published distances, block times and
@@ -135,11 +172,12 @@ const PopularRoutes = () => (
               {cityOf(r.from)} <span aria-hidden="true">&rarr;</span>
               <span className="sr-only">to</span> {cityOf(r.to)}
             </span>
-            <span className="text-gray-500">Request a charter quote</span>
+            <span className="text-gray-500">{CTA_LABEL}</span>
           </Link>
         </li>
       ))}
     </ul>
+    <SectionCta />
   </Section>
 );
 const inputClass =
@@ -360,7 +398,7 @@ const FooterCta = () => (
           <p className="mt-1 text-sm text-white/80">Call (954) 546‑0763 or send your itinerary for a fast quote.</p>
         </div>
         <div className="flex gap-3">
-          <a href="#quote" className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md">Get a Quote</a>
+          <a href="#quote" className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md">{CTA_LABEL}</a>
           <Link to="/aircraft" className="rounded-2xl px-5 py-3 text-sm font-medium ring-1 ring-white/70 hover:bg-white/10">Browse Aircraft</Link>
         </div>
       </div>

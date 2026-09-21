@@ -2,22 +2,30 @@
 wo: WO-4.22
 terminal: T4
 branch: t4/work
-commit: c3e6bc1
-tested_against: "site: the built output at c3e6bc1 served locally at 1440, 1280 and 390; CRM: the production deploy at https://www.pennforce.pennjets.com, which accepted three test leads — NOT a production site deploy, see Known gaps"
+commit: ef573fd
+tested_against: "site: the built output at ef573fd served locally at 1440, 1280 and 390, with the copy Joseph approved 2026-09-21; CRM: the production deploy at https://www.pennforce.pennjets.com, which accepted three test leads — NOT a production site deploy, see Known gaps"
 date: 2026-09-21
-status: partial — items 5, 6, 7 and the description are with Joseph
+status: reported — all nine items built, one sentence still Joseph's to settle
 ---
 
 # WO-4.22 report — the charter page serves New York and New Jersey
 
-Six of the nine items are built and measured. The three that are copy, and the
-meta description, are with Joseph in
-`docs/drafts/t4/wo-4.22-charter-copy.md`, as the order requires.
+All nine items are built. The page was written for Florida and is now written
+for the market it serves, the routes table no longer publishes numbers a
+broker has no business publishing, and the copy is the version Joseph
+approved on 2026-09-21.
 
-## Commit
+One sentence is still open, and it is open because he left both options in
+the brackets rather than because anything is blocked.
 
-`c3e6bc1` WO-4.22: the charter page points at New York and New Jersey. On
-`t4/work`, pushed. Not merged.
+## Commits
+
+Two, both on `t4/work`, pushed, not merged.
+
+- `c3e6bc1` the structural work: routes list, prefill, required phone, title,
+  header phone, the measured timing line.
+- `ef573fd` the copy Joseph approved: description, opener, three blocks, one
+  repeated call to action.
 
 ## What is done, and what is not
 
@@ -25,11 +33,11 @@ meta description, are with Joseph in
 |---|---|
 | 1. Routes list, prefilled links | **done** |
 | 2. Phone required | **done** |
-| 3. Title | **done** — description with Joseph |
+| 3. Title and description | **done** |
 | 4. No `premier-1a.webp` hero | **done**, nothing to change |
-| 5. One-line opener | **with Joseph** |
-| 6. Three benefit blocks | **with Joseph** |
-| 7. One repeated CTA | **with Joseph** |
+| 5. One-line opener | **done** |
+| 6. Three benefit blocks | **done** — one sentence needs Joseph, below |
+| 7. One repeated CTA | **done** |
 | 8. Time the form | **done**, and the line is on the page |
 | 9. Header phone | **done** |
 
@@ -105,27 +113,25 @@ The placeholders moved with the market: `TEB / Teterboro` and
 `PBI / Palm Beach`, where they read `FLL / Fort Lauderdale` and
 `TEB / Teterboro`.
 
-### 3. Title, and why the description is not here
+### 3. Title and description, read from the built file
 
-**Title: `Light & Midsize Jet Charter from NY/NJ | Penn Jets`**
+| | Characters | Limit |
+|---|---|---|
+| Title | **50** | 60 |
+| Description | **120** | 160 |
 
-**50 characters**, against the 60 the order sets. Read back from
-`dist/charter.html` it counts 54, because the ampersand is escaped to `&amp;`
-in the file. Fifty is the number a search engine renders.
+```
+title      : Light & Midsize Jet Charter from NY/NJ | Penn Jets
+description: Light and midsize jet charter from Teterboro, Westchester and
+             Long Island, arranged by Penn Jets, an air charter broker.
+canonical  : https://www.pennjets.com/charter
+```
 
-**Description: unchanged, and with Joseph.** The order says to say so rather
-than trim approved wording, and the arithmetic is why:
+The title counts 54 in `dist/charter.html` because the ampersand is escaped
+to `&amp;` in the file. Fifty is the number a search engine renders.
 
-| | Characters |
-|---|---|
-| The approved 14 CFR 295.23 disclosure, in full | **352** |
-| Its shortest form keeping both regulated facts | 111 |
-| Leading with Teterboro, Westchester and Long Island | 49 |
-| Together | **161** |
-
-One character over 160, and that is the tightest honest version. The three
-options are costed in the draft. My recommendation is to run the single
-character over rather than drop Long Island.
+The description is Joseph's own, and why it is his rather than mine is under
+"The copy Joseph approved" below.
 
 ### 4. The hero
 
@@ -170,6 +176,67 @@ aircraft as available on the page that carries the broker disclosure, which is
 the same class of claim as the `premier-1a.webp` hero that item 4 of this
 order exists to prevent. Item 4 was already satisfied; this was the same claim
 in prose, three lines below the form, and the order did not catch it.
+
+### 3b, 5, 6 and 7. The copy Joseph approved
+
+Approved 2026-09-21 with changes. All of it is now on the page.
+
+**The description is his own wording, not one of mine.** He rejected all
+three options I costed and wrote a fourth:
+
+> Light and midsize jet charter from Teterboro, Westchester and Long Island,
+> arranged by Penn Jets, an air charter broker.
+
+**120 characters**, comfortably under 160, and it solves the problem I could
+not: it names all three places and states the broker status, then leaves the
+full 14 CFR 295.23 disclosure to the page and the footer where it already
+appears in full. I had been trying to fit a 352-character disclosure into a
+snippet. He moved the disclosure instead of shrinking it.
+
+**The opener** replaced the hero paragraph that described the firm:
+
+> Charter is for the trip an airline schedule cannot carry: a same-day
+> return, a closing that moved, four people to a field with no commercial
+> service.
+
+**The three blocks** replaced four cards headed "Why Charter with PennJets",
+whose subtitle read "Deal-maker expertise, white-glove execution". The
+heading is now "Why charter through a broker" and the subtitle is gone. Both
+were self-description on a page whose opener now answers the reader's
+question instead, and "white-glove execution" was an unsupported claim of the
+kind the About page shed this week. **Neither removal was in Joseph's list**,
+so both are flagged here rather than buried.
+
+Block one carries his rewrite, "stays with the trip until you land" in place
+of my "holds the operator to the schedule". Block three keeps **Part 135** in
+the headline, as he directed, with the body in the footer's terms so the two
+do not drift.
+
+**The call to action** is `CTA_LABEL`, one constant rendered in eleven places:
+the hero, after the blocks, on each of the seven route links, after the routes
+list, and in the closing panel. It is a constant rather than a string typed
+eleven times because typing it again is exactly how "Get a Quote" and "Get a
+Charter Quote" came to sit on the same page. Both of those wordings are gone.
+
+### The one thing still open
+
+**Block two's sentence.** Joseph's note read:
+
+```
+4. Block two: [approved as written / "We compare certificated operators and
+   tell you why we recommend the one we do."]
+```
+
+Both options were still inside the brackets, the same unfilled template as the
+`privacy@pennjets.com` line last week. **I used the first**, the one marked
+approved as written, rather than guess at the second:
+
+> You see what each certificated operator quoted and why one is recommended,
+> not a single price with the reasoning left out.
+
+His alternative is shorter and reads better to me, but choosing it would mean
+putting a sentence on the site that he did not confirm. It is one line in
+`Charter.jsx` and the comment beside it records both.
 
 ### 9. The header phone, and whether it doubles up
 
@@ -246,15 +313,17 @@ written. The only CRM effect is the test leads above.
 
 1. **Not verified on a production site deploy.** T4 does not merge.
 
-2. **Items 5, 6 and 7 are not built.** The opener, the three blocks and the
-   repeated CTA are written and queued. The page still shows the old "Why
-   Charter with PennJets" section with four cards and the subtitle
-   "Deal-maker expertise, white-glove execution", which is the self-description
-   the order's item 5 exists to replace. It ships in that state if this merges
-   before Joseph answers.
+2. **Block two's sentence is the approved-as-written one, by default.**
+   Joseph left both options in the brackets. Nothing unapproved is published,
+   because the option I used is the one he marked approved, but he has not
+   chosen between them and may not have meant to leave it open.
 
-3. **The description is the old one.** It still opens "Request a private jet
-   charter quote" with no geography in it, which is the thing item 3 is for.
+3. **Two removals were not on his list.** The "Why Charter with PennJets"
+   heading became "Why charter through a broker", and the subtitle
+   "Deal-maker expertise, white-glove execution" is gone. Replacing four
+   cards with three blocks left them describing a section that no longer
+   exists, and the second was a claim nothing supports. Both are one line to
+   restore.
 
 4. **The timing is a simulation.** Four runs of a script, not four people. The
    assumptions are stated and the comment on the page records them, but nobody

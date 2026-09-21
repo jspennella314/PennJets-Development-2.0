@@ -20,14 +20,14 @@ export const ROUTES = {
     description: DEFAULT_DESCRIPTION,
   },
   '/charter': {
-    // 50 characters, against the 60 an ordinary search result shows. The
-    // description is still Joseph's to choose: the approved 14 CFR 295.23
-    // disclosure is 352 characters and will not fit beside the geography in
-    // 160, so the trade-off is costed in docs/drafts/t4/wo-4.22-charter-copy.md
-    // rather than resolved by trimming approved wording. WO-4.22.
+    // Title 50 characters, description 120, against the 60 and 160 a search
+    // result shows. Joseph wrote this description himself on 2026-09-21,
+    // rejecting all three options I costed: it carries the geography and the
+    // broker status, and leaves the full 14 CFR 295.23 disclosure to the page
+    // and the footer, where it appears in full. WO-4.22.
     title: 'Light & Midsize Jet Charter from NY/NJ | Penn Jets',
     description:
-      'Request a private jet charter quote. Penn Jets is an air charter broker; every flight is operated by a licensed direct air carrier.',
+      'Light and midsize jet charter from Teterboro, Westchester and Long Island, arranged by Penn Jets, an air charter broker.',
   },
   '/buy': {
     title: 'Buy an Aircraft | PennJets',
