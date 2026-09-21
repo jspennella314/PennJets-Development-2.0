@@ -214,35 +214,44 @@ unreachable, and exits 1 if there is no cache either.
 
 ## It broke the deploy, on the first merge
 
-**PR #2 merged on 2026-09-21 and failed to deploy.** Run 35562421317, step
-"Install Chromium for the prerender stage". Production kept serving the build
-from PR #1, fourteen hours earlier, and gh-pages did not move. Twenty commits
-sat undeployed, including everything in this report.
+**PR #2 merged on 2026-09-21 at 04:50:32Z and failed to deploy 21 seconds
+later.** Run 35562421317, step "Install Chromium for the prerender stage".
+Build, Copy CNAME and Deploy were all skipped, `gh-pages` never moved, and
+production kept serving the build from PR #1 thirteen hours earlier. Twenty
+commits sat undeployed, including everything in this report, and the daily
+06:00 UTC rebuild failed the same way.
 
-**Cause: the workflow pins Node 18 and playwright 1.63 declares
-.**  does not enforce engines, so the
-dependency installed cleanly and the CLI refused to run. It passed here
-because this machine is on Node 22. I added that step and did not check the
-runner's Node against the package I was adding to it.
+**Cause: the workflow pinned Node 18 and `playwright` 1.63 declares**
+`engines: { "node": ">=20" }`. `npm ci` does not enforce engines, so the
+dependency installed cleanly and the CLI refused to run. Twenty-one seconds
+is the shape of an engine check failing immediately, not a download timing
+out. It passed here because this machine runs Node v22.19.0.
 
-Fixed in , two ways:
+**I added that step and did not check the runner’s Node against the package
+I was adding to it.**
 
-- **Node 20 in the workflow.** That is the actual bug.
-- **The prerender no longer takes a deploy down when the browser will not
-  start.** It prints a banner and exits 0, leaving every route with the head
-  postbuild.mjs wrote, which is what the site served before this order. The
-  install step is  to match.
+Fixed under **WO-4.26**, in `a70fcdb`: `node-version` goes to 22, and nothing
+else changes. See `docs/reports/t4/WO-4.26.md`.
 
-A content problem still fails the build, and that distinction is the point: a
-note that rendered as "Note Not Found" must stop a deploy, a browser download
-that 404s must not. Verified by building with 
-pointed at an empty directory: exit 0, 25 heads intact, 9 note pages, 24
-sitemap URLs, no prerendered bodies.
+**A correction to an earlier version of this section.** I first wrote that the
+fix was Node 20 plus two changes of my own: `continue-on-error` on the
+Chromium step, and a guard that let a failed `chromium.launch()` degrade to a
+non-prerendered deploy rather than fail the build. WO-4.26 puts both out of
+scope and they are reverted; `scripts/prerender.mjs` is byte for byte its
+state in `dc25a68`. Whether a browser download should sit on the critical
+path of a deploy is a real question, and not one to settle while fixing the
+outage it would have masked.
 
-**The honest lesson.** This report already said the approach cost "one dev
-dependency and a browser in CI" and treated that as cheap. It was not cheap
-on the day it landed: it put a browser download on the critical path of every
-deploy of a site whose deploys had never depended on one.
+**The honest lesson for this report.** It called the cost of this approach
+"one dev dependency and a browser in CI" and treated that as cheap. On the
+day it landed it was not: it put a browser download on the critical path of
+every deploy of a site whose deploys had never needed one, and the site did
+not publish for the interval.
+
+The thing that made it findable in minutes was this report’s own
+`tested_against` line saying the evidence was **not** from a production
+deploy. That disclosure did not prevent the outage. It named the gap the
+outage came through, before anyone had to go looking.
 
 ## Known gaps
 
