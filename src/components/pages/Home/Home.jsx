@@ -135,7 +135,9 @@ const Home = () => {
               "areaServed": "US",
               "availableLanguage": "English"
             },
-            "email": "info@pennjets.com",
+            // was info@pennjets.com. This is the address search engines and
+            // assistants surface as the way to reach the company. WO-4.20.
+            "email": "joe@pennjets.com",
             "sameAs": [
               "https://www.pennjets.com"
             ]
@@ -234,8 +236,8 @@ const Home = () => {
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <p>
                 <strong>Call:</strong> (954) 546‑0763 · <strong>Email:</strong>{" "}
-                <a className="underline" href="mailto:inquiries@pennjets.com">
-                  inquiries@pennjets.com
+                <a className="underline" href="mailto:joe@pennjets.com">
+                  joe@pennjets.com
                 </a>
               </p>
               <p>PennJets LLC — Private aviation. Simplified. Monetized.</p>

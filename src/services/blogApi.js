@@ -289,7 +289,10 @@ export const blogApi = {
     const author = {
       id: post.author.id,
       name: authorDetails.name || post.author.name || 'PennJets Team',
-      email: post.author.email || 'info@pennjets.com',
+      // Fallback when a CRM post carries no author email. It becomes the
+      // mailto under the byline, so it has to be a mailbox someone reads.
+      // Was info@pennjets.com, which was dead. WO-4.20.
+      email: post.author.email || 'joe@pennjets.com',
       title: authorDetails.title || post.author.title || 'Aviation Consultant',
       bio: authorDetails.bio || post.author.bio || `Aviation expert at PennJets, dedicated to providing insights and guidance on private aviation.`,
       avatar: authorDetails.avatar,

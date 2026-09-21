@@ -200,7 +200,7 @@ const AircraftDetail = () => {
                 </div>
                 <div className="space-y-2 text-sm mb-4">
                   <div>📞 (954) 546-0763</div>
-                  <div>✉️ info@pennjets.com</div>
+                  <div>✉️ joe@pennjets.com</div>
                 </div>
                 <button
                   onClick={() => navigate('/contact')}

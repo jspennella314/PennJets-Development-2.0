@@ -84,7 +84,7 @@ Leads and contacts stay in our CRM. We do not delete them automatically. If you 
 
 ## Asking for a copy, or asking us to delete it
 
-Write to privacy@pennjets.com and tell us what you want. We will tell you what we hold about you, correct it, or delete it. You do not need to give a reason, and you do not need to be a customer.
+Write to joe@pennjets.com and tell us what you want. We will tell you what we hold about you, correct it, or delete it. You do not need to give a reason, and you do not need to be a customer.
 
 If you subscribed to the newsletter, the unsubscribe link in any message removes you immediately without writing to anyone.
 
@@ -92,5 +92,5 @@ If you subscribed to the newsletter, the unsubscribe link in any message removes
 
 Penn Jets LLC  
 690 SW 1st Ct #1030, Miami, FL 33130  
-privacy@pennjets.com  
+joe@pennjets.com  
 (954) 546-0763

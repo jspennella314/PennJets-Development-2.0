@@ -17,9 +17,12 @@
 // sets the effective date when he approves the wording.
 export const LAST_UPDATED = '20 September 2026';
 
-// Already published on the previous version of this page, so not a new claim.
-// Joseph confirms or replaces it.
-export const PRIVACY_EMAIL = 'privacy@pennjets.com';
+// Until real aliases exist, every published address on this site is
+// joe@pennjets.com. privacy@, compliance@, info@ and inquiries@ were all dead
+// mailboxes: mail to them vanished with no bounce and no record. Joseph
+// confirmed all four, 2026-09-20 (WO-4.20). When the aliases are created,
+// this is one of the places to split back out.
+export const PRIVACY_EMAIL = 'joe@pennjets.com';
 
 export const INTRO =
   'This page describes what happens to information when you use pennjets.com. It is written from what this site and the system behind it actually do, not from a template. If anything here is unclear, ask us and we will answer plainly.';

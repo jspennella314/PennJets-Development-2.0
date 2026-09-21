@@ -126,7 +126,7 @@ const Contact = () => {
     },
     {
       title: 'Email',
-      info: 'info@pennjets.com',
+      info: 'joe@pennjets.com',
       description: 'We respond within 2 hours',
       icon: HiMail
     },
@@ -261,7 +261,7 @@ const Contact = () => {
                   <p className="text-sm text-green-700" role="status">Thank you. Your message is in. We'll be in touch shortly.</p>
                 )}
                 {submitStatus === 'error' && (
-                  <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email info@pennjets.com, or call (954) 546-0763.</p>
+                  <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email joe@pennjets.com, or call (954) 546-0763.</p>
                 )}
               </form>
             </Card>
