@@ -146,6 +146,17 @@ const Home = () => {
       </Helmet>
 
       {/* Hero Section */}
+      {/*
+        public/videos/ holds a second file, Falcon-Hero-Flyover3.mp4, that
+        nothing references. It is 1,594,832 bytes and it ships in every build.
+
+        KEEP IT. Joseph decided on 2026-09-20, after it was put forward for
+        deletion: "keep it, I may use it." It is footage he shot himself.
+
+        An unreferenced 1.5 MB video is exactly what an asset audit flags, so
+        this note exists to be found before someone deletes it correctly and
+        irreversibly. WO-4.21.
+      */}
       <header className="relative">
         <video
           src="/videos/Falcon-Hero-Flyover.MP4"

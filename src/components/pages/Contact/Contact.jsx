@@ -9,9 +9,11 @@ import MoreFields from '../../common/MoreFields/MoreFields';
 // posted; an option with no home among them sends no service at all rather than
 // inventing a fifth value the filter would not know. WO-4.15.
 //
-// Sales and Acquisition follow this site's own definitions on /services:
-// Aircraft Sales is selling an owner's aircraft, Aircraft Acquisition is
-// finding and buying one for a client.
+// The two labels a visitor reads are phrased as what they are doing, not as
+// what the business calls it. "Aircraft Sales" means representing an owner
+// who is selling and posts `sell`, but a reader hears "aircraft you have for
+// sale", so buyers were picking it and landing under `sell`. The values and
+// this map are unchanged, so no CRM behaviour moves. WO-4.18.
 const SERVICE_MAP = {
   'aircraft-sales': 'sell',
   'aircraft-acquisition': 'buy',
@@ -24,8 +26,8 @@ const SERVICE_MAP = {
 // What the reader saw, so the broker can still read their actual choice even
 // when it maps to no service.
 const SERVICE_LABELS = {
-  'aircraft-sales': 'Aircraft Sales',
-  'aircraft-acquisition': 'Aircraft Acquisition',
+  'aircraft-sales': 'Selling my aircraft',
+  'aircraft-acquisition': 'Buying an aircraft',
   'charter-brokerage': 'Charter Brokerage',
   consulting: 'Consulting',
   other: 'Other',
@@ -228,8 +230,8 @@ const Contact = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   >
                     <option value="">Select a service</option>
-                    <option value="aircraft-sales">Aircraft Sales</option>
-                    <option value="aircraft-acquisition">Aircraft Acquisition</option>
+                    <option value="aircraft-sales">Selling my aircraft</option>
+                    <option value="aircraft-acquisition">Buying an aircraft</option>
                     <option value="charter-brokerage">Charter Brokerage</option>
                     <option value="consulting">Consulting</option>
                     <option value="other">Other</option>
