@@ -305,6 +305,11 @@ export const blogApi = {
       tags,
       readTimeMinutes,
       author,
+      // The composed credit for the featured image, from the CRM's public API:
+      // null for an own photo or when nothing is recorded. Carried through as
+      // is; the article builds the visible line from this object and never
+      // rewrites it. featuredImage and safeImage are untouched. WO-4.27.
+      imageAttribution: post.imageAttribution ?? null,
     };
   },
 };

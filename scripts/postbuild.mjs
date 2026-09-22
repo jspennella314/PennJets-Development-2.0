@@ -159,6 +159,10 @@ const FORCE_REFRESH = process.env.CRM_REFRESH_ARTICLES === '1';
 const fingerprint = (p) => JSON.stringify([
   p.title, p.excerpt, p.metaTitle, p.metaDescription,
   p.featuredImage, p.publishedAt, p.keywords, p.author && p.author.name,
+  // The four raw attribution fields (WO-1.18). The list carries them, and an
+  // edit to any one changes the composed `imageAttribution` the cached body
+  // holds, so that body is refetched now rather than after MAX_AGE. WO-4.27.
+  p.imageCredit, p.imageSourceUrl, p.imageLicense, p.imageModified,
 ]);
 
 let articles = {};
