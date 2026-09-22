@@ -15,13 +15,26 @@ permissions:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    # ubuntu-24.04, not ubuntu-latest. The "latest" label moves to a new
+    # image on 19 October 2026 and every job on it follows without being
+    # asked; WO-4.26 was exactly that shape, a runner changing under a build.
+    # This is the image the label resolved to on the last green run before
+    # the pin (run 35718872977, "Set up job": Image: ubuntu-24.04, Version:
+    # 20260907.300.1). It now changes only when someone changes it. WO-4.28.
+    runs-on: ubuntu-24.04
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      # v7 declares runs.using: node24. v4 declared node20, which the runner
+      # has been forcing onto Node 24 with a deprecation line on every run
+      # since the 2025-09-19 changelog. WO-4.28.
+      uses: actions/checkout@v7
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      # v7 declares runs.using: node24, same reason as checkout. Its v5
+      # auto-cache only triggers on a package.json "packageManager" field,
+      # which this project does not have; cache: npm below is unchanged.
+      # WO-4.28.
+      uses: actions/setup-node@v7
       with:
         # 22, not 18. playwright 1.63 declares engines >= 20 and its CLI
         # refuses to run below that, so npm ci installed it cleanly and the
@@ -55,7 +68,9 @@ jobs:
       run: cp public/CNAME dist/CNAME
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      # v4 declares runs.using: node24. v3 declared node16, two runtimes
+      # behind the runner's default. Inputs are unchanged between them. WO-4.28.
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./dist
