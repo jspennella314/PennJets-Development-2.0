@@ -1,18 +1,53 @@
 [
   {
+    "id": "cmuby17le0001l604llre7s84",
+    "title": "Canada’s Proposed 100% Aircraft Expensing: Could It Accelerate the Aircraft Replacement Cycle?",
+    "slug": "canadas-proposed-100-aircraft-expensing-could-it-accelerate-the-aircraft-replacement-cycle",
+    "excerpt": "Canada’s proposed expansion of 100% immediate expensing to qualifying business aircraft could change the economics of aircraft replacement for Canadian owners. With new and potentially pre-owned aircraft included, the proposal could also create new cross-border demand for U.S. business jet inventory.",
+    "featuredImage": "https://www.pennjets.com/images/Gallery/Falcon900B_no_registration.jpg",
+    "imageCredit": "Duncan Kirk / Wikimedia Commons",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:N900TN_Falcon_900B,_Sonoma_07-18-26.jpg",
+    "imageLicense": "CC_BY_4_0",
+    "imageModified": true,
+    "metaTitle": "Canada 100% Aircraft Expensing: What It Could Mean for Private Aviation | Penn Jets",
+    "metaDescription": "Canada’s proposed 100% aircraft expensing could accelerate business jet replacement and increase Canadian demand for U.S. pre-owned aircraft. Penn Jets examines the cross-border implications.",
+    "keywords": [],
+    "publishedAt": "2026-09-22T02:14:32.227Z",
+    "updatedAt": "2026-09-22T23:15:09.397Z",
+    "author": {
+      "id": "cmh8apgpu0001vscwzrafl22b",
+      "name": "Joseph Pennella"
+    },
+    "imageAttribution": {
+      "credit": "Duncan Kirk / Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:N900TN_Falcon_900B,_Sonoma_07-18-26.jpg",
+      "license": "CC_BY_4_0",
+      "licenseLabel": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "modified": true,
+      "line": "Photo: Duncan Kirk / Wikimedia Commons, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Modified from original."
+    }
+  },
+  {
     "id": "cmu7fxc1x0001vsrkdavhw9kd",
     "title": "Why We Publish Market Notes",
     "slug": "why-we-publish-market-notes",
     "excerpt": "Private aviation runs on incomplete information. These notes come out of transactions we have actually worked on.",
     "featuredImage": "https://www.pennjets.com/images/PennJets-Website-Logo.png",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": null,
+    "imageModified": false,
     "metaTitle": "Why We Publish Market Notes | Penn Jets",
     "metaDescription": "Why Penn Jets publishes notes on the private aviation market, and what informs them.",
     "keywords": [],
     "publishedAt": "2026-09-18T21:00:00.191Z",
+    "updatedAt": "2026-09-21T06:21:57.418Z",
     "author": {
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
-    }
+    },
+    "imageAttribution": null
   },
   {
     "id": "cmu5q7u800001l804e8hz9h6w",
@@ -20,16 +55,22 @@
     "slug": "the-light-jet-market-in-2026-why-smaller-business-jets-could-lead-the-next-decade",
     "excerpt": "The private jet market remains active in 2026, but some of its most interesting opportunities are emerging in the light-jet segment. With tight late-model inventory, strong utilization, practical operating economics, and forecasts calling for significant long-term growth, smaller business jets are becoming an increasingly important part of private aviation.",
     "featuredImage": "https://www.pennjets.com/images/Gallery/Embraer_Phenom_300.jpg",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": null,
+    "imageModified": false,
     "metaTitle": "Light Jet Market 2026: Prices, Demand & Outlook | Penn Jets",
     "metaDescription": "Explore the 2026 light jet market, including pre-owned prices, inventory, transaction activity, fractional demand and the outlook for light jets and VLJs through 2035.",
     "keywords": [
       "category:market-studies"
     ],
     "publishedAt": "2026-09-18T14:55:11.960Z",
+    "updatedAt": "2026-09-22T20:12:54.977Z",
     "author": {
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
-    }
+    },
+    "imageAttribution": null
   },
   {
     "id": "cmievpl4k000evs1cf499gs54",
@@ -37,16 +78,22 @@
     "slug": "pilatus-pc-12-ngx-a-modern-look-at-the-most-capable-turboprop-in-the-sky",
     "excerpt": "The Pilatus PC-12 NGX represents the latest evolution of the world’s most successful single-engine turboprop — a versatile aircraft known for reliability, efficiency, and astonishing runway performance. With a redesigned avionics suite, smarter engine management, and a refined cabin experience, the NGX pushes the productivity of turboprop ownership to a new level. This up-close look explores why the aircraft continues to dominate its category in 2025.",
     "featuredImage": "https://www.pennjets.com/images/Gallery/pc12.jpg",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": null,
+    "imageModified": false,
     "metaTitle": "Pilatus PC-12 NGX Review — Technology & Performance Breakdown | Penn Jets",
     "metaDescription": "Explore the advanced technology behind the Pilatus PC-12 NGX, including its digital engine control, Honeywell Apex avionics, cabin design, and mission versatility. A complete 2025 technical analysis for prospective owners and operators.\nA fresh, technical look at the Pilatus PC-12 NGX — covering avionics, engine automation, performance upgrades, cabin improvements, and real-world mission capability for private owners and charter operators.",
     "keywords": [
       "category:market-studies"
     ],
     "publishedAt": "2026-09-15T03:33:44.636Z",
+    "updatedAt": "2026-09-21T06:23:45.675Z",
     "author": {
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
-    }
+    },
+    "imageAttribution": null
   },
   {
     "id": "cmtxfltop0001lb04lz9valco",
@@ -54,16 +101,22 @@
     "slug": "september-11-and-the-evolution-of-private-aviation",
     "excerpt": "Twenty-five years after September 11, its effects remain deeply woven into American aviation. From changing security expectations to increased interest in charter and fractional aviation, September 11 reshaped how people think about flying—and reinforced the importance of trust, continuity, and relationships throughout private aviation.",
     "featuredImage": "https://wallpaperaccess.com/full/4568461.jpg",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": null,
+    "imageModified": false,
     "metaTitle": "September 11 and the Evolution of Private Aviation | Penn Jets",
     "metaDescription": "Twenty-five years after September 11, Penn Jets reflects on how 9/11 changed private aviation, charter demand, security, aircraft ownership, and the importance of trust in aviation.",
     "keywords": [
       "category:market-notes"
     ],
     "publishedAt": "2026-09-11T20:51:50.411Z",
+    "updatedAt": "2026-09-21T05:14:45.029Z",
     "author": {
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
-    }
+    },
+    "imageAttribution": null
   },
   {
     "id": "cmtvpe3y3000tl2049v01ydyn",
@@ -71,16 +124,22 @@
     "slug": "bombardier-us-market-access-and-what-trumps-latest-restrictions-could-mean-for-private-aviation",
     "excerpt": "President Trump’s latest threat to restrict Bombardier aircraft sales in the United States introduces a new variable into the private jet market. Penn Jets examines what the developing dispute could mean for Challenger and Global buyers, existing owners, pre-owned values, and competing manufacturers.",
     "featuredImage": "https://www.pennjets.com/images/Gallery/Bombardier_Challenger_650.jpg",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": null,
+    "imageModified": false,
     "metaTitle": "Bombardier U.S. Restrictions & Private Jet Market | Penn Jets",
     "metaDescription": "Trump’s Bombardier restrictions could affect Challenger and Global sales, pre-owned values, Gulfstream competition, and the U.S. private jet market.",
     "keywords": [
       "category:market-notes"
     ],
     "publishedAt": "2026-09-10T15:50:07.280Z",
+    "updatedAt": "2026-09-21T05:14:43.417Z",
     "author": {
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
-    }
+    },
+    "imageAttribution": null
   },
   {
     "id": "cmi7o7cbo0001vst8btfn8jyc",
@@ -88,16 +147,22 @@
     "slug": "how-to-buy-your-first-private-jet-2025-step-by-step-buyers-guide",
     "excerpt": "Buying your first private jet is one of the most rewarding—and complex—investments you’ll ever make. This guide walks you through every step of the process, from defining your mission and building the right team to financing, inspections, and operational setup. Whether you’re purchasing solo or exploring fractional ownership, Penn Jets’ 10-step roadmap helps you avoid common pitfalls and launch your ownership journey with confidence.",
     "featuredImage": "https://www.pennjets.com/images/Gallery/gulfstream.jpg",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": null,
+    "imageModified": false,
     "metaTitle": "First-Time Buyer’s Guide to Private Aircraft Ownership (2025) | Penn Jets",
     "metaDescription": "A complete 2025 guide for first-time private jet buyers. Discover how to define your mission, structure ownership, finance your purchase, manage operations, and avoid costly mistakes with expert insights from Penn Jets.",
     "keywords": [
       "category:market-notes"
     ],
     "publishedAt": "2025-11-20T17:14:15.437Z",
+    "updatedAt": "2026-09-21T05:14:43.463Z",
     "author": {
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
-    }
+    },
+    "imageAttribution": null
   },
   {
     "id": "cmhoa395j0003ld045kamrmkw",
@@ -105,6 +170,10 @@
     "slug": "sustainable-aviation-the-future-of-private-flying",
     "excerpt": "Private aviation is entering a new era — one defined by innovation, efficiency, and environmental responsibility. Once criticized for its carbon footprint, the industry is now leading the charge toward cleaner skies through Sustainable Aviation Fuel (SAF), hybrid-electric propulsion, and hydrogen-powered aircraft. Major players like NetJets and Otto Aviation are proving that luxury flight and sustainability can coexist, ushering in a future where private jets symbolize not just status, but stewardship.",
     "featuredImage": "https://www.pennjets.com/images/Gallery/future-aviation.jpg",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": null,
+    "imageModified": false,
     "metaTitle": "Sustainable Aviation: The Future of Private Flying | Penn Jets",
     "metaDescription": "Explore how private aviation is embracing sustainability through electric propulsion, hydrogen innovation, and Sustainable Aviation Fuel (SAF). Learn how leaders like NetJets and Otto Aviation are shaping a greener future for luxury flight.",
     "keywords": [
@@ -125,10 +194,12 @@
       "category:market-studies"
     ],
     "publishedAt": "2025-11-09T04:07:46.079Z",
+    "updatedAt": "2026-09-21T05:14:43.558Z",
     "author": {
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
-    }
+    },
+    "imageAttribution": null
   },
   {
     "id": "cmho9h2h40001ld04g45taud9",
@@ -136,6 +207,10 @@
     "slug": "the-state-of-the-private-jet-market-in-q3-2025",
     "excerpt": "The private jet market closed Q3 2025 on a strong note, with flight activity rebounding, OEM deliveries climbing, and pre-owned inventory tightening for newer models. Gulfstream, Textron, and Embraer all reported solid delivery gains, while dealer confidence and transaction volume rose across the board. Prices have stabilized—firm for late-model jets, more negotiable for older aircraft—creating a balanced environment for both buyers and sellers. With fractional programs booming and charter rates holding steady, private aviation is entering Q4 with renewed momentum and long-term confidence.",
     "featuredImage": "https://www.pennjets.com/images/Gallery/falcon.jpg",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": null,
+    "imageModified": false,
     "metaTitle": "Private Jet Market Report Q3 2025: Trends, Pricing & Outlook",
     "metaDescription": "Discover the latest trends in private jet sales, pricing, and market activity for Q3 2025. Learn what buyers and sellers can expect in the luxury aviation sector, from OEM deliveries to pre-owned valuations.",
     "keywords": [
@@ -152,10 +227,12 @@
       "category:market-studies"
     ],
     "publishedAt": "2025-11-07T02:57:51.619Z",
+    "updatedAt": "2026-09-21T05:14:43.637Z",
     "author": {
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
-    }
+    },
+    "imageAttribution": null
   },
   {
     "id": "cmhmyn9gu0005vs8wl5dukwzb",
@@ -163,6 +240,10 @@
     "slug": "jet-charter-vs-ownership-making-the-right-choice",
     "excerpt": "A personal look inside private aviation from someone who’s lived it. Learn the real costs, control, and lifestyle differences between owning and chartering a jet — and how the right structure can turn an aircraft from an expense into a strategic investment.\nEstimated Reading Time: 6 minutes",
     "featuredImage": "https://www.pennjets.com/images/Gallery/pj-interior.jpg",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": null,
+    "imageModified": false,
     "metaTitle": "Charter vs. Ownership: How to Choose the Best Private Jet Option | Penn Jets",
     "metaDescription": "Compare private jet ownership and charter services to find the best fit for your travel, budget, and tax goals. Penn Jets breaks down costs, control, and flexibility for smarter private aviation decisions.",
     "keywords": [
@@ -189,9 +270,11 @@
       "category:market-studies"
     ],
     "publishedAt": "2025-11-06T05:05:05.103Z",
+    "updatedAt": "2026-09-21T17:38:20.862Z",
     "author": {
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
-    }
+    },
+    "imageAttribution": null
   }
 ]
