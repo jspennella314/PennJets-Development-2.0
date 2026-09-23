@@ -43,18 +43,18 @@ const Hero = () => (
     <div className="absolute inset-0 flex items-center pt-28 sm:pt-20">
       <Container>
         <div className="max-w-2xl text-white">
-          <h1 className="text-3xl font-semibold sm:text-5xl">Charter, Simplified.</h1>
+          <h1 className="text-3xl font-semibold sm:text-5xl">Travel, Simplified.</h1>
           {/*
             Who charter is for, not what Penn Jets is. It replaced
             "On-demand private jet charter, arranged by a broker who works for
             you. Light to midsize jets flown by vetted, licensed operators.",
             which described the firm to a reader still deciding whether they
-            are on the right page. Approved by Joseph 2026-09-21.
+            are on the right page. Approved by Joseph 2026-09-21. Shortened to
+            one sentence pair, and the heading changed from "Charter,
+            Simplified.", both approved by Joseph 2026-09-22 (WO-4.30).
           */}
           <p className="mt-3 text-base sm:text-lg">
-            Charter is for the trip an airline schedule cannot carry: a same‑day
-            return, a closing that moved, four people to a field with no
-            commercial service.
+            You have somewhere to be. We&#39;ll get you there.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
