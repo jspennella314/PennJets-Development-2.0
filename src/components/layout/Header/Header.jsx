@@ -2,6 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 
+// What the banner says on a given local date. Joseph's wording, verbatim
+// with its full stop (2026-09-22); the year is read from the date, never
+// typed. On 1 January, for that day only, the banner greets instead and
+// the timer is hidden: counting 364 days to next December under a greeting
+// reads oddly. That is the lead's reading of Joseph's instruction; showing
+// the timer that day is a one-line change if he wants it. WO-4.29.
+const bannerDateFor = (date) => ({
+  year: date.getFullYear(),
+  isNewYearsDay: date.getMonth() === 0 && date.getDate() === 1,
+});
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,12 +52,24 @@ const Header = () => {
     return () => observer.disconnect();
   }, []);
 
+  // The year the banner names and the day it greets on, read from the clock
+  // on every tick with the countdown, so a tab left open across midnight
+  // follows the date. Starts from the real date so the first paint is right
+  // (and so the prerendered HTML carries today's year). WO-4.29.
+  const [bannerDate, setBannerDate] = useState(() => bannerDateFor(new Date()));
+
   // Countdown timer for bonus depreciation
   useEffect(() => {
     const calculateTimeRemaining = () => {
-      const endDate = new Date('2026-12-31T23:59:59');
       const now = new Date();
+      // 31 December of the current year, 23:59:59, in the reader's local
+      // time: built from parts, so the year is never a literal and the
+      // target rolls over by itself on 1 January. The old literal
+      // '2026-12-31T23:59:59' (no Z) was local time too; this keeps that, so
+      // a reader in Florida does not see New Year at 19:00. WO-4.29.
+      const endDate = new Date(now.getFullYear(), 11, 31, 23, 59, 59);
       const difference = endDate - now;
+      setBannerDate(bannerDateFor(now));
 
       if (difference > 0) {
         setTimeRemaining({
@@ -88,7 +111,12 @@ const Header = () => {
         className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary-600 to-primary-800 text-white py-2 px-4"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-4 text-sm lg:text-base">
-          <span className="font-semibold">Calendar Year Ending:</span>
+          <span className="font-semibold">
+            {bannerDate.isNewYearsDay
+              ? 'Happy New Year!'
+              : `Days left to close a ${bannerDate.year} acquisition.`}
+          </span>
+          {!bannerDate.isNewYearsDay && (
           <div className="flex gap-3 font-mono">
             <div className="flex flex-col items-center">
               <span className="text-lg lg:text-xl font-bold">{timeRemaining.days || 0}</span>
@@ -110,6 +138,7 @@ const Header = () => {
               <span className="text-xs">Secs</span>
             </div>
           </div>
+          )}
         </div>
       </div>
 
