@@ -143,13 +143,17 @@ try {
 // The bodies are cached here instead and scripts/prerender.mjs serves them to
 // the browser, which makes a steady-state build cost zero rows.
 //
-// A body is refetched only when the list says something about the post
-// changed, when it has never been cached, or when it is older than MAX_AGE.
-// That last one exists because the list has no updatedAt: an edit that touches
-// only the body is invisible from here, so staleness is bounded by time rather
-// than detected. Making it unconditional needs updatedAt on the list endpoint,
-// which is a CRM change and a request to the lead, not something this repo can
-// do.
+// A body is refetched when the list says something about the post changed,
+// when it has never been cached, or when it is older than MAX_AGE.
+//
+// The list carries updatedAt since WO-1.17, and it means "edited": the view
+// counter no longer bumps it. It is part of the fingerprint below, so an
+// edit that touches only the body is detected on the next build. MAX_AGE is
+// the backstop, not the mechanism: it covers a note changed by some path
+// that does not move updatedAt, of which there is none today. Before
+// WO-4.32 the list was believed to have no updatedAt and staleness was
+// bounded by time alone; Joseph's 2026-09-22 body edit to the Falcon note
+// sat unseen behind that for a day. WO-4.25, WO-4.32.
 const ARTICLES_CACHE = path.resolve('scripts/crm-articles.cache.json');
 const MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 const FORCE_REFRESH = process.env.CRM_REFRESH_ARTICLES === '1';
@@ -163,6 +167,8 @@ const fingerprint = (p) => JSON.stringify([
   // edit to any one changes the composed `imageAttribution` the cached body
   // holds, so that body is refetched now rather than after MAX_AGE. WO-4.27.
   p.imageCredit, p.imageSourceUrl, p.imageLicense, p.imageModified,
+  // The edit timestamp, so a change to the body alone is seen too. WO-4.32.
+  p.updatedAt,
 ]);
 
 let articles = {};

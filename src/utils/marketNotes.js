@@ -14,10 +14,6 @@ export const CATEGORIES = [
 
 const BY_SLUG = new Map(CATEGORIES.map((c) => [c.slug, c]));
 
-export function categoryKeyword(slug) {
-  return CATEGORY_PREFIX + slug;
-}
-
 // Returns { slug, label } or null. Only the three known categories are
 // recognised; an unknown category: value is ignored rather than shown raw.
 export function categoryFor(post) {
@@ -30,9 +26,10 @@ export function categoryFor(post) {
   return null;
 }
 
-// GET /api/public/blog?keyword= is a loose substring search: ?keyword=jet
-// returns every post. Re-check the category exactly on what comes back so a
-// loose server match can never put a post under the wrong label.
+// Whether a post carries exactly this category. The index uses it to offer
+// only the chips that have notes. It used to re-filter the CRM's loose
+// ?keyword= results too; the index now asks the CRM's exact ?category=
+// instead, so that use is gone (WO-4.31) and categoryKeyword() with it.
 export function hasCategory(post, slug) {
   return categoryFor(post)?.slug === slug;
 }

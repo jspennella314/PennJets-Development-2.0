@@ -47,3 +47,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+# Source footage. Joseph drops phone originals here for T4 to encode from;
+# only the encoded MP4 and its poster are committed. WO-4.33.
+public/videos/*.MOV
