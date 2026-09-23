@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
 import { blogApi } from '../../../services/blogApi';
-import { CATEGORIES, categoryFor, categoryKeyword, hasCategory } from '../../../utils/marketNotes';
+import { CATEGORIES, categoryFor, hasCategory } from '../../../utils/marketNotes';
 import { safeImage } from '../../../seo/siteMeta';
 
 const NEWSLETTER_API = 'https://www.pennforce.pennjets.com/api/public/newsletter/subscribe';
@@ -31,16 +31,16 @@ const BlogList = () => {
     blogApi.getPosts().then(setAllPosts).catch(() => {});
   }, []);
 
-  // Filtered list. The CRM's ?keyword= is a loose substring search, so the
-  // result is re-checked against the exact category keyword before display.
+  // Filtered list. ?category= is the CRM's exact match on the keywords
+  // array (WO-1.16), so what comes back is shown as is. WO-4.31.
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
     blogApi
-      .getPosts(activeSlug ? categoryKeyword(activeSlug) : undefined)
+      .getPosts(activeSlug || undefined)
       .then((data) => {
         if (cancelled) return;
-        setPosts(activeSlug ? data.filter((post) => hasCategory(post, activeSlug)) : data);
+        setPosts(data);
       })
       .catch((error) => { if (!cancelled) { console.error('Error loading Market Notes:', error); setPosts([]); } })
       .finally(() => { if (!cancelled) setLoading(false); });

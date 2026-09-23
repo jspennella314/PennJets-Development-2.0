@@ -26,12 +26,22 @@ function getViewSessionId() {
 
 export const blogApi = {
   /**
-   * Get all published blog posts
+   * Get all published blog posts, optionally one category of them.
+   *
+   * `category` is the bare slug (e.g. "market-studies") and maps to the
+   * CRM's strict ?category= filter (WO-1.16), which matches only the
+   * keywords array. It replaced ?keyword=category:<slug>, a substring
+   * search across title, excerpt and body that the index then had to
+   * re-filter client-side. ?keyword= is still accepted here for a caller
+   * that wants the search; nothing uses it today. WO-4.31.
+   * @param {string} [category] - Category slug
+   * @param {string} [keyword] - Free-text search
    * @returns {Promise<Array>} Array of blog posts
    */
-  async getPosts(keyword) {
+  async getPosts(category, keyword) {
     try {
       const url = new URL(`${CRM_API_URL}/api/public/blog`);
+      if (category) url.searchParams.set('category', category);
       if (keyword) url.searchParams.set('keyword', keyword);
       const response = await fetch(url);
 
