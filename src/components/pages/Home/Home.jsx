@@ -159,15 +159,22 @@ const Home = () => {
       */}
       <header className="relative">
         {/*
-          The poster is a 17 KB still of the same frame. It paints immediately
-          and the heading sits on it, so first paint never waits on video even
-          on a slow connection or where autoplay is refused. WO-4.19.
+          Encoded from Joseph's phone original (public/videos/IMG_3379.MOV,
+          git-ignored) at its full 1080x1920, H.264 High, ~1.9 Mbps, no audio.
+          The footage is PORTRAIT: the file stores a 1920x1080 frame with a
+          rotate-90 tag, so a probe reads it as landscape and a player shows it
+          upright. The encode bakes the rotation in. WO-4.33 replaced the
+          720x1280 export of the same clip that WO-4.19 had compressed.
+
+          The poster is a 33 KB still of the same frame (0.6 s). It paints
+          immediately and the heading sits on it, so first paint never waits on
+          video even on a slow connection or where autoplay is refused. WO-4.19.
           aria-hidden because this is decoration; the heading below carries the
           meaning, and a silent three-second loop has nothing to describe.
         */}
         <video
-          src="/videos/Falcon-Hero-Flyover.MP4"
-          poster="/videos/falcon-hero-poster.webp"
+          src="/videos/Falcon-Hero-Flyover-1080.mp4"
+          poster="/videos/falcon-hero-poster-1080.webp"
           autoPlay
           muted
           loop
