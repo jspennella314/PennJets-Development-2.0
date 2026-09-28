@@ -349,7 +349,7 @@ const Services = () => {
         <div className="max-w-4xl mx-auto container-padding text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Elevate Your Aviation Experience?</h2>
           <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-            Connect with our team of aviation professionals to discuss how we can support
+            Connect with Penn Jets to discuss how we can support
             your specific requirements with tailored solutions and expert guidance.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

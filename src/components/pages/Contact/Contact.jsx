@@ -123,7 +123,6 @@ const Contact = () => {
     {
       title: 'Phone',
       info: '(954) 546-0763',
-      description: 'Available 24/7 for urgent inquiries',
       icon: HiPhone
     },
     {
@@ -157,7 +156,7 @@ const Contact = () => {
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="heading-lg mb-6">Contact Us</h1>
             <p className="body-lg text-gray-300">
-              Ready to take the next step in your aviation journey? Our team of experts 
+              Ready to take the next step in your aviation journey? Penn Jets
               is here to help you with all your private aircraft needs.
             </p>
           </div>
@@ -283,7 +282,9 @@ const Contact = () => {
                         <div>
                           <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
                           <p className="text-gray-600 whitespace-pre-line mb-1">{item.info}</p>
-                          <p className="text-sm text-gray-500">{item.description}</p>
+                          {item.description && (
+                            <p className="text-sm text-gray-500">{item.description}</p>
+                          )}
                         </div>
                       </div>
                     );

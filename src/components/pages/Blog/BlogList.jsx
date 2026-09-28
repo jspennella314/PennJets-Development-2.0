@@ -114,7 +114,7 @@ const BlogList = () => {
             <h1 className="heading-lg mb-6">Market Notes</h1>
             <p className="body-lg text-gray-300">
               Stay informed with the latest industry trends, aircraft reviews, and expert
-              insights from our team of aviation professionals.
+              insights from Penn Jets.
             </p>
           </div>
         </div>
