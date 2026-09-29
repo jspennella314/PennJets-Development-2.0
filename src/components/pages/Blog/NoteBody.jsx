@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { sanitizeNoteHtml } from './sanitizeNote';
 
 // Renders a Market Note body.
 //
@@ -17,8 +18,9 @@ import React, { useMemo } from 'react';
 // A real <blockquote> is also honored, so nothing breaks if the editor gains
 // the button later. The first paragraph renders as the lede.
 //
-// Everything else passes through unchanged, which is the same trust boundary
-// the page has today: this content comes from PennForce, authored by the team.
+// Everything else passes through unchanged, except that every block's HTML is
+// sanitised (sanitizeNote.js, the CRM's allow-list) immediately before it is
+// injected. The CRM sanitises bodies too; this does not rely on it. WO-4.38.
 
 const STAT_PREFIX = /^stat\s*:/i;
 const QUOTE_PREFIX = /^(?:>|&gt;)\s*/;
@@ -120,10 +122,10 @@ const NoteBody = ({ html }) => {
         if (b.kind === 'stat') return <StatBlock key={i} value={b.value} label={b.label} source={b.source} />;
         if (b.kind === 'lede') {
           return (
-            <p key={i} className="note-lede mb-8" dangerouslySetInnerHTML={{ __html: b.html }} />
+            <p key={i} className="note-lede mb-8" dangerouslySetInnerHTML={{ __html: sanitizeNoteHtml(b.html) }} />
           );
         }
-        return <div key={i} dangerouslySetInnerHTML={{ __html: b.html }} />;
+        return <div key={i} dangerouslySetInnerHTML={{ __html: sanitizeNoteHtml(b.html) }} />;
       })}
     </div>
   );
