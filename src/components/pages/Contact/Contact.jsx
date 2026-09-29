@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
+import { HiPhone, HiMail, HiLocationMarker } from 'react-icons/hi';
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
 import MoreFields from '../../common/MoreFields/MoreFields';
@@ -128,7 +128,6 @@ const Contact = () => {
     {
       title: 'Email',
       info: 'joe@pennjets.com',
-      description: 'We respond within 2 hours',
       icon: HiMail
     },
     {
@@ -291,19 +290,6 @@ const Contact = () => {
                   })}
                 </div>
               </div>
-
-              {/* Quick Response */}
-              <Card className="bg-primary-50">
-                <div className="text-center">
-                  <div className="text-primary-600 mb-3 flex justify-center">
-                    <HiClock className="w-10 h-10" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Quick Response</h3>
-                  <p className="text-gray-600 text-sm">
-                    We typically respond to all inquiries within 2 hours during business hours.
-                  </p>
-                </div>
-              </Card>
             </div>
           </div>
         </div>
