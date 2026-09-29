@@ -201,3 +201,28 @@ As ordered:
 3. **The script-bearing block leaves an empty `<div></div>`** in the
    rendered attack output, because the `<script>` was its whole block. It
    is harmless and invisible.
+
+## End of the overnight queue (2026-09-29)
+
+**Finished, reported and pushed on `t4/work`:**
+- **WO-4.36** (`9359838`, report `38de4de`). This also closes WO-4.34.
+  The cache files are committed in `c2ba93b` and `687c696`.
+- **WO-4.37** (`e905fbf`, report `648e669`). Joseph approves at the
+  merge; the screenshots are in the report.
+- **WO-4.38** (`7762dcc`, this report).
+
+**Skipped:** none. **Stopped on:** nothing. There was no denied command,
+no failure outside my changes, no schema or env need, and nothing touched
+a live account.
+
+**Left for Joseph:**
+1. **Merge `t4/work` into the site's `main`.** That merge also carries
+   WO-4.35, which is still waiting. `t4/work` is 12 commits ahead of
+   `origin/main` (`a450f6a`), from `e3a91a0` (WO-4.34) to `caca2a7`.
+   Pages deploys the merge.
+2. At that merge:
+   - **WO-4.37's look**, at both widths;
+   - **WO-4.36's proposed removal** of the whole "Quick Response" card.
+3. **For the lead, not Joseph:**
+   - WO-4.37's finding that the blog index shows 10 of 11 notes;
+   - WO-4.38's missing test runner.
