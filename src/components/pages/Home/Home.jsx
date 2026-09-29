@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
+import LatestNote from './LatestNote';
 
 // ---------------------------------------------------------------------------
 // Inventory: real aircraft only. Every entry must carry year, model, serial,
@@ -213,6 +214,9 @@ const Home = () => {
           </Container>
         </div>
       </header>
+
+      {/* The newest Market Note, one compact card; renders nothing without one. WO-4.37. */}
+      <LatestNote />
 
       {/* Inventory (real aircraft only; renders nothing while empty) */}
       {INVENTORY.length > 0 && (
