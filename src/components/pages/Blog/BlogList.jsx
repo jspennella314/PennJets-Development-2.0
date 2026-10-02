@@ -26,9 +26,10 @@ const BlogList = () => {
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
   // The full list, kept so the filter bar only offers categories that have
-  // notes, and so counts do not depend on the filtered request.
+  // notes, and so counts do not depend on the filtered request. Paged, so
+  // every note is here, not the route's default 10 (WO-4.40).
   useEffect(() => {
-    blogApi.getPosts().then(setAllPosts).catch(() => {});
+    blogApi.getAllPosts().then(setAllPosts).catch(() => {});
   }, []);
 
   // Filtered list. ?category= is the CRM's exact match on the keywords
@@ -37,7 +38,7 @@ const BlogList = () => {
     let cancelled = false;
     setLoading(true);
     blogApi
-      .getPosts(activeSlug || undefined)
+      .getAllPosts(activeSlug || undefined)
       .then((data) => {
         if (cancelled) return;
         setPosts(data);

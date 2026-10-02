@@ -25,6 +25,7 @@ import {
   SITE_URL, SITE_NAME, DEFAULT_IMAGE, STATIC_ROUTES, ROUTES,
   canonicalFor, absoluteImage, articleMeta, isAllowedImage,
 } from '../src/seo/siteMeta.js';
+import { fetchAllPosts } from '../src/services/blogPaging.js';
 
 const DIST = path.resolve('dist');
 const CRM = (process.env.VITE_CRM_API_URL || 'https://www.pennforce.pennjets.com').replace(/\/$/, '');
@@ -82,22 +83,12 @@ for (const route of Object.keys(ROUTES)) {
 }
 
 // ---- Market Notes from the CRM -------------------------------------------
-async function fetchAllPosts() {
-  const posts = [];
-  let page = 1;
-  for (;;) {
-    const res = await fetch(`${CRM}/api/public/blog?page=${page}&limit=50`);
-    if (!res.ok) throw new Error(`CRM list returned ${res.status}`);
-    const data = await res.json();
-    posts.push(...(data.posts || []));
-    const pg = data.pagination || {};
-    const totalPages = pg.totalPages || pg.pages || 1;
-    if (page >= totalPages || !(data.posts || []).length) break;
-    page += 1;
-    if (page > 50) break;
-  }
-  return posts;
-}
+//
+// The pager is the browser bundle's (src/services/blogPaging.js): limit=50,
+// offset += limit while pagination.hasMore, a hard stop that warns. The old
+// loop here paged with ?page=, which the route ignores, and stopped after
+// one page because the response has no totalPages; limit=50 hid that until
+// the 51st note. WO-4.40.
 
 // The last set of posts a build saw, committed so a fresh CI checkout has one.
 //
@@ -110,7 +101,7 @@ const POSTS_CACHE = path.resolve('scripts/crm-posts.cache.json');
 let posts = [];
 let usingCache = false;
 try {
-  posts = await fetchAllPosts();
+  posts = await fetchAllPosts({ baseUrl: CRM, warn: (m) => console.warn(`[postbuild] ${m}`) });
   // viewCount and leadCount move on their own as readers arrive, and nothing
   // here reads them. Storing them made the cache dirty after every build and
   // put traffic numbers into the repository's history. Dropped.

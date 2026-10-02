@@ -2,6 +2,7 @@
 // Handles all communication with PennForce CRM blog endpoints
 
 import { displayTags } from '../utils/marketNotes';
+import { fetchAllPosts } from './blogPaging';
 
 const CRM_API_URL = import.meta.env.VITE_CRM_API_URL || 'https://www.pennforce.pennjets.com';
 
@@ -57,6 +58,25 @@ export const blogApi = {
     } catch (error) {
       console.error('Error fetching blog posts:', error);
       // Return empty array if API fails
+      return [];
+    }
+  },
+
+  /**
+   * Every published post, paged through the CRM's list route (limit=50,
+   * offset += limit while pagination.hasMore; see blogPaging.js). The
+   * Market Notes index uses this, so the oldest note is no longer cut off
+   * by the route's default limit of 10. Same filters as getPosts. WO-4.40.
+   * @param {string} [category] - Category slug
+   * @param {string} [keyword] - Free-text search
+   * @returns {Promise<Array>} Array of blog posts, [] on failure
+   */
+  async getAllPosts(category, keyword) {
+    try {
+      const posts = await fetchAllPosts({ baseUrl: CRM_API_URL, category, keyword });
+      return posts.map(post => this.transformPost(post));
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
       return [];
     }
   },
