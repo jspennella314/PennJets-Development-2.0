@@ -94,11 +94,23 @@ export function absoluteImage(src) {
   return SITE_URL + (src.startsWith('/') ? src : '/' + src);
 }
 
-// Images are served from this site only. A note's featuredImage is set in the
-// CRM and can point anywhere; hotlinking a third party's image ships something
-// we hold no licence for, so the site refuses to render it. Relative paths are
-// ours by definition.
-const ALLOWED_IMAGE_HOSTS = new Set(['www.pennjets.com', 'pennjets.com']);
+// Images are served from this site, or from the CRM's own image store. A note's
+// featuredImage is set in the CRM and can point anywhere; hotlinking a third
+// party's image ships something we hold no licence for, so the site refuses to
+// render it. Relative paths are ours by definition.
+//
+// The third host is the CRM's Vercel Blob store, where an image uploaded from
+// the CMS editor lives (WO-1.22). It is ours, not a third party's: the upload
+// route is the CRM's, and the licence is recorded on upload in the note's four
+// attribution fields. It is the one store, named exactly, confirmed by the
+// lead from the store's stored URLs and the Blob token's store id. Not
+// `*.vercel-storage.com` and no suffix match: another store on that domain is
+// someone else's. WO-4.39.
+const ALLOWED_IMAGE_HOSTS = new Set([
+  'www.pennjets.com',
+  'pennjets.com',
+  'algxvqsvihyabn9r.public.blob.vercel-storage.com',
+]);
 
 export function isAllowedImage(src) {
   if (!src) return false;
