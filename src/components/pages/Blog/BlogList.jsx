@@ -26,9 +26,10 @@ const BlogList = () => {
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
   // The full list, kept so the filter bar only offers categories that have
-  // notes, and so counts do not depend on the filtered request.
+  // notes, and so counts do not depend on the filtered request. Paged, so
+  // every note is here, not the route's default 10 (WO-4.40).
   useEffect(() => {
-    blogApi.getPosts().then(setAllPosts).catch(() => {});
+    blogApi.getAllPosts().then(setAllPosts).catch(() => {});
   }, []);
 
   // Filtered list. ?category= is the CRM's exact match on the keywords
@@ -37,7 +38,7 @@ const BlogList = () => {
     let cancelled = false;
     setLoading(true);
     blogApi
-      .getPosts(activeSlug || undefined)
+      .getAllPosts(activeSlug || undefined)
       .then((data) => {
         if (cancelled) return;
         setPosts(data);
@@ -114,7 +115,7 @@ const BlogList = () => {
             <h1 className="heading-lg mb-6">Market Notes</h1>
             <p className="body-lg text-gray-300">
               Stay informed with the latest industry trends, aircraft reviews, and expert
-              insights from our team of aviation professionals.
+              insights from Penn Jets.
             </p>
           </div>
         </div>

@@ -274,7 +274,7 @@ const PennShare = () => {
               Inquire About PennShare
             </h2>
             <p className="text-xl text-primary-100">
-              Take the first step toward intelligent aircraft ownership. Our team will contact you within 24 hours.
+              Take the first step toward intelligent aircraft ownership. Penn Jets will contact you within 24 hours.
             </p>
           </div>
 

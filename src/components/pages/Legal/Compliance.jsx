@@ -174,7 +174,7 @@ const Compliance = () => {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Regulatory Updates</h2>
               <p className="text-gray-600 mb-4">
                 We continuously monitor regulatory changes and update our compliance practices
-                accordingly. Our team stays informed about evolving requirements in aviation,
+                accordingly. Penn Jets stays informed about evolving requirements in aviation,
                 data protection, and business regulations to ensure ongoing compliance.
               </p>
             </section>

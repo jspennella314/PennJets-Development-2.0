@@ -45,6 +45,33 @@ try {
   console.warn('[prerender] no readable article cache; notes will fetch their own bodies.');
 }
 
+// The note list, also written by postbuild.mjs moments earlier from the CRM's
+// list route. The home page's newest-note card (WO-4.37), the index and each
+// note's related notes read the list; answering it here means the prerendered
+// HTML is the list this build fetched, not a second live read that could
+// differ. The answer mirrors the CRM route (app/api/public/blog/route.ts):
+// publishedAt descending, `limit` default 10, `offset` default 0, and the
+// same { posts, pagination } shape. A filtered request (?category=,
+// ?keyword=) is let through, because the CRM's filter is not reproduced here.
+const POSTS_CACHE = path.resolve('scripts/crm-posts.cache.json');
+let POSTS = null;
+try {
+  POSTS = JSON.parse(fs.readFileSync(POSTS_CACHE, 'utf8'));
+} catch {
+  console.warn('[prerender] no readable posts cache; list reads will reach the CRM.');
+}
+const LIST = { hits: 0, misses: [] };
+
+function listFromCache(url) {
+  const limit = parseInt(url.searchParams.get('limit') || '10', 10);
+  const offset = parseInt(url.searchParams.get('offset') || '0', 10);
+  const sorted = [...POSTS].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  return {
+    posts: sorted.slice(offset, offset + limit),
+    pagination: { total: sorted.length, limit, offset, hasMore: offset + limit < sorted.length },
+  };
+}
+
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
   '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png',
@@ -217,6 +244,20 @@ async function renderRoute(browser, route) {
     },
   );
 
+  // The list read, answered from the posts cache (see listFromCache).
+  await page.route(
+    (url) => /\/api\/public\/blog\/?$/.test(url.pathname),
+    (r) => {
+      const url = new URL(r.request().url());
+      if (!POSTS || url.searchParams.has('category') || url.searchParams.has('keyword')) {
+        LIST.misses.push(url.search || '(no cache)');
+        return r.continue();
+      }
+      LIST.hits += 1;
+      return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(listFromCache(url)) });
+    },
+  );
+
   // The view beacon must never fire from a build. It is stopped here rather
   // than left to the CRM's CORS allow-list, which lives in another repository
   // and would admit build-time hits the moment a prerender ran from an allowed
@@ -338,6 +379,12 @@ if (beacons.length) {
 if (articleHits.length) {
   console.log(`[prerender] ${articleHits.length} article fetch(es) answered from cache; ` +
     'none reached the CRM, so none wrote a ContentAnalytics row.');
+}
+if (LIST.hits) {
+  console.log(`[prerender] ${LIST.hits} note-list read(s) answered from scripts/crm-posts.cache.json; none reached the CRM.`);
+}
+if (LIST.misses.length) {
+  console.warn(`[prerender] ${LIST.misses.length} note-list read(s) allowed through to the CRM: ${LIST.misses.join(', ')}`);
 }
 if (articleMisses.length) {
   console.warn(`[prerender] ${articleMisses.length} article fetch(es) NOT cached and allowed ` +
