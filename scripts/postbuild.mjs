@@ -122,6 +122,41 @@ try {
   console.warn('='.repeat(72));
 }
 
+// ---- inventory: the CRM's LISTED aircraft, for the home page ---------------
+//
+// GET /api/public/inventory (docs/integration/PENNJETS-SITE.md §5, WO-0.10):
+// { listings: [...] }, LISTED rows only, no parameters, no pagination, and
+// it writes nothing. Cached here so scripts/prerender.mjs can answer the home
+// page's read from this build's list, the way notes are mirrored (WO-4.37).
+//
+// A successful read replaces the cache whole, so a listing the route stopped
+// sending leaves the cache at the next build (the Pages build runs daily).
+// A failed read keeps the cache and says so: until T3's WO-3.39 is live the
+// route answers 404, and the committed cache is []. WO-4.42.
+const INVENTORY_CACHE = path.resolve('scripts/crm-inventory.cache.json');
+let inventory = [];
+let inventoryFrom = 'the CRM';
+try {
+  const res = await fetch(`${CRM}/api/public/inventory`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  inventory = Array.isArray(data.listings) ? data.listings : [];
+  fs.writeFileSync(INVENTORY_CACHE, JSON.stringify(inventory, null, 2) + '\n');
+} catch (err) {
+  if (fs.existsSync(INVENTORY_CACHE)) {
+    try {
+      inventory = JSON.parse(fs.readFileSync(INVENTORY_CACHE, 'utf8'));
+      if (!Array.isArray(inventory)) inventory = [];
+    } catch {
+      inventory = [];
+    }
+    inventoryFrom = `the committed cache (inventory route: ${err.message})`;
+  } else {
+    inventoryFrom = `nowhere (inventory route: ${err.message}; no cache)`;
+  }
+}
+console.log(`[postbuild] inventory: ${inventory.length} listing(s) from ${inventoryFrom}`);
+
 // ---- article bodies, so the prerenderer never calls the CRM ---------------
 //
 // GET /api/public/blog/{slug} writes a ContentAnalytics row on every request.

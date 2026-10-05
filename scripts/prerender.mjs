@@ -62,6 +62,22 @@ try {
 }
 const LIST = { hits: 0, misses: [] };
 
+// The inventory, also written by postbuild.mjs moments earlier from the
+// CRM's GET /api/public/inventory (or kept from the last build when the
+// route failed). The home page's Inventory section reads it; answering it
+// here means the prerendered home page carries this build's listings, and
+// the build never needs the live route. The shape is the route's:
+// { listings: [...] }. WO-4.42.
+const INVENTORY_CACHE = path.resolve('scripts/crm-inventory.cache.json');
+let INVENTORY = null;
+try {
+  INVENTORY = JSON.parse(fs.readFileSync(INVENTORY_CACHE, 'utf8'));
+  if (!Array.isArray(INVENTORY)) INVENTORY = null;
+} catch {
+  console.warn('[prerender] no readable inventory cache; inventory reads will reach the CRM.');
+}
+const INV = { hits: 0, misses: 0 };
+
 function listFromCache(url) {
   const limit = parseInt(url.searchParams.get('limit') || '10', 10);
   const offset = parseInt(url.searchParams.get('offset') || '0', 10);
@@ -258,6 +274,19 @@ async function renderRoute(browser, route) {
     },
   );
 
+  // The inventory read, answered from the inventory cache (see INVENTORY).
+  await page.route(
+    (url) => /\/api\/public\/inventory\/?$/.test(url.pathname),
+    (r) => {
+      if (!INVENTORY) {
+        INV.misses += 1;
+        return r.continue();
+      }
+      INV.hits += 1;
+      return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ listings: INVENTORY }) });
+    },
+  );
+
   // The view beacon must never fire from a build. It is stopped here rather
   // than left to the CRM's CORS allow-list, which lives in another repository
   // and would admit build-time hits the moment a prerender ran from an allowed
@@ -385,6 +414,13 @@ if (LIST.hits) {
 }
 if (LIST.misses.length) {
   console.warn(`[prerender] ${LIST.misses.length} note-list read(s) allowed through to the CRM: ${LIST.misses.join(', ')}`);
+}
+if (INV.hits) {
+  console.log(`[prerender] ${INV.hits} inventory read(s) answered from scripts/crm-inventory.cache.json ` +
+    `(${INVENTORY.length} listing(s)); none reached the CRM.`);
+}
+if (INV.misses) {
+  console.warn(`[prerender] ${INV.misses} inventory read(s) allowed through to the CRM (no cache).`);
 }
 if (articleMisses.length) {
   console.warn(`[prerender] ${articleMisses.length} article fetch(es) NOT cached and allowed ` +
