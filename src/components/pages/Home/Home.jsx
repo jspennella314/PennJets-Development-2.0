@@ -2,17 +2,10 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import LatestNote from './LatestNote';
+import Inventory from './Inventory';
 
-// ---------------------------------------------------------------------------
-// Inventory: real aircraft only. Every entry must carry year, model, serial,
-// hours, and config. None exist today, so the list is empty and the section
-// renders nothing. Never label anything here "featured" without a serial.
-// ---------------------------------------------------------------------------
-const INVENTORY = [
-  // { id: 'n400hh', year: 2004, make: 'Hawker', model: '800XP', serial: '258xxx',
-  //   hours: 6200, config: '8 passengers, forward galley, aft lav',
-  //   image: '/images/aircraft/...', url: '/aircraft/...' },
-];
+// Inventory (real aircraft only) lives in ./Inventory.jsx and reads the
+// CRM's LISTED aircraft; it renders nothing while there are none. WO-4.42.
 
 // ---------------------------------------------------------------------------
 // Off-market access: representative aircraft types we source. Typical seats
@@ -33,39 +26,6 @@ const Home = () => {
   // Helper components
   const Container = ({ children }) => (
     <div className="mx-auto w-full max-w-6xl px-6">{children}</div>
-  );
-
-  const InventoryCard = ({ a }) => (
-    <article className="overflow-hidden rounded-2xl border shadow-sm">
-      <button
-        onClick={() => navigate(a.url)}
-        className="block w-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-      >
-        <img
-          src={a.image}
-          alt={`${a.year} ${a.make} ${a.model}`}
-          loading="lazy"
-          width={900}
-          height={600}
-          className="aspect-[3/2] w-full object-cover"
-        />
-      </button>
-      <div className="p-4">
-        <h3 className="text-lg font-semibold">{a.year} {a.make} {a.model}</h3>
-        <ul className="mt-2 space-y-1 text-sm text-gray-600">
-          <li>Serial {a.serial}</li>
-          <li>{a.hours.toLocaleString()} hours total time</li>
-          <li>{a.config}</li>
-        </ul>
-        <button
-          onClick={() => navigate(a.url)}
-          className="mt-3 inline-block text-sm font-medium underline"
-          aria-label={`View details for ${a.year} ${a.make} ${a.model}`}
-        >
-          View Details
-        </button>
-      </div>
-    </article>
   );
 
   const OffMarketCard = ({ t }) => (
@@ -218,19 +178,8 @@ const Home = () => {
       {/* The newest Market Note, one compact card; renders nothing without one. WO-4.37. */}
       <LatestNote />
 
-      {/* Inventory (real aircraft only; renders nothing while empty) */}
-      {INVENTORY.length > 0 && (
-        <section aria-labelledby="inventory" className="py-16">
-          <Container>
-            <h2 id="inventory" className="text-2xl font-semibold">Inventory</h2>
-            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {INVENTORY.map((a) => (
-                <InventoryCard key={a.id} a={a} />
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
+      {/* Inventory (real aircraft only, from the CRM; renders nothing while empty). WO-4.42. */}
+      <Inventory />
 
       {/* Off-Market Access */}
       <section aria-labelledby="off-market" className="py-16">

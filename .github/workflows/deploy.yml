@@ -54,8 +54,17 @@ jobs:
 
     # The build's prerender stage renders every route in this browser and
     # writes the result into dist. Without it the build fails. WO-4.23.
+    # The NoteBody test below drives the same browser, so this comes first.
     - name: Install Chromium for the prerender stage
       run: npx playwright install --with-deps chromium
+
+    # The site's tests (vitest, vitest.config.js) run before anything is
+    # built: a failing test stops the deploy here. WO-4.41 placed this step
+    # after the Chromium install rather than before it because the NoteBody
+    # sanitiser test renders in that Chromium (DOMPurify is inert under
+    # happy-dom; see NoteBody.test.js).
+    - name: Test
+      run: npm test
 
     - name: Build
       run: npm run build
