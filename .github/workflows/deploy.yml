@@ -1,12 +1,34 @@
 name: Deploy to GitHub Pages
 
+# The Actions list says why a run happened. A dispatch from the CRM reads
+# "market-notes: published <slug>"; everything else keeps the workflow's name.
+# WO-4.45.
+run-name: "${{ github.event_name == 'repository_dispatch' && format('market-notes: {0} {1}', github.event.client_payload.reason, github.event.client_payload.slug) || 'Deploy to GitHub Pages' }}"
+
 on:
   push:
     branches: [ main ]
-  # Rebuild daily so new Market Notes get their static preview pages within a day.
+  # Rebuild daily so new Market Notes get their static preview pages within a
+  # day. This stays as the safety net under the dispatch below. WO-4.45.
   schedule:
     - cron: '0 6 * * *'
   workflow_dispatch:
+  # The CRM posts a repository_dispatch when a Market Note is published or
+  # edited (T1's WO-1.31), with client_payload { reason, slug, at }. The job
+  # does not read the payload: it rebuilds from the CRM as on any other run,
+  # and the new note is in the build because the build ran. WO-4.45.
+  repository_dispatch:
+    types: [market-notes]
+
+# One build at a time, the latest wins: five edits in two minutes end as one
+# finished deploy, and the 06:00 run never overlaps a dispatched one. A
+# cancelled run cannot leave Pages half-deployed: the deploy step is one git
+# push of a complete gh-pages commit (peaceiris/actions-gh-pages), so a run
+# cancelled before it leaves the previous deploy in place and one cancelled
+# during it either lands whole or not at all. WO-4.45.
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
 
 permissions:
   contents: write
