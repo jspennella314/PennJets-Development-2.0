@@ -142,7 +142,14 @@ export function articleMeta(post) {
   return {
     title: /penn\s?jets/i.test(title) ? title : `${title} | PennJets Market Notes`,
     description,
-    image: absoluteImage(safeImage(post.featuredImage)),
+    // The link-preview image prefers the CRM's 1200x630 social crop
+    // (`featuredImageSocial`, WO-1.30: the social.webp stored beside every
+    // editor upload; null for Gallery URLs and older uploads), then the
+    // article image. Both go through the same host gate, so an off-host
+    // social URL falls back to the article image, and both off-host falls
+    // back to the default card. The article's own <img> keeps featuredImage;
+    // the crop is for previews only. WO-4.44.
+    image: absoluteImage(safeImage(post.featuredImageSocial) ?? safeImage(post.featuredImage)),
     url: `${SITE_URL}/blog/${post.slug}`,
     publishedAt: post.publishedAt,
     authorName: (post.author && post.author.name) || 'PennJets',

@@ -33,6 +33,31 @@ describe("accept: the site's own hosts, as before", () => {
   it('a relative path', () => expect(isAllowedImage('/images/Gallery/pc12.jpg')).toBe(true));
 });
 
+describe('og:image prefers the social crop (featuredImageSocial, WO-4.44)', () => {
+  const ARTICLE = 'https://algxvqsvihyabn9r.public.blob.vercel-storage.com/blog/corg/0123456789abcdef/main.webp';
+  const SOCIAL = 'https://algxvqsvihyabn9r.public.blob.vercel-storage.com/blog/corg/0123456789abcdef/social.webp';
+  const GALLERY = 'https://www.pennjets.com/images/Gallery/pc12.jpg';
+  const OFF_HOST = 'https://evil.public.blob.vercel-storage.com/blog/x/social.webp';
+  const withSocial = (featuredImage, featuredImageSocial) => ({ ...post(featuredImage), featuredImageSocial });
+
+  it('a social URL on the store -> og:image is the social crop', () =>
+    expect(articleMeta(withSocial(ARTICLE, SOCIAL)).image).toBe(SOCIAL));
+  it('social null (every current note) -> og:image is featuredImage', () =>
+    expect(articleMeta(withSocial(GALLERY, null)).image).toBe(GALLERY));
+  it('social absent from the post (an older cache row) -> featuredImage', () =>
+    expect(articleMeta(post(GALLERY)).image).toBe(GALLERY));
+  it('an off-host social URL -> featuredImage (the host rule)', () =>
+    expect(articleMeta(withSocial(ARTICLE, OFF_HOST)).image).toBe(ARTICLE));
+  it('both off-host -> the default card', () =>
+    expect(articleMeta(withSocial('https://wallpaperaccess.com/full/4568461.jpg', OFF_HOST)).image).toBe(SITE_URL + DEFAULT_IMAGE));
+  it('social on the store, featuredImage off-host -> still the social crop', () =>
+    expect(articleMeta(withSocial('https://wallpaperaccess.com/full/4568461.jpg', SOCIAL)).image).toBe(SOCIAL));
+  it('a relative social path is made absolute like any site image', () =>
+    expect(articleMeta(withSocial(GALLERY, '/images/og/x.png')).image).toBe(SITE_URL + '/images/og/x.png'));
+  it('no image at all -> the default card', () =>
+    expect(articleMeta(withSocial(null, null)).image).toBe(SITE_URL + DEFAULT_IMAGE));
+});
+
 describe('refuse: the same path on a host that is not the store', () => {
   const evilSameDomain = 'https://evil.public.blob.vercel-storage.com/blog/test/x.jpg';
   const evilSuffix = 'https://algxvqsvihyabn9r.public.blob.vercel-storage.com.evil.com/blog/test/x.jpg';
