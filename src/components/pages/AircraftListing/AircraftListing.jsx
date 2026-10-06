@@ -1,83 +1,74 @@
-import React, { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Card from '../../common/Card/Card';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../../common/Button/Button';
-import { aircraftDatabase, manufacturers, categories, priceRanges } from '../../../data/aircraftData';
+import { inventoryApi } from '../../../services/inventoryApi';
+import { InventoryCard } from '../Home/Inventory';
+
+// /aircraft: the CRM's LISTED aircraft, the same list the home page's
+// Inventory section reads (inventoryApi.getListings, contract §5), rendered
+// with the same card. The three static entries that used to live in
+// src/data/aircraftData.js are gone: listings come only through the CRM
+// now (Joseph, 2026-10-05). WO-4.43.
+//
+// Filters are only the ones the contract can answer: make, a year range,
+// and a price ceiling when at least one listing carries a price. Category,
+// status, location and specifications went with the static data.
+//
+// The empty state is the page's heading, one approved sentence and the
+// inquiry link: no count, no placeholder card, no "coming soon".
+
+// The Off-Market paragraph's first sentence from the home page, which Joseph
+// approved; it stands in until he answers the lead on the wording for this
+// page (WO-4.43 item 2).
+export const EMPTY_SENTENCE =
+  "The best aircraft rarely reach the open market. Tell us your mission and we'll tell you what's available.";
+
+const usd = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
+
+// Price ceilings offered when any listing has a price; only the ones that
+// would change the result are shown.
+const PRICE_CEILINGS = [1000000, 2500000, 5000000, 10000000, 25000000];
+
+const ALL = 'All';
 
 const AircraftListing = () => {
-  const navigate = useNavigate();
-  const [filters, setFilters] = useState({
-    manufacturer: 'All',
-    category: 'All',
-    priceRange: 'All',
-    status: 'All',
-    search: ''
-  });
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+  // null until the fetch answers; [] is a confirmed empty inventory.
+  const [listings, setListings] = useState(null);
+  const [filters, setFilters] = useState({ make: ALL, yearFrom: ALL, yearTo: ALL, maxPrice: ALL });
 
-  // Filter aircraft based on current filters
-  const filteredAircraft = useMemo(() => {
-    return aircraftDatabase.filter(aircraft => {
-      // Search filter
-      if (filters.search) {
-        const searchTerm = filters.search.toLowerCase();
-        const searchableText = `${aircraft.manufacturer} ${aircraft.name} ${aircraft.model} ${aircraft.year}`.toLowerCase();
-        if (!searchableText.includes(searchTerm)) return false;
-      }
+  useEffect(() => {
+    let cancelled = false;
+    inventoryApi
+      .getListings()
+      .then((list) => { if (!cancelled) setListings(list); })
+      .catch(() => { if (!cancelled) setListings([]); });
+    return () => { cancelled = true; };
+  }, []);
 
-      // Manufacturer filter
-      if (filters.manufacturer !== 'All' && aircraft.manufacturer !== filters.manufacturer) {
-        return false;
-      }
+  const all = useMemo(() => listings || [], [listings]);
+  const makes = useMemo(() => [...new Set(all.map((a) => a.make))].sort(), [all]);
+  const years = useMemo(() => [...new Set(all.map((a) => a.year))].sort((a, b) => a - b), [all]);
+  const anyPrice = all.some((a) => typeof a.askingPrice === 'number');
+  const ceilings = useMemo(() => {
+    if (!anyPrice) return [];
+    const prices = all.map((a) => a.askingPrice).filter((p) => typeof p === 'number');
+    const top = Math.max(...prices);
+    return PRICE_CEILINGS.filter((c) => c >= Math.min(...prices)).filter((c, i, arr) => c < top || arr[i - 1] === undefined || arr[i - 1] < top);
+  }, [all, anyPrice]);
 
-      // Category filter
-      if (filters.category !== 'All' && aircraft.category !== filters.category) {
-        return false;
-      }
+  const filtered = useMemo(() => all.filter((a) => {
+    if (filters.make !== ALL && a.make !== filters.make) return false;
+    if (filters.yearFrom !== ALL && a.year < Number(filters.yearFrom)) return false;
+    if (filters.yearTo !== ALL && a.year > Number(filters.yearTo)) return false;
+    if (filters.maxPrice !== ALL && !(typeof a.askingPrice === 'number' && a.askingPrice <= Number(filters.maxPrice))) return false;
+    return true;
+  }), [all, filters]);
 
-      // Price range filter
-      if (filters.priceRange !== 'All') {
-        const selectedRange = priceRanges.find(range => range.label === filters.priceRange);
-        if (selectedRange && aircraft.price != null && (aircraft.price < selectedRange.min || aircraft.price > selectedRange.max)) {
-          return false;
-        }
-      }
+  const setFilter = (key, value) => setFilters((prev) => ({ ...prev, [key]: value }));
+  const clearFilters = () => setFilters({ make: ALL, yearFrom: ALL, yearTo: ALL, maxPrice: ALL });
+  const filtering = Object.values(filters).some((v) => v !== ALL);
 
-      // Status filter
-      if (filters.status !== 'All' && aircraft.status !== filters.status) {
-        return false;
-      }
-
-      return true;
-    });
-  }, [filters]);
-
-  const handleFilterChange = (key, value) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
-  };
-
-  const clearFilters = () => {
-    setFilters({
-      manufacturer: 'All',
-      category: 'All',
-      priceRange: 'All',
-      status: 'All',
-      search: ''
-    });
-  };
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Available':
-        return 'bg-green-100 text-green-800';
-      case 'Under Contract':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'Sold':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
+  const selectClass = 'px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500';
 
   return (
     <>
@@ -87,218 +78,109 @@ const AircraftListing = () => {
           <div className="text-center">
             <h1 className="heading-lg mb-6">Aircraft for Sale</h1>
             <p className="body-lg max-w-2xl mx-auto text-gray-300">
-              Discover our curated collection of premium aircraft. Each listing represents 
+              Discover our curated collection of premium aircraft. Each listing represents
               exceptional quality, performance, and value in the luxury aviation market.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Filters and Search */}
-      <section className="bg-white py-8 border-b">
-        <div className="max-w-7xl mx-auto container-padding">
-          <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between mb-6">
-            {/* Search */}
-            <div className="w-full lg:w-96">
-              <input
-                type="text"
-                placeholder="Search aircraft..."
-                value={filters.search}
-                onChange={(e) => handleFilterChange('search', e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-              />
-            </div>
+      {/* Before the fetch answers: nothing below the heading. */}
+      {listings === null && <section className="section-padding bg-white" aria-busy="true" />}
 
-            {/* View Mode Toggle */}
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded ${viewMode === 'grid' ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'}`}
+      {/* The empty inventory: one approved sentence and the inquiry link. */}
+      {listings !== null && all.length === 0 && (
+        <section className="section-padding bg-white">
+          <div className="max-w-7xl mx-auto container-padding text-center">
+            <p className="body-lg max-w-2xl mx-auto text-gray-700">{EMPTY_SENTENCE}</p>
+            <Link
+              to="/contact"
+              className="mt-8 inline-flex items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+            >
+              Contact a Consultant
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {listings !== null && all.length > 0 && (
+        <>
+          {/* Filters: only what the route sends. */}
+          <section className="bg-white py-8 border-b">
+            <div className="max-w-7xl mx-auto container-padding">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-6">
+                <select aria-label="Make" value={filters.make} onChange={(e) => setFilter('make', e.target.value)} className={selectClass}>
+                  <option value={ALL}>All makes</option>
+                  {makes.map((m) => <option key={m} value={m}>{m}</option>)}
+                </select>
+                <select aria-label="Year from" value={filters.yearFrom} onChange={(e) => setFilter('yearFrom', e.target.value)} className={selectClass}>
+                  <option value={ALL}>Year from</option>
+                  {years.map((y) => <option key={y} value={y}>{y}</option>)}
+                </select>
+                <select aria-label="Year to" value={filters.yearTo} onChange={(e) => setFilter('yearTo', e.target.value)} className={selectClass}>
+                  <option value={ALL}>Year to</option>
+                  {years.map((y) => <option key={y} value={y}>{y}</option>)}
+                </select>
+                {anyPrice && (
+                  <select aria-label="Maximum price" value={filters.maxPrice} onChange={(e) => setFilter('maxPrice', e.target.value)} className={selectClass}>
+                    <option value={ALL}>Any price</option>
+                    {ceilings.map((c) => <option key={c} value={c}>Up to {usd(c)}</option>)}
+                  </select>
+                )}
+                <Button variant="ghost" onClick={clearFilters} className="text-sm">
+                  Clear Filters
+                </Button>
+              </div>
+
+              {/* Results Count */}
+              <div className="text-gray-600">
+                Showing {filtered.length} of {all.length} aircraft
+              </div>
+            </div>
+          </section>
+
+          {/* Aircraft Grid */}
+          <section className="section-padding bg-gray-50">
+            <div className="max-w-7xl mx-auto container-padding">
+              {filtered.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="text-gray-400 text-6xl mb-4">✈️</div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">No aircraft found</h3>
+                  <p className="text-gray-600 mb-6">Try adjusting your filters to see more results.</p>
+                  {filtering && (
+                    <Button variant="primary" onClick={clearFilters}>
+                      Clear All Filters
+                    </Button>
+                  )}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {filtered.map((a) => (
+                    <InventoryCard key={a.id} a={a} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="section-padding bg-primary-600 text-white">
+            <div className="max-w-7xl mx-auto container-padding text-center">
+              <h2 className="heading-md mb-6">Can't Find What You're Looking For?</h2>
+              <p className="body-lg mb-8 max-w-2xl mx-auto">
+                Our aviation consultants have access to an extensive network of off-market aircraft.
+                Let us help you find the perfect aircraft for your needs.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-base font-medium text-primary-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
               >
-                <span className="sr-only">Grid view</span>
-                ⊞
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`p-2 rounded ${viewMode === 'list' ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'}`}
-              >
-                <span className="sr-only">List view</span>
-                ☰
-              </button>
+                Contact a Consultant
+              </Link>
             </div>
-          </div>
-
-          {/* Filter Dropdowns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-6">
-            <select
-              value={filters.manufacturer}
-              onChange={(e) => handleFilterChange('manufacturer', e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-            >
-              {manufacturers.map(manufacturer => (
-                <option key={manufacturer} value={manufacturer}>{manufacturer}</option>
-              ))}
-            </select>
-
-            <select
-              value={filters.category}
-              onChange={(e) => handleFilterChange('category', e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-            >
-              {categories.map(category => (
-                <option key={category} value={category}>{category}</option>
-              ))}
-            </select>
-
-            <select
-              value={filters.priceRange}
-              onChange={(e) => handleFilterChange('priceRange', e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-            >
-              {priceRanges.map(range => (
-                <option key={range.label} value={range.label}>{range.label}</option>
-              ))}
-            </select>
-
-            <select
-              value={filters.status}
-              onChange={(e) => handleFilterChange('status', e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-            >
-              <option value="All">All Status</option>
-              <option value="Available">Available</option>
-              <option value="Under Contract">Under Contract</option>
-              <option value="Sold">Sold</option>
-            </select>
-
-            <Button variant="ghost" onClick={clearFilters} className="text-sm">
-              Clear Filters
-            </Button>
-          </div>
-
-          {/* Results Count */}
-          <div className="text-gray-600">
-            Showing {filteredAircraft.length} of {aircraftDatabase.length} aircraft
-          </div>
-        </div>
-      </section>
-
-      {/* Aircraft Grid/List */}
-      <section className="section-padding bg-gray-50">
-        <div className="max-w-7xl mx-auto container-padding">
-          {filteredAircraft.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="text-gray-400 text-6xl mb-4">✈️</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No aircraft found</h3>
-              <p className="text-gray-600 mb-6">Try adjusting your filters to see more results.</p>
-              <Button variant="primary" onClick={clearFilters}>
-                Clear All Filters
-              </Button>
-            </div>
-          ) : (
-            <div className={viewMode === 'grid' 
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
-              : 'space-y-6'
-            }>
-              {filteredAircraft.map((aircraft) => (
-                <Card 
-                  key={aircraft.id} 
-                  className={`overflow-hidden ${viewMode === 'list' ? 'flex flex-col md:flex-row' : ''}`}
-                >
-                  <div className={`${viewMode === 'list' ? 'md:w-1/3' : 'w-full'} aspect-video bg-gray-200 rounded-lg ${viewMode === 'list' ? 'md:rounded-r-none mb-4 md:mb-0' : 'mb-4'} overflow-hidden`}>
-                    {aircraft.images && aircraft.images.length > 0 ? (
-                      <img
-                        src={aircraft.images[0]}
-                        alt={`${aircraft.year} ${aircraft.manufacturer} ${aircraft.name}`}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.nextSibling.style.display = 'flex';
-                        }}
-                      />
-                    ) : null}
-                    <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-gray-500" style={{display: aircraft.images && aircraft.images.length > 0 ? 'none' : 'flex'}}>
-                      {aircraft.manufacturer} {aircraft.name}
-                    </div>
-                  </div>
-                  
-                  <div className={`${viewMode === 'list' ? 'md:w-2/3 md:pl-6' : ''} space-y-4`}>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900">
-                          {aircraft.year} {aircraft.manufacturer} {aircraft.name}
-                        </h3>
-                        <p className="text-sm text-gray-500 mb-2">{aircraft.category}</p>
-                        <p className="text-2xl font-bold text-primary-600">
-                          {aircraft.priceFormatted}
-                        </p>
-                      </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(aircraft.status)}`}>
-                        {aircraft.status}
-                      </span>
-                    </div>
-                    
-                    <div className="grid grid-cols-3 gap-4 text-sm">
-                      <div>
-                        <div className="font-medium text-gray-900">Range</div>
-                        <div className="text-gray-600">{aircraft.specifications.range}</div>
-                      </div>
-                      <div>
-                        <div className="font-medium text-gray-900">Passengers</div>
-                        <div className="text-gray-600">{aircraft.specifications.passengers}</div>
-                      </div>
-                      <div>
-                        <div className="font-medium text-gray-900">Speed</div>
-                        <div className="text-gray-600">{aircraft.specifications.maxSpeed || aircraft.specifications.normalCruiseSpeed || aircraft.specifications.cruiseSpeed}</div>
-                      </div>
-                    </div>
-
-                    <div className="text-sm text-gray-600">
-                      📍 {aircraft.location}
-                    </div>
-                    
-                    <div className="flex space-x-3">
-                      <Button 
-                        variant="primary" 
-                        size="md"
-                        className="flex-1"
-                        onClick={() => navigate(`/aircraft/${aircraft.id}`)}
-                      >
-                        View Details
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="md"
-                        onClick={() => navigate('/contact')}
-                      >
-                        Inquire
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-padding bg-primary-600 text-white">
-        <div className="max-w-7xl mx-auto container-padding text-center">
-          <h2 className="heading-md mb-6">Can't Find What You're Looking For?</h2>
-          <p className="body-lg mb-8 max-w-2xl mx-auto">
-            Our aviation consultants have access to an extensive network of off-market aircraft.
-            Let us help you find the perfect aircraft for your needs.
-          </p>
-          <Button
-            variant="secondary"
-            size="lg"
-            onClick={() => navigate('/contact')}
-          >
-            Contact a Consultant
-          </Button>
-        </div>
-      </section>
+          </section>
+        </>
+      )}
     </>
   );
 };
