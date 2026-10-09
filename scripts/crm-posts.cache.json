@@ -1,5 +1,27 @@
 [
   {
+    "id": "cmuve6cyc0001jp04wpfso9kb",
+    "title": "The Largest Managed Fleet in the World Just Closed. What It Means for Owners.",
+    "slug": "the-largest-managed-fleet-in-the-world-just-closed-what-it-means-for-owners",
+    "excerpt": "Solairus closed its acquisition of Clay Lacy's management and charter divisions on October 1, creating a 500-aircraft managed fleet. What consolidation at this scale means for the owners involved, and for everyone else.",
+    "featuredImage": "https://algxvqsvihyabn9r.public.blob.vercel-storage.com/blog/cmh8ap9bu0000vs6csd5mwq0r/IMG_2736-2aqDTfdhZt5wUBW2V0sSQDJKbDrYD3.jpg",
+    "imageCredit": null,
+    "imageSourceUrl": null,
+    "imageLicense": "OWN_PHOTO",
+    "imageModified": false,
+    "metaTitle": "Solairus–Clay Lacy: What the 500-Aircraft Fleet Means for Owners",
+    "metaDescription": "Solairus closed its Clay Lacy acquisition on October 1, creating the world's largest managed fleet. What owners should ask during the transition.",
+    "keywords": [],
+    "publishedAt": "2026-10-06T01:48:01.476Z",
+    "updatedAt": "2026-10-06T15:55:45.482Z",
+    "author": {
+      "id": "cmh8apgpu0001vscwzrafl22b",
+      "name": "Joseph Pennella"
+    },
+    "imageAttribution": null,
+    "featuredImageSocial": null
+  },
+  {
     "id": "cmulbi3wz0005k104g08z4wu7",
     "title": "Q3 2026: The Quarter Where the Paperwork Started to Matter",
     "slug": "q3-2026-the-quarter-where-the-paperwork-started-to-matter",
@@ -26,7 +48,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "modified": true,
       "line": "Photo: Duncan Kirk / Wikimedia Commons, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Modified from original."
-    }
+    },
+    "featuredImageSocial": null
   },
   {
     "id": "cmuby17le0001l604llre7s84",
@@ -55,7 +78,8 @@
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "modified": true,
       "line": "Photo: Duncan Kirk / Wikimedia Commons, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Modified from original."
-    }
+    },
+    "featuredImageSocial": null
   },
   {
     "id": "cmu7fxc1x0001vsrkdavhw9kd",
@@ -76,7 +100,8 @@
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
     },
-    "imageAttribution": null
+    "imageAttribution": null,
+    "featuredImageSocial": null
   },
   {
     "id": "cmu5q7u800001l804e8hz9h6w",
@@ -99,7 +124,8 @@
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
     },
-    "imageAttribution": null
+    "imageAttribution": null,
+    "featuredImageSocial": null
   },
   {
     "id": "cmievpl4k000evs1cf499gs54",
@@ -122,7 +148,8 @@
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
     },
-    "imageAttribution": null
+    "imageAttribution": null,
+    "featuredImageSocial": null
   },
   {
     "id": "cmtxfltop0001lb04lz9valco",
@@ -145,7 +172,8 @@
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
     },
-    "imageAttribution": null
+    "imageAttribution": null,
+    "featuredImageSocial": null
   },
   {
     "id": "cmtvpe3y3000tl2049v01ydyn",
@@ -168,7 +196,8 @@
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
     },
-    "imageAttribution": null
+    "imageAttribution": null,
+    "featuredImageSocial": null
   },
   {
     "id": "cmi7o7cbo0001vst8btfn8jyc",
@@ -191,7 +220,8 @@
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
     },
-    "imageAttribution": null
+    "imageAttribution": null,
+    "featuredImageSocial": null
   },
   {
     "id": "cmhoa395j0003ld045kamrmkw",
@@ -228,7 +258,8 @@
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
     },
-    "imageAttribution": null
+    "imageAttribution": null,
+    "featuredImageSocial": null
   },
   {
     "id": "cmho9h2h40001ld04g45taud9",
@@ -261,7 +292,8 @@
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
     },
-    "imageAttribution": null
+    "imageAttribution": null,
+    "featuredImageSocial": null
   },
   {
     "id": "cmhmyn9gu0005vs8wl5dukwzb",
@@ -304,6 +336,7 @@
       "id": "cmh8apgpu0001vscwzrafl22b",
       "name": "Joseph Pennella"
     },
-    "imageAttribution": null
+    "imageAttribution": null,
+    "featuredImageSocial": null
   }
 ]
