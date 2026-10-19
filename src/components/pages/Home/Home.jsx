@@ -148,7 +148,7 @@ const Home = () => {
           <Container>
             <div className="text-white">
               <h1 className="text-3xl font-semibold md:text-5xl">
-                Access, You Deserve
+                The Access You Deserve
               </h1>
               <p className="mt-3 max-w-2xl text-base md:text-lg">
                 Independent aircraft brokerage and consulting. Buy, sell, or charter with someone who shows you the numbers.
@@ -220,7 +220,7 @@ const Home = () => {
                   joe@pennjets.com
                 </a>
               </p>
-              <p>PennJets LLC — Private aviation. Simplified. Monetized.</p>
+              <p>PennJets LLC — Private aviation. Simplified.</p>
             </div>
             <p className="mt-3 text-xs text-gray-500">
               PennJets is a broker and does not operate aircraft.
