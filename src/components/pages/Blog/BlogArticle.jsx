@@ -34,12 +34,14 @@ const BlogArticle = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
-  // Related notes come from the list endpoint; a failure here must not affect
-  // the article, so the list simply stays empty and the section does not render.
+  // Related notes come from the same list as the index: the build's own list
+  // first, then the CRM's when it is the same or newer (WO-4.48). A failure
+  // here must not affect the article, so the list simply stays empty and
+  // the section does not render.
   useEffect(() => {
     let cancelled = false;
     blogApi
-      .getPosts()
+      .getAllPosts(undefined, undefined, { onBuildList: (posts) => { if (!cancelled) setAllNotes(posts || []); } })
       .then((posts) => { if (!cancelled) setAllNotes(posts || []); })
       .catch(() => {});
     return () => { cancelled = true; };
