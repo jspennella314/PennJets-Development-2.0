@@ -1,0 +1,732 @@
+{
+ "clara-aviation": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 32,
+    "w": 400,
+    "tag": "OL",
+    "id": "",
+    "cls": "fixed top-0 z-[100] flex max-h-screen w-",
+    "text": ""
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 866,
+    "w": 400,
+    "tag": "DIV",
+    "id": "",
+    "cls": "grain-overlay",
+    "text": ""
+   },
+   {
+    "pos": "fixed",
+    "top": 757,
+    "bottom": 842,
+    "w": 80,
+    "tag": "DIV",
+    "id": "",
+    "cls": "fixed bottom-6 right-6 z-[9998]",
+    "text": ""
+   },
+   {
+    "pos": "fixed",
+    "top": 830,
+    "bottom": 854,
+    "w": 145,
+    "tag": "ASIDE",
+    "id": "lovable-badge",
+    "cls": "",
+    "text": "Edit with"
+   }
+  ],
+  "ctas": [
+   {
+    "text": "BOOK A CALL WITH THE OWNER",
+    "href": "https://calendly.com/jake-claraaviation/30min",
+    "top": 591,
+    "h": 52,
+    "w": 297
+   },
+   {
+    "text": "REQUEST QUOTE",
+    "href": null,
+    "top": 3851,
+    "h": 52,
+    "w": 201
+   },
+   {
+    "text": "BOOK A CALL WITH THE OWNER",
+    "href": "https://calendly.com/jake-claraaviation/30min",
+    "top": 5868,
+    "h": 52,
+    "w": 326
+   },
+   {
+    "text": "inquiries@claraaviation.com",
+    "href": "mailto:inquiries@claraaviation.com",
+    "top": 6121,
+    "h": 27,
+    "w": 270
+   }
+  ],
+  "tel": [],
+  "formsInFold": []
+ },
+ "jetcraft": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 8,
+    "bottom": 836,
+    "w": 374,
+    "tag": "DIV",
+    "id": "CybotCookiebotDialog",
+    "cls": "CybotEdge CybotMultilevel CybotCookiebot",
+    "text": "This website uses cookies We use cookies to personalise content and ad"
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 82,
+    "w": 390,
+    "tag": "HEADER",
+    "id": "",
+    "cls": "header section",
+    "text": "EN"
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 844,
+    "w": 320,
+    "tag": "NAV",
+    "id": "nav",
+    "cls": "nav",
+    "text": "Close menu HOME INVENTORY BUSINESS AIRCRAFT COMMERCIAL AIRCRAFT COMPAN"
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 844,
+    "w": 320,
+    "tag": "NAV",
+    "id": "languages",
+    "cls": "nav nav_right",
+    "text": "Close menu EN DEUTSCH ENGLISH ESPAÑOL FRANÇAIS PORTUGUÊS РУССКИЙ 中文"
+   }
+  ],
+  "ctas": [
+   {
+    "text": "CONTACT",
+    "href": "https://www.jetcraft.com/contact/",
+    "top": 655,
+    "h": 14,
+    "w": 71
+   }
+  ],
+  "tel": [
+   {
+    "top": 3066,
+    "text": ""
+   }
+  ],
+  "formsInFold": []
+ },
+ "amalfi-jets": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 56,
+    "w": 390,
+    "tag": "NAV",
+    "id": "main-menu-nav",
+    "cls": "fixed xm:flex justify-center w-full xm:o",
+    "text": "Open main menu"
+   },
+   {
+    "pos": "fixed",
+    "top": 824,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "",
+    "cls": "pointer-events-none fixed inset-x-0 bott",
+    "text": ""
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "legal-terms-privacy-policy-modal",
+    "cls": "overflow-y-auto overflow-x-hidden fixed ",
+    "text": "Legal Terms & Privacy We use cookies to enable our servers to recogniz"
+   }
+  ],
+  "ctas": [
+   {
+    "text": "Call Us: +1 (877) 626-2534",
+    "href": "tel:+18776262534",
+    "top": 6712,
+    "h": 48,
+    "w": 290
+   },
+   {
+    "text": "Contact Us",
+    "href": "https://amalfijets.com/contact-us",
+    "top": 7405,
+    "h": 15,
+    "w": 135
+   }
+  ],
+  "tel": [
+   {
+    "top": 6712,
+    "text": "Call Us: +1 (877) 626-2534"
+   }
+  ],
+  "formsInFold": [
+   {
+    "top": 490,
+    "inputs": 4
+   }
+  ]
+ },
+ "guardian-jet": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 787,
+    "bottom": 831,
+    "w": 44,
+    "tag": "DIV",
+    "id": "",
+    "cls": "userway_buttons_wrapper",
+    "text": ""
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 114,
+    "w": 390,
+    "tag": "NAV",
+    "id": "",
+    "cls": "navbar navbar-inverse navbar-fixed-top",
+    "text": "Contact| US: +1 203-453-0800| London: +44 020 7203 7591"
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "modal_ultimate",
+    "cls": "modal fade in video_modal",
+    "text": "The Ultimate Airplane Buying Guide Free Download Receive your FREE cop"
+   },
+   {
+    "pos": "fixed",
+    "top": 770,
+    "bottom": 830,
+    "w": 256,
+    "tag": "DIV",
+    "id": "",
+    "cls": "grecaptcha-badge",
+    "text": ""
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "",
+    "cls": "modal-backdrop fade in",
+    "text": ""
+   }
+  ],
+  "ctas": [
+   {
+    "text": "Contact",
+    "href": "/info/contact.cfm",
+    "top": 11,
+    "h": 15,
+    "w": 73
+   },
+   {
+    "text": "facebook - opens in a new tab",
+    "href": "https://www.facebook.com/GuardianJet/",
+    "top": 7307,
+    "h": 23,
+    "w": 22
+   }
+  ],
+  "tel": [
+   {
+    "top": 11,
+    "text": "US: +1 203-453-0800"
+   },
+   {
+    "top": 31,
+    "text": "London: +44 020 7203 7591"
+   },
+   {
+    "top": 7071,
+    "text": "US Headquarters:\n+1 203-453-08"
+   }
+  ],
+  "formsInFold": [
+   {
+    "top": 509,
+    "inputs": 1
+   },
+   {
+    "top": 565,
+    "inputs": 6
+   }
+  ]
+ },
+ "avpro": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 65,
+    "w": 390,
+    "tag": "DIV",
+    "id": "",
+    "cls": "ScrolledNav__NavBar-sc-aff20d52-0 cpXEFF",
+    "text": "INVENTORY COMPANY SERVICES TEAM CONTACT info@avprojets.com +1.410.573."
+   },
+   {
+    "pos": "fixed",
+    "top": 65,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "",
+    "cls": "InventorySidebar__Sidebar-sc-8f88351e-0 ",
+    "text": "SELECT A CABIN CLASS Long Range Long range and accommodation for large"
+   },
+   {
+    "pos": "sticky",
+    "top": 633,
+    "bottom": 698,
+    "w": 390,
+    "tag": "FORM",
+    "id": "",
+    "cls": "InventorySearch__SearchContainer-sc-18e4",
+    "text": ""
+   },
+   {
+    "pos": "sticky",
+    "top": 770,
+    "bottom": 820,
+    "w": 50,
+    "tag": "BUTTON",
+    "id": "",
+    "cls": "InventoryFilter__FilterCta-sc-34e67a3f-2",
+    "text": ""
+   }
+  ],
+  "ctas": [
+   {
+    "text": "CONTACT",
+    "href": "/contact",
+    "top": 244,
+    "h": 41,
+    "w": 275
+   },
+   {
+    "text": "FACEBOOK",
+    "href": "https://www.facebook.com/avprojets/",
+    "top": 701,
+    "h": 37,
+    "w": 275
+   },
+   {
+    "text": "FACEBOOK",
+    "href": "https://www.facebook.com/avprojets/",
+    "top": 11334,
+    "h": 38,
+    "w": 103
+   }
+  ],
+  "tel": [
+   {
+    "top": 554,
+    "text": "+1.410.573.1515"
+   },
+   {
+    "top": 11199,
+    "text": "1.410.573.1515"
+   }
+  ],
+  "formsInFold": [
+   {
+    "top": 633,
+    "inputs": 1
+   }
+  ]
+ },
+ "mesinger": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 58,
+    "w": 390,
+    "tag": "HEADER",
+    "id": "",
+    "cls": "header",
+    "text": "Call Us Today: +1 303.444.6766"
+   }
+  ],
+  "ctas": [
+   {
+    "text": "Call Us Today: +1 303.444.6766",
+    "href": "tel:+13034446766",
+    "top": 0,
+    "h": 56,
+    "w": 56
+   },
+   {
+    "text": "CONTACT",
+    "href": "https://jetsales.com/contact/",
+    "top": 2466,
+    "h": 22,
+    "w": 111
+   }
+  ],
+  "tel": [
+   {
+    "top": 0,
+    "text": "Call Us Today: +1 303.444.6766"
+   },
+   {
+    "top": 2576,
+    "text": "+1 303.444.6766"
+   }
+  ],
+  "formsInFold": []
+ },
+ "global-jet-capital": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 622,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "hs-eu-cookie-confirmation",
+    "cls": "hs-cookie-notification-position-bottom",
+    "text": "We use cookies to make interactions with our website and services easy"
+   },
+   {
+    "pos": "fixed",
+    "top": 734,
+    "bottom": 844,
+    "w": 194,
+    "tag": "IMG",
+    "id": "",
+    "cls": "fixedbutton",
+    "text": ""
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "hs-web-interactives-top-anchor",
+    "cls": "go2933276541 go2369186930",
+    "text": ""
+   }
+  ],
+  "ctas": [
+   {
+    "text": "Contact Us",
+    "href": "https://www.globaljetcapital.com/contact-us?hsLang=en",
+    "top": 6819,
+    "h": 14,
+    "w": 58
+   }
+  ],
+  "tel": [
+   {
+    "top": 11,
+    "text": "844\\436-8200"
+   },
+   {
+    "top": 7219,
+    "text": "844\\436-8200"
+   }
+  ],
+  "formsInFold": []
+ },
+ "magellan-jets": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 594,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "",
+    "cls": "cky-consent-container cky-box-bottom-lef",
+    "text": "We value your privacy This website or its third-party tools process pe"
+   },
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "hs-web-interactives-top-anchor",
+    "cls": "go2933276541 go2369186930",
+    "text": ""
+   },
+   {
+    "pos": "fixed",
+    "top": 748,
+    "bottom": 844,
+    "w": 100,
+    "tag": "DIV",
+    "id": "hubspot-messages-iframe-container",
+    "cls": "widget-align-left",
+    "text": ""
+   }
+  ],
+  "ctas": [
+   {
+    "text": "Book Your Charter",
+    "href": "https://magellanjets.com/solutions/on-demand-charter/",
+    "top": 2762,
+    "h": 51,
+    "w": 209
+   },
+   {
+    "text": "Contact",
+    "href": "https://magellanjets.com/about-magellan/contact/",
+    "top": 14228,
+    "h": 39,
+    "w": 369
+   }
+  ],
+  "tel": [],
+  "formsInFold": []
+ },
+ "paramount-business-jets": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 68,
+    "w": 398,
+    "tag": "HEADER",
+    "id": "",
+    "cls": "header",
+    "text": "CHARTER QUOTE"
+   },
+   {
+    "pos": "fixed",
+    "top": 683,
+    "bottom": 862,
+    "w": 398,
+    "tag": "DIV",
+    "id": "cookie-consent",
+    "cls": "cookie-consent",
+    "text": "We use cookies and similar technologies to analyze site traffic and im"
+   }
+  ],
+  "ctas": [
+   {
+    "text": "CHARTER QUOTE",
+    "href": "/private-jet-quotes",
+    "top": 15,
+    "h": 38,
+    "w": 131
+   },
+   {
+    "text": "Charter Quote",
+    "href": "/private-jet-quotes",
+    "top": 15262,
+    "h": 20,
+    "w": 126
+   },
+   {
+    "text": "Facebook",
+    "href": "https://www.facebook.com/ParamountBusinessJets/",
+    "top": 15486,
+    "h": 30,
+    "w": 30
+   }
+  ],
+  "tel": [
+   {
+    "top": 2571,
+    "text": "+1-877-727-2538"
+   },
+   {
+    "top": 14395,
+    "text": "+1-877-727-2538"
+   },
+   {
+    "top": 15193,
+    "text": "+1-877-727-2538 Ext. 1"
+   }
+  ],
+  "formsInFold": [
+   {
+    "top": 582,
+    "inputs": 6
+   }
+  ]
+ },
+ "mercury-jets": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 72,
+    "w": 390,
+    "tag": "HEADER",
+    "id": "",
+    "cls": "header",
+    "text": "MERCURY JETS"
+   },
+   {
+    "pos": "fixed",
+    "top": 777,
+    "bottom": 844,
+    "w": 390,
+    "tag": "P",
+    "id": "",
+    "cls": "bottom_phone elementor",
+    "text": "Call us: +1 212 840-8000"
+   }
+  ],
+  "ctas": [
+   {
+    "text": "facebook (opens in a new tab)",
+    "href": "https://www.facebook.com/mercuryjets",
+    "top": 23541,
+    "h": 39,
+    "w": 32
+   },
+   {
+    "text": "Contact Us",
+    "href": "/contact-us/",
+    "top": 23958,
+    "h": 48,
+    "w": 88
+   }
+  ],
+  "tel": [
+   {
+    "top": 2198,
+    "text": "+1-212-840-8000"
+   },
+   {
+    "top": 798,
+    "text": "+1 212 840-8000"
+   }
+  ],
+  "formsInFold": [
+   {
+    "top": 271,
+    "inputs": 10
+   }
+  ]
+ },
+ "pennjets": {
+  "outer": [
+   {
+    "pos": "fixed",
+    "top": 0,
+    "bottom": 60,
+    "w": 390,
+    "tag": "DIV",
+    "id": "",
+    "cls": "fixed top-0 left-0 right-0 z-50 bg-gradi",
+    "text": "Days left to close a 2026 acquisition. 73 Days : 03 Hours : 18 Mins"
+   },
+   {
+    "pos": "fixed",
+    "top": 64,
+    "bottom": 128,
+    "w": 390,
+    "tag": "HEADER",
+    "id": "",
+    "cls": "fixed left-0 right-0 z-40 transition-all",
+    "text": ""
+   },
+   {
+    "pos": "fixed",
+    "top": 773,
+    "bottom": 844,
+    "w": 390,
+    "tag": "DIV",
+    "id": "",
+    "cls": "fixed inset-x-0 bottom-0 z-40 border-t b",
+    "text": "Call Request a Quote"
+   }
+  ],
+  "ctas": [
+   {
+    "text": "Request a Charter Quote",
+    "href": null,
+    "top": 327,
+    "h": 44,
+    "w": 205
+   },
+   {
+    "text": "Talk to a Broker",
+    "href": null,
+    "top": 383,
+    "h": 44,
+    "w": 144
+   },
+   {
+    "text": "Call",
+    "href": "tel:+19545460763",
+    "top": 786,
+    "h": 46,
+    "w": 174
+   },
+   {
+    "text": "Request a Quote",
+    "href": "/charter#quote",
+    "top": 786,
+    "h": 46,
+    "w": 172
+   },
+   {
+    "text": "Contact",
+    "href": "/contact",
+    "top": 4630,
+    "h": 24,
+    "w": 358
+   },
+   {
+    "text": "Facebook",
+    "href": "https://www.facebook.com/pennjets",
+    "top": 4766,
+    "h": 24,
+    "w": 358
+   }
+  ],
+  "tel": [
+   {
+    "top": 786,
+    "text": "Call"
+   }
+  ],
+  "formsInFold": []
+ }
+}

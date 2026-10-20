@@ -1,0 +1,1463 @@
+[
+ {
+  "name": "clara-aviation",
+  "url": "https://www.claraaviation.com/",
+  "vp": "390",
+  "ms": 9779,
+  "kb": 2397,
+  "reqs": 14,
+  "title": "Clara Aviation",
+  "h1": "UHNW clients like calling one guy for everything in private aviation. Yep, that's us.",
+  "fixedTop": 866,
+  "docH": 6438,
+  "ctasInFold": [
+   {
+    "text": "BOOK A CALL WITH THE OWNER",
+    "top": 591,
+    "href": "https://calendly.com/jake-claraaviation/30min",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "BOOK A CALL WITH THE OWNER",
+   "top": 591,
+   "href": "https://calendly.com/jake-claraaviation/30min",
+   "inFold": true
+  },
+  "small": 6,
+  "smallText": 47,
+  "allText": 74,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 0,
+  "telLinks": 0,
+  "forms": 1,
+  "inputs": 6,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": true,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": false,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "clara-aviation",
+  "url": "https://www.claraaviation.com/",
+  "vp": "desktop",
+  "ms": 6850,
+  "kb": 2397,
+  "reqs": 14,
+  "title": "Clara Aviation",
+  "h1": "UHNW clients like calling one guy for everything in private aviation. Yep, that's us.",
+  "fixedTop": 900,
+  "docH": 6090,
+  "ctasInFold": [
+   {
+    "text": "BOOK A CALL WITH THE OWNER",
+    "top": 718,
+    "href": "https://calendly.com/jake-claraaviation/30min",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "BOOK A CALL WITH THE OWNER",
+   "top": 718,
+   "href": "https://calendly.com/jake-claraaviation/30min",
+   "inFold": true
+  },
+  "small": 6,
+  "smallText": 49,
+  "allText": 78,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 0,
+  "telLinks": 0,
+  "forms": 1,
+  "inputs": 6,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": true,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": false,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "clara-aviation",
+  "url": "https://www.claraaviation.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 69,
+  "a11y": 83,
+  "bp": 100,
+  "seo": 100,
+  "lcp": "10.8 s",
+  "tbt": "90 ms",
+  "cls": "0",
+  "bytes": "Total size was 2,707 KiB"
+ },
+ {
+  "name": "jetcraft",
+  "url": "https://www.jetcraft.com/",
+  "vp": "390",
+  "ms": 4266,
+  "kb": 964,
+  "reqs": 43,
+  "title": "Worldwide Aircraft Sales, Acquisitions and Trading | Jetcraft",
+  "h1": "Worldwide aircraft sales, acquisitions and trading at the Speed of Life",
+  "fixedTop": 844,
+  "docH": 2851,
+  "ctasInFold": [
+   {
+    "text": "CONTACT",
+    "top": 655,
+    "href": "https://www.jetcraft.com/contact/",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "CONTACT",
+   "top": 655,
+   "href": "https://www.jetcraft.com/contact/",
+   "inFold": true
+  },
+  "small": 61,
+  "smallText": 92,
+  "allText": 148,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 36,
+  "telLinks": 1,
+  "forms": 2,
+  "inputs": 6,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": [
+   "A: "
+  ]
+ },
+ {
+  "name": "jetcraft",
+  "url": "https://www.jetcraft.com/",
+  "vp": "desktop",
+  "ms": 3717,
+  "kb": 1010,
+  "reqs": 43,
+  "title": "Worldwide Aircraft Sales, Acquisitions and Trading | Jetcraft",
+  "h1": "Worldwide aircraft sales, acquisitions and trading at the Speed of Life",
+  "fixedTop": 900,
+  "docH": 2813,
+  "ctasInFold": [
+   {
+    "text": "Contact",
+    "top": 36,
+    "href": "https://www.jetcraft.com/contact/",
+    "inFold": true
+   },
+   {
+    "text": "CONTACT",
+    "top": 721,
+    "href": "https://www.jetcraft.com/contact/",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Contact",
+   "top": 36,
+   "href": "https://www.jetcraft.com/contact/",
+   "inFold": true
+  },
+  "small": 73,
+  "smallText": 134,
+  "allText": 190,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 42,
+  "telLinks": 1,
+  "forms": 2,
+  "inputs": 6,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "jetcraft",
+  "url": "https://www.jetcraft.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 87,
+  "a11y": 82,
+  "bp": 100,
+  "seo": 85,
+  "lcp": "3.7 s",
+  "tbt": "110 ms",
+  "cls": "0.006",
+  "bytes": "Total size was 1,040 KiB"
+ },
+ {
+  "name": "amalfi-jets",
+  "url": "https://amalfijets.com/",
+  "vp": "390",
+  "ms": 5997,
+  "kb": 9094,
+  "reqs": 54,
+  "title": "Private Jet Charter & Jet Card Programs | Amalfi Jets",
+  "h1": "Exploring\nthe world with you",
+  "fixedTop": 844,
+  "docH": 7898,
+  "ctasInFold": [],
+  "firstCta": {
+   "text": "Call Us: +1 (877) 626-2534",
+   "top": 6712,
+   "href": "tel:+18776262534",
+   "inFold": false
+  },
+  "small": 42,
+  "smallText": 51,
+  "allText": 110,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 1,
+  "telLinks": 3,
+  "forms": 3,
+  "inputs": 18,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "amalfi-jets",
+  "url": "https://amalfijets.com/",
+  "vp": "desktop",
+  "ms": 7432,
+  "kb": 15744,
+  "reqs": 56,
+  "title": "Private Jet Charter & Jet Card Programs | Amalfi Jets",
+  "h1": "Exploring\nthe world with you",
+  "fixedTop": 900,
+  "docH": 8540,
+  "ctasInFold": [
+   {
+    "text": "Request a Quote",
+    "top": 21,
+    "href": "https://amalfijets.com/request-a-charter",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Request a Quote",
+   "top": 21,
+   "href": "https://amalfijets.com/request-a-charter",
+   "inFold": true
+  },
+  "small": 42,
+  "smallText": 53,
+  "allText": 113,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 6,
+  "telLinks": 3,
+  "forms": 3,
+  "inputs": 18,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": true,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "amalfi-jets",
+  "url": "https://amalfijets.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 60,
+  "a11y": 96,
+  "bp": 54,
+  "seo": 92,
+  "lcp": "7.6 s",
+  "tbt": "410 ms",
+  "cls": "0",
+  "bytes": "Total size was 5,412 KiB"
+ },
+ {
+  "name": "guardian-jet",
+  "url": "https://guardianjet.com/",
+  "vp": "390",
+  "ms": 18927,
+  "kb": 10696,
+  "reqs": 97,
+  "title": "Guardian Jet | Find, buy, and sell jet aircraft.",
+  "h1": "Guardian Jet is the World Leader in Aircraft Brokerage, Consulting & Asset Management",
+  "fixedTop": 844,
+  "docH": 8257,
+  "ctasInFold": [
+   {
+    "text": "Contact",
+    "top": 11,
+    "href": "/info/contact.cfm",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Contact",
+   "top": 11,
+   "href": "/info/contact.cfm",
+   "inFold": true
+  },
+  "small": 30,
+  "smallText": 15,
+  "allText": 94,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 4,
+  "telLinks": 6,
+  "forms": 3,
+  "inputs": 7,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "guardian-jet",
+  "url": "https://guardianjet.com/",
+  "vp": "desktop",
+  "ms": 19352,
+  "kb": 10143,
+  "reqs": 95,
+  "title": "Guardian Jet | Find, buy, and sell jet aircraft.",
+  "h1": "Guardian Jet is the World Leader in Aircraft Brokerage, Consulting & Asset Management",
+  "fixedTop": 106,
+  "docH": 3901,
+  "ctasInFold": [
+   {
+    "text": "Contact",
+    "top": 11,
+    "href": "/info/contact.cfm",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Contact",
+   "top": 11,
+   "href": "/info/contact.cfm",
+   "inFold": true
+  },
+  "small": 22,
+  "smallText": 18,
+  "allText": 100,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 10,
+  "telLinks": 6,
+  "forms": 3,
+  "inputs": 7,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": [
+   "H1: Guardian Jet is the World Leader in Aircraft Brokerage, Consulting & Asset Manag",
+   "BUTTON: ",
+   "A: "
+  ]
+ },
+ {
+  "name": "guardian-jet",
+  "url": "https://guardianjet.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 35,
+  "a11y": 88,
+  "bp": 50,
+  "seo": 83,
+  "lcp": "16.7 s",
+  "tbt": "1,100 ms",
+  "cls": "0",
+  "bytes": "Total size was 11,188 KiB"
+ },
+ {
+  "name": "avpro",
+  "url": "https://www.avprojets.com/",
+  "vp": "390",
+  "ms": 5369,
+  "kb": 22610,
+  "reqs": 75,
+  "title": "Avpro Jets",
+  "fixedTop": 844,
+  "docH": 11910,
+  "ctasInFold": [
+   {
+    "text": "CONTACT",
+    "top": 244,
+    "href": "/contact",
+    "inFold": true
+   },
+   {
+    "text": "FACEBOOK",
+    "top": 701,
+    "href": "https://www.facebook.com/avprojets/",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "CONTACT",
+   "top": 244,
+   "href": "/contact",
+   "inFold": true
+  },
+  "small": 21,
+  "smallText": 238,
+  "allText": 354,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 11,
+  "telLinks": 2,
+  "forms": 1,
+  "inputs": 1,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": false,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "avpro",
+  "url": "https://www.avprojets.com/",
+  "vp": "desktop",
+  "ms": 4391,
+  "kb": 22610,
+  "reqs": 77,
+  "title": "Avpro Jets",
+  "fixedTop": 835,
+  "docH": 5849,
+  "ctasInFold": [
+   {
+    "text": "CONTACT",
+    "top": 40,
+    "href": "/contact",
+    "inFold": true
+   },
+   {
+    "text": "CONTACT",
+    "top": 179,
+    "href": "/contact",
+    "inFold": true
+   },
+   {
+    "text": "FACEBOOK",
+    "top": 692,
+    "href": "https://www.facebook.com/avprojets/",
+    "inFold": true
+   },
+   {
+    "text": "2003 BOEING BBJ2\n\nSN: 32777\n\nCABIN CLASS",
+    "top": 819,
+    "href": "/boeing-bbj2-sn:32777",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "CONTACT",
+   "top": 40,
+   "href": "/contact",
+   "inFold": true
+  },
+  "small": 22,
+  "smallText": 222,
+  "allText": 362,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 16,
+  "telLinks": 2,
+  "forms": 1,
+  "inputs": 1,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": false,
+   "app": false
+  },
+  "foldText": [
+   "BUTTON: Long Range Long range and accommodation for large groups up to 14. SHOW 9",
+   "BUTTON: Mid/Super Mid Comfortable for longer commutes and mid-size groups. SHOW 9",
+   "P: Mid/Super Mid",
+   "A: 2003 BOEING BBJ2 SN: 32777 CABIN CLASS Long Range RANGE 5200 NM PASSENGERS 22 Ca",
+   "P: CABIN CLASS",
+   "P: Long Range",
+   "P: RANGE",
+   "P: 5200 NM",
+   "P: PASSENGERS",
+   "P: 22"
+  ]
+ },
+ {
+  "name": "avpro",
+  "url": "https://www.avprojets.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 71,
+  "a11y": 77,
+  "bp": 100,
+  "seo": 92,
+  "lcp": "4.6 s",
+  "tbt": "370 ms",
+  "cls": "0.006",
+  "bytes": "Total size was 23,202 KiB"
+ },
+ {
+  "name": "mesinger",
+  "url": "https://www.jetsales.com/",
+  "vp": "390",
+  "ms": 3606,
+  "kb": 447,
+  "reqs": 40,
+  "title": "A Legacy of Aviation Innovation | Mesinger Jet Sales",
+  "h1": "tranquility in the midst of complexity",
+  "fixedTop": 58,
+  "docH": 2798,
+  "ctasInFold": [
+   {
+    "text": "Call Us Today: +1 303.444.6766",
+    "top": 0,
+    "href": "tel:+13034446766",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Call Us Today: +1 303.444.6766",
+   "top": 0,
+   "href": "tel:+13034446766",
+   "inFold": true
+  },
+  "small": 17,
+  "smallText": 26,
+  "allText": 42,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 10,
+  "telLinks": 2,
+  "forms": 0,
+  "inputs": 0,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": true,
+   "blog": false,
+   "app": false
+  },
+  "foldText": [
+   "H1: tranquility in the midst of complexity",
+   "P: Discover that rare peace of mind that comes from having the most experienced tea",
+   "H2: Welcome. We’re glad you’re here.",
+   "P: Mesinger Jet Sales leads the industry in bringing the most successful outcomes t",
+   "P: An aircraft transaction is far too important to entrust to anyone but the best p"
+  ]
+ },
+ {
+  "name": "mesinger",
+  "url": "https://www.jetsales.com/",
+  "vp": "desktop",
+  "ms": 3372,
+  "kb": 800,
+  "reqs": 43,
+  "title": "A Legacy of Aviation Innovation | Mesinger Jet Sales",
+  "h1": "tranquility in the midst of complexity",
+  "fixedTop": 108,
+  "docH": 2413,
+  "ctasInFold": [
+   {
+    "text": "Call Us Today: +1 303.444.6766",
+    "top": 24,
+    "href": "tel:+13034446766",
+    "inFold": true
+   },
+   {
+    "text": "CONTACT",
+    "top": 66,
+    "href": "https://jetsales.com/contact/",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Call Us Today: +1 303.444.6766",
+   "top": 24,
+   "href": "tel:+13034446766",
+   "inFold": true
+  },
+  "small": 22,
+  "smallText": 23,
+  "allText": 50,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 18,
+  "telLinks": 2,
+  "forms": 0,
+  "inputs": 0,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": true,
+   "blog": false,
+   "app": false
+  },
+  "foldText": [
+   "H1: tranquility in the midst of complexity",
+   "P: Discover that rare peace of mind that comes from having the most experienced tea",
+   "H2: Welcome. We’re glad you’re here."
+  ]
+ },
+ {
+  "name": "mesinger",
+  "url": "https://www.jetsales.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 73,
+  "a11y": 86,
+  "bp": 73,
+  "seo": 92,
+  "lcp": "6.0 s",
+  "tbt": "140 ms",
+  "cls": "0",
+  "bytes": "Total size was 649 KiB"
+ },
+ {
+  "name": "global-jet-capital",
+  "url": "https://www.globaljetcapital.com/",
+  "vp": "390",
+  "ms": 7592,
+  "kb": 3401,
+  "reqs": 184,
+  "title": "Global Jet Capital | Leasing & Lending Solutions for Business Aircraft",
+  "h1": "LEASING AND LENDING SOLUTIONS\nFOR BUSINESS AIRCRAFT",
+  "fixedTop": 844,
+  "docH": 7439,
+  "ctasInFold": [],
+  "firstCta": {
+   "text": "Contact Us",
+   "top": 6819,
+   "href": "https://www.globaljetcapital.com/contact-us?hsLang=en",
+   "inFold": false
+  },
+  "small": 51,
+  "smallText": 222,
+  "allText": 232,
+  "overflow": false,
+  "hasHamburger": true,
+  "navLinks": 2,
+  "telLinks": 3,
+  "forms": 1,
+  "inputs": 7,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "global-jet-capital",
+  "url": "https://www.globaljetcapital.com/",
+  "vp": "desktop",
+  "ms": 6094,
+  "kb": 3672,
+  "reqs": 186,
+  "title": "Global Jet Capital | Leasing & Lending Solutions for Business Aircraft",
+  "h1": "LEASING AND LENDING SOLUTIONS\nFOR BUSINESS AIRCRAFT",
+  "fixedTop": 900,
+  "docH": 6007,
+  "ctasInFold": [
+   {
+    "text": "CONTACT US",
+    "top": 80,
+    "href": "https://www.globaljetcapital.com/contact-us?hsLang=en",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "CONTACT US",
+   "top": 80,
+   "href": "https://www.globaljetcapital.com/contact-us?hsLang=en",
+   "inFold": true
+  },
+  "small": 57,
+  "smallText": 124,
+  "allText": 237,
+  "overflow": false,
+  "hasHamburger": true,
+  "navLinks": 7,
+  "telLinks": 3,
+  "forms": 1,
+  "inputs": 7,
+  "mentions": {
+   "inventory": true,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "global-jet-capital",
+  "url": "https://www.globaljetcapital.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 41,
+  "a11y": 84,
+  "bp": 73,
+  "seo": 85,
+  "lcp": "6.2 s",
+  "tbt": "2,020 ms",
+  "cls": "0",
+  "bytes": "Total size was 3,263 KiB"
+ },
+ {
+  "name": "magellan-jets",
+  "url": "https://magellanjets.com/",
+  "vp": "390",
+  "ms": 10387,
+  "kb": 49636,
+  "reqs": 194,
+  "title": "Fully customizable Private Aviation Solutions | Magellan Jets",
+  "h1": "My Jet Card. My Journey.",
+  "fixedTop": 844,
+  "docH": 14648,
+  "ctasInFold": [],
+  "firstCta": {
+   "text": "Book Your Charter",
+   "top": 2762,
+   "href": "https://magellanjets.com/solutions/on-demand-charter/",
+   "inFold": false
+  },
+  "small": 58,
+  "smallText": 28,
+  "allText": 114,
+  "overflow": false,
+  "hasHamburger": true,
+  "navLinks": 2,
+  "telLinks": 0,
+  "forms": 2,
+  "inputs": 9,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "magellan-jets",
+  "url": "https://magellanjets.com/",
+  "vp": "desktop",
+  "ms": 7641,
+  "kb": 28436,
+  "reqs": 197,
+  "title": "Fully customizable Private Aviation Solutions | Magellan Jets",
+  "h1": "My Jet Card. My Journey.",
+  "fixedTop": 900,
+  "docH": 8519,
+  "ctasInFold": [],
+  "firstCta": {
+   "text": "Please Select\nFlying with Magellan Jets\n",
+   "top": 7037,
+   "href": null,
+   "inFold": false
+  },
+  "small": 61,
+  "smallText": 28,
+  "allText": 103,
+  "overflow": false,
+  "hasHamburger": true,
+  "navLinks": 2,
+  "telLinks": 0,
+  "forms": 2,
+  "inputs": 9,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": []
+ },
+ {
+  "name": "magellan-jets",
+  "url": "https://magellanjets.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 32,
+  "a11y": 97,
+  "bp": 54,
+  "seo": 92,
+  "lcp": "8.4 s",
+  "tbt": "6,040 ms",
+  "cls": "0",
+  "bytes": "Total size was 52,073 KiB"
+ },
+ {
+  "name": "paramount-business-jets",
+  "url": "https://www.paramountbusinessjets.com/",
+  "vp": "390",
+  "ms": 5468,
+  "kb": 2027,
+  "reqs": 95,
+  "title": "Paramount Business Jets | Top Rated Private Jet Company",
+  "h1": "Top-Rated Private Jet Company",
+  "fixedTop": 68,
+  "docH": 16204,
+  "ctasInFold": [
+   {
+    "text": "CHARTER QUOTE",
+    "top": 15,
+    "href": "/private-jet-quotes",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "CHARTER QUOTE",
+   "top": 15,
+   "href": "/private-jet-quotes",
+   "inFold": true
+  },
+  "small": 62,
+  "smallText": 67,
+  "allText": 160,
+  "overflow": false,
+  "hasHamburger": true,
+  "navLinks": 22,
+  "telLinks": 4,
+  "forms": 4,
+  "inputs": 14,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": true,
+   "argus": true,
+   "wyvern": true,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": [
+   "H1: Top-Rated Private Jet Company",
+   "H2: Personally handled.",
+   "BUTTON: ",
+   "BUTTON: SHOW ESTIMATES",
+   "P: We use cookies and similar technologies to analyze site traffic and improve your",
+   "A: privacy policy",
+   "BUTTON: DISAGREE",
+   "BUTTON: AGREE"
+  ]
+ },
+ {
+  "name": "paramount-business-jets",
+  "url": "https://www.paramountbusinessjets.com/",
+  "vp": "desktop",
+  "ms": 5216,
+  "kb": 2373,
+  "reqs": 102,
+  "title": "Paramount Business Jets | Top Rated Private Jet Company",
+  "h1": "Top-Rated Private Jet Company",
+  "fixedTop": 130,
+  "docH": 12322,
+  "ctasInFold": [
+   {
+    "text": "Pricing",
+    "top": 62,
+    "href": "https://www.paramountbusinessjets.com/private-jet-rental-cost",
+    "inFold": true
+   },
+   {
+    "text": "Contact Us",
+    "top": 22,
+    "href": "https://www.paramountbusinessjets.com/contact-us",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Contact Us",
+   "top": 22,
+   "href": "https://www.paramountbusinessjets.com/contact-us",
+   "inFold": true
+  },
+  "small": 66,
+  "smallText": 66,
+  "allText": 198,
+  "overflow": true,
+  "hasHamburger": true,
+  "navLinks": 33,
+  "telLinks": 4,
+  "forms": 4,
+  "inputs": 14,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": true,
+   "argus": true,
+   "wyvern": true,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": [
+   "H1: Top-Rated Private Jet Company",
+   "H2: Personally handled.",
+   "BUTTON: ",
+   "BUTTON: SHOW ESTIMATES",
+   "A: ",
+   "A: ",
+   "A: ",
+   "A: ",
+   "P: We use cookies and similar technologies to analyze site traffic and improve your",
+   "A: privacy policy",
+   "BUTTON: DISAGREE",
+   "BUTTON: AGREE"
+  ]
+ },
+ {
+  "name": "paramount-business-jets",
+  "url": "https://www.paramountbusinessjets.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 69,
+  "a11y": 78,
+  "bp": 69,
+  "seo": 85,
+  "lcp": "3.9 s",
+  "tbt": "760 ms",
+  "cls": "0",
+  "bytes": "Total size was 2,751 KiB"
+ },
+ {
+  "name": "mercury-jets",
+  "url": "https://mercuryjets.com/",
+  "vp": "390",
+  "ms": 6328,
+  "kb": 1107,
+  "reqs": 130,
+  "title": "Private Jet Charter - Air Charter - Fly Private - Mercury Jets",
+  "h1": "Private Jet Charter",
+  "fixedTop": 72,
+  "docH": 24217,
+  "ctasInFold": [],
+  "firstCta": {
+   "text": "facebook (opens in a new tab)",
+   "top": 23541,
+   "href": "https://www.facebook.com/mercuryjets",
+   "inFold": false
+  },
+  "small": 18,
+  "smallText": 16,
+  "allText": 160,
+  "overflow": false,
+  "hasHamburger": true,
+  "navLinks": 14,
+  "telLinks": 3,
+  "forms": 2,
+  "inputs": 9,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": true,
+   "argus": true,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": [
+   "H1: Private Jet Charter",
+   "BUTTON: ",
+   "BUTTON: SEARCH",
+   "P: Excellent 4.9 out of 5",
+   "A: Excellent 4.9 out of 5",
+   "H2: Private Jet Company at Your Service",
+   "P: Call us: +1 212 840-8000",
+   "A: +1 212 840-8000"
+  ]
+ },
+ {
+  "name": "mercury-jets",
+  "url": "https://mercuryjets.com/",
+  "vp": "desktop",
+  "ms": 5285,
+  "kb": 1351,
+  "reqs": 141,
+  "title": "Private Jet Charter - Air Charter - Fly Private - Mercury Jets",
+  "h1": "Private Jet Charter",
+  "fixedTop": 72,
+  "docH": 11250,
+  "ctasInFold": [
+   {
+    "text": "Contact Us",
+    "top": 21,
+    "href": "/contact-us/",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Contact Us",
+   "top": 21,
+   "href": "/contact-us/",
+   "inFold": true
+  },
+  "small": 34,
+  "smallText": 18,
+  "allText": 171,
+  "overflow": false,
+  "hasHamburger": true,
+  "navLinks": 21,
+  "telLinks": 3,
+  "forms": 2,
+  "inputs": 9,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": true,
+   "argus": true,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": [
+   "H1: Private Jet Charter",
+   "P: MERCURY JETS™ is Your Leading Private Aviation Solution",
+   "BUTTON: ",
+   "BUTTON: SEARCH",
+   "P: Excellent 4.9 out of 5 based on 1000+ reviews",
+   "A: Excellent 4.9 out of 5 based on 1000+ reviews",
+   "H2: Private Jet Company at Your Service",
+   "P: Everything you wanted to know about private jet charter service, private jet ren"
+  ]
+ },
+ {
+  "name": "mercury-jets",
+  "url": "https://mercuryjets.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 53,
+  "a11y": 100,
+  "bp": 77,
+  "seo": 100,
+  "lcp": "4.0 s",
+  "tbt": "1,770 ms",
+  "cls": "0",
+  "bytes": "Total size was 1,406 KiB"
+ },
+ {
+  "name": "l33-jets",
+  "url": "https://l33jets.com/",
+  "vp": "390",
+  "ms": 3189,
+  "kb": 0,
+  "reqs": 1,
+  "title": "Error 403 Forbidden",
+  "h1": "403 Forbidden",
+  "fixedTop": 0,
+  "docH": 2120,
+  "ctasInFold": [],
+  "firstCta": null,
+  "small": 0,
+  "smallText": 0,
+  "allText": 1,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 0,
+  "telLinks": 0,
+  "forms": 0,
+  "inputs": 0,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": false,
+   "app": false
+  },
+  "foldText": [
+   "H1: 403 Forbidden"
+  ]
+ },
+ {
+  "name": "l33-jets",
+  "url": "https://l33jets.com/",
+  "vp": "desktop",
+  "ms": 2444,
+  "kb": 0,
+  "reqs": 1,
+  "title": "Error 403 Forbidden",
+  "h1": "403 Forbidden",
+  "fixedTop": 0,
+  "docH": 900,
+  "ctasInFold": [],
+  "firstCta": null,
+  "small": 0,
+  "smallText": 0,
+  "allText": 1,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 0,
+  "telLinks": 0,
+  "forms": 0,
+  "inputs": 0,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": false,
+   "app": false
+  },
+  "foldText": [
+   "H1: 403 Forbidden"
+  ]
+ },
+ {
+  "name": "l33-jets",
+  "url": "https://l33jets.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 21,
+  "a11y": 86,
+  "bp": 73,
+  "seo": 85,
+  "lcp": "9.7 s",
+  "tbt": "4,600 ms",
+  "cls": "0.244",
+  "bytes": "Total size was 2,963 KiB"
+ },
+ {
+  "name": "jettly",
+  "url": "https://jettly.com/",
+  "vp": "390",
+  "ms": 2559,
+  "kb": 4,
+  "reqs": 8,
+  "title": "Attention Required! | Cloudflare",
+  "h1": "Sorry, you have been blocked",
+  "fixedTop": 0,
+  "docH": 1065,
+  "ctasInFold": [],
+  "firstCta": null,
+  "small": 2,
+  "smallText": 8,
+  "allText": 13,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 0,
+  "telLinks": 0,
+  "forms": 0,
+  "inputs": 0,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": false,
+   "app": false
+  },
+  "foldText": [
+   "H1: Sorry, you have been blocked",
+   "H2: You are unable to access jettly.com",
+   "H2: Why have I been blocked?",
+   "P: This website is using a security service to protect itself from online attacks. ",
+   "H2: What can I do to resolve this?",
+   "P: You can email the site owner to let them know you were blocked. Please include w"
+  ]
+ },
+ {
+  "name": "jettly",
+  "url": "https://jettly.com/",
+  "vp": "desktop",
+  "ms": 2414,
+  "kb": 4,
+  "reqs": 8,
+  "title": "Attention Required! | Cloudflare",
+  "h1": "Sorry, you have been blocked",
+  "fixedTop": 0,
+  "docH": 1021,
+  "ctasInFold": [],
+  "firstCta": null,
+  "small": 2,
+  "smallText": 10,
+  "allText": 15,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 0,
+  "telLinks": 0,
+  "forms": 0,
+  "inputs": 0,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": false,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": false,
+   "app": false
+  },
+  "foldText": [
+   "H1: Sorry, you have been blocked",
+   "H2: You are unable to access jettly.com",
+   "H2: Why have I been blocked?",
+   "P: This website is using a security service to protect itself from online attacks. ",
+   "H2: What can I do to resolve this?",
+   "P: You can email the site owner to let them know you were blocked. Please include w"
+  ]
+ },
+ {
+  "name": "jettly",
+  "url": "https://jettly.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 28,
+  "a11y": 79,
+  "bp": 73,
+  "seo": 92,
+  "lcp": "36.0 s",
+  "tbt": "2,480 ms",
+  "cls": "0",
+  "bytes": "Total size was 9,273 KiB"
+ },
+ {
+  "name": "pennjets",
+  "url": "https://www.pennjets.com/",
+  "vp": "390",
+  "ms": 3466,
+  "kb": 1275,
+  "reqs": 17,
+  "title": "PennJets | Private Jet Brokerage & Aviation Consulting",
+  "h1": "The Access You Deserve",
+  "fixedTop": 60,
+  "docH": 5401,
+  "ctasInFold": [
+   {
+    "text": "Request a Charter Quote",
+    "top": 327,
+    "href": null,
+    "inFold": true
+   },
+   {
+    "text": "Talk to a Broker",
+    "top": 383,
+    "href": null,
+    "inFold": true
+   },
+   {
+    "text": "Call",
+    "top": 786,
+    "href": "tel:+19545460763",
+    "inFold": true
+   },
+   {
+    "text": "Request a Quote",
+    "top": 786,
+    "href": "/charter#quote",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Request a Charter Quote",
+   "top": 327,
+   "href": null,
+   "inFold": true
+  },
+  "small": 30,
+  "smallText": 70,
+  "allText": 118,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 1,
+  "telLinks": 2,
+  "forms": 0,
+  "inputs": 0,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": true,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": [
+   "A: ",
+   "BUTTON: ",
+   "H1: The Access You Deserve",
+   "P: Independent aircraft brokerage and consulting. Buy, sell, or charter with someon",
+   "P: Charter flights are arranged through vetted, FAA-certificated Part 135 operators",
+   "BUTTON: Request a Charter Quote",
+   "BUTTON: Talk to a Broker",
+   "H2: Latest Market Note",
+   "A: MARKET NOTES · October 19, 2026 Charter Demand Is Up 27%. Flying Isn’t",
+   "P: Photo: [Author], CC BY-SA 4.0.",
+   "A: [Author]",
+   "A: CC BY-SA 4.0",
+   "H2: The best aircraft rarely reach the open market. Tell us your mission and we'll t",
+   "A: Call",
+   "A: Request a Quote"
+  ]
+ },
+ {
+  "name": "pennjets",
+  "url": "https://www.pennjets.com/",
+  "vp": "desktop",
+  "ms": 3070,
+  "kb": 1275,
+  "reqs": 17,
+  "title": "PennJets | Private Jet Brokerage & Aviation Consulting",
+  "h1": "The Access You Deserve",
+  "fixedTop": 60,
+  "docH": 3223,
+  "ctasInFold": [
+   {
+    "text": "Contact Us",
+    "top": 78,
+    "href": "/contact",
+    "inFold": true
+   },
+   {
+    "text": "Contact Us",
+    "top": 78,
+    "href": null,
+    "inFold": true
+   },
+   {
+    "text": "Request a Charter Quote",
+    "top": 436,
+    "href": null,
+    "inFold": true
+   },
+   {
+    "text": "Talk to a Broker",
+    "top": 436,
+    "href": null,
+    "inFold": true
+   },
+   {
+    "text": "Call",
+    "top": 842,
+    "href": "tel:+19545460763",
+    "inFold": true
+   },
+   {
+    "text": "Request a Quote",
+    "top": 842,
+    "href": "/charter#quote",
+    "inFold": true
+   }
+  ],
+  "firstCta": {
+   "text": "Contact Us",
+   "top": 78,
+   "href": "/contact",
+   "inFold": true
+  },
+  "small": 37,
+  "smallText": 72,
+  "allText": 132,
+  "overflow": false,
+  "hasHamburger": false,
+  "navLinks": 10,
+  "telLinks": 2,
+  "forms": 0,
+  "inputs": 0,
+  "mentions": {
+   "inventory": false,
+   "charterQuote": true,
+   "argus": false,
+   "wyvern": false,
+   "iada": false,
+   "blog": true,
+   "app": false
+  },
+  "foldText": [
+   "A: ",
+   "A: Home",
+   "A: Aircraft",
+   "A: Charter",
+   "A: PennShare",
+   "A: Services",
+   "A: About",
+   "A: Market Notes",
+   "A: (954) 546-0763",
+   "A: Contact Us",
+   "BUTTON: Contact Us",
+   "H1: The Access You Deserve",
+   "P: Independent aircraft brokerage and consulting. Buy, sell, or charter with someon",
+   "P: Charter flights are arranged through vetted, FAA-certificated Part 135 operators",
+   "BUTTON: Request a Charter Quote"
+  ]
+ },
+ {
+  "name": "pennjets",
+  "url": "https://www.pennjets.com/",
+  "vp": "lighthouse-mobile",
+  "perf": 97,
+  "a11y": 94,
+  "bp": 100,
+  "seo": 100,
+  "lcp": "2.0 s",
+  "tbt": "30 ms",
+  "cls": "0.075",
+  "bytes": "Total size was 1,218 KiB"
+ }
+]
