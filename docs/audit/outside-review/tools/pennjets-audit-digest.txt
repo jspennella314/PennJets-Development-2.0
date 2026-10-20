@@ -1,0 +1,400 @@
+=== PER PAGE (390 unless noted) ===
+
+## /  status=200 title='PennJets | Private Jet Brokerage & Aviation Consulting'
+ transfer=1396KB req=15 docH=5421 (6.4 screens) | desktop docH=3223 transfer=1396KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 64), ('DIV', 71, 773)]
+ first body CTA: 'Request a Charter Quote' at 309px = 0.4 scrolls (usable vp 713px); 430: 354
+ h1='Access, You Deserve' at 97
+ fold: A:  || BUTTON:  || H1: Access, You Deserve || P: Independent aircraft brokerage and consulting. Buy, sell, or charter with someone who show || P: Charter flights are arranged through vetted, FAA-certificated Part 135 operators across th || BUTTON: Request a Charter Quote || BUTTON: Talk to a Broker || H2: Latest Market Note || A: October 16, 2026 617 Aircraft, 21 for Sale: Inside the G550 Market || P: Photo: Airwolfhound, CC BY-SA 2.0. || A: Airwolfhound || A: CC BY-SA 2.0
+ small targets: [('A', 'Airwolfhound', '70x14'), ('A', 'CC BY-SA 2.0', '72x14'), ('A', 'joe@pennjets.com', '123x17'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24')] total<44: 30
+ small text: [(11, 5, ['Photo:', 'Airwolfhound']), (12, 7, ['Days', 'Hours']), (14, 56, ['Days left to close a 2026 acquisition.', 'Charter flights are arranged through vetted, FAA-c'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: [('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bd145054bea05ba0/main.webp', '')]
+ top transfers: [('/videos/Falcon-Hero-Flyover-1080.mp4', 821), ('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/videos/falcon-hero-poster-1080.webp', 33), ('/', 23)]
+ forms: []
+ headings: ['H1: Access, You Deserve', 'H2: Latest Market Note', 'H3: 617 Aircraft, 21 for Sale: Inside the G550 Market', 'H2: The best aircraft rarely reach the open market. Tell us your mission a', 'H3: Falcon 900', 'H3: Premier 1A', 'H3: Hawker 800XP', 'H3: Hawker 400XP', 'H3: Citation II', 'H2: Why PennJets', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social']
+ console: ['error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED']
+ video: {'src': 'https://www.pennjets.com/videos/Falcon-Hero-Flyover-1080.mp4', 'paused': True, 'readyState': 0, 'poster': 'https://www.pennjets.com/videos/falcon-hero-poster-1080.webp'}
+
+## /charter  status=200 title='Light & Midsize Jet Charter from NY/NJ | Penn Jets'
+ transfer=506KB req=6 docH=5432 (6.4 screens) | desktop docH=3514 transfer=506KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 64), ('DIV', 71, 773)]
+ first body CTA: 'Request a charter quote' at 277px = 0.4 scrolls (usable vp 713px); 430: 315
+ h1='Travel, Simplified.' at 157
+ fold: A:  || BUTTON:  || H1: Travel, Simplified. || P: You have somewhere to be. We'll get you there. || A: Request a charter quote || A: Call (954) 546‑0763 || H2: Why charter through a broker || P: No call center and no ticket queue. The person who answers is the person who sources the a || P: You see what each certificated operator quoted and why one is recommended, not a single pr || A: Call || A: Request a Quote
+ small targets: [('A', 'Prefer to talk? Co', '169x20'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24')] total<44: 26
+ small text: [(12, 11, ['Days', 'Hours']), (14, 66, ['Days left to close a 2026 acquisition.', 'Request a charter quote'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/charter', 25), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: [('', 5, [('text', True, 42, '16px'), ('text', True, 42, '16px'), ('date', True, 44, '16px'), ('date', True, 44, '16px'), ('number', True, 42, '16px')])]
+ headings: ['H1: Travel, Simplified.', 'H2: Why charter through a broker', 'H3: You talk to the broker who books your trip', 'H3: We compare operators and show you the numbers', 'H3: Every flight is operated by a licensed Part 135 carrier', 'H2: Popular routes from New York and New Jersey', 'H2: Request a Charter Quote', 'H3: What happens next', 'H3: Ready to go wheels up?', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /buy  status=200 title='Buy an Aircraft | PennJets'
+ transfer=499KB req=6 docH=2946 (3.5 screens) | desktop docH=1703 transfer=499KB
+ overlays: top=60 bottom=0 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 844)]
+ first body CTA: 'Send Inquiry' at 819px = 1.0 scrolls (usable vp 784px); 430: 795
+ h1='Buy an Aircraft' at 144
+ fold: A:  || BUTTON:  || H1: Buy an Aircraft || P: We source aircraft that aren't publicly listed. Tell us the mission and we'll tell you wha || BUTTON: › Add phone, passengers and trip length || P: By submitting, you agree to be contacted by PennJets about this request. || BUTTON: Send Inquiry
+ small targets: [('INPUT', 'Sole', '16x16'), ('INPUT', 'Fractional', '16x16'), ('BUTTON', '›\nAdd phone, passe', '274x20'), ('A', 'Prefer to talk? Co', '169x20'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24')] total<44: 30
+ small text: [(12, 6, ['Days', 'Hours']), (14, 25, ['Days left to close a 2026 acquisition.', 'Name *'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/buy', 19), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: [('Send Inquiry', 6, [('text', True, 42, '16px'), ('email', True, 42, '16px'), ('radio', True, 16, '14px'), ('radio', True, 16, '14px'), ('text', True, 42, '16px'), ('select-one', True, 40, '16px')])]
+ headings: ['H1: Buy an Aircraft', 'H2: How buying with PennJets works', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /sell  status=200 title='Sell Your Aircraft | PennJets'
+ transfer=498KB req=6 docH=2938 (3.5 screens) | desktop docH=1751 transfer=498KB
+ overlays: top=60 bottom=0 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 844)]
+ first body CTA: 'Send Details' at 843px = 1.1 scrolls (usable vp 784px); 430: 843
+ h1='Sell Your Aircraft' at 144
+ fold: A:  || BUTTON:  || H1: Sell Your Aircraft || P: Tell us what you have and we'll come back with where it sits in the current market and wha || BUTTON: › Add phone, total time and location || P: By submitting, you agree to be contacted by PennJets about this aircraft. || BUTTON: Send Details
+ small targets: [('BUTTON', '›\nAdd phone, total', '242x20'), ('A', 'Prefer to talk? Co', '169x20'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24')] total<44: 29
+ small text: [(12, 5, ['Days', 'Hours']), (14, 23, ['Days left to close a 2026 acquisition.', 'Name *'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/sell', 18), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: [('Send Details', 5, [('text', True, 42, '16px'), ('email', True, 42, '16px'), ('text', True, 42, '16px'), ('text', True, 42, '16px'), ('number', True, 42, '16px')])]
+ headings: ['H1: Sell Your Aircraft', 'H2: How selling with PennJets works', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /consulting  status=200 title='Aviation Consulting | PennJets'
+ transfer=497KB req=6 docH=2966 (3.5 screens) | desktop docH=1619 transfer=497KB
+ overlays: top=60 bottom=0 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 844)]
+ first body CTA: 'Send Request' at 843px = 1.1 scrolls (usable vp 784px); 430: 843
+ h1='Aviation Consulting' at 144
+ fold: A:  || BUTTON:  || H1: Aviation Consulting || P: Cost of ownership, mission fit, ownership structure, or a second opinion on a deal in fron || P: By submitting, you agree to be contacted by PennJets about this request. || BUTTON: Send Request
+ small targets: [('A', 'Prefer to talk? Co', '169x20'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24')] total<44: 26
+ small text: [(12, 6, ['Days', 'Hours']), (14, 18, ['Days left to close a 2026 acquisition.', 'Name *'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/consulting', 17), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: [('Send Request', 4, [('text', True, 42, '16px'), ('email', True, 42, '16px'), ('tel', True, 42, '16px'), ('textarea', True, 162, '16px')])]
+ headings: ['H1: Aviation Consulting', 'H2: What we advise on', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /pennshare  status=200 title='PennShare Fractional Ownership | PennJets'
+ transfer=621KB req=7 docH=6544 (7.8 screens) | desktop docH=3654 transfer=621KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Get Started Today' at 494px = 0.7 scrolls (usable vp 713px); 430: 494
+ h1='PennShare\nSmart Ownership Solutions' at 140
+ fold: A:  || BUTTON:  || H1: PennShare Smart Ownership Solutions || P: Experience private aviation through intelligent fractional ownership. Share the costs, not || BUTTON: Get Started Today || BUTTON: View Available Shares || A: Call || A: Request a Quote
+ small targets: [('BUTTON', '›\nAdd phone and sh', '187x20'), ('INPUT', 'on', '13x16'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24')] total<44: 24
+ small text: [(12, 4, ['Days', 'Hours']), (14, 19, ['Days left to close a 2026 acquisition.', 'FRACTIONAL OWNERSHIP'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: [('/images/PENNSHARE/PREMIER-1A.jpg', '1536x1024', '358x384', 'auto'), ('/images/PENNSHARE/PREMIER-1A.jpg', '1536x1024', '358x128', 'auto')]
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/images/PENNSHARE/PREMIER-1A.jpg', 116), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/pennshare', 25), ('/images/pennjets-logo-192.png', 5)]
+ forms: [('Send Inquiry', 4, [('text', True, 50, '16px'), ('email', True, 50, '16px'), ('textarea', True, 122, '16px'), ('checkbox', True, 16, '16px')])]
+ headings: ['H1: PennShare\nSmart Ownership Solutions', 'H3: Current Share Offering', 'H2: Why Choose PennShare?', 'H3: Cost-Effective', 'H3: Flown by Part 135 Operators', 'H3: Scheduled Access', 'H3: Flexible Exit', 'H2: 2006 Beechcraft Premier 1A', 'H2: Inquire About PennShare', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /services  status=200 title='Aircraft Sales, Charter Brokerage & Consulting | PennJets'
+ transfer=524KB req=6 docH=9918 (11.8 screens) | desktop docH=4827 transfer=524KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Discuss This Service' at 1662px = 2.3 scrolls (usable vp 713px); 430: 1604
+ h1='Comprehensive Solutions for Sophisticated Aviation Needs' at 272
+ fold: A:  || BUTTON:  || H1: Comprehensive Solutions for Sophisticated Aviation Needs || P: From acquisitions and sales to charter brokerage and consulting, we deliver tailored aviat || A: Call || A: Request a Quote
+ small targets: [('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24'), ('A', 'Instagram', '358x24')] total<44: 22
+ small text: [(12, 4, ['Days', 'Hours']), (14, 34, ['Days left to close a 2026 acquisition.', 'Professional Aviation Services'])]
+ scrollTraps: []  overflow: False [{'tag': 'DIV', 'cls': 'absolute bottom-20 right-20 w-96 h-96 bg-blue-500 ', 'right': 310}, {'tag': 'DIV', 'cls': 'absolute top-0 left-1/4 w-96 h-96 bg-primary-500 r', 'right': 482}, {'tag': 'DIV', 'cls': 'absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500 ', 'right': 293}]
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/services', 43), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: []
+ headings: ['H1: Comprehensive Solutions for Sophisticated Aviation Needs', 'H2: Our Service Portfolio', 'H3: Aircraft Sales', 'H3: Aircraft Acquisition', 'H3: Charter Brokerage', 'H3: Market Analysis', 'H3: Consulting Services', 'H2: Our Approach', 'H3: Discovery & Consultation', 'H3: Strategic Planning', 'H3: Execution', 'H3: Delivery & Support', 'H2: The PennJets Advantage', 'H3: Industry Expertise']
+ console: []
+
+## /about  status=200 title='About PennJets | Private Aviation Sales and Consulting'
+ transfer=511KB req=7 docH=4669 (5.5 screens) | desktop docH=3238 transfer=511KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Contact PennJets' at 2806px = 3.9 scrolls (usable vp 713px); 430: 2723
+ h1='About PennJets' at 192
+ fold: A:  || BUTTON:  || H1: About PennJets || P: Founded in 2025, PennJets is a private aviation sales and consulting firm. We connect clie || H2: Our Story || P: Joseph Pennella founded Penn Jets LLC in 2025. He brokers whole-aircraft and fractional tr || A: Call || A: Request a Quote
+ small targets: [('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24'), ('A', 'Instagram', '358x24')] total<44: 22
+ small text: [(12, 7, ['Days', 'Hours']), (14, 15, ['Days left to close a 2026 acquisition.', '📞'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/about', 19), ('/images/Meet-The-Team/joseph-pennella-256.webp', 12), ('/images/pennjets-logo-192.png', 5)]
+ forms: []
+ headings: ['H1: About PennJets', 'H2: Our Story', "H2: Who You'll Work With", 'H3: Joseph Pennella', 'H2: Professional Services', 'H3: Aircraft Brokerage', 'H3: Fractional Ownership', 'H3: Charter Brokerage', 'H2: Ready to Work With Us?', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /contact  status=200 title='Contact PennJets'
+ transfer=500KB req=6 docH=3810 (4.5 screens) | desktop docH=2583 transfer=500KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 64), ('DIV', 71, 773)]
+ first body CTA: 'Send Message' at 1109px = 1.6 scrolls (usable vp 713px); 430: 1080
+ h1='Contact Us' at 192
+ fold: A:  || BUTTON:  || H1: Contact Us || P: Ready to take the next step in your aviation journey? Penn Jets is here to help you with a || H2: Send us a Message || BUTTON: › Add phone and company || A: Call || A: Request a Quote
+ small targets: [('BUTTON', '›\nAdd phone and co', '181x20'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24')] total<44: 26
+ small text: [(12, 5, ['Days', 'Hours']), (14, 15, ['Days left to close a 2026 acquisition.', 'Name *'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/contact', 20), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: [('Send Message', 4, [('text', True, 42, '16px'), ('email', True, 42, '16px'), ('select-one', True, 40, '16px'), ('textarea', True, 138, '16px')])]
+ headings: ['H1: Contact Us', 'H2: Send us a Message', 'H2: Get in Touch', 'H3: Phone', 'H3: Email', 'H3: Address', 'H2: Our Locations', 'H3: Miami, FL', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /blog  status=200 title='Market Notes | PennJets'
+ transfer=13323KB req=20 docH=10605 (12.6 screens) | desktop docH=4677 transfer=13323KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 64), ('DIV', 71, 773)]
+ first body CTA: 'Subscribe' at 8800px = 12.3 scrolls (usable vp 713px); 430: 9007
+ h1='Market Notes' at 160
+ fold: A:  || BUTTON:  || H1: Market Notes || P: Stay informed with the latest industry trends, aircraft reviews, and expert insights from  || BUTTON: All || BUTTON: Market Studies || BUTTON: Market Notes || H2: Latest Market Notes || A: Call || A: Request a Quote
+ small targets: [('BUTTON', 'All', '49x36'), ('BUTTON', 'Market Studies', '133x36'), ('BUTTON', 'Market Notes', '122x36'), ('INPUT', '', '234x24'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24')] total<44: 41
+ small text: [(12, 13, ['Days', 'Hours']), (14, 116, ['Days left to close a 2026 acquisition.', 'All'])]
+ scrollTraps: []  overflow: False [{'tag': 'INPUT', 'cls': '', 'right': -9765}]
+ oversized imgs: [('/images/Gallery/citation-x-ramp-no_registration.jpg', '1200x630', '310x174', 'auto'), ('/images/Gallery/Falcon900B_no_registration.jpg', '960x540', '310x174', 'auto'), ('/images/PennJets-Website-Logo.png', '1024x1024', '310x174', 'auto'), ('/images/Gallery/Embraer_Phenom_300.jpg', '960x720', '310x174', 'auto'), ('/images/Gallery/pc12.jpg', '4473x7952', '310x174', 'auto'), ('/images/Gallery/future-aviation.jpg', '4896x3264', '310x174', 'auto'), ('/images/Gallery/falcon.jpg', '3770x2320', '310x174', 'auto'), ('/images/Gallery/pj-interior.jpg', '4032x3024', '310x174', 'auto')]
+ broken imgs: [('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bd145054bea05ba0/main.webp', '617 Aircraft, 21 for Sale: Inside the G550 Market'), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/b603d520f6673ee7/main.webp', 'Jet A at a Six-Month High: What It Actually Costs'), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bde27a89aa004c7f/main.webp', 'How Exposed Is Business Aviation to the Next Downturn?'), ('0000vs6csd5mwq0r/IMG_2736-2aqDTfdhZt5wUBW2V0sSQDJKbDrYD3.jpg', 'The Largest Managed Fleet in the World Just Closed. What It Means for Owners.'), ('ww.pennjets.com/images/Gallery/Bombardier_Challenger_650.jpg', 'Bombardier, U.S. Market Access and What Trump’s Latest Restrictions Could Mean for Private Aviation'), ('https://www.pennjets.com/images/Gallery/gulfstream.jpg', 'How to Buy Your First Private Jet: 2025 Step-by-Step Buyer’s Guide')]
+ top transfers: [('/images/Gallery/pc12.jpg', 4154), ('/images/Gallery/pj-interior.jpg', 3015), ('/images/Gallery/future-aviation.jpg', 2177), ('/images/Gallery/falcon.jpg', 1855), ('/images/PennJets-Website-Logo.png', 1349), ('/assets/index-2c6998a2.js', 379)]
+ forms: [('Subscribe', 2, [('text', False, 24, '16px'), ('email', False, 48, '16px')])]
+ headings: ['H1: Market Notes', 'H2: Latest Market Notes', 'H3: 617 Aircraft, 21 for Sale: Inside the G550 Market', 'H3: Jet A at a Six-Month High: What It Actually Costs', 'H3: How Exposed Is Business Aviation to the Next Downturn?', 'H3: The Largest Managed Fleet in the World Just Closed. What It Means for ', 'H3: Q3 2026: The Quarter Where the Paperwork Started to Matter', 'H3: Canada’s Proposed 100% Aircraft Expensing: Could It Accelerate the Air', 'H3: Why We Publish Market Notes', 'H3: The Light Jet Market in 2026: Why Smaller Business Jets Could Lead the', 'H3: Pilatus PC-12 NGX: A Modern Look at the Most Capable Turboprop in the ', 'H3: September 11 and the Evolution of Private Aviation', 'H3: Bombardier, U.S. Market Access and What Trump’s Latest Restrictions Co', 'H3: How to Buy Your First Private Jet: 2025 Step-by-Step Buyer’s Guide']
+ console: ['error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED', 'error: Failed to load resource: the server responded with a status of 404 (Not Found)']
+
+## /aircraft  status=200 title='Aircraft for Sale | PennJets'
+ transfer=495KB req=7 docH=2416 (2.9 screens) | desktop docH=1545 transfer=495KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Contact a Consultant' at 649px = 0.9 scrolls (usable vp 713px); 430: 649
+ h1='Aircraft for Sale' at 192
+ fold: A:  || BUTTON:  || H1: Aircraft for Sale || P: Discover our curated collection of premium aircraft. Each listing represents exceptional q || P: The best aircraft rarely reach the open market. Tell us your mission and we'll tell you wh || A: Contact a Consultant || A: Call || A: Request a Quote
+ small targets: [('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24'), ('A', 'Instagram', '358x24')] total<44: 22
+ small text: [(12, 4, ['Days', 'Hours']), (14, 9, ['Days left to close a 2026 acquisition.', 'Contact a Consultant'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/aircraft', 15), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: []
+ headings: ['H1: Aircraft for Sale', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /gallery  status=200 title='Image Library | PennJets'
+ transfer=18496KB req=14 docH=5079 (6.0 screens) | desktop docH=1897 transfer=18496KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Contact' at 4308px = 6.0 scrolls (usable vp 713px); 430: 4628
+ h1='Gallery' at 160
+ fold: A:  || BUTTON:  || H1: Gallery || A: Call || A: Request a Quote
+ small targets: [('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24'), ('A', 'Instagram', '358x24')] total<44: 22
+ small text: [(12, 4, ['Days', 'Hours']), (14, 8, ['Days left to close a 2026 acquisition.', '©'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: [('/images/Gallery/commerical.jpg', '4000x6000', '358x358', 'auto'), ('/images/Gallery/falcon.jpg', '3770x2320', '358x358', 'auto'), ('/images/Gallery/future-aviation.jpg', '4896x3264', '358x358', 'auto'), ('/images/Gallery/pc12.jpg', '4473x7952', '358x358', 'auto'), ('/images/Gallery/pj-interior.jpg', '4032x3024', '358x358', 'auto'), ('/images/Gallery/sunset-jet.jpg', '3739x1698', '358x358', 'auto'), ('/images/PennJets-Website-Logo.png', '1024x1024', '358x358', 'auto'), ('/images/Gallery/Embraer_Phenom_300.jpg', '960x720', '358x358', 'auto')]
+ broken imgs: []
+ top transfers: [('/images/Gallery/commerical.jpg', 4620), ('/images/Gallery/pc12.jpg', 4154), ('/images/Gallery/pj-interior.jpg', 3015), ('/images/Gallery/future-aviation.jpg', 2177), ('/images/Gallery/falcon.jpg', 1855), ('/images/PennJets-Website-Logo.png', 1349)]
+ forms: []
+ headings: ['H1: Gallery', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /privacy-policy  status=200 title='Privacy Policy | PennJets'
+ transfer=504KB req=6 docH=6620 (7.8 screens) | desktop docH=4471 transfer=504KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Contact' at 5849px = 8.2 scrolls (usable vp 713px); 430: 5535
+ h1='Privacy Policy' at 144
+ fold: A:  || BUTTON:  || H1: Privacy Policy || P: Penn Jets LLC. Last updated 20 September 2026. || P: This page describes what happens to information when you use pennjets.com. It is written f || H2: The short version || A: Call || A: Request a Quote
+ small targets: [('A', '(954) 546-0763', '121x20'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24')] total<44: 23
+ small text: [(12, 4, ['Days', 'Hours']), (14, 24, ['Days left to close a 2026 acquisition.', 'What is recorded'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/privacy-policy', 23), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: []
+ headings: ['H1: Privacy Policy', 'H2: The short version', 'H2: When you read a Market Note', 'H2: When you send us a form', 'H2: When you subscribe to the newsletter', 'H2: Keeping the site working', 'H2: Cookies and browser storage', 'H2: Who else sees it', 'H2: How long we keep it', 'H2: Asking for a copy, or asking us to delete it', 'H2: Contact', 'H3: Services', 'H3: Aircraft', 'H3: Company']
+ console: []
+
+## /terms-of-service  status=200 title='Terms of Service | PennJets'
+ transfer=499KB req=6 docH=4378 (5.2 screens) | desktop docH=2821 transfer=499KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Contact' at 3606px = 5.1 scrolls (usable vp 713px); 430: 3457
+ h1='Terms of Service' at 160
+ fold: A:  || BUTTON:  || H1: Terms of Service || P: Penn Jets LLC - Effective Date: 10/20/2026 || H2: Acceptance of Terms || P: By accessing and using PennJets.com, you agree to be bound by these Terms of Service. If y || H2: Services Provided || P: Penn Jets LLC operates as a consulting and aircraft brokerage firm. We do not own or opera || A: Call || A: Request a Quote
+ small targets: [('A', 'joe@pennjets.com', '140x20'), ('A', '(954) 546-0763', '121x20'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24')] total<44: 24
+ small text: [(12, 4, ['Days', 'Hours']), (14, 8, ['Days left to close a 2026 acquisition.', '©'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/terms-of-service', 18), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: []
+ headings: ['H1: Terms of Service', 'H2: Acceptance of Terms', 'H2: Services Provided', 'H2: No Guarantee of Availability', 'H2: Intellectual Property', 'H2: Limitation of Liability', 'H2: User Responsibilities', 'H2: Governing Law', 'H2: Changes to Terms', 'H2: Contact Information', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social']
+ console: []
+
+## /cookie-policy  status=200 title='Cookie Policy | PennJets'
+ transfer=501KB req=6 docH=5659 (6.7 screens) | desktop docH=3496 transfer=501KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Contact' at 4888px = 6.9 scrolls (usable vp 713px); 430: 4653
+ h1='Cookie Policy' at 144
+ fold: A:  || BUTTON:  || H1: Cookie Policy || P: Penn Jets LLC. Last updated 20 September 2026. || P: Most cookie policies describe a website other than the one you are reading. This one was w || H2: This site sets no cookies. || P: Not strictly necessary ones, not analytics ones, not advertising ones. We walked the site  || P: There are no third-party analytics on this site, no advertising pixels and no profiling. T || A: Call || A: Request a Quote
+ small targets: [('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24'), ('A', 'Instagram', '358x24')] total<44: 22
+ small text: [(12, 4, ['Days', 'Hours']), (14, 23, ['Days left to close a 2026 acquisition.', 'What'])]
+ scrollTraps: []  overflow: False [{'tag': 'TABLE', 'cls': 'min-w-full divide-y divide-gray-200 text-sm', 'right': 551}, {'tag': 'THEAD', 'cls': 'bg-gray-50', 'right': 551}, {'tag': 'TR', 'cls': '', 'right': 551}]
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/cookie-policy', 20), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: []
+ headings: ['H1: Cookie Policy', 'H2: This site sets no cookies.', 'H2: What is actually stored', 'H2: The one thing we do store', 'H2: Requests your browser makes to other companies', 'H2: Two things that sound like tracking and are not', 'H2: What you can do about it', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: []
+
+## /compliance  status=200 title='Compliance Statement | PennJets'
+ transfer=502KB req=6 docH=5554 (6.6 screens) | desktop docH=3559 transfer=502KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Contact' at 4782px = 6.7 scrolls (usable vp 713px); 430: 4518
+ h1='Compliance Statement' at 160
+ fold: A:  || BUTTON:  || H1: Compliance Statement || P: Penn Jets LLC - Effective Date: September 28, 2025 || P: Penn Jets LLC ("Penn Jets," "we," "us," "our") conducts its aviation brokerage and consult || H2: Aviation Compliance - 14 CFR Part 295 || P: We do not hold ourselves out as a direct air carrier; we are not in operational control of || A: Call || A: Request a Quote
+ small targets: [('A', 'joe@pennjets.com', '140x20'), ('A', '(954) 546-0763', '121x20'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24')] total<44: 24
+ small text: [(12, 4, ['Days', 'Hours']), (14, 23, ['Days left to close a 2026 acquisition.', 'Penn Jets LLC ("Penn Jets," "we," "us," "our") con'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/compliance', 21), ('/images/pennjets-logo-192.png', 5), ('/favicon-32.png', 1)]
+ forms: []
+ headings: ['H1: Compliance Statement', 'H2: Aviation Compliance - 14 CFR Part 295', 'H3: Required Disclosures & Compliance', 'H2: Fair Business Practices', 'H3: Prohibited Practices We Avoid', 'H2: Client Trust & Protection', 'H3: Regulatory Compliance', 'H3: Transparency', 'H2: Website & Security Compliance', 'H2: Business Transparency', 'H3: Disclosure Policy', 'H2: Regulatory Updates', 'H2: Questions About Compliance', 'H3: Services']
+ console: []
+
+## /this-page-does-not-exist  status=404 title='Page Not Found | PennJets'
+ transfer=1381KB req=12 docH=2165 (2.6 screens) | desktop docH=1317 transfer=1396KB
+ overlays: top=60 bottom=0 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 844)]
+ first body CTA: 'Contact us' at 320px = 0.4 scrolls (usable vp 784px); 430: 320
+ h1='Page not found' at 156
+ fold: A:  || BUTTON:  || P: 404 || H1: Page not found || P: That page doesn't exist or has moved. || A: Go to the home page || A: Contact us || A: P PennJets || P: Private aviation sales and consulting. We help clients buy, sell, and charter aircraft wit
+ small targets: [('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24'), ('A', "Who You'll Work Wi", '358x24'), ('A', 'Market Notes', '358x24'), ('A', 'Contact', '358x24'), ('A', 'Instagram', '358x24')] total<44: 22
+ small text: [(12, 4, ['Days', 'Hours']), (14, 11, ['Days left to close a 2026 acquisition.', '404'])]
+ scrollTraps: []  overflow: False []
+ oversized imgs: []
+ broken imgs: []
+ top transfers: [('/videos/Falcon-Hero-Flyover-1080.mp4', 821), ('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/videos/falcon-hero-poster-1080.webp', 33), ('/?/this-page-does-not-exist', 23)]
+ forms: []
+ headings: ['H1: Page not found', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: ['error: Failed to load resource: the server responded with a status of 404 (Not Found)', 'error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED']
+
+## /blog/617-aircraft-21-for-sale-inside-the-g550-market  status=200 title='617 Aircraft, 21 for Sale: Inside the G550 Market | PennJets Market Notes'
+ transfer=541KB req=11 docH=9289 (11.0 screens) | desktop docH=6238 transfer=541KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Send Message' at 5940px = 8.3 scrolls (usable vp 713px); 430: 5705
+ h1='617 Aircraft, 21 for Sale: Inside the G550 Market' at 196
+ fold: A:  || BUTTON:  || BUTTON: ← Back to Market Notes || H1: 617 Aircraft, 21 for Sale: Inside the G550 Market || P: Joseph Pennella || P: Founder and Principal Broker || P: Photo: Airwolfhound, CC BY-SA 2.0. || A: Airwolfhound || A: CC BY-SA 2.0 || P: 617 Aircraft, 21 for Sale || P: I went looking for a late-model G550 for a client. || P: Here is what the market actually had.
+ small targets: [('BUTTON', '← Back to Market N', '161x20'), ('A', 'Airwolfhound', '76x15'), ('A', 'CC BY-SA 2.0', '79x15'), ('A', 'joe@pennjets.com', '310x20'), ('A', '(954) 546-0763', '310x20'), ('INPUT', '', '234x24'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24')] total<44: 31
+ small text: [(12, 10, ['Days', 'Hours']), (14, 23, ['Days left to close a 2026 acquisition.', '← Back to Market Notes'])]
+ scrollTraps: []  overflow: False [{'tag': 'INPUT', 'cls': '', 'right': -9765}]
+ oversized imgs: []
+ broken imgs: [('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bd145054bea05ba0/main.webp', ''), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/b603d520f6673ee7/main.webp', ''), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bde27a89aa004c7f/main.webp', ''), ('0000vs6csd5mwq0r/IMG_2736-2aqDTfdhZt5wUBW2V0sSQDJKbDrYD3.jpg', '')]
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('og/617-aircraft-21-for-sale-inside-the-g550-market', 28), ('/fonts/inter-latin-italic.woff2', 24), ('/images/Meet-The-Team/joseph-pennella-96.webp', 8)]
+ forms: [('Send Message', 4, [('text', False, 42, '16px'), ('email', False, 42, '16px'), ('tel', False, 42, '16px'), ('textarea', False, 114, '16px')]), ('Subscribe', 2, [('text', False, 24, '16px'), ('email', True, 48, '16px')])]
+ headings: ['H1: 617 Aircraft, 21 for Sale: Inside the G550 Market', 'H2: Talk to a Broker', 'H3: Joseph Pennella', 'H2: Newsletter', 'H2: More Market Notes', 'H3: Jet A at a Six-Month High: What It Actually Costs', 'H3: How Exposed Is Business Aviation to the Next Downturn?', 'H3: The Largest Managed Fleet in the World Just Closed. What It Means for ', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: ['error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED']
+
+## /blog/jet-a-at-a-six-month-high-what-it-actually-costs  status=200 title='Jet A at a Six-Month High: What It Actually Costs | PennJets Market Notes'
+ transfer=539KB req=11 docH=7118 (8.4 screens) | desktop docH=4524 transfer=539KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Send Message' at 3769px = 5.3 scrolls (usable vp 713px); 430: 3555
+ h1='Jet A at a Six-Month High: What It Actually Costs' at 196
+ fold: A:  || BUTTON:  || BUTTON: ← Back to Market Notes || H1: Jet A at a Six-Month High: What It Actually Costs || P: Joseph Pennella || P: Founder and Principal Broker || P: Photo: ImagePerson, CC BY 4.0. || A: CC BY 4.0 || P: Jet A at a Six-Month High: What It Actually Costs || P: Jet A hit a six-month high in September. The number worth knowing isn’t the monthly move.  || A: Call || A: Talk to a Broker
+ small targets: [('BUTTON', '← Back to Market N', '161x20'), ('A', 'CC BY 4.0', '58x15'), ('A', 'joe@pennjets.com', '310x20'), ('A', '(954) 546-0763', '310x20'), ('INPUT', '', '234x24'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24')] total<44: 30
+ small text: [(12, 10, ['Days', 'Hours']), (14, 23, ['Days left to close a 2026 acquisition.', '← Back to Market Notes'])]
+ scrollTraps: []  overflow: False [{'tag': 'INPUT', 'cls': '', 'right': -9765}]
+ oversized imgs: []
+ broken imgs: [('om/blog/cmh8ap9bu0000vs6csd5mwq0r/b603d520f6673ee7/main.webp', ''), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bd145054bea05ba0/main.webp', ''), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bde27a89aa004c7f/main.webp', ''), ('0000vs6csd5mwq0r/IMG_2736-2aqDTfdhZt5wUBW2V0sSQDJKbDrYD3.jpg', '')]
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('g/jet-a-at-a-six-month-high-what-it-actually-costs', 26), ('/fonts/inter-latin-italic.woff2', 24), ('/images/Meet-The-Team/joseph-pennella-96.webp', 8)]
+ forms: [('Send Message', 4, [('text', False, 42, '16px'), ('email', False, 42, '16px'), ('tel', False, 42, '16px'), ('textarea', False, 114, '16px')]), ('Subscribe', 2, [('text', False, 24, '16px'), ('email', True, 48, '16px')])]
+ headings: ['H1: Jet A at a Six-Month High: What It Actually Costs', 'H2: Talk to a Broker', 'H3: Joseph Pennella', 'H2: Newsletter', 'H2: More Market Notes', 'H3: 617 Aircraft, 21 for Sale: Inside the G550 Market', 'H3: How Exposed Is Business Aviation to the Next Downturn?', 'H3: The Largest Managed Fleet in the World Just Closed. What It Means for ', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: ['error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED']
+
+## /blog/how-to-buy-your-first-private-jet-2025-step-by-step-buyers-guide  status=200 title='First-Time Buyer’s Guide to Private Aircraft Ownership (2025) | Penn Jets'
+ transfer=516KB req=12 docH=9373 (11.1 screens) | desktop docH=6513 transfer=516KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Send Message' at 6033px = 8.5 scrolls (usable vp 713px); 430: 5685
+ h1='How to Buy Your First Private Jet: 2025 Step-by-Step Buyer’s Guide' at 220
+ fold: A:  || BUTTON:  || BUTTON: ← Back to Market Notes || BUTTON: MARKET NOTES || H1: How to Buy Your First Private Jet: 2025 Step-by-Step Buyer’s Guide || P: Joseph Pennella || P: Founder and Principal Broker || P: Quickstart: 10 Steps to Your First Jet || P: 1. Define the Mission Pax count, range, runways, weather, baggage, cabin needs, internatio || A: Call || A: Talk to a Broker
+ small targets: [('BUTTON', '← Back to Market N', '161x20'), ('BUTTON', 'MARKET NOTES', '115x20'), ('A', 'joe@pennjets.com', '310x20'), ('A', '(954) 546-0763', '310x20'), ('INPUT', '', '234x24'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24')] total<44: 30
+ small text: [(12, 6, ['Days', 'Hours']), (14, 25, ['Days left to close a 2026 acquisition.', '← Back to Market Notes'])]
+ scrollTraps: []  overflow: False [{'tag': 'INPUT', 'cls': '', 'right': -9765}]
+ oversized imgs: []
+ broken imgs: [('https://www.pennjets.com/images/Gallery/gulfstream.jpg', ''), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bd145054bea05ba0/main.webp', ''), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/b603d520f6673ee7/main.webp', '')]
+ top transfers: [('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('r-first-private-jet-2025-step-by-step-buyers-guide', 28), ('/images/Meet-The-Team/joseph-pennella-96.webp', 8), ('/images/pennjets-logo-192.png', 5)]
+ forms: [('Send Message', 4, [('text', False, 42, '16px'), ('email', False, 42, '16px'), ('tel', False, 42, '16px'), ('textarea', False, 114, '16px')]), ('Subscribe', 2, [('text', False, 24, '16px'), ('email', True, 48, '16px')])]
+ headings: ['H1: How to Buy Your First Private Jet: 2025 Step-by-Step Buyer’s Guide', 'H2: Talk to a Broker', 'H3: Joseph Pennella', 'H2: Newsletter', 'H2: More Market Notes', 'H3: September 11 and the Evolution of Private Aviation', 'H3: 617 Aircraft, 21 for Sale: Inside the G550 Market', 'H3: Jet A at a Six-Month High: What It Actually Costs', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: ['error: Failed to load resource: the server responded with a status of 404 (Not Found)', 'error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED']
+
+## /blog/why-we-publish-market-notes  status=200 title='Why We Publish Market Notes | Penn Jets'
+ transfer=1861KB req=11 docH=6084 (7.2 screens) | desktop docH=3826 transfer=1861KB
+ overlays: top=60 bottom=71 fixed=[('DIV', 60, 0), ('HEADER', 64, 60), ('DIV', 71, 773)]
+ first body CTA: 'Send Message' at 2760px = 3.9 scrolls (usable vp 713px); 430: 2700
+ h1='Why We Publish Market Notes' at 196
+ fold: A:  || BUTTON:  || BUTTON: ← Back to Market Notes || H1: Why We Publish Market Notes || P: Joseph Pennella || P: Founder and Principal Broker || P: Penn Jets publishes short notes on the private aviation market because the questions we ar || P: Buyers and sellers are usually working with incomplete information. Aircraft transactions  || A: Call || A: Talk to a Broker
+ small targets: [('BUTTON', '← Back to Market N', '161x20'), ('A', 'joe@pennjets.com', '310x20'), ('A', '(954) 546-0763', '310x20'), ('INPUT', '', '234x24'), ('A', 'P\nPennJets', '358x32'), ('A', 'Aircraft Sales', '358x24'), ('A', 'Aircraft Acquisiti', '358x24'), ('A', 'Charter Services', '358x24'), ('A', 'Consulting', '358x24'), ('A', 'Browse Aircraft', '358x24'), ('A', 'Sell Your Aircraft', '358x24'), ('A', 'Market Analysis', '358x24'), ('A', 'Valuation Services', '358x24'), ('A', 'About Us', '358x24')] total<44: 29
+ small text: [(12, 5, ['Days', 'Hours']), (14, 23, ['Days left to close a 2026 acquisition.', '← Back to Market Notes'])]
+ scrollTraps: []  overflow: False [{'tag': 'INPUT', 'cls': '', 'right': -9765}]
+ oversized imgs: [('/images/PennJets-Website-Logo.png', '1024x1024', '358x201', 'auto')]
+ broken imgs: [('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bd145054bea05ba0/main.webp', ''), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/b603d520f6673ee7/main.webp', ''), ('om/blog/cmh8ap9bu0000vs6csd5mwq0r/bde27a89aa004c7f/main.webp', '')]
+ top transfers: [('/images/PennJets-Website-Logo.png', 1349), ('/assets/index-2c6998a2.js', 379), ('/assets/index-a1da779c.css', 48), ('/fonts/inter-latin-normal.woff2', 47), ('/blog/why-we-publish-market-notes', 24), ('/images/Meet-The-Team/joseph-pennella-96.webp', 8)]
+ forms: [('Send Message', 4, [('text', False, 42, '16px'), ('email', False, 42, '16px'), ('tel', False, 42, '16px'), ('textarea', False, 114, '16px')]), ('Subscribe', 2, [('text', False, 24, '16px'), ('email', True, 48, '16px')])]
+ headings: ['H1: Why We Publish Market Notes', 'H2: Talk to a Broker', 'H3: Joseph Pennella', 'H2: Newsletter', 'H2: More Market Notes', 'H3: 617 Aircraft, 21 for Sale: Inside the G550 Market', 'H3: Jet A at a Six-Month High: What It Actually Costs', 'H3: How Exposed Is Business Aviation to the Next Downturn?', 'H3: Services', 'H3: Aircraft', 'H3: Company', 'H3: Social', 'H3: Legal']
+ console: ['error: Failed to load resource: net::ERR_NAME_NOT_RESOLVED']
+
+=== ALL LINKS (unique across 390 pages) ===
+#quote <- 1 ['/charter']
+#talk-to-a-broker <- 4 pages
+/ <- 21 pages
+/about <- 21 pages
+/about#team <- 21 pages
+/aircraft <- 21 pages
+/blog <- 21 pages
+/blog/617-aircraft-21-for-sale-inside-the-g550-market <- 1 ['/']
+/buy <- 2 ['/aircraft', '/buy']
+/charter <- 21 pages
+/charter#quote <- 3 pages
+/charter?from=HPN%20%2F%20Westchester&to=ACK%20%2F%20Nantucket#quote <- 1 ['/charter']
+/charter?from=HPN%20%2F%20Westchester&to=PBI%20%2F%20Palm%20Beach#quote <- 1 ['/charter']
+/charter?from=ISP%20%2F%20Islip&to=MVY%20%2F%20Martha's%20Vineyard#quote <- 1 ['/charter']
+/charter?from=TEB%20%2F%20Teterboro&to=APF%20%2F%20Naples#quote <- 1 ['/charter']
+/charter?from=TEB%20%2F%20Teterboro&to=CHS%20%2F%20Charleston#quote <- 1 ['/charter']
+/charter?from=TEB%20%2F%20Teterboro&to=PBI%20%2F%20Palm%20Beach#quote <- 1 ['/charter']
+/charter?from=TEB%20%2F%20Teterboro&to=PWK%20%2F%20Chicago%20Executive#quote <- 1 ['/charter']
+/compliance <- 21 pages
+/consulting <- 21 pages
+/contact <- 21 pages
+/cookie-policy <- 21 pages
+/pennshare <- 21 pages
+/pennshare#inquire <- 1 ['/pennshare']
+/privacy-policy <- 21 pages
+/sell <- 21 pages
+/services <- 21 pages
+/services#acquisition <- 21 pages
+/services#analysis <- 21 pages
+/services#charter <- 21 pages
+/services#sales <- 21 pages
+/terms-of-service <- 21 pages
+https://commons.wikimedia.org/wiki/File:Gulfstream_G550_-_RIAT_2018_(29956589968).jpg <- 2 ['/', '/blog/617-aircraft-21-for-sale-inside-the-g550-market']
+https://creativecommons.org/licenses/by-sa/2.0/ <- 2 ['/', '/blog/617-aircraft-21-for-sale-inside-the-g550-market']
+https://creativecommons.org/licenses/by/4.0/ <- 1 ['/blog/jet-a-at-a-six-month-high-what-it-actually-costs']
+https://facebook.com/pennjets <- 21 pages
+https://instagram.com/pennjets <- 21 pages
+https://linkedin.com/pennjets <- 21 pages
+https://twitter.com/pennjets <- 21 pages
+mailto:joe@pennjets.com <- 7 pages
+tel:+19545460763 <- 21 pages
+
+=== KEYBOARD (390x508) ===
+/contact [('Name *', 233, 275, '', '', 'barShown'), ('Email *', 315, 357, '', '', 'barShown'), ('Service Interest\nSelect a serv', 453, 493, '', 'bar', 'barShown'), ('Message *', 185, 323, '', '', 'barHidden')]
+/charter [('From (airport or city) *', 233, 275, '', '', 'barShown'), ('To (airport or city) *', 319, 361, '', '', 'barShown'), ('Departure Date *', 405, 449, '', 'bar', 'barShown'), ('Return Date (optional)', 464, 508, '', 'bar', 'barShown'), ('Passengers *', 233, 275, '', '', 'barShown')]
+/buy [('Name *', 349, 391, '', '', 'barShown'), ('Email *', 435, 477, '', 'bar', 'barShown'), ('Aircraft or category of intere', 233, 275, '', '', 'barHidden'), ('Timeline\nSelect\nWithin 3 month', 319, 359, '', '', 'barHidden')]
+/sell [('Name *', 349, 391, '', '', 'barShown'), ('Email *', 435, 477, '', 'bar', 'barShown'), ('Make', 233, 275, '', '', 'barShown'), ('Model', 319, 361, '', '', 'barShown'), ('Year', 405, 447, '', 'bar', 'barShown')]
+/consulting [('Name *', 349, 391, '', '', 'barShown'), ('Email *', 435, 477, '', 'bar', 'barShown'), ('Phone', 233, 275, '', '', 'barShown'), ('What do you need help with? *', 319, 481, '', 'bar', 'barShown')]
+/pennshare [('Full Name *', 229, 279, '', '', 'barShown'), ('Email Address *', 331, 381, '', '', 'barShown'), ('Additional Comments', 387, 509, '', 'bar', 'barShown')]
+/blog/617-aircraft-21-for-sale-inside-the-g550-market [('text', 233, 275, '', '', 'barShown'), ('email', 315, 357, '', '', 'barShown'), ('tel', 397, 439, '', 'bar', 'barShown'), ('Your question or message...', 395, 509, '', 'bar', 'barShown'), ('Email address', 230, 278, '', '', 'barHidden')]
+/blog [('Enter your email', 230, 278, '', '', 'barHidden')]
+
+=== MENU ===
+{'route': '/', 'button': {'x': 334, 'y': 76, 'width': 40, 'height': 40, 'ariaLabel': None}, 'items': [{'text': '', 'h': 48, 'w': 48, 'bottom': 120}, {'text': 'Home', 'h': 40, 'w': 342, 'bottom': 184}, {'text': 'Aircraft', 'h': 40, 'w': 342, 'bottom': 228}, {'text': 'Charter', 'h': 40, 'w': 342, 'bottom': 272}, {'text': 'PennShare', 'h': 40, 'w': 342, 'bottom': 316}, {'text': 'Services', 'h': 40, 'w': 342, 'bottom': 360}, {'text': 'About', 'h': 40, 'w': 342, 'bottom': 404}, {'text': 'Market Notes', 'h': 40, 'w': 342, 'bottom': 448}, {'text': 'Contact Us', 'h': 20, 'w': 318, 'bottom': 494}], 'innerH': 844}
+{'route': '/blog/617-aircraft-21-for-sale-inside-the-g550-market', 'button': {'x': 334, 'y': 72, 'width': 40, 'height': 40, 'ariaLabel': None}, 'items': [{'text': '', 'h': 48, 'w': 48, 'bottom': 116}, {'text': 'Home', 'h': 40, 'w': 342, 'bottom': 180}, {'text': 'Aircraft', 'h': 40, 'w': 342, 'bottom': 224}, {'text': 'Charter', 'h': 40, 'w': 342, 'bottom': 268}, {'text': 'PennShare', 'h': 40, 'w': 342, 'bottom': 312}, {'text': 'Services', 'h': 40, 'w': 342, 'bottom': 356}, {'text': 'About', 'h': 40, 'w': 342, 'bottom': 400}, {'text': 'Market Notes', 'h': 40, 'w': 342, 'bottom': 444}, {'text': 'Contact Us', 'h': 20, 'w': 318, 'bottom': 490}], 'innerH': 844}
+
+=== DESKTOP fold/home ===
+/ overlays 60 71 firstCTA ('Request a Charter Quote', 436) small 37 ['A: ', 'A: Home', 'A: Aircraft', 'A: Charter', 'A: PennShare', 'A: Services', 'A: About', 'A: Market Notes']
+/charter overlays 60 71 firstCTA ('Request a charter quote', 366) small 36 ['A: ', 'A: Home', 'A: Aircraft', 'A: Charter', 'A: PennShare', 'A: Services', 'A: About', 'A: Market Notes']
+/blog overlays 60 71 firstCTA ('Subscribe', 3722) small 48 ['A: ', 'A: Home', 'A: Aircraft', 'A: Charter', 'A: PennShare', 'A: Services', 'A: About', 'A: Market Notes']

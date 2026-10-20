@@ -1,0 +1,258 @@
+[
+ {
+  "route": "/",
+  "perf": 71,
+  "a11y": 94,
+  "bp": 96,
+  "seo": 100,
+  "fcp": "3.7 s",
+  "lcp": "5.1 s",
+  "tbt": "70 ms",
+  "cls": "0.079",
+  "si": "3.7 s",
+  "bytes": "Total size was 612 KiB",
+  "failing": [
+   "errors-in-console",
+   "button-name",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/charter",
+  "perf": 80,
+  "a11y": 94,
+  "bp": 100,
+  "seo": 100,
+  "fcp": "3.7 s",
+  "lcp": "3.8 s",
+  "tbt": "30 ms",
+  "cls": "0",
+  "si": "3.7 s",
+  "bytes": "Total size was 507 KiB",
+  "failing": [
+   "button-name",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/buy",
+  "perf": 80,
+  "a11y": 94,
+  "bp": 100,
+  "seo": 100,
+  "fcp": "3.6 s",
+  "lcp": "3.8 s",
+  "tbt": "60 ms",
+  "cls": "0.008",
+  "si": "3.6 s",
+  "bytes": "Total size was 500 KiB",
+  "failing": [
+   "button-name",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/sell",
+  "perf": 79,
+  "a11y": 94,
+  "bp": 100,
+  "seo": 100,
+  "fcp": "3.8 s",
+  "lcp": "3.9 s",
+  "tbt": "30 ms",
+  "cls": "0.008",
+  "si": "3.8 s",
+  "bytes": "Total size was 499 KiB",
+  "failing": [
+   "button-name",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/consulting",
+  "perf": 80,
+  "a11y": 94,
+  "bp": 100,
+  "seo": 100,
+  "fcp": "3.7 s",
+  "lcp": "3.8 s",
+  "tbt": "20 ms",
+  "cls": "0.008",
+  "si": "3.7 s",
+  "bytes": "Total size was 498 KiB",
+  "failing": [
+   "button-name",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/pennshare",
+  "perf": 75,
+  "a11y": 88,
+  "bp": 100,
+  "seo": 100,
+  "fcp": "3.8 s",
+  "lcp": "4.5 s",
+  "tbt": "50 ms",
+  "cls": "0.008",
+  "si": "3.8 s",
+  "bytes": "Total size was 622 KiB",
+  "failing": [
+   "button-name",
+   "color-contrast",
+   "heading-order",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/services",
+  "perf": 79,
+  "a11y": 89,
+  "bp": 100,
+  "seo": 100,
+  "fcp": "3.8 s",
+  "lcp": "4.0 s",
+  "tbt": "50 ms",
+  "cls": "0.008",
+  "si": "3.8 s",
+  "bytes": "Total size was 525 KiB",
+  "failing": [
+   "button-name",
+   "color-contrast",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/about",
+  "perf": 79,
+  "a11y": 89,
+  "bp": 100,
+  "seo": 100,
+  "fcp": "3.7 s",
+  "lcp": "4.0 s",
+  "tbt": "20 ms",
+  "cls": "0.008",
+  "si": "3.7 s",
+  "bytes": "Total size was 512 KiB",
+  "failing": [
+   "button-name",
+   "color-contrast",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/contact",
+  "perf": 80,
+  "a11y": 91,
+  "bp": 100,
+  "seo": 100,
+  "fcp": "3.6 s",
+  "lcp": "3.8 s",
+  "tbt": "30 ms",
+  "cls": "0",
+  "si": "3.6 s",
+  "bytes": "Total size was 501 KiB",
+  "failing": [
+   "button-name",
+   "color-contrast",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/blog",
+  "perf": 45,
+  "a11y": 90,
+  "bp": 96,
+  "seo": 100,
+  "fcp": "3.7 s",
+  "lcp": "10.7 s",
+  "tbt": "30 ms",
+  "cls": "0.509",
+  "si": "3.7 s",
+  "bytes": "Total size was 13,374 KiB",
+  "failing": [
+   "errors-in-console",
+   "button-name",
+   "color-contrast",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/aircraft",
+  "perf": 80,
+  "a11y": 92,
+  "bp": 100,
+  "seo": 100,
+  "fcp": "3.7 s",
+  "lcp": "3.8 s",
+  "tbt": "20 ms",
+  "cls": "0.041",
+  "si": "3.7 s",
+  "bytes": "Total size was 497 KiB",
+  "failing": [
+   "button-name",
+   "heading-order",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/blog/617-aircraft-21-for-sale-inside-the-g550-market",
+  "perf": 67,
+  "a11y": 84,
+  "bp": 96,
+  "seo": 100,
+  "fcp": "3.8 s",
+  "lcp": "5.1 s",
+  "tbt": "250 ms",
+  "cls": "0.009",
+  "si": "3.8 s",
+  "bytes": "Total size was 565 KiB",
+  "failing": [
+   "errors-in-console",
+   "button-name",
+   "color-contrast",
+   "label",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/blog/jet-a-at-a-six-month-high-what-it-actually-costs",
+  "perf": 72,
+  "a11y": 85,
+  "bp": 96,
+  "seo": 100,
+  "fcp": "3.8 s",
+  "lcp": "5.1 s",
+  "tbt": "90 ms",
+  "cls": "0.008",
+  "si": "3.8 s",
+  "bytes": "Total size was 559 KiB",
+  "failing": [
+   "errors-in-console",
+   "button-name",
+   "color-contrast",
+   "label",
+   "bf-cache"
+  ]
+ },
+ {
+  "route": "/blog/how-to-buy-your-first-private-jet-2025-step-by-step-buyers-guide",
+  "perf": 73,
+  "a11y": 84,
+  "bp": 96,
+  "seo": 100,
+  "fcp": "3.6 s",
+  "lcp": "4.8 s",
+  "tbt": "120 ms",
+  "cls": "0.008",
+  "si": "3.6 s",
+  "bytes": "Total size was 544 KiB",
+  "failing": [
+   "errors-in-console",
+   "button-name",
+   "color-contrast",
+   "label",
+   "bf-cache"
+  ]
+ }
+]
