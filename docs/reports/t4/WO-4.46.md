@@ -2,17 +2,18 @@
 wo: WO-4.46
 terminal: T4
 branch: t4/work
-commit: 870dfe3
-tested_against: "local checkout of t4/work at 870dfe3 (on top of origin/main ee43b0b, Joseph's PR #12), Node 22.19.0: npm test (vitest 3.2.7), npm run build (postbuild fell back to the committed caches because the CRM's public routes answered 500, see Known gaps), npm run lint; vite preview on localhost:4174 captured with headless Chrome and the repo's Playwright Chromium; no deployed preview exists for this site. Production (www.pennjets.com) still serves ee43b0b; nothing here is deployed."
+commit: 870dfe3 (items 1, 2, 4), 236173c (item 3)
+tested_against: "Items 1, 2, 4: local checkout of t4/work at 870dfe3 (on top of origin/main ee43b0b, Joseph's PR #12), Node 22.19.0: npm test (vitest 3.2.7), npm run build (postbuild fell back to the committed caches because the CRM's public routes answered 500, see Known gaps), npm run lint; vite preview on localhost:4174 captured with headless Chrome and the repo's Playwright Chromium. Item 3: t4/work at 236173c (after WO-4.47's c5bec3d and WO-4.48's 75c644e), npm run lint, npm test (150/150), npm run build against the live CRM (deploy d3de16c; caches refreshed as bf71dfc), vite preview on localhost:4174 read with the repo's Playwright Chromium; each social URL probed with curl -L from this machine on 2026-10-19 ~22:55 UTC. No deployed preview exists for this site. Production (www.pennjets.com) still serves ee43b0b; nothing here is deployed."
 date: 2026-10-19
 status: reported
 ---
 
-# WO-4.46 report: site copy and links — tagline, hero heading, social links (waiting), placeholder sweep
+# WO-4.46 report: site copy and links — tagline, hero heading, social links, placeholder sweep
 
-**Items 1, 2 and 4 done. Item 3 waits on the URLs: the "URLs from Joseph"
-block is not on the order yet.** Item 5: the pages Joseph looks at are
-listed at the end.
+**All four items done.** Items 1, 2 and 4 went in as `870dfe3` while
+item 3 waited on the URLs; the "URLs from Joseph" block landed on the
+order at ~22:10 UTC and item 3 went in as `236173c` (section 3, updated
+below). Item 5: the pages Joseph looks at are listed at the end.
 
 ## Commit
 
@@ -31,6 +32,19 @@ $ git show --stat --format= 870dfe3
 
 Routine, done without asking: `git fetch`, `git merge --ff-only origin/main`
 into `t4/work` (`9f7f01e` → `ee43b0b`, fast-forward), `npm ci`.
+
+**Item 3, second commit**: `236173c` on `t4/work`, pushed.
+
+```
+$ git show --stat --format= 236173c
+ docs/reports/t4/wo-4.46-footer-social-1440.png | Bin 0 -> 86280 bytes
+ src/components/layout/Footer/Footer.jsx        |  31 ++++------------------
+ 2 files changed, 4 insertions(+), 27 deletions(-)
+```
+
+Before it, its own commit as on every order: `bf71dfc`, the routine
+refresh of the two CRM caches made by this build (2 bodies refetched
+because they changed in the CRM since `a4915fc`).
 
 ## 1. The tagline
 
@@ -78,25 +92,101 @@ $ grep -o "The Access You Deserve" dist/index.html
 The Access You Deserve
 ```
 
-## 3. Social links — **item 3 waits on the URLs**
+## 3. Social links — done, `236173c`
 
-The order says the four URLs arrive as a dated "URLs from Joseph" block
-appended to `docs/orders/t4/WO-4.46.md`. On `origin/main` `d3de16c` (the
-lead's commit of 2026-10-19 10:53) that block does not exist. So
-`Footer.jsx:49-52` is unchanged, the dead `socialLinks` array at `:66-70`
-is still there, and no curl was run. What the footer serves today, read
-from the preview with Playwright:
+The "URLs from Joseph" block (2026-10-19 ~22:10 UTC) is on the order on
+`origin/main` `82844fe`. `Footer.jsx`'s Social column is now exactly
+those four, trailing slashes as given; "X (Twitter)" is "X" and points at
+`x.com`; the dead `socialLinks` array (was `:66-70`) and the branch
+that rendered it (`{socialLinks.length > 0 && ...}`, a grey square per
+entry, never shown) are deleted. No other file references either.
 
 ```
-Instagram -> https://instagram.com/pennjets
-Facebook  -> https://facebook.com/pennjets
-LinkedIn  -> https://linkedin.com/pennjets
-X (Twitter) -> https://twitter.com/pennjets
+-        { name: 'Instagram', href: 'https://instagram.com/pennjets', external: true, iconKey: 'instagram' },
+-        { name: 'Facebook', href: 'https://facebook.com/pennjets', external: true, iconKey: 'facebook' },
+-        { name: 'LinkedIn', href: 'https://linkedin.com/pennjets', external: true, iconKey: 'linkedin' },
+-        { name: 'X (Twitter)', href: 'https://twitter.com/pennjets', external: true, iconKey: 'twitter' },
++        { name: 'Instagram', href: 'https://www.instagram.com/pennjets/', external: true, iconKey: 'instagram' },
++        { name: 'Facebook', href: 'https://www.facebook.com/pennjets', external: true, iconKey: 'facebook' },
++        { name: 'LinkedIn', href: 'https://www.linkedin.com/company/penn-jets-llc/', external: true, iconKey: 'linkedin' },
++        { name: 'X', href: 'https://x.com/pennjets', external: true, iconKey: 'twitter' },
 ```
 
-When the block lands: set the four, rename "X (Twitter)" to "X" on
-`x.com`, delete `:66-70`, run the four curls, remove what does not reach a
-profile. That is a second commit on this order.
+(`iconKey: 'twitter'` is the map key for the `FaXTwitter` glyph, the X
+logo; the visible name is "X".)
+
+### The four probes, 2026-10-19 ~22:55 UTC, from this machine
+
+The order's exact command, pasted with its result:
+
+```
+$ curl -sS -o /dev/null -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/128" -w "%{http_code} %{url_effective}\n" https://www.linkedin.com/company/penn-jets-llc/
+200 https://www.linkedin.com/company/penn-jets-llc/
+$ curl -sS -o /dev/null -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/128" -w "%{http_code} %{url_effective}\n" https://www.facebook.com/pennjets
+200 https://www.facebook.com/pennjets
+$ curl -sS -o /dev/null -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/128" -w "%{http_code} %{url_effective}\n" https://www.instagram.com/pennjets/
+200 https://www.instagram.com/pennjets/
+$ curl -sS -o /dev/null -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/128" -w "%{http_code} %{url_effective}\n" https://x.com/pennjets
+200 https://x.com/pennjets
+```
+
+All four: 200, and the final URL is the URL itself (no login, search or
+home-page redirect). Because the order says a bare 200 is not enough on
+these platforms, the `<title>` of each response (same user agent):
+
+| Link | `<title>` of the 200 | Proves a Penn Jets page? |
+|---|---|---|
+| LinkedIn | `Penn Jets LLC \| LinkedIn` | yes |
+| Facebook | `Penn Jets` | yes. Facebook answered this curl 200 with the page, not the 400 login bounce the lead saw at ~22:20; either way the lead's browser read (40 followers, the Charter Demand post pinned) is on the order. |
+| Instagram | `Penn Jets (@pennjets) • Instagram photos and videos` | yes. A control, `https://www.instagram.com/pennjets-no-such-profile-zz/`, also answered `200` from here with title `Instagram`, so on Instagram the title is the proof, not the status. |
+| X | `Joseph Pennella (@pennjets) / X` | yes: the `@pennjets` handle. The display name is "Joseph Pennella", as the lead already noted for Joseph. |
+
+**All four ship; nothing removed.**
+
+### Rendered
+
+Built at `236173c` (build exit 0, below), `vite preview --port 4174`,
+the repo's Playwright Chromium at 1440 wide, nothing stubbed. The
+footer's Social column on `/`, read from the DOM:
+
+```
+Instagram -> https://www.instagram.com/pennjets/            target=_blank rel="noopener noreferrer" icon
+Facebook  -> https://www.facebook.com/pennjets               target=_blank rel="noopener noreferrer" icon
+LinkedIn  -> https://www.linkedin.com/company/penn-jets-llc/ target=_blank rel="noopener noreferrer" icon
+X         -> https://x.com/pennjets                          target=_blank rel="noopener noreferrer" icon
+```
+
+Capture: `wo-4.46-footer-social-1440.png`. In the prerendered output all
+32 HTML files carry the new LinkedIn URL and none carries
+`twitter.com`, `linkedin.com/pennjets` or the bare `instagram.com` /
+`facebook.com` hosts:
+
+```
+$ grep -l "company/penn-jets-llc" dist/*.html dist/*/*.html dist/*/*/*.html | wc -l
+32
+$ grep -l "twitter.com/pennjets\|linkedin.com/pennjets\|https://instagram.com\|https://facebook.com" dist/*.html dist/**/*.html
+(nothing)
+```
+
+### Build, lint, tests for item 3
+
+```
+$ npm run lint             (exit 0, 0 warnings)
+$ npm test                 Test Files 10 passed (10)   Tests 150 passed (150)
+$ npm run build            (exit 0)
+✓ built in 6.99s
+[postbuild] wrote data/market-notes.json: 16 note(s), 16,864 bytes
+[postbuild] article bodies: 14 from cache, 2 fetched (each fetch writes one ContentAnalytics row; reuse writes none)
+[postbuild] wrote 32 HTML files (16 Market Notes) and sitemap.xml with 31 URLs
+[prerender] 32 of 32 routes rendered in 110.9s, 174,163 characters of body text added
+[prerender] 16 view beacon(s) intercepted; none reached the CRM.
+```
+
+(150 tests, not WO-4.48's 146: `NoteBody.test.js` iterates the article
+cache, which gained bodies in `a4915fc`.) Two builders: when this build
+ran the other node processes were T1's, T2's and T3's vitest runs and an
+`npm ci`, no build; the site build ran alone in this checkout. The
+preview was stopped before this report was written.
 
 ## 4. Placeholder sweep — report only, nothing fixed
 
@@ -112,7 +202,7 @@ Grep over `src`, `index.html`, `public` (text files: `404.html`,
 | 2 | `src/components/pages/PennShare/PennShare.jsx:115`, `:245`, `:259` | `navigate('/aircraft/3')` behind "View Aircraft Details", the interior-image click and "View Complete Details" | **Yes.** Since WO-4.43 the detail route reads the CRM by slug and `AircraftDetail.jsx:11` says "a numeric id is just a slug that matches nothing", so all three buttons land on the detail page's not-found state. Functionally `href="#"`. | Point the three at `/contact` (the PennShare inquiry form is on the same page; `#inquire` would be shorter still) or remove them until a PennShare listing exists in the CRM. Joseph's call: the Premier 1A is not a CRM listing. |
 | 3 | `index.html:6` | `<meta name="description" content="PennJets - Premier aviation brokerage services. Find and sell private jets, aircraft management, and charter services.">` | Not on any built page: `postbuild.mjs` writes every route's description from `siteMeta.js`, and `dist/index.html` carries "Independent aircraft brokerage and consulting…" (`grep -c "aircraft management" dist/index.html` → 0). It is the fallback a crawler would see only if the build step were skipped. | Replace with `DEFAULT_DESCRIPTION` from `siteMeta.js` so the two never disagree, and so "aircraft management" (not sold) is gone from the source. One line. |
 | 4 | `index.html:15` | `<title>PennJets - Premier Aviation Brokerage</title>` | Same as row 3: postbuild overwrites it per route. The source fallback differs from `DEFAULT_TITLE`. | Same fix as row 3, same line count. Not a placeholder in the order's sense; listed because row 3 was. |
-| 5 | `src/components/layout/Footer/Footer.jsx:66-70` | The commented-out `socialLinks` array ("Social media links will be added when accounts are set up") | No, dead code. | Goes with item 3 of this order. |
+| 5 | `src/components/layout/Footer/Footer.jsx:66-70` | The commented-out `socialLinks` array ("Social media links will be added when accounts are set up") | No, dead code. | Deleted in `236173c` (item 3). |
 
 Excluded, one line each: `*.test.jsx` hits (the AircraftListing test names
 "no placeholder"); comments that explain an absence
@@ -133,7 +223,8 @@ isolated build.
 | Page | What to look at | Capture |
 |---|---|---|
 | `http://localhost:4174/` | the hero `<h1>` "The Access You Deserve" | `wo-4.46-home-hero-1440.png` |
-| `http://localhost:4174/` scrolled to the bottom | the closing block "PennJets LLC — Private aviation. Simplified." and, below it, the footer's Social column (unchanged, item 3) | `wo-4.46-home-closing-footer-1440.png`, `wo-4.46-home-full-1440.png` |
+| `http://localhost:4174/` scrolled to the bottom | the closing block "PennJets LLC — Private aviation. Simplified." and, below it, the footer's Social column (captured before item 3; the links then still read "X (Twitter)") | `wo-4.46-home-closing-footer-1440.png`, `wo-4.46-home-full-1440.png` |
+| any page, the footer's Social column | the four links Instagram, Facebook, LinkedIn, X, each opening the Penn Jets profile in a new tab (item 3, `236173c`) | `wo-4.46-footer-social-1440.png` |
 | `http://localhost:4174/pennshare` | sweep row 2: the three "View … Details" controls and the Premier 1A images (row 1) | `wo-4.46-pennshare-full-1440.png` |
 
 Rows 3 and 4 of the sweep are not visitor-visible; nothing to look at.
@@ -177,8 +268,10 @@ No test file touched.
 
 ## Scope
 
-`src/components/pages/Home/Home.jsx` and this report with its four PNGs
-under `docs/reports/t4/`. Only the site repository. Five untracked files
+`src/components/pages/Home/Home.jsx` (`870dfe3`),
+`src/components/layout/Footer/Footer.jsx` (`236173c`), the routine cache
+refresh (`bf71dfc`), and this report with its five PNGs under
+`docs/reports/t4/`. Only the site repository. Five untracked files
 under `public/images/Gallery/` (`Aviation_Fuel_Tanks.jpg`, `JetA_hero.txt`,
 `ebace-static-display-hero.jpg`, `jet-a-tanks-hero.jpg`,
 `pc12-charter-hero.jpg`, dated 2026-10-12 and later, one of them arriving
@@ -186,7 +279,11 @@ during this session) are not mine and are not staged.
 
 ## Known gaps
 
-- **Item 3 is not done**: no URLs on the order. Said above.
+- **Item 3 is done** (`236173c`); the earlier version of this report
+  said it waited on the URLs. The probes and the render are in section 3.
+- Facebook answered my curl 200 where the lead's answered 400 at ~22:20
+  UTC; Facebook varies this by client and time. Both reads agree the page
+  is the Penn Jets page.
 - **The CRM's public routes answer 500 on production right now**, not
   caused by anything here:
   ```
