@@ -424,8 +424,8 @@
     }
   },
   "charter-demand-is-up-27-flying-isnt": {
-    "fetchedAt": "2026-10-19T22:18:17.227Z",
-    "fingerprint": "[\"Charter Demand Is Up 27%. Flying Isn’t\",\"Avinode reports U.S. charter demand up 27%. Departures are flat. Both numbers are accurate, and the gap between them matters if you are projecting charter revenue.\",\"Charter Demand Is Up 27%. Flying Isn’t\",\"Avinode shows U.S. charter demand up 27% while departures stay flat. What marketplace demand figures actually measure, and why it matters for owners.\",\"https://algxvqsvihyabn9r.public.blob.vercel-storage.com/blog/cmh8ap9bu0000vs6csd5mwq0r/2f86fffbf2d83c0f/main.webp\",\"2026-10-19T16:52:50.181Z\",[],\"Joseph Pennella\",\"[Author]\",\"https://commons.wikimedia.org/wiki/File:Pilatus_PC-12.jpg\",\"CC_BY_SA_4_0\",false,\"2026-10-19T16:52:50.187Z\"]",
+    "fetchedAt": "2026-10-20T01:01:57.129Z",
+    "fingerprint": "[\"Charter Demand Is Up 27%. Flying Isn’t\",\"Avinode reports U.S. charter demand up 27%. Departures are flat. Both numbers are accurate, and the gap between them matters if you are projecting charter revenue.\",\"Charter Demand Is Up 27%. Flying Isn’t\",\"Avinode shows U.S. charter demand up 27% while departures stay flat. What marketplace demand figures actually measure, and why it matters for owners.\",\"https://algxvqsvihyabn9r.public.blob.vercel-storage.com/blog/cmh8ap9bu0000vs6csd5mwq0r/2f86fffbf2d83c0f/main.webp\",\"2026-10-19T16:52:50.181Z\",[\"category:market-notes\"],\"Joseph Pennella\",\"[Author]\",\"https://commons.wikimedia.org/wiki/File:Pilatus_PC-12.jpg\",\"CC_BY_SA_4_0\",false,\"2026-10-20T00:41:05.223Z\"]",
     "body": {
       "id": "cmvfhseuc0001jv068wxvnvj6",
       "title": "Charter Demand Is Up 27%. Flying Isn’t",
@@ -439,9 +439,11 @@
       "imageModified": false,
       "metaTitle": "Charter Demand Is Up 27%. Flying Isn’t",
       "metaDescription": "Avinode shows U.S. charter demand up 27% while departures stay flat. What marketplace demand figures actually measure, and why it matters for owners.",
-      "keywords": [],
+      "keywords": [
+        "category:market-notes"
+      ],
       "publishedAt": "2026-10-19T16:52:50.181Z",
-      "updatedAt": "2026-10-19T16:52:50.187Z",
+      "updatedAt": "2026-10-20T00:41:05.223Z",
       "author": {
         "id": "cmh8apgpu0001vscwzrafl22b",
         "name": "Joseph Pennella",
@@ -461,8 +463,8 @@
     }
   },
   "617-aircraft-21-for-sale-inside-the-g550-market": {
-    "fetchedAt": "2026-10-19T22:18:17.414Z",
-    "fingerprint": "[\"617 Aircraft, 21 for Sale: Inside the G550 Market\",\"Per JETNET, 617 G550s are in operation and 21 are for sale. Narrow to 2015 and newer and it drops to two. What scarcity looks like when production has ended.\",\"617 Aircraft, 21 for Sale: Inside the G550 Market\",\"ETNET shows the G550 at 3.4% availability with a 3.9-month absorption rate and production at zero. What that means for buyers narrowing by model year.\",\"https://algxvqsvihyabn9r.public.blob.vercel-storage.com/blog/cmh8ap9bu0000vs6csd5mwq0r/bd145054bea05ba0/main.webp\",\"2026-10-16T13:18:54.029Z\",[],\"Joseph Pennella\",\"Airwolfhound\",\"https://commons.wikimedia.org/wiki/File:Gulfstream_G550_-_RIAT_2018_(29956589968).jpg\",\"CC_BY_SA_2_0\",false,\"2026-10-16T14:03:12.622Z\"]",
+    "fetchedAt": "2026-10-20T01:01:57.280Z",
+    "fingerprint": "[\"617 Aircraft, 21 for Sale: Inside the G550 Market\",\"Per JETNET, 617 G550s are in operation and 21 are for sale. Narrow to 2015 and newer and it drops to two. What scarcity looks like when production has ended.\",\"617 Aircraft, 21 for Sale: Inside the G550 Market\",\"ETNET shows the G550 at 3.4% availability with a 3.9-month absorption rate and production at zero. What that means for buyers narrowing by model year.\",\"https://algxvqsvihyabn9r.public.blob.vercel-storage.com/blog/cmh8ap9bu0000vs6csd5mwq0r/bd145054bea05ba0/main.webp\",\"2026-10-16T13:18:54.029Z\",[\"category:market-studies\"],\"Joseph Pennella\",\"Airwolfhound\",\"https://commons.wikimedia.org/wiki/File:Gulfstream_G550_-_RIAT_2018_(29956589968).jpg\",\"CC_BY_SA_2_0\",false,\"2026-10-20T00:41:28.025Z\"]",
     "body": {
       "id": "cmvaztywm0001jn067598wmos",
       "title": "617 Aircraft, 21 for Sale: Inside the G550 Market",
@@ -476,9 +478,11 @@
       "imageModified": false,
       "metaTitle": "617 Aircraft, 21 for Sale: Inside the G550 Market",
       "metaDescription": "ETNET shows the G550 at 3.4% availability with a 3.9-month absorption rate and production at zero. What that means for buyers narrowing by model year.",
-      "keywords": [],
+      "keywords": [
+        "category:market-studies"
+      ],
       "publishedAt": "2026-10-16T13:18:54.029Z",
-      "updatedAt": "2026-10-16T14:03:12.622Z",
+      "updatedAt": "2026-10-20T00:41:28.025Z",
       "author": {
         "id": "cmh8apgpu0001vscwzrafl22b",
         "name": "Joseph Pennella",
