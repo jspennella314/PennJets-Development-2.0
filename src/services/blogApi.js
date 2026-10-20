@@ -3,8 +3,19 @@
 
 import { displayTags } from '../utils/marketNotes';
 import { fetchAllPosts } from './blogPaging';
+import { chooseList, filterBuildList, loadBuildList, newestPublishedAt } from './blogIndex';
 
 const CRM_API_URL = import.meta.env.VITE_CRM_API_URL || 'https://www.pennforce.pennjets.com';
+
+// The build's list (dist/data/market-notes.json), read once per page load and
+// shared by every caller of getAllPosts. WO-4.48.
+let buildListPromise = null;
+function buildList() {
+  if (!buildListPromise) buildListPromise = loadBuildList({ fetch: (...a) => globalThis.fetch(...a) });
+  return buildListPromise;
+}
+// For tests, which stub fetch per case.
+export function resetBuildListCache() { buildListPromise = null; }
 
 // Session-scoped id for the view beacon. Lives in sessionStorage only (cleared when
 // the tab closes) so a re-fire within the same session updates the CRM row instead
@@ -67,18 +78,53 @@ export const blogApi = {
    * offset += limit while pagination.hasMore; see blogPaging.js). The
    * Market Notes index uses this, so the oldest note is no longer cut off
    * by the route's default limit of 10. Same filters as getPosts. WO-4.40.
+   *
+   * Since WO-4.48 the CRM's list is compared with the build's own list
+   * (dist/data/market-notes.json, written by scripts/postbuild.mjs) and the
+   * better one is returned: the build's when the CRM fails, returns fewer
+   * notes, or its newest note is older (one console.warn names the rule);
+   * the CRM's when it is the same or newer. The build's list is filtered to
+   * the same category. A keyword search has no build-side equivalent, so
+   * that path is the CRM's alone. `onBuildList` receives the build's list,
+   * transformed, as soon as it is read, so a page can render it before the
+   * CRM answers; it is not called when the file is missing or empty.
+   *
+   * The index, the home page's newest-note card and a note's related notes
+   * all come through here, so they agree.
+   *
    * @param {string} [category] - Category slug
    * @param {string} [keyword] - Free-text search
+   * @param {{ onBuildList?: (posts: Array) => void }} [opts]
    * @returns {Promise<Array>} Array of blog posts, [] on failure
    */
-  async getAllPosts(category, keyword) {
-    try {
-      const posts = await fetchAllPosts({ baseUrl: CRM_API_URL, category, keyword });
-      return posts.map(post => this.transformPost(post));
-    } catch (error) {
-      console.error('Error fetching blog posts:', error);
-      return [];
+  async getAllPosts(category, keyword, { onBuildList } = {}) {
+    // Both in flight at once; the build file is local and answers first.
+    let crmError = null;
+    const crmPromise = fetchAllPosts({ baseUrl: CRM_API_URL, category, keyword })
+      .catch((error) => { crmError = error; return null; });
+
+    let build = null;
+    if (!keyword) {
+      const all = await buildList();
+      build = all ? filterBuildList(all, category) : null;
+      if (build && build.length > 0 && onBuildList) {
+        try { onBuildList(build.map((post) => this.transformPost(post))); } catch (e) { /* a caller's error must not break the list */ }
+      }
     }
+
+    const crm = await crmPromise;
+    if (crmError) console.error('Error fetching blog posts:', crmError);
+
+    const chosen = chooseList(crm, build);
+    if (chosen.reason) {
+      const detail = {
+        'crm-failed': () => `the CRM list request failed${crmError ? ` (${crmError.message})` : ''}`,
+        'crm-shorter': () => `the CRM returned ${crm.length} note(s), the build has ${build.length}`,
+        'crm-older': () => `the CRM's newest note is ${new Date(newestPublishedAt(crm)).toISOString()}, the build's is ${new Date(newestPublishedAt(build)).toISOString()}`,
+      }[chosen.reason]();
+      console.warn(`[blog] Showing the build's list of ${build.length} note(s) instead of the CRM's: ${detail}. (${chosen.reason}, WO-4.48)`);
+    }
+    return chosen.posts.map((post) => this.transformPost(post));
   },
 
   /**

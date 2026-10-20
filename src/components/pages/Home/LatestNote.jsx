@@ -70,8 +70,13 @@ export function LatestNoteCard({ note }) {
 }
 
 // No note, no card: while the list is loading, if it is empty, or if the
-// fetch fails (getPosts() returns [] on failure), this renders nothing.
-// `initialPosts` is for tests; the page passes nothing.
+// fetch fails (getAllPosts() returns [] when both the CRM and the build's
+// list are empty), this renders nothing. `initialPosts` is for tests; the
+// page passes nothing.
+//
+// The same list as the index: the build's own list first, then the CRM's
+// when it is the same or newer (WO-4.48). So the card follows the index and
+// never names an older note than the build shipped.
 export default function LatestNote({ initialPosts }) {
   const [posts, setPosts] = useState(initialPosts ?? null);
 
@@ -79,7 +84,7 @@ export default function LatestNote({ initialPosts }) {
     if (initialPosts) return undefined;
     let cancelled = false;
     blogApi
-      .getPosts()
+      .getAllPosts(undefined, undefined, { onBuildList: (list) => { if (!cancelled) setPosts(list); } })
       .then((list) => { if (!cancelled) setPosts(list); })
       .catch(() => { if (!cancelled) setPosts([]); });
     return () => { cancelled = true; };

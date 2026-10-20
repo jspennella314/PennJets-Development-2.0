@@ -28,17 +28,31 @@ const BlogList = () => {
   // The full list, kept so the filter bar only offers categories that have
   // notes, and so counts do not depend on the filtered request. Paged, so
   // every note is here, not the route's default 10 (WO-4.40).
+  //
+  // The build's own list renders first (it ships with the page and answers
+  // at once), then the CRM's replaces it when getAllPosts says it is the
+  // same or newer; otherwise the build's stays. So the prerendered index
+  // and the first client render agree, and the CRM being down or stale
+  // never shows fewer notes than the build. WO-4.48.
   useEffect(() => {
-    blogApi.getAllPosts().then(setAllPosts).catch(() => {});
+    let cancelled = false;
+    blogApi
+      .getAllPosts(undefined, undefined, { onBuildList: (list) => { if (!cancelled) setAllPosts(list); } })
+      .then((list) => { if (!cancelled) setAllPosts(list); })
+      .catch(() => {});
+    return () => { cancelled = true; };
   }, []);
 
   // Filtered list. ?category= is the CRM's exact match on the keywords
-  // array (WO-1.16), so what comes back is shown as is. WO-4.31.
+  // array (WO-1.16), so what comes back is shown as is. WO-4.31. The
+  // build's list, filtered the same way, shows while the CRM answers.
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
     blogApi
-      .getAllPosts(activeSlug || undefined)
+      .getAllPosts(activeSlug || undefined, undefined, {
+        onBuildList: (list) => { if (!cancelled) { setPosts(list); setLoading(false); } },
+      })
       .then((data) => {
         if (cancelled) return;
         setPosts(data);

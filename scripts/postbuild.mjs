@@ -122,6 +122,35 @@ try {
   console.warn('='.repeat(72));
 }
 
+// ---- the build's list, shipped with the site -------------------------------
+//
+// dist/data/market-notes.json: every published note this build knows, in the
+// list route's { posts, pagination } shape, so the running app can show it
+// when the CRM is down, short or stale (src/services/blogIndex.js). Only what
+// the index, the home card and the related-notes block read: no bodies, no
+// meta title/description, no raw image-credit fields (imageAttribution is the
+// composed credit the pages use), no viewCount/leadCount. WO-4.48.
+const INDEX_FIELDS = [
+  'id', 'title', 'slug', 'excerpt', 'featuredImage', 'featuredImageSocial',
+  'imageAttribution', 'keywords', 'publishedAt', 'updatedAt', 'author',
+];
+const INDEX_MAX_BYTES = 200 * 1024;
+{
+  const indexPosts = posts.map((p) => Object.fromEntries(INDEX_FIELDS.filter((k) => p[k] !== undefined).map((k) => [k, p[k]])));
+  const body = JSON.stringify({
+    posts: indexPosts,
+    pagination: { total: indexPosts.length, limit: indexPosts.length, offset: 0, hasMore: false },
+    builtAt: new Date().toISOString(),
+    fromCache: usingCache,
+  });
+  const bytes = Buffer.byteLength(body);
+  writeFile('data/market-notes.json', body);
+  console.log(`[postbuild] wrote data/market-notes.json: ${indexPosts.length} note(s), ${bytes.toLocaleString()} bytes${usingCache ? ', FROM CACHE' : ''}`);
+  if (bytes > INDEX_MAX_BYTES) {
+    console.warn(`[postbuild] data/market-notes.json is ${bytes.toLocaleString()} bytes, over the ${INDEX_MAX_BYTES.toLocaleString()} the index is meant to carry; trim INDEX_FIELDS or page it.`);
+  }
+}
+
 // ---- inventory: the CRM's LISTED aircraft, for the home page ---------------
 //
 // GET /api/public/inventory (docs/integration/PENNJETS-SITE.md §5, WO-0.10):

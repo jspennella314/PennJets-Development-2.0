@@ -46,10 +46,10 @@ const Footer = () => {
     {
       title: 'Social',
       links: [
-        { name: 'Instagram', href: 'https://instagram.com/pennjets', external: true, iconKey: 'instagram' },
-        { name: 'Facebook', href: 'https://facebook.com/pennjets', external: true, iconKey: 'facebook' },
-        { name: 'LinkedIn', href: 'https://linkedin.com/pennjets', external: true, iconKey: 'linkedin' },
-        { name: 'X (Twitter)', href: 'https://twitter.com/pennjets', external: true, iconKey: 'twitter' },
+        { name: 'Instagram', href: 'https://www.instagram.com/pennjets/', external: true, iconKey: 'instagram' },
+        { name: 'Facebook', href: 'https://www.facebook.com/pennjets', external: true, iconKey: 'facebook' },
+        { name: 'LinkedIn', href: 'https://www.linkedin.com/company/penn-jets-llc/', external: true, iconKey: 'linkedin' },
+        { name: 'X', href: 'https://x.com/pennjets', external: true, iconKey: 'twitter' },
       ]
     },
     {
@@ -61,12 +61,6 @@ const Footer = () => {
         { name: 'Compliance', href: '/compliance' },
       ]
     }
-  ];
-
-  const socialLinks = [
-    // Social media links will be added when accounts are set up
-    // { name: 'LinkedIn', href: 'https://linkedin.com/company/pennjets', icon: 'linkedin' },
-    // { name: 'Twitter', href: 'https://twitter.com/pennjets', icon: 'twitter' },
   ];
 
   return (
@@ -87,23 +81,6 @@ const Footer = () => {
                 Private aviation sales and consulting. We help clients buy, sell, and charter
                 aircraft with straightforward advice and personal service.
               </p>
-              {socialLinks.length > 0 && (
-                <div className="flex space-x-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors"
-                      aria-label={social.name}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="sr-only">{social.name}</span>
-                      <div className="w-5 h-5 bg-gray-400"></div>
-                    </a>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* Footer Links */}
