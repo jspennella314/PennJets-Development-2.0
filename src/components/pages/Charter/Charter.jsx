@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { blogApi } from "../../../services/blogApi";
 import useNarrowViewport from "../../../hooks/useNarrowViewport";
@@ -233,11 +233,6 @@ const QuoteForm = () => {
     setStep(2);
   };
 
-  const canSubmit = useMemo(
-    () => name && email && phone && from && to && date && pax > 0 && !isSubmitting,
-    [name, email, phone, from, to, date, pax, isSubmitting]
-  );
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -358,9 +353,13 @@ const QuoteForm = () => {
                     Back
                   </button>
                 )}
+                {/* No gate on Send: every field carries `required`, so an
+                    empty one gets the browser's message at the field instead
+                    of a grey button that says nothing. The three other Sends
+                    got this in WO-4.50; the lead approved this one 2026-10-21. */}
                 <button
                   type="submit"
-                  disabled={!canSubmit}
+                  disabled={isSubmitting}
                   className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40"
                 >
                   {isSubmitting ? "Sending..." : "Send Request"}
@@ -405,7 +404,7 @@ const FooterCta = () => (
       <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
         <div>
           <h3 className="text-xl font-semibold">Ready to go wheels up?</h3>
-          <p className="mt-1 text-sm text-white/80">Call (954) 546‑0763 or send your itinerary for a fast quote.</p>
+          <p className="mt-1 text-sm text-white/80">Call (954) 546‑0763 or send your itinerary.</p>
         </div>
         <div className="flex gap-3">
           <a href="#quote" className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md">{CTA_LABEL}</a>

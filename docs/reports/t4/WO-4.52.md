@@ -270,3 +270,15 @@ is stopped, and no node process of mine is running.
 ## Addendum, 2026-10-21: row 9 and the merge onto main
 
 Row 9 now reads **"Tell us the trip, and we'll compare vetted operators and show you the quotes."** (Joseph; the other 21 rows approved as written). Commit `b35b9cd`; `Home.test.jsx` pins all three tile sentences; `home-tiles-390.png` retaken (tiles 342 × 118 each, stacked). `t4/work` was **merged** with the new `main` (`9974bfa`, PR #14) in `e0d80e8`, not rebased, so no pushed history was rewritten; `main` is an ancestor of `t4/work`. Build after the merge: exit 0, 33 HTML files, no request reached the CRM; Home tests 21/21, lint 0.
+
+## Addendum, 2026-10-21: the three pre-merge fixes that missed PR #14
+
+Joseph: they ride with the WO-4.51/4.52 PR. One commit on `t4/work`.
+
+| Where | Before | After |
+|---|---|---|
+| `/charter`, "Ready to go wheels up?" line (`Charter.jsx:408`) | Call (954) 546‑0763 or send your itinerary for a fast quote. | Call (954) 546‑0763 or send your itinerary. |
+| `/charter` step 2, Send Request (`Charter.jsx:363`) | `disabled={!canSubmit}`: grey (opacity 0.4) until all seven fields held a value | `disabled={isSubmitting}`, as the three Sends in WO-4.50; `canSubmit` and `useMemo` removed |
+| `/buy`, the aside | Representative aircraft types. Availability on request. | removed |
+
+Charter step 2 at 390 (`charter-step2-invalid-390.png`): with the trip filled and Continue tapped, Send Request is enabled (opacity 1); tapped with the contact fields empty, focus lands on Name, 439 px from the top and clear of the 64 px header, with "Please fill out this field."; the webhook stub saw 0 requests and no request reached the CRM. In the build: `grep -c "fast quote" dist/charter.html` → 0, `grep -c "Representative aircraft types" dist/buy.html` → 0. Build exit 0 (33 HTML files), lint 0 on both files; neither file has tests of its own (StickyContactBar's 6 pass).
