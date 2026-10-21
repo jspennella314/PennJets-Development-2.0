@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { inventoryApi } from '../../../services/inventoryApi';
+import { useListings } from './useListings';
 
 // ---------------------------------------------------------------------------
 // Inventory: real aircraft only, read from the CRM (GET /api/public/inventory,
@@ -16,15 +16,18 @@ import { inventoryApi } from '../../../services/inventoryApi';
 
 const usd = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
 
-export function InventoryCard({ a }) {
+// `to` overrides the card's link (FeaturedListing sends it to /buy, WO-4.52);
+// without it the card links to the listing's own page as before.
+export function InventoryCard({ a, to }) {
   const name = `${a.year} ${a.make} ${a.model}`;
+  const href = to || a.url;
   return (
     <article className="overflow-hidden rounded-2xl border shadow-sm">
       {/* The image is the first one on the CRM's own store; any other host
           was dropped by safeImage (WO-4.39), and the card has no image. */}
       {a.image && (
         <Link
-          to={a.url}
+          to={href}
           className="block w-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
         >
           <img
@@ -49,7 +52,7 @@ export function InventoryCard({ a }) {
           )}
         </ul>
         <Link
-          to={a.url}
+          to={href}
           className="mt-3 inline-block text-sm font-medium underline"
           aria-label={`View details for ${name}`}
         >
@@ -60,19 +63,9 @@ export function InventoryCard({ a }) {
   );
 }
 
-// `initialListings` is for tests; the page passes nothing.
+// `initialListings` is for tests; the pages pass nothing.
 export default function Inventory({ initialListings }) {
-  const [listings, setListings] = useState(initialListings ?? null);
-
-  useEffect(() => {
-    if (initialListings) return undefined;
-    let cancelled = false;
-    inventoryApi
-      .getListings()
-      .then((list) => { if (!cancelled) setListings(list); })
-      .catch(() => { if (!cancelled) setListings([]); });
-    return () => { cancelled = true; };
-  }, [initialListings]);
+  const listings = useListings(initialListings);
 
   if (!listings || listings.length === 0) return null;
 

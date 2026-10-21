@@ -159,6 +159,9 @@ const Buy = () => {
                   Sorry, that didn't go through. Please try again or call (954) 546‑0763.
                 </p>
               )}
+              {/* Under the form: the aircraft buyers have recently asked
+                  about. WO-4.52. */}
+              <Link to="/aircraft" className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium underline" data-see-recent-inquiries>See recent inquiries</Link>
             </form>
 
             <aside className="rounded-2xl border p-6 shadow-sm">
@@ -168,7 +171,6 @@ const Buy = () => {
                 <li className="flex gap-3"><span className="font-semibold">2.</span><span>We identify aircraft that fit, including ones that aren't publicly listed.</span></li>
                 <li className="flex gap-3"><span className="font-semibold">3.</span><span>We manage the offer, inspection, and closing with you.</span></li>
               </ol>
-              <p className="mt-4 text-xs text-gray-500">Representative aircraft types. Availability on request.</p>
               <Link to="/contact" className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium underline">Prefer to talk? Contact us</Link>
             </aside>
           </div>

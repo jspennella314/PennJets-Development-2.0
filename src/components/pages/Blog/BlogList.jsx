@@ -189,7 +189,6 @@ const BlogList = () => {
             </div>
           ) : posts.length === 0 ? (
             <div className="text-center py-12">
-              <div className="text-gray-400 text-6xl mb-4">📰</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">No notes here yet</h3>
               <p className="text-gray-600 mb-6">Nothing published in this category so far.</p>
               <Button variant="primary" onClick={() => selectCategory(null)}>

@@ -57,7 +57,7 @@ export const ROUTES = {
   '/about': {
     title: 'About PennJets | Private Aviation Sales and Consulting',
     description:
-      'Meet the PennJets team. Private aviation sales and consulting: sole ownership, fractional, charter brokerage, and advisory.',
+      'Joseph Pennella, founder and principal broker of PennJets. Private aviation sales and consulting: sole ownership, fractional, charter brokerage, and advisory.',
   },
   '/contact': {
     title: 'Contact PennJets',
@@ -67,7 +67,13 @@ export const ROUTES = {
   '/blog': {
     title: 'Market Notes | PennJets',
     description:
-      'Market notes, transaction insights, and aircraft overviews from the PennJets team.',
+      'Market notes, transaction insights, and aircraft overviews from PennJets.',
+  },
+  // Copy for Joseph's approval at the WO-4.52 report.
+  '/aircraft': {
+    title: 'Recent Inquiries | PennJets',
+    description:
+      'Aircraft Penn Jets has recently sourced, evaluated or been asked about. Not exclusive listings; availability and pricing confirmed at inquiry.',
   },
   '/privacy-policy': { title: 'Privacy Policy | PennJets', description: 'How PennJets collects, uses, and protects your information.' },
   '/terms-of-service': { title: 'Terms of Service | PennJets', description: 'Terms governing use of the PennJets website and services.' },

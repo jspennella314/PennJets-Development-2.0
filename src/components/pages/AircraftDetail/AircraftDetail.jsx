@@ -16,15 +16,12 @@ const ContactConsultant = ({ navigate }) => (
   <div className="bg-white rounded-lg shadow-md p-6">
     <h3 className="text-xl font-semibold mb-4">Contact a Consultant</h3>
     <div className="text-center mb-4">
-      <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-3 flex items-center justify-center">
-        <span className="text-2xl">👤</span>
-      </div>
       <div className="font-medium">Aviation Consultant</div>
       <div className="text-sm text-gray-600">Private Jet Advisor</div>
     </div>
     <div className="space-y-2 text-sm mb-4">
-      <div>📞 (954) 546-0763</div>
-      <div>✉️ joe@pennjets.com</div>
+      <div>Phone: (954) 546-0763</div>
+      <div>Email: joe@pennjets.com</div>
     </div>
     <button
       onClick={() => navigate('/contact')}

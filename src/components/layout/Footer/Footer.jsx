@@ -29,6 +29,8 @@ const Footer = () => {
       title: 'Aircraft',
       links: [
         { name: 'Buy an Aircraft', href: '/buy' },
+        // Recent Inquiries, WO-4.52.
+        { name: 'See recent inquiries', href: '/aircraft' },
         { name: 'Sell Your Aircraft', href: '/sell' },
         { name: 'Market Analysis', href: '/services#analysis' },
         { name: 'Valuation Services', href: '/services#analysis' },
@@ -77,6 +79,9 @@ const Footer = () => {
                 </div>
                 <span className="text-xl font-bold">PennJets</span>
               </Link>
+              {/* The slogan as the footer's tagline, with the comma (Joseph,
+                  2026-10-21). WO-4.52. */}
+              <p className="mb-2 font-semibold text-white" data-footer-tagline>The Access, You Deserve</p>
               <p className="text-gray-400 mb-6 max-w-md">
                 Private aviation sales and consulting. We help clients buy, sell, and charter
                 aircraft with straightforward advice and personal service.
@@ -131,10 +136,10 @@ const Footer = () => {
               © {currentYear} PennJets. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <span>📞 Call: (954) 546-0763</span>
+              <span>Call: (954) 546-0763</span>
               {/* was info@pennjets.com, a dead mailbox. See WO-4.20: all four
                   published addresses collapse to joe@ until real aliases exist. */}
-              <span>✉️ Email: joe@pennjets.com</span>
+              <span>Email: joe@pennjets.com</span>
             </div>
           </div>
         </div>
