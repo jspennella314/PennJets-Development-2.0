@@ -367,7 +367,7 @@ const Services = () => {
               className="text-white border-2 border-white hover:bg-white hover:text-gray-900 font-semibold px-8 py-4 text-lg"
               onClick={() => navigate('/buy')}
             >
-              Browse Aircraft
+              Buy an Aircraft
             </Button>
           </div>
         </div>

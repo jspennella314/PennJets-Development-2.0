@@ -28,7 +28,7 @@ const Footer = () => {
     {
       title: 'Aircraft',
       links: [
-        { name: 'Browse Aircraft', href: '/buy' },
+        { name: 'Buy an Aircraft', href: '/buy' },
         // Recent Inquiries, WO-4.52.
         { name: 'See recent inquiries', href: '/aircraft' },
         { name: 'Sell Your Aircraft', href: '/sell' },
