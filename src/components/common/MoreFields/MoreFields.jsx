@@ -20,7 +20,7 @@ const MoreFields = ({ summary, children }) => {
           type="button"
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
-          className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 hover:text-primary-800"
+          className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-primary-700 hover:text-primary-800"
         >
           <span aria-hidden="true" className={`transition-transform ${open ? 'rotate-90' : ''}`}>›</span>
           {open ? 'Hide extra details' : summary}

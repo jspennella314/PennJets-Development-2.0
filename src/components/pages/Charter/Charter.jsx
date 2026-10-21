@@ -56,6 +56,15 @@ const Hero = () => (
           <p className="mt-3 text-base sm:text-lg">
             You have somewhere to be. We&#39;ll get you there.
           </p>
+          {/*
+            Where charter departs, stated plainly: Joseph's decision of
+            2026-10-20 (Round 7). Wording for his approval at the WO-4.50
+            report. The Miami address and the (954) number are the registered
+            office and stay where they are.
+          */}
+          <p className="mt-2 text-sm text-white/85 sm:text-base">
+            Penn Jets arranges charter from New York and New Jersey airports, including Teterboro (TEB), Westchester (HPN) and Morristown (MMU).
+          </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href="#quote"
@@ -362,7 +371,7 @@ const QuoteForm = () => {
 
           {status === "success" && (
             <p className="mt-3 text-sm text-green-700" role="status">
-              Thanks. Your request is in. We'll follow up shortly.
+              Thanks. Your request is in. We'll be in touch.
             </p>
           )}
           {status === "error" && (
@@ -381,7 +390,7 @@ const QuoteForm = () => {
             <li className="flex gap-3"><span className="font-semibold">3.</span><span>You approve. The operator flies the trip; we coordinate the details.</span></li>
           </ol>
           <p className="mt-4 text-xs text-gray-500">{BROKER_DISCLOSURE}</p>
-          <Link to="/contact" className="mt-4 inline-block text-sm font-medium underline">Prefer to talk? Contact us</Link>
+          <Link to="/contact" className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium underline">Prefer to talk? Contact us</Link>
         </aside>
       </div>
     </Section>

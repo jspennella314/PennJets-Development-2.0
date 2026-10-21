@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { blogApi } from '../../../services/blogApi';
 
@@ -17,8 +17,6 @@ const Consulting = () => {
   const [need, setNeed] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(null);
-
-  const canSubmit = useMemo(() => name && email && need && !isSubmitting, [name, email, need, isSubmitting]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,9 +76,13 @@ const Consulting = () => {
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets about this request.</p>
+              {/* No gate on Send: name, email and the need carry `required`,
+                  so an empty one gets the browser's message at the field
+                  instead of a grey button that says nothing (WO-4.47 row 2).
+                  WO-4.50. */}
               <button
                 type="submit"
-                disabled={!canSubmit}
+                disabled={isSubmitting}
                 className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40"
               >
                 {isSubmitting ? 'Sending...' : 'Send Request'}
@@ -89,7 +91,7 @@ const Consulting = () => {
 
             {status === 'success' && (
               <p className="mt-3 text-sm text-green-700" role="status">
-                Thanks. Your request is in. We&apos;ll follow up shortly.
+                Thanks. Your request is in. We&apos;ll be in touch.
               </p>
             )}
             {status === 'error' && (
@@ -110,7 +112,7 @@ const Consulting = () => {
             <p className="mt-4 text-xs text-gray-500">
               We work alongside your own tax and legal advisors rather than in place of them.
             </p>
-            <Link to="/contact" className="mt-4 inline-block text-sm font-medium underline">Prefer to talk? Contact us</Link>
+            <Link to="/contact" className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium underline">Prefer to talk? Contact us</Link>
           </aside>
         </div>
       </div>

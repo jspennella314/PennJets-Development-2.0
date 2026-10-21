@@ -258,7 +258,7 @@ const Contact = () => {
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
                 {submitStatus === 'success' && (
-                  <p className="text-sm text-green-700" role="status">Thank you. Your message is in. We'll be in touch shortly.</p>
+                  <p className="text-sm text-green-700" role="status">Thank you. Your message is in. We'll be in touch.</p>
                 )}
                 {submitStatus === 'error' && (
                   <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email joe@pennjets.com, or call (954) 546-0763.</p>

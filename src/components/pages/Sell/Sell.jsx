@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { blogApi } from '../../../services/blogApi';
 import MoreFields from '../../common/MoreFields/MoreFields';
@@ -22,8 +22,6 @@ const Sell = () => {
   const [location, setLocation] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(null);
-
-  const canSubmit = useMemo(() => name && email && !isSubmitting, [name, email, isSubmitting]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,9 +101,12 @@ const Sell = () => {
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets about this aircraft.</p>
+              {/* No gate on Send: name and email carry `required`, so an empty
+                  one gets the browser's message at the field instead of a grey
+                  button that says nothing (WO-4.47 row 2). WO-4.50. */}
               <button
                 type="submit"
-                disabled={!canSubmit}
+                disabled={isSubmitting}
                 className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40"
               >
                 {isSubmitting ? 'Sending...' : 'Send Details'}
@@ -114,7 +115,7 @@ const Sell = () => {
 
             {status === 'success' && (
               <p className="mt-3 text-sm text-green-700" role="status">
-                Thanks. Your details are in. We&apos;ll follow up shortly.
+                Thanks. Your details are in. We&apos;ll be in touch.
               </p>
             )}
             {status === 'error' && (
@@ -131,7 +132,7 @@ const Sell = () => {
               <li className="flex gap-3"><span className="font-semibold">2.</span><span>We agree an asking price and a plan, and take it to buyers.</span></li>
               <li className="flex gap-3"><span className="font-semibold">3.</span><span>We manage the offer, inspection and closing with you.</span></li>
             </ol>
-            <Link to="/contact" className="mt-4 inline-block text-sm font-medium underline">Prefer to talk? Contact us</Link>
+            <Link to="/contact" className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium underline">Prefer to talk? Contact us</Link>
           </aside>
         </div>
       </div>

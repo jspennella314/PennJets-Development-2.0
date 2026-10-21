@@ -8,7 +8,7 @@ const TermsOfService = () => {
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="heading-lg mb-6">Terms of Service</h1>
             <p className="body-lg text-gray-300">
-              Penn Jets LLC - Effective Date: {new Date().toLocaleDateString()}
+              Penn Jets LLC - Effective Date: October 20, 2026
             </p>
           </div>
         </div>
