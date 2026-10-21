@@ -144,7 +144,12 @@ const Home = () => {
           className="h-[60vh] w-full object-cover md:h-[80vh]"
         />
         <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
-        <div className="absolute inset-0 flex items-center">
+        {/* Centred in the hero below the fixed chrome (banner + header), so no
+            part of the h1 sits under the header (WO-4.47 row 1). WO-4.49. */}
+        <div
+          className="absolute inset-0 flex items-center"
+          style={{ paddingTop: 'calc(var(--pj-banner-h, 0px) + var(--pj-header-h, 64px))' }}
+        >
           <Container>
             <div className="text-white">
               <h1 className="text-3xl font-semibold md:text-5xl">

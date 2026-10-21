@@ -1,186 +1,176 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 
-// What the banner says on a given local date. Joseph's wording, verbatim
-// with its full stop (2026-09-22); the year is read from the date, never
-// typed. On 1 January, for that day only, the banner greets instead and
-// the timer is hidden: counting 364 days to next December under a greeting
-// reads oddly. That is the lead's reading of Joseph's instruction; showing
-// the timer that day is a one-line change if he wants it. WO-4.29.
+// What the banner says on a given local date. Joseph's wording (2026-09-22);
+// the year is read from the date, never typed. On 1 January, for that day
+// only, the banner greets instead and the count is hidden: counting 364 days
+// to next December under a greeting reads oddly. That is the lead's reading
+// of Joseph's instruction; showing the count that day is a one-line change if
+// he wants it. WO-4.29.
 const bannerDateFor = (date) => ({
   year: date.getFullYear(),
   isNewYearsDay: date.getMonth() === 0 && date.getDate() === 1,
 });
 
-const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState({});
-  const bannerRef = useRef(null);
-  const [bannerHeight, setBannerHeight] = useState(0);
-  const location = useLocation();
+// Whole days left until 31 December 23:59:59 local time, built from parts so
+// the year is never a literal and the target rolls over on 1 January. WO-4.29.
+const daysLeftFor = (now) => {
+  const end = new Date(now.getFullYear(), 11, 31, 23, 59, 59);
+  return Math.max(0, Math.floor((end - now) / (1000 * 60 * 60 * 24)));
+};
 
-  // Determine if current page has a dark hero section
-  const isDarkHeroPage = location.pathname === '/' || location.pathname === '/charter' || location.pathname === '/contact' || location.pathname === '/blog';
+// The banner is dismissible, and the choice is kept per year so next year's
+// banner is new. index.html reads the same key before first paint and hides
+// the prerendered banner, so a returning reader never sees it flash. WO-4.49.
+const bannerKey = (year) => `pj.banner.${year}.dismissed`;
+const readDismissed = (year) => {
+  try { return window.localStorage.getItem(bannerKey(year)) === '1'; } catch (e) { return false; }
+};
+
+// The chrome's heights live in two custom properties on <html>: the header
+// docks at --pj-banner-h and html's scroll-padding-top adds --pj-header-h,
+// so a field the browser scrolls to (Send with a required field empty, or
+// focus) lands below the header on every route. index.html's dismissed rule
+// overrides --pj-banner-h in the prerendered HTML. WO-4.49.
+const setChromeVar = (name, px) => {
+  if (typeof document !== 'undefined') document.documentElement.style.setProperty(name, `${px}px`);
+};
+
+// Joseph's order of 2026-10-20 (Round 7). Aircraft is out of the menu until a
+// listing exists; /aircraft redirects to /buy (App.jsx). WO-4.49.
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Charter', href: '/charter' },
+  { name: 'Buy', href: '/buy' },
+  { name: 'Sell', href: '/sell' },
+  { name: 'PennShare', href: '/pennshare' },
+  { name: 'Consulting', href: '/consulting' },
+  { name: 'Services', href: '/services' },
+  { name: 'About', href: '/about' },
+  { name: 'Market Notes', href: '/blog' },
+  { name: 'Contact', href: '/contact' },
+];
+
+const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const bannerRef = useRef(null);
+  const barRef = useRef(null);
+
+  // The banner and its count. The count is whole days only, so nothing in the
+  // chrome changes every second (the review's layout-shift row 17); a minute
+  // tick is enough to follow midnight in a tab left open. WO-4.49.
+  const [bannerDate, setBannerDate] = useState(() => bannerDateFor(new Date()));
+  const [daysLeft, setDaysLeft] = useState(() => daysLeftFor(new Date()));
+  const [dismissed, setDismissed] = useState(() => (typeof window === 'undefined' ? false : readDismissed(new Date().getFullYear())));
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    const tick = () => {
+      const now = new Date();
+      setBannerDate(bannerDateFor(now));
+      setDaysLeft(daysLeftFor(now));
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    tick();
+    const timer = setInterval(tick, 60 * 1000);
+    return () => clearInterval(timer);
   }, []);
 
-  // The header used to be offset with hardcoded top-10 / top-16. The banner
-  // above it is ~60px on a phone (the countdown stacks a number over a label)
-  // but top-10 is only 40px, so the banner -- which is z-50 against the
-  // header's z-40 -- sat over the top of the header and sliced the PennJets
-  // logo in half. The banner's height also changes with the breakpoint and
-  // when its contents wrap, so no fixed number is right at every width.
-  // Measure it instead.
-  useEffect(() => {
+  // The countdown banner is on the home page only (Joseph, 2026-10-20).
+  const showBanner = location.pathname === '/' && !dismissed;
+
+  // Measure the banner when it is there and report 0 when it is not, so the
+  // header docks at the top of every other route. Layout effects run before
+  // paint, so the header and the banner move in the same frame.
+  useLayoutEffect(() => {
     const el = bannerRef.current;
-    if (!el) return;
-
-    const measure = () => setBannerHeight(el.offsetHeight);
+    if (!showBanner || !el) { setChromeVar('--pj-banner-h', 0); return undefined; }
+    const measure = () => setChromeVar('--pj-banner-h', el.offsetHeight);
     measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [showBanner]);
 
+  // The header bar's own height (64 at 390, 80 from lg), not the header's:
+  // the open drawer makes the header taller and must not move the padding.
+  useLayoutEffect(() => {
+    const el = barRef.current;
+    if (!el) return undefined;
+    const measure = () => setChromeVar('--pj-header-h', el.offsetHeight);
+    measure();
     const observer = new ResizeObserver(measure);
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  // The year the banner names and the day it greets on, read from the clock
-  // on every tick with the countdown, so a tab left open across midnight
-  // follows the date. Starts from the real date so the first paint is right
-  // (and so the prerendered HTML carries today's year). WO-4.29.
-  const [bannerDate, setBannerDate] = useState(() => bannerDateFor(new Date()));
-
-  // Countdown timer for bonus depreciation
-  useEffect(() => {
-    const calculateTimeRemaining = () => {
-      const now = new Date();
-      // 31 December of the current year, 23:59:59, in the reader's local
-      // time: built from parts, so the year is never a literal and the
-      // target rolls over by itself on 1 January. The old literal
-      // '2026-12-31T23:59:59' (no Z) was local time too; this keeps that, so
-      // a reader in Florida does not see New Year at 19:00. WO-4.29.
-      const endDate = new Date(now.getFullYear(), 11, 31, 23, 59, 59);
-      const difference = endDate - now;
-      setBannerDate(bannerDateFor(now));
-
-      if (difference > 0) {
-        setTimeRemaining({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        });
-      } else {
-        setTimeRemaining({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    };
-
-    calculateTimeRemaining();
-    const timer = setInterval(calculateTimeRemaining, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Aircraft', href: '/aircraft' },
-    { name: 'Charter', href: '/charter' },
-    { name: 'PennShare', href: '/pennshare' },
-    { name: 'Services', href: '/services' },
-    { name: 'About', href: '/about' },
-    { name: 'Market Notes', href: '/blog' },
-  ];
-
-  const isActive = (href) => {
-    return location.pathname === href;
+  const dismissBanner = () => {
+    try { window.localStorage.setItem(bannerKey(bannerDate.year), '1'); } catch (e) { /* private mode: dismissed for this page view */ }
+    // Dock the header now, in the click, so it moves up in the frame the
+    // banner leaves, with no gap between them.
+    setChromeVar('--pj-banner-h', 0);
+    setDismissed(true);
   };
+
+  const isActive = (href) => location.pathname === href;
 
   return (
     <>
-      {/* Bonus Depreciation Countdown Banner */}
-      <div
-        ref={bannerRef}
-        className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary-600 to-primary-800 text-white py-2 px-4"
-      >
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-4 text-sm lg:text-base">
-          <span className="font-semibold">
-            {bannerDate.isNewYearsDay
-              ? 'Happy New Year!'
-              : `Days left to close a ${bannerDate.year} acquisition.`}
-          </span>
-          {!bannerDate.isNewYearsDay && (
-          <div className="flex gap-3 font-mono">
-            <div className="flex flex-col items-center">
-              <span className="text-lg lg:text-xl font-bold">{timeRemaining.days || 0}</span>
-              <span className="text-xs">Days</span>
-            </div>
-            <span className="text-lg lg:text-xl font-bold">:</span>
-            <div className="flex flex-col items-center">
-              <span className="text-lg lg:text-xl font-bold">{String(timeRemaining.hours || 0).padStart(2, '0')}</span>
-              <span className="text-xs">Hours</span>
-            </div>
-            <span className="text-lg lg:text-xl font-bold">:</span>
-            <div className="flex flex-col items-center">
-              <span className="text-lg lg:text-xl font-bold">{String(timeRemaining.minutes || 0).padStart(2, '0')}</span>
-              <span className="text-xs">Mins</span>
-            </div>
-            <span className="text-lg lg:text-xl font-bold hidden sm:inline">:</span>
-            <div className="flex-col items-center hidden sm:flex">
-              <span className="text-lg lg:text-xl font-bold">{String(timeRemaining.seconds || 0).padStart(2, '0')}</span>
-              <span className="text-xs">Secs</span>
-            </div>
+      {showBanner && (
+        <div
+          ref={bannerRef}
+          data-pj-banner
+          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary-600 to-primary-800 text-white"
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-center py-2 pl-4 pr-12 text-sm lg:text-base">
+            <span className="font-semibold">
+              {bannerDate.isNewYearsDay
+                ? 'Happy New Year!'
+                : `Days left to close a ${bannerDate.year} acquisition: ${daysLeft}`}
+            </span>
           </div>
-          )}
+          <button
+            type="button"
+            onClick={dismissBanner}
+            aria-label="Dismiss"
+            className="absolute right-0 top-0 flex w-11 h-11 items-center justify-center text-white/90 hover:text-white"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
-      </div>
+      )}
 
       <header
-        // Sit flush beneath the banner when docked; on a dark hero the header
-        // floats a little lower, but never higher than the banner's bottom
-        // edge, which is what was clipping the logo.
-        style={{ top: (isScrolled || !isDarkHeroPage) ? bannerHeight : Math.max(bannerHeight, 64) }}
-        className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
-          (isScrolled || !isDarkHeroPage) ? 'bg-white/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'
-        }`}
+        // Solid on every page and docked under the banner (0 off the home
+        // page). The transparent, lower-floating state on dark heroes let the
+        // home h1 climb under the logo and put a white logo on a white strip
+        // on /contact (WO-4.47 rows 1 and §5). WO-4.49.
+        style={{ top: 'var(--pj-banner-h, 0px)' }}
+        className="fixed left-0 right-0 z-40 bg-white/95 backdrop-blur-lg shadow-lg"
       >
         <nav className="max-w-7xl mx-auto container-padding">
-          <div className="flex items-center justify-between h-16 lg:h-20 py-2">
+          <div ref={barRef} className="flex items-center justify-between gap-4 h-16 lg:h-20 py-2">
           {/* Logo */}
-          <Link to="/" className="flex items-center h-full">
+          <Link to="/" className="flex shrink-0 items-center h-full">
             <img
               src="/images/pennjets-logo-192.png"
               alt="PennJets"
-              className="h-12 lg:h-16 w-auto transition-all duration-300"
-              style={{
-                filter: (isScrolled || !isDarkHeroPage)
-                  ? 'brightness(0) saturate(100%)'
-                  : 'brightness(0) invert(1)'
-              }}
+              className="h-12 lg:h-16 w-auto"
+              style={{ filter: 'brightness(0) saturate(100%)' }}
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
-            {navigation.map((item) => (
+          {/* Desktop Navigation: the same list as the drawer. Contact is the
+              button at the end rather than a second link to the same page. */}
+          <div className="hidden lg:flex items-center space-x-3 xl:space-x-6">
+            {navigation.filter((item) => item.href !== '/contact').map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`font-medium transition-colors duration-200 ${
-                  isActive(item.href)
-                    ? (isScrolled || !isDarkHeroPage)
-                      ? 'text-primary-600'
-                      : 'text-primary-200'
-                    : (isScrolled || !isDarkHeroPage)
-                      ? 'text-gray-700 hover:text-primary-600'
-                      : 'text-gray-300 hover:text-white'
+                className={`whitespace-nowrap text-sm xl:text-base font-medium transition-colors duration-200 ${
+                  isActive(item.href) ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'
                 }`}
               >
                 {item.name}
@@ -189,7 +179,7 @@ const Header = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex shrink-0 items-center space-x-3 xl:space-x-4">
             {/*
               Joseph asked for the number in the header on every page. It is
               the third phone affordance alongside the sticky bar's Call action
@@ -200,30 +190,27 @@ const Header = () => {
             */}
             <a
               href="tel:+19545460763"
-              className={`text-sm font-medium transition-colors ${
-                (isScrolled || !isDarkHeroPage)
-                  ? 'text-gray-700 hover:text-primary-700'
-                  : 'text-white/90 hover:text-white'
-              }`}
+              className="whitespace-nowrap text-sm font-medium text-gray-700 transition-colors hover:text-primary-700"
             >
               (954) 546-0763
             </a>
             <Link to="/contact">
-              <Button variant={(isScrolled || !isDarkHeroPage) ? 'primary' : 'outline'} size="md">
+              <Button variant="primary" size="md" className="whitespace-nowrap">
                 Contact Us
               </Button>
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button: a 44 px target with a name. */}
           <div className="lg:hidden">
             <button
+              type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`p-2 rounded-lg transition-colors ${
-                (isScrolled || !isDarkHeroPage) ? 'text-gray-700' : 'text-white'
-              }`}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+              className="flex w-11 h-11 items-center justify-center rounded-lg text-gray-700 transition-colors"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 {isMobileMenuOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -234,15 +221,15 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation: every row a 44 px target; Contact is the last row. */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden">
+          <div className="lg:hidden" data-mobile-menu>
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white rounded-lg shadow-lg mt-2">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  className={`flex min-h-[44px] items-center px-3 rounded-md text-base font-medium transition-colors ${
                     isActive(item.href)
                       ? 'text-primary-600 bg-primary-50'
                       : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
@@ -252,13 +239,6 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="px-3 py-2">
-                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="primary" size="md" className="w-full">
-                    Contact Us
-                  </Button>
-                </Link>
-              </div>
             </div>
           </div>
         )}

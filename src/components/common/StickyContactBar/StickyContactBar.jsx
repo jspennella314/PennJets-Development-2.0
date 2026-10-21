@@ -12,6 +12,20 @@ const StickyContactBar = () => {
   // Hidden whenever something it must not cover is on screen: the footer, or a
   // form's submit button. Measured in WO-4.11 rather than assumed.
   const [obscuring, setObscuring] = useState(false);
+  // Also hidden while a form field has focus: with the keyboard up the bar
+  // otherwise sits over the next field (review row 6, WO-4.47 row 12). WO-4.49.
+  const [typing, setTyping] = useState(false);
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return undefined;
+    const isField = (el) => !!el && el.matches && el.matches('form input, form select, form textarea');
+    const onIn = (e) => { if (isField(e.target)) setTyping(true); };
+    const onOut = (e) => { if (isField(e.target)) setTyping(isField(e.relatedTarget)); };
+    document.addEventListener('focusin', onIn);
+    document.addEventListener('focusout', onOut);
+    setTyping(isField(document.activeElement));
+    return () => { document.removeEventListener('focusin', onIn); document.removeEventListener('focusout', onOut); };
+  }, [pathname]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return undefined;
@@ -19,6 +33,9 @@ const StickyContactBar = () => {
     const watched = () => [
       ...document.querySelectorAll('footer'),
       ...document.querySelectorAll('form button[type="submit"], form button:not([type])'),
+      // A step button that is not a submit but stands where one would (the
+      // charter form's "Continue" at 390). WO-4.49.
+      ...document.querySelectorAll('[data-sticky-watch]'),
     ];
 
     const visible = new Set();
@@ -52,21 +69,23 @@ const StickyContactBar = () => {
     return () => { io.disconnect(); mo.disconnect(); };
   }, [pathname, hash]);
 
+  const hidden = obscuring || typing;
+
   return (
     <div
       ref={barRef}
       data-sticky-contact-bar
-      data-hidden={obscuring ? 'true' : 'false'}
+      data-hidden={hidden ? 'true' : 'false'}
       className={`fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/95 backdrop-blur transition-transform duration-200 ${
-        obscuring ? 'translate-y-full' : 'translate-y-0'
+        hidden ? 'translate-y-full' : 'translate-y-0'
       }`}
-      aria-hidden={obscuring}
+      aria-hidden={hidden}
     >
       <div className="mx-auto flex max-w-6xl gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <a
           href={PHONE_HREF}
           className="flex flex-1 items-center justify-center rounded-xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-900 hover:bg-gray-50"
-          tabIndex={obscuring ? -1 : 0}
+          tabIndex={hidden ? -1 : 0}
         >
           Call
         </a>
@@ -74,7 +93,7 @@ const StickyContactBar = () => {
           <a
             href={target.to}
             className="flex flex-1 items-center justify-center rounded-xl bg-gray-900 px-4 py-3 text-sm font-medium text-white hover:bg-black"
-            tabIndex={obscuring ? -1 : 0}
+            tabIndex={hidden ? -1 : 0}
           >
             {target.label}
           </a>
@@ -82,7 +101,7 @@ const StickyContactBar = () => {
           <Link
             to={target.to}
             className="flex flex-1 items-center justify-center rounded-xl bg-gray-900 px-4 py-3 text-sm font-medium text-white hover:bg-black"
-            tabIndex={obscuring ? -1 : 0}
+            tabIndex={hidden ? -1 : 0}
           >
             {target.label}
           </Link>

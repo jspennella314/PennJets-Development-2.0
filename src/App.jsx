@@ -1,12 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Header from './components/layout/Header/Header';
 import Footer from './components/layout/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import About from './components/pages/About/About';
 import Services from './components/pages/Services/Services';
-import AircraftListing from './components/pages/AircraftListing/AircraftListing';
-import AircraftDetail from './components/pages/AircraftDetail/AircraftDetail';
 import Contact from './components/pages/Contact/Contact';
 import BlogList from './components/pages/Blog/BlogList';
 import BlogArticle from './components/pages/Blog/BlogArticle';
@@ -33,13 +31,19 @@ function App() {
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Header />
-          <main className="flex-1 pb-24">
+          {/* The sticky bar's measured height (71 px at 390) plus the safe-area
+              inset. WO-4.49. */}
+          <main className="flex-1 pb-[calc(72px+env(safe-area-inset-bottom))]">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/aircraft" element={<AircraftListing />} />
-              <Route path="/aircraft/:id" element={<AircraftDetail />} />
+              {/* Until a listing exists the Aircraft slot sends buyers to Buy
+                  (Joseph, 2026-10-20). AircraftListing and AircraftDetail stay
+                  in src/ for that day; restore these two routes to use them.
+                  WO-4.49. */}
+              <Route path="/aircraft" element={<Navigate to="/buy" replace />} />
+              <Route path="/aircraft/:id" element={<Navigate to="/buy" replace />} />
               <Route path="/pennshare" element={<PennShare />} />
               <Route path="/charter" element={<Charter />} />
               <Route path="/buy" element={<Buy />} />

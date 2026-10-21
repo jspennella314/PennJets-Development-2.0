@@ -14,6 +14,23 @@
     <link rel="preconnect" href="https://www.pennforce.pennjets.com">
     <title>PennJets - Premier Aviation Brokerage</title>
 
+    <!-- A reader who dismissed this year's countdown banner never sees the
+         prerendered one flash: the class hides it and docks the header at 0
+         (src/index.css) before the app mounts. The key is Header.jsx's.
+         The two chrome heights the prerender measured at desktop width are
+         dropped too, so the first paint uses the stylesheet's per-width
+         values and a phone does not see the header move when the app
+         measures. WO-4.49. -->
+    <script>
+      try {
+        document.documentElement.style.removeProperty('--pj-banner-h');
+        document.documentElement.style.removeProperty('--pj-header-h');
+        if (localStorage.getItem('pj.banner.' + new Date().getFullYear() + '.dismissed') === '1') {
+          document.documentElement.classList.add('pj-banner-dismissed');
+        }
+      } catch (e) {}
+    </script>
+
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages

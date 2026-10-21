@@ -191,7 +191,9 @@ const BlogArticle = () => {
       </Helmet>
 
       <div className="bg-white min-h-screen">
-        <article className="pt-28 pb-4 sm:pt-32">
+        {/* The header's 64 px (80 from lg) plus room, so "Back to Market
+            Notes" is whole on first paint (WO-4.47 row 5). WO-4.49. */}
+        <article className="pt-20 pb-4 sm:pt-24 lg:pt-28">
           {/* Headline block */}
           <header className="max-w-3xl mx-auto container-padding">
             <div className="mb-6">
@@ -313,7 +315,7 @@ const BlogArticle = () => {
               </h2>
               <p className="mt-2 text-gray-600">
                 Questions about this note, or about an aircraft? Send {authorFirstName} a
-                message and you&apos;ll hear back within one business day.
+                message.
               </p>
             </div>
 
@@ -351,8 +353,9 @@ const BlogArticle = () => {
               <Card>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="mb-1 block text-sm font-medium text-gray-700">Name *</label>
+                    <label htmlFor="note-name" className="mb-1 block text-sm font-medium text-gray-700">Name *</label>
                     <input
+                      id="note-name"
                       type="text"
                       required
                       autoComplete="name"
@@ -362,8 +365,9 @@ const BlogArticle = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-sm font-medium text-gray-700">Email *</label>
+                    <label htmlFor="note-email" className="mb-1 block text-sm font-medium text-gray-700">Email *</label>
                     <input
+                      id="note-email"
                       type="email"
                       required
                       autoComplete="email"
@@ -373,8 +377,9 @@ const BlogArticle = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-sm font-medium text-gray-700">Phone</label>
+                    <label htmlFor="note-phone" className="mb-1 block text-sm font-medium text-gray-700">Phone</label>
                     <input
+                      id="note-phone"
                       type="tel"
                       autoComplete="tel"
                       value={formData.phone}
@@ -383,8 +388,9 @@ const BlogArticle = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-sm font-medium text-gray-700">Message *</label>
+                    <label htmlFor="note-message" className="mb-1 block text-sm font-medium text-gray-700">Message *</label>
                     <textarea
+                      id="note-message"
                       rows={4}
                       required
                       value={formData.message}
@@ -400,7 +406,7 @@ const BlogArticle = () => {
 
                   {submitStatus === 'success' && (
                     <p className="text-sm text-green-700" role="status">
-                      Thank you. {article.author.name} will be in touch shortly.
+                      Thank you. {article.author.name} will be in touch.
                     </p>
                   )}
                   {submitStatus === 'error' && (

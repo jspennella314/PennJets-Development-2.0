@@ -69,10 +69,6 @@ export const ROUTES = {
     description:
       'Market notes, transaction insights, and aircraft overviews from the PennJets team.',
   },
-  '/aircraft': {
-    title: 'Aircraft for Sale | PennJets',
-    description: 'Aircraft and fractional shares currently offered through PennJets.',
-  },
   '/privacy-policy': { title: 'Privacy Policy | PennJets', description: 'How PennJets collects, uses, and protects your information.' },
   '/terms-of-service': { title: 'Terms of Service | PennJets', description: 'Terms governing use of the PennJets website and services.' },
   '/cookie-policy': { title: 'Cookie Policy | PennJets', description: 'How the PennJets website uses cookies and similar technologies.' },
@@ -131,7 +127,6 @@ export function metaForPath(pathname) {
   const clean = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
   if (ROUTES[clean]) return { ...ROUTES[clean], type: 'website' };
   if (clean.startsWith('/blog/')) return { ...ROUTES['/blog'], type: 'article' };
-  if (clean.startsWith('/aircraft/')) return { ...ROUTES['/aircraft'], type: 'website' };
   return { title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION, type: 'website' };
 }
 

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { blogApi } from '../../../services/blogApi';
 import MoreFields from '../../common/MoreFields/MoreFields';
@@ -36,8 +36,6 @@ const Buy = () => {
   const [timeline, setTimeline] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(null);
-
-  const canSubmit = useMemo(() => name && email && !isSubmitting, [name, email, isSubmitting]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,16 +87,18 @@ const Buy = () => {
                 </label>
                 <fieldset className="sm:col-span-2">
                   <legend className="text-sm font-medium">Ownership</legend>
-                  <div className="mt-2 flex flex-wrap gap-4">
+                  {/* Each choice is a 44 px row and the word is part of the
+                      target (WO-4.47 row 7). WO-4.50. */}
+                  <div className="mt-1 flex flex-wrap gap-x-6">
                     {['Sole', 'Fractional'].map((opt) => (
-                      <label key={opt} className="inline-flex items-center gap-2 text-sm">
+                      <label key={opt} className="flex min-h-[44px] cursor-pointer items-center gap-3 text-sm">
                         <input
                           type="radio"
                           name="ownership"
                           value={opt}
                           checked={ownership === opt}
                           onChange={() => setOwnership(opt)}
-                          className="h-4 w-4"
+                          className="h-5 w-5 shrink-0"
                         />
                         {opt}
                       </label>
@@ -137,9 +137,12 @@ const Buy = () => {
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets about this request.</p>
+                {/* No gate on Send: name and email carry `required`, so an empty one
+                    gets the browser's message at the field instead of a grey
+                    button that says nothing (WO-4.47 row 2). WO-4.50. */}
                 <button
                   type="submit"
-                  disabled={!canSubmit}
+                  disabled={isSubmitting}
                   className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white enabled:hover:bg-black disabled:opacity-40"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Inquiry'}
@@ -148,7 +151,7 @@ const Buy = () => {
 
               {status === 'success' && (
                 <p className="mt-3 text-sm text-green-700" role="status">
-                  Thanks. Your inquiry is in. We'll follow up shortly.
+                  Thanks. Your inquiry is in. We'll be in touch.
                 </p>
               )}
               {status === 'error' && (
@@ -166,7 +169,7 @@ const Buy = () => {
                 <li className="flex gap-3"><span className="font-semibold">3.</span><span>We manage the offer, inspection, and closing with you.</span></li>
               </ol>
               <p className="mt-4 text-xs text-gray-500">Representative aircraft types. Availability on request.</p>
-              <Link to="/contact" className="mt-4 inline-block text-sm font-medium underline">Prefer to talk? Contact us</Link>
+              <Link to="/contact" className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium underline">Prefer to talk? Contact us</Link>
             </aside>
           </div>
         </div>

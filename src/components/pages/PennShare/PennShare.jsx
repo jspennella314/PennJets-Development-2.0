@@ -39,7 +39,7 @@ const PennShare = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        service: 'buy',
+        service: 'fractional', // its own label in the CRM's leads filter (Joseph, 2026-10-20). WO-4.50.
         message,
       });
       setSubmitStatus('success');
@@ -81,7 +81,7 @@ const PennShare = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  onClick={() => navigate('/aircraft')}
+                  onClick={() => navigate('/buy')}
                 >
                   View Available Shares
                 </Button>
@@ -112,7 +112,7 @@ const PennShare = () => {
                 <Button
                   variant="primary"
                   className="w-full mt-6"
-                  onClick={() => navigate('/aircraft/3')}
+                  onClick={() => navigate('/buy')}
                 >
                   View Aircraft Details
                 </Button>
@@ -242,7 +242,7 @@ const PennShare = () => {
               <div className="space-y-4">
                 <div
                   className="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition-shadow"
-                  onClick={() => navigate('/aircraft/3')}
+                  onClick={() => navigate('/buy')}
                 >
                   <img
                     src="/images/PENNSHARE/PREMIER-1A.jpg"
@@ -256,7 +256,7 @@ const PennShare = () => {
                 <Button
                   variant="primary"
                   size="lg"
-                  onClick={() => navigate('/aircraft/3')}
+                  onClick={() => navigate('/buy')}
                 >
                   View Complete Details
                 </Button>
@@ -274,7 +274,7 @@ const PennShare = () => {
               Inquire About PennShare
             </h2>
             <p className="text-xl text-primary-100">
-              Take the first step toward intelligent aircraft ownership. Penn Jets will contact you within 24 hours.
+              Take the first step toward intelligent aircraft ownership.
             </p>
           </div>
 
@@ -353,17 +353,17 @@ const PennShare = () => {
                 ></textarea>
               </label>
 
-              <div className="flex items-center gap-3">
+              {/* The whole row is the target, 44 px tall, the box 20 px
+                  (WO-4.47 row 7). WO-4.50. */}
+              <label htmlFor="consent" className="flex min-h-[44px] cursor-pointer items-center gap-3 text-sm text-gray-600">
                 <input
                   type="checkbox"
                   id="consent"
                   required
-                  className="w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
+                  className="w-5 h-5 shrink-0 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
                 />
-                <label htmlFor="consent" className="text-sm text-gray-600">
-                  I consent to being contacted by PennJets regarding fractional ownership opportunities. *
-                </label>
-              </div>
+                <span>I consent to being contacted by PennJets regarding fractional ownership opportunities. *</span>
+              </label>
 
               <Button
                 type="submit"
@@ -375,7 +375,7 @@ const PennShare = () => {
                 {isSubmitting ? 'Sending...' : 'Send Inquiry'}
               </Button>
               {submitStatus === 'success' && (
-                <p className="text-sm text-green-700" role="status">Thanks. Your inquiry is in. We'll follow up shortly.</p>
+                <p className="text-sm text-green-700" role="status">Thanks. Your inquiry is in. We'll be in touch.</p>
               )}
               {submitStatus === 'error' && (
                 <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again or call (954) 546-0763.</p>
