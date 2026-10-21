@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import About from './components/pages/About/About';
 import Services from './components/pages/Services/Services';
+import AircraftListing from './components/pages/AircraftListing/AircraftListing';
 import Contact from './components/pages/Contact/Contact';
 import BlogList from './components/pages/Blog/BlogList';
 import BlogArticle from './components/pages/Blog/BlogArticle';
@@ -38,11 +39,12 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
-              {/* Until a listing exists the Aircraft slot sends buyers to Buy
-                  (Joseph, 2026-10-20). AircraftListing and AircraftDetail stay
-                  in src/ for that day; restore these two routes to use them.
-                  WO-4.49. */}
-              <Route path="/aircraft" element={<Navigate to="/buy" replace />} />
+              {/* /aircraft is "Recent Inquiries", reached from /buy and the
+                  footer; the menu keeps no Aircraft item (WO-4.49). WO-4.52.
+                  A listing's own page still sends buyers to Buy until a
+                  listing exists (Joseph, 2026-10-20); AircraftDetail stays in
+                  src/ for that day. WO-4.49. */}
+              <Route path="/aircraft" element={<AircraftListing />} />
               <Route path="/aircraft/:id" element={<Navigate to="/buy" replace />} />
               <Route path="/pennshare" element={<PennShare />} />
               <Route path="/charter" element={<Charter />} />

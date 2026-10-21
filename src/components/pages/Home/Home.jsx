@@ -1,71 +1,23 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LatestNote from './LatestNote';
-import Inventory from './Inventory';
+import FeaturedListing from './FeaturedListing';
+import { TILES, CHARTER_NOTE } from '../../../content/home';
 
-// Inventory (real aircraft only) lives in ./Inventory.jsx and reads the
-// CRM's LISTED aircraft; it renders nothing while there are none. WO-4.42.
+// The page, Joseph's spec of 2026-10-21 (WO-4.52): hero (slogan, one line,
+// one button) -> Buy / Sell / Charter tiles -> the newest Market Note -> a
+// featured listing only when the CRM has one. The five representative
+// aircraft cards moved to /aircraft ("Recent Inquiries", the data in
+// src/content/recentInquiries.js); "Why PennJets" is gone, the tiles
+// replace it.
 
-// ---------------------------------------------------------------------------
-// Off-market access: representative aircraft types we source. Typical seats
-// and range only. No year, serial, hours, price, or badges.
-// Images: white-tail cutouts in /public/images/aircraft/ (WebP, one per type).
-// ---------------------------------------------------------------------------
-const OFF_MARKET_TYPES = [
-  { id: 'falcon-900',  model: 'Falcon 900',   category: 'Large cabin', seats: 12, rangeNm: 4000, image: '/images/aircraft/falcon-900.webp' },
-  { id: 'premier-1a',  model: 'Premier 1A',   category: 'Light jet',   seats: 6,  rangeNm: 1400, image: '/images/aircraft/premier-1a.webp', inquiry: 'charter' },
-  { id: 'hawker-800xp', model: 'Hawker 800XP', category: 'Midsize',    seats: 8,  rangeNm: 2500, image: '/images/aircraft/hawker-800xp.webp' },
-  { id: 'hawker-400xp', model: 'Hawker 400XP', category: 'Light jet',  seats: 7,  rangeNm: 1500, image: '/images/aircraft/hawker-400xp.webp' },
-  { id: 'citation-ii', model: 'Citation II',  category: 'Light jet',   seats: 7,  rangeNm: 1700, image: '/images/aircraft/citation-ii.webp' },
-];
+const Container = ({ children }) => (
+  <div className="mx-auto w-full max-w-6xl px-6">{children}</div>
+);
 
 const Home = () => {
   const navigate = useNavigate();
-
-  // Helper components
-  const Container = ({ children }) => (
-    <div className="mx-auto w-full max-w-6xl px-6">{children}</div>
-  );
-
-  const OffMarketCard = ({ t }) => (
-    <article className="flex flex-col overflow-hidden rounded-2xl border bg-white shadow-sm">
-      <div className="relative aspect-[3/2] w-full bg-white">
-        <img
-          src={t.image}
-          alt={`${t.model} silhouette`}
-          loading="lazy"
-          width={900}
-          height={600}
-          className="h-full w-full object-contain p-4"
-          onError={(e) => {
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'flex';
-          }}
-        />
-        <div
-          className="absolute inset-0 items-center justify-center text-sm font-medium text-gray-400"
-          style={{ display: 'none' }}
-        >
-          {t.model}
-        </div>
-      </div>
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="text-lg font-semibold">{t.model}</h3>
-        <ul className="mt-2 space-y-1 text-sm text-gray-600">
-          <li>{t.category}</li>
-          <li>Typically {t.seats} seats</li>
-          <li>Typical range ~{t.rangeNm.toLocaleString()} nm</li>
-        </ul>
-        <button
-          onClick={() => navigate(t.inquiry === 'charter' ? `/charter?model=${encodeURIComponent(t.model)}#quote` : `/buy?model=${encodeURIComponent(t.model)}`)}
-          className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-gray-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-        >
-          Tell us what you're looking for
-        </button>
-      </div>
-    </article>
-  );
 
   return (
     <>
@@ -150,29 +102,22 @@ const Home = () => {
           className="absolute inset-0 flex items-center"
           style={{ paddingTop: 'calc(var(--pj-banner-h, 0px) + var(--pj-header-h, 64px))' }}
         >
+          {/* Three elements and nothing else: the slogan (with the comma,
+              everywhere it appears), one line, one button. WO-4.52. */}
           <Container>
             <div className="text-white">
               <h1 className="text-3xl font-semibold md:text-5xl">
-                The Access You Deserve
+                The Access, You Deserve
               </h1>
               <p className="mt-3 max-w-2xl text-base md:text-lg">
-                Independent aircraft brokerage and consulting. Buy, sell, or charter with someone who shows you the numbers.
+                Independent aircraft brokerage and consulting.
               </p>
-              <p className="mt-2 max-w-2xl text-sm text-white/85 md:text-base">
-                Charter flights are arranged through vetted, FAA-certificated Part 135 operators across the United States.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-6">
                 <button
                   onClick={() => navigate('/charter#quote')}
-                  className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/80"
+                  className="min-h-[44px] rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/80"
                 >
                   Request a Charter Quote
-                </button>
-                <button
-                  onClick={() => navigate('/contact')}
-                  className="rounded-2xl px-5 py-3 text-sm font-medium text-white ring-1 ring-white/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/80"
-                >
-                  Talk to a Broker
                 </button>
               </div>
             </div>
@@ -180,59 +125,43 @@ const Home = () => {
         </div>
       </header>
 
-      {/* The newest Market Note, one compact card; renders nothing without one. WO-4.37. */}
-      <LatestNote />
-
-      {/* Inventory (real aircraft only, from the CRM; renders nothing while empty). WO-4.42. */}
-      <Inventory />
-
-      {/* Off-Market Access */}
-      <section aria-labelledby="off-market" className="py-16">
+      {/* Buy / Sell / Charter: each tile is the link, 44 px or more, stacked
+          at 390 and one row from sm. The Part 135 line sits under Charter.
+          WO-4.52. */}
+      <section aria-labelledby="paths" className="py-12 sm:py-16">
         <Container>
-          <h2 id="off-market" className="max-w-3xl text-2xl font-semibold">
-            The best aircraft rarely reach the open market. Tell us your mission and we'll tell you what's available.
+          <h2 id="paths" className="max-w-3xl text-2xl font-semibold">
+            Buy, sell, or charter with someone who shows you the numbers.
           </h2>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {OFF_MARKET_TYPES.map((t) => (
-              <OffMarketCard key={t.id} t={t} />
+          <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6" data-home-tiles>
+            {TILES.map((t) => (
+              <li key={t.to} className="flex flex-col">
+                <Link
+                  to={t.to}
+                  className="group flex min-h-[44px] flex-1 flex-col rounded-2xl border bg-white p-5 shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                >
+                  <span className="flex items-center justify-between text-lg font-semibold text-gray-900">
+                    {t.title}
+                    <span aria-hidden="true" className="text-gray-400 transition group-hover:translate-x-0.5 group-hover:text-gray-900">→</span>
+                  </span>
+                  <span className="mt-2 text-sm text-gray-600">{t.text}</span>
+                </Link>
+                {t.to === '/charter' && (
+                  <p className="mt-2 px-1 text-xs text-gray-500">{CHARTER_NOTE}</p>
+                )}
+              </li>
             ))}
-          </div>
-          <p className="mt-6 text-xs text-gray-500">Representative aircraft types. Availability on request.</p>
-        </Container>
-      </section>
-
-      {/* Why PennJets Section */}
-      <section aria-labelledby="why" className="py-12">
-        <Container>
-          <h2 id="why" className="text-2xl font-semibold">Why PennJets</h2>
-          <ul className="mt-4 grid list-disc gap-3 pl-5 sm:grid-cols-2">
-            <li>Deal‑maker brokerage across light‑to‑midsize jets</li>
-            <li>Transparent pro‑formas and lifecycle cost guidance</li>
-            <li>Access to vetted Part 135 operators</li>
-            <li>Fast, responsive, white‑glove service</li>
           </ul>
         </Container>
       </section>
 
-      {/* Footer Section */}
-      <footer className="mt-8 border-t">
-        <Container>
-          <div className="py-8 text-sm text-gray-700">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <p>
-                <strong>Call:</strong> (954) 546‑0763 · <strong>Email:</strong>{" "}
-                <a className="underline" href="mailto:joe@pennjets.com">
-                  joe@pennjets.com
-                </a>
-              </p>
-              <p>PennJets LLC — Private aviation. Simplified.</p>
-            </div>
-            <p className="mt-3 text-xs text-gray-500">
-              PennJets is a broker and does not operate aircraft.
-            </p>
-          </div>
-        </Container>
-      </footer>
+      {/* The newest Market Note, one compact card; renders nothing without one. WO-4.37. */}
+      <LatestNote />
+
+      {/* One real listing from the CRM, or nothing at all: no heading, no
+          placeholder, no height while the inventory is empty. WO-4.52. */}
+      <FeaturedListing />
+
     </>
   );
 };

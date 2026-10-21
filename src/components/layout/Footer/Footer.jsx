@@ -29,6 +29,8 @@ const Footer = () => {
       title: 'Aircraft',
       links: [
         { name: 'Browse Aircraft', href: '/buy' },
+        // Recent Inquiries, WO-4.52.
+        { name: 'See recent inquiries', href: '/aircraft' },
         { name: 'Sell Your Aircraft', href: '/sell' },
         { name: 'Market Analysis', href: '/services#analysis' },
         { name: 'Valuation Services', href: '/services#analysis' },
@@ -77,6 +79,9 @@ const Footer = () => {
                 </div>
                 <span className="text-xl font-bold">PennJets</span>
               </Link>
+              {/* The slogan as the footer's tagline, with the comma (Joseph,
+                  2026-10-21). WO-4.52. */}
+              <p className="mb-2 font-semibold text-white" data-footer-tagline>The Access, You Deserve</p>
               <p className="text-gray-400 mb-6 max-w-md">
                 Private aviation sales and consulting. We help clients buy, sell, and charter
                 aircraft with straightforward advice and personal service.
