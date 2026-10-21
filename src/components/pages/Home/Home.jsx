@@ -127,18 +127,20 @@ const Home = () => {
 
       {/* Buy / Sell / Charter: each tile is the link, 44 px or more, stacked
           at 390 and one row from sm. The Part 135 line sits under Charter.
-          WO-4.52. */}
+          Each item spans two rows of the list's grid (tile, note) through
+          subgrid, so the three tiles share one height in the row while the
+          note hangs under Charter alone. WO-4.52. */}
       <section aria-labelledby="paths" className="py-12 sm:py-16">
         <Container>
           <h2 id="paths" className="max-w-3xl text-2xl font-semibold">
             Buy, sell, or charter with someone who shows you the numbers.
           </h2>
-          <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6" data-home-tiles>
+          <ul className="mt-8 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-3" data-home-tiles>
             {TILES.map((t) => (
-              <li key={t.to} className="flex flex-col">
+              <li key={t.to} className="row-span-2 grid grid-rows-subgrid">
                 <Link
                   to={t.to}
-                  className="group flex min-h-[44px] flex-1 flex-col rounded-2xl border bg-white p-5 shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                  className="group flex min-h-[44px] flex-col rounded-2xl border bg-white p-5 shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
                 >
                   <span className="flex items-center justify-between text-lg font-semibold text-gray-900">
                     {t.title}
@@ -147,7 +149,7 @@ const Home = () => {
                   <span className="mt-2 text-sm text-gray-600">{t.text}</span>
                 </Link>
                 {t.to === '/charter' && (
-                  <p className="mt-2 px-1 text-xs text-gray-500">{CHARTER_NOTE}</p>
+                  <p className="px-1 text-xs text-gray-500">{CHARTER_NOTE}</p>
                 )}
               </li>
             ))}
