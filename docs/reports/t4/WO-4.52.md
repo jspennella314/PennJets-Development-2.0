@@ -266,3 +266,7 @@ lead's build at the merge is the evidence.
 The commits are `215fe49` (the work) and `3ef6743` (the tile height).
 Neither build changed a cache. Only this repository was touched. My preview
 is stopped, and no node process of mine is running.
+
+## Addendum, 2026-10-21: row 9 and the merge onto main
+
+Row 9 now reads **"Tell us the trip, and we'll compare vetted operators and show you the quotes."** (Joseph; the other 21 rows approved as written). Commit `b35b9cd`; `Home.test.jsx` pins all three tile sentences; `home-tiles-390.png` retaken (tiles 342 × 118 each, stacked). `t4/work` was **merged** with the new `main` (`9974bfa`, PR #14) in `e0d80e8`, not rebased, so no pushed history was rewritten; `main` is an ancestor of `t4/work`. Build after the merge: exit 0, 33 HTML files, no request reached the CRM; Home tests 21/21, lint 0.
