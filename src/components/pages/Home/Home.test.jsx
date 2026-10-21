@@ -68,6 +68,12 @@ describe('the tiles', () => {
       expect(a.className).toContain('min-h-[44px]');
     });
     expect(links[2].parentElement.querySelector('p').textContent).toBe(CHARTER_NOTE);
+    // The approved wording, pinned (Joseph, 2026-10-21; row 9 reworded).
+    expect(links.map((l) => l.querySelector('span.mt-2').textContent)).toEqual([
+      "Tell us the mission and the budget, and we'll find the aircraft that fits both.",
+      'We price your aircraft against the current market and run the sale through closing.',
+      "Tell us the trip, and we'll compare vetted operators and show you the quotes.",
+    ]);
     expect(links[0].parentElement.querySelector('p')).toBeNull();
     expect(links[1].parentElement.querySelector('p')).toBeNull();
   });
