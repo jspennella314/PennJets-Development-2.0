@@ -28,7 +28,7 @@ const Footer = () => {
     {
       title: 'Aircraft',
       links: [
-        { name: 'Browse Aircraft', href: '/buy' },
+        { name: 'Buy an Aircraft', href: '/buy' },
         { name: 'Sell Your Aircraft', href: '/sell' },
         { name: 'Market Analysis', href: '/services#analysis' },
         { name: 'Valuation Services', href: '/services#analysis' },

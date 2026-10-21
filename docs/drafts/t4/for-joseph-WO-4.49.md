@@ -13,3 +13,11 @@ now disagree, for you to decide in wave 3 or sooner:
    "Days left to close a 2026 acquisition: 72", so the full stop after
    "acquisition" became a colon before the day count. The words are
    yours and unchanged; say if you want the full stop back.
+
+## Joseph's rulings, 2026-10-21
+
+1. "Browse Aircraft" becomes **"Buy an Aircraft"** in all three places
+   (footer Aircraft column, the foot of `/charter`, `/services`).
+2. The banner **keeps the colon**.
+
+He approved the WO-4.50 copy table the same day, as reported.
