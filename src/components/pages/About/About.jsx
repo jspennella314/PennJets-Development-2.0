@@ -121,10 +121,10 @@ const About = () => {
                   </div>
                 </div>
 
-                {/* Contact Info */}
+                {/* Contact Info. Words, not emoji (Joseph, 2026-10-20). WO-4.51. */}
                 <div className="border-t pt-4 text-sm text-gray-600">
-                  <div className="mb-1">📞 {member.phone}</div>
-                  <div>✉️ {member.email}</div>
+                  <div className="mb-1">Phone: <a href={`tel:+1${member.phone.replace(/\D/g, '')}`} className="underline">{member.phone}</a></div>
+                  <div>Email: <a href={`mailto:${member.email}`} className="underline">{member.email}</a></div>
                 </div>
               </Card>
             ))}
@@ -141,8 +141,9 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* No icons on these three cards: the emoji went (WO-4.51) and the
+                headings carry them. */}
             <Card className="text-center">
-              <div className="text-4xl mb-4">🛩️</div>
               <h3 className="text-xl font-semibold mb-3">Aircraft Brokerage</h3>
               <p className="text-gray-600 text-sm">
                 Expert guidance through buying and selling processes with market insights
@@ -150,7 +151,6 @@ const About = () => {
               </p>
             </Card>
             <Card className="text-center">
-              <div className="text-4xl mb-4">📊</div>
               <h3 className="text-xl font-semibold mb-3">Fractional Ownership</h3>
               <p className="text-gray-600 text-sm">
                 Fractional shares structured by PennJets and flown by a licensed Part 135
@@ -158,7 +158,6 @@ const About = () => {
               </p>
             </Card>
             <Card className="text-center">
-              <div className="text-4xl mb-4">🎯</div>
               <h3 className="text-xl font-semibold mb-3">Charter Brokerage</h3>
               <p className="text-gray-600 text-sm">
                 Access to vetted Part 135 certified operators with experienced pilots and

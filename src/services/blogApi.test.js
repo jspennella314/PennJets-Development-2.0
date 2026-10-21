@@ -86,7 +86,7 @@ describe('getAllPosts (WO-4.48)', () => {
     const [p] = await blogApi.getAllPosts();
     expect(p.author.name).toBe('PennJets'); // no email on a list-route author: the house byline, WO-4.24
     expect(p.tags).toEqual([]);
-    expect(p.readTimeMinutes).toBe(5);
+    expect(p.readTimeMinutes).toBeNull(); // no field and no content: no read time, not a made-up 5, WO-4.51
   });
 
   it('onBuildList gets the build list first, transformed, before the CRM answers', async () => {
@@ -138,5 +138,32 @@ describe('getAllPosts (WO-4.48)', () => {
     const { calls } = stub({ crm: BUILD });
     await Promise.all([blogApi.getAllPosts(), blogApi.getAllPosts('market-notes'), blogApi.getAllPosts()]);
     expect(calls.filter((u) => u === BUILD_LIST_PATH).length).toBe(1);
+  });
+});
+
+// The cards' read time and byline once the list route sends readTimeMinutes
+// and author.email (T1's WO-1.36). WO-4.51.
+describe('transformPost: read time and byline', () => {
+  const raw = (extra) => ({ id: 'x', slug: 'x', title: 'X', publishedAt: day(1), keywords: [], author: { id: 'a1', name: 'Joseph Pennella' }, ...extra });
+
+  it("uses the route's readTimeMinutes when it sends one", () => {
+    expect(blogApi.transformPost(raw({ readTimeMinutes: 9 })).readTimeMinutes).toBe(9);
+    expect(blogApi.transformPost(raw({ readTimeMinutes: 9, content: 'one two three' })).readTimeMinutes).toBe(9);
+  });
+
+  it('computes from content when there is no field (the article route)', () => {
+    expect(blogApi.transformPost(raw({ content: Array(401).fill('w').join(' ') })).readTimeMinutes).toBe(3);
+  });
+
+  it('shows nothing when there is neither, and ignores a zero or missing field', () => {
+    expect(blogApi.transformPost(raw({})).readTimeMinutes).toBeNull();
+    expect(blogApi.transformPost(raw({ readTimeMinutes: 0 })).readTimeMinutes).toBeNull();
+    expect(blogApi.transformPost(raw({ readTimeMinutes: null })).readTimeMinutes).toBeNull();
+  });
+
+  it("names Joseph once the list route sends the author's email", () => {
+    const p = blogApi.transformPost(raw({ author: { id: 'a1', name: 'Joseph Pennella', email: 'joe@pennjets.com' } }));
+    expect(p.author.name).toBe('Joseph Pennella');
+    expect(p.author.isPerson).toBe(true);
   });
 });

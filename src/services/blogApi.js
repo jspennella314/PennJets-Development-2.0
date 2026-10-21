@@ -336,10 +336,15 @@ export const blogApi = {
    * @returns {Object} Transformed post with all required fields
    */
   transformPost(post) {
-    // Calculate estimated read time from content (average reading speed: 200 words/min)
-    const readTimeMinutes = post.content
-      ? Math.max(1, Math.ceil(post.content.split(/\s+/).length / 200))
-      : 5;
+    // Read time: the route's readTimeMinutes when it sends one (the list route
+    // since T1's WO-1.36), else computed from content at 200 words a minute
+    // (the article route), else nothing. The old fallback printed "5 min read"
+    // on every card of a list that carries no content. WO-4.51.
+    const readTimeMinutes = Number.isFinite(post.readTimeMinutes) && post.readTimeMinutes > 0
+      ? post.readTimeMinutes
+      : post.content
+        ? Math.max(1, Math.ceil(post.content.split(/\s+/).length / 200))
+        : null;
 
     // Category lives in the keywords array as "category:<slug>" and is read by
     // categoryFor() in utils/marketNotes. Keywords that are not categories are

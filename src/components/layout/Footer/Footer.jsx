@@ -131,10 +131,10 @@ const Footer = () => {
               © {currentYear} PennJets. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <span>📞 Call: (954) 546-0763</span>
+              <span>Call: (954) 546-0763</span>
               {/* was info@pennjets.com, a dead mailbox. See WO-4.20: all four
                   published addresses collapse to joe@ until real aliases exist. */}
-              <span>✉️ Email: joe@pennjets.com</span>
+              <span>Email: joe@pennjets.com</span>
             </div>
           </div>
         </div>
