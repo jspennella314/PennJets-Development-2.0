@@ -365,7 +365,7 @@ const Services = () => {
               variant="outline"
               size="lg"
               className="text-white border-2 border-white hover:bg-white hover:text-gray-900 font-semibold px-8 py-4 text-lg"
-              onClick={() => navigate('/aircraft')}
+              onClick={() => navigate('/buy')}
             >
               Browse Aircraft
             </Button>

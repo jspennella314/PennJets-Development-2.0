@@ -332,6 +332,7 @@ const QuoteForm = () => {
             {narrow && step === 1 ? (
               <button
                 type="button"
+                data-sticky-watch
                 onClick={continueToContact}
                 className="rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-black"
               >
@@ -399,7 +400,7 @@ const FooterCta = () => (
         </div>
         <div className="flex gap-3">
           <a href="#quote" className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md">{CTA_LABEL}</a>
-          <Link to="/aircraft" className="rounded-2xl px-5 py-3 text-sm font-medium ring-1 ring-white/70 hover:bg-white/10">Browse Aircraft</Link>
+          <Link to="/buy" className="rounded-2xl px-5 py-3 text-sm font-medium ring-1 ring-white/70 hover:bg-white/10">Browse Aircraft</Link>
         </div>
       </div>
       <p className="mt-3 text-xs text-white/60">{BROKER_DISCLOSURE}</p>

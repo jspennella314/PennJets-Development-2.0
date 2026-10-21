@@ -23,9 +23,6 @@ export function quoteTargetFor(pathname) {
   // A Market Note has its own broker form at the foot of the page.
   if (p.startsWith('/blog/')) return { to: '#talk-to-a-broker', label: 'Talk to a Broker' };
 
-  // Browsing aircraft is a buying intent.
-  if (p === '/aircraft' || p.startsWith('/aircraft/')) return { to: '/buy', label: 'Request a Quote' };
-
   // Home and the service overview lead with charter, the highest-volume path.
   if (p === '/' || p === '/services') return { to: '/charter#quote', label: 'Request a Quote' };
 

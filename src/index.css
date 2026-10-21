@@ -7,6 +7,39 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* A field the browser scrolls to (Send with a required field empty, or
+       focus) lands below the fixed chrome. Header.jsx keeps both heights
+       current; the fallbacks are the header's 64 px at 390. WO-4.49. */
+    scroll-padding-top: calc(var(--pj-banner-h, 0px) + var(--pj-header-h, 64px) + 12px);
+  }
+
+  /* The chrome's heights before the app measures them (Header.jsx then sets
+     the same values inline, or the real ones if the banner wraps): the
+     header bar is 64 px, 80 from lg; the one-line banner is 36 px, 40 from
+     lg, and only where it is in the page. WO-4.49. */
+  :root {
+    --pj-banner-h: 0px;
+    --pj-header-h: 64px;
+  }
+  html:has([data-pj-banner]) {
+    --pj-banner-h: 36px;
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --pj-header-h: 80px;
+    }
+    html:has([data-pj-banner]) {
+      --pj-banner-h: 40px;
+    }
+  }
+
+  /* index.html sets this class before first paint when the reader dismissed
+     the banner; it wins over everything above. */
+  html.pj-banner-dismissed {
+    --pj-banner-h: 0px !important;
+  }
+  html.pj-banner-dismissed [data-pj-banner] {
+    display: none !important;
   }
   
   body {

@@ -81,7 +81,7 @@ const PennShare = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  onClick={() => navigate('/aircraft')}
+                  onClick={() => navigate('/buy')}
                 >
                   View Available Shares
                 </Button>
@@ -112,7 +112,7 @@ const PennShare = () => {
                 <Button
                   variant="primary"
                   className="w-full mt-6"
-                  onClick={() => navigate('/aircraft/3')}
+                  onClick={() => navigate('/buy')}
                 >
                   View Aircraft Details
                 </Button>
@@ -242,7 +242,7 @@ const PennShare = () => {
               <div className="space-y-4">
                 <div
                   className="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition-shadow"
-                  onClick={() => navigate('/aircraft/3')}
+                  onClick={() => navigate('/buy')}
                 >
                   <img
                     src="/images/PENNSHARE/PREMIER-1A.jpg"
@@ -256,7 +256,7 @@ const PennShare = () => {
                 <Button
                   variant="primary"
                   size="lg"
-                  onClick={() => navigate('/aircraft/3')}
+                  onClick={() => navigate('/buy')}
                 >
                   View Complete Details
                 </Button>

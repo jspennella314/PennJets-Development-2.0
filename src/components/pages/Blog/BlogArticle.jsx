@@ -191,7 +191,9 @@ const BlogArticle = () => {
       </Helmet>
 
       <div className="bg-white min-h-screen">
-        <article className="pt-28 pb-4 sm:pt-32">
+        {/* The header's 64 px (80 from lg) plus room, so "Back to Market
+            Notes" is whole on first paint (WO-4.47 row 5). WO-4.49. */}
+        <article className="pt-20 pb-4 sm:pt-24 lg:pt-28">
           {/* Headline block */}
           <header className="max-w-3xl mx-auto container-padding">
             <div className="mb-6">
