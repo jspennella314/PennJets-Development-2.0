@@ -169,7 +169,7 @@ const Buy = () => {
               <ol className="mt-4 space-y-3 text-sm text-gray-700">
                 <li className="flex gap-3"><span className="font-semibold">1.</span><span>We talk through the mission: passengers, trips, budget, and timeline.</span></li>
                 <li className="flex gap-3"><span className="font-semibold">2.</span><span>We identify aircraft that fit, including ones that aren't publicly listed.</span></li>
-                <li className="flex gap-3"><span className="font-semibold">3.</span><span>We manage the offer, inspection, and closing with you.</span></li>
+                <li className="flex gap-3"><span className="font-semibold">3.</span><span>We manage the offer, inspection, financing, insurance, closing and delivery with you.</span></li>
               </ol>
               <Link to="/contact" className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium underline">Prefer to talk? Contact us</Link>
             </aside>
