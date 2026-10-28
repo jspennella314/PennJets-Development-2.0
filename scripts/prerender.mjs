@@ -33,6 +33,11 @@ const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY || 1);
 // page, and overwriting it would break every deep link on the site.
 const NEVER_PRERENDER = new Set(['404.html']);
 
+// A redirect stub (a former Market Note URL, WO-4.54) is a meta refresh to the
+// note's current URL. Rendered, the browser follows the refresh and the stub
+// would be overwritten with the note itself at the old address.
+const isRedirectStub = (file) => /<meta\s+http-equiv="refresh"/i.test(fs.readFileSync(file, 'utf8'));
+
 // Article bodies, written by postbuild.mjs, served to the browser below so the
 // page never calls the CRM for one. Missing or unreadable means every note
 // fetches for itself: correct pages, and one ContentAnalytics row each, which
@@ -314,8 +319,12 @@ async function renderRoute(browser, route) {
 
 // ---- main ------------------------------------------------------------------
 const started = Date.now();
-const jobs = htmlFiles(DIST)
+const allHtml = htmlFiles(DIST);
+const stubs = allHtml.filter(isRedirectStub);
+if (stubs.length) console.log(`[prerender] ${stubs.length} redirect stub(s) left as written: ${stubs.map(routeFor).join(', ')}`);
+const jobs = allHtml
   .filter((f) => !NEVER_PRERENDER.has(path.relative(DIST, f).split(path.sep).join('/')))
+  .filter((f) => !stubs.includes(f))
   .map((file) => ({ file, route: routeFor(file) }))
   .sort((a, b) => a.route.localeCompare(b.route));
 
