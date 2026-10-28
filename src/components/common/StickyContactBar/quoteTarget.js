@@ -23,8 +23,8 @@ export function quoteTargetFor(pathname) {
   // A Market Note has its own broker form at the foot of the page.
   if (p.startsWith('/blog/')) return { to: '#talk-to-a-broker', label: 'Talk to a Broker' };
 
-  // Home and the service overview lead with charter, the highest-volume path.
-  if (p === '/' || p === '/services') return { to: '/charter#quote', label: 'Request a Quote' };
+  // Home leads with charter, the highest-volume path.
+  if (p === '/') return { to: '/charter#quote', label: 'Request a Quote' };
 
   return { to: '/contact', label: 'Request a Quote' };
 }

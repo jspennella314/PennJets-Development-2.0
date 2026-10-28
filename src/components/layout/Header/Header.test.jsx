@@ -106,26 +106,28 @@ describe('the header and menu (WO-4.49)', () => {
     expect(btn.getAttribute('aria-expanded')).toBe('true');
   });
 
-  it('the drawer lists the ten rows in Joseph\'s order, Aircraft out, Contact once', async () => {
+  // Services left the menu with its page (WO-4.53): nine rows, eight on desktop.
+  it('the drawer lists the nine rows in Joseph\'s order, Aircraft and Services out, Contact once', async () => {
     const el = await render('/');
     await act(async () => { el.querySelector('header .lg\\:hidden button').click(); });
     const rows = [...el.querySelectorAll('[data-mobile-menu] a')];
     expect(rows.map((a) => a.textContent.trim())).toEqual(
-      ['Home', 'Charter', 'Buy', 'Sell', 'PennShare', 'Consulting', 'Services', 'About', 'Market Notes', 'Contact']
+      ['Home', 'Charter', 'Buy', 'Sell', 'PennShare', 'Consulting', 'About', 'Market Notes', 'Contact']
     );
     expect(rows.map((a) => a.getAttribute('href'))).toEqual(
-      ['/', '/charter', '/buy', '/sell', '/pennshare', '/consulting', '/services', '/about', '/blog', '/contact']
+      ['/', '/charter', '/buy', '/sell', '/pennshare', '/consulting', '/about', '/blog', '/contact']
     );
     for (const a of rows) expect(a.className).toMatch(/min-h-\[44px\]/);
     expect(el.querySelector('[data-mobile-menu] button')).toBeNull();
   });
 
-  it('the desktop list is the same nine, with Contact as the button', async () => {
+  it('the desktop list is the same eight, with Contact as the button', async () => {
     const el = await render('/');
     const desktop = [...el.querySelectorAll('header .hidden.lg\\:flex')][0];
     expect([...desktop.querySelectorAll('a')].map((a) => a.textContent.trim())).toEqual(
-      ['Home', 'Charter', 'Buy', 'Sell', 'PennShare', 'Consulting', 'Services', 'About', 'Market Notes']
+      ['Home', 'Charter', 'Buy', 'Sell', 'PennShare', 'Consulting', 'About', 'Market Notes']
     );
+    expect(el.querySelector('a[href="/services"]')).toBeNull();
     expect(el.querySelector('a[href="/aircraft"]')).toBeNull();
     expect(el.querySelector('a[href="/contact"] button').textContent.trim()).toBe('Contact Us');
   });
