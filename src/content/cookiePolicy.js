@@ -13,17 +13,28 @@
 //
 // This module is the single source for both the rendered page and the draft in
 // docs/drafts/t4/cookie-policy.md, so the two cannot drift apart.
+//
+// WO-4.56, 2026-10-29: the Google Ads tag arrived, so this page changed in the
+// same commit, as the rule above says. Measured on the local build with a
+// clean profile walking home, /charter, a Market Note and both legal pages:
+// one cookie (_gcl_au, 90 days) and one local storage value (_gcl_ls), both
+// set on page load before any interaction. Production is re-read after the
+// merge; if it differs, this text is corrected in a follow-up commit.
 
-export const LAST_UPDATED = '20 September 2026';
+export const LAST_UPDATED = '29 October 2026';
 
 export const INTRO =
   'Most cookie policies describe a website other than the one you are reading. This one was written by measuring what pennjets.com actually puts on your device, page by page, in a browser with nothing stored in it.';
 
-export const HEADLINE = 'This site sets no cookies.';
+// The pages the measurement walked; the page prints it under the inventory.
+export const MEASURED_ACROSS =
+  'the home page, the charter page, a Market Note, and both legal pages';
+
+export const HEADLINE = 'This site sets one cookie, for Google Ads.';
 
 export const HEADLINE_BODY = [
-  'Not strictly necessary ones, not analytics ones, not advertising ones. We walked the site in a clean browser profile and the cookie store was still empty at the end of it.',
-  'There are no third-party analytics on this site, no advertising pixels and no profiling. That was a deliberate decision, and it is why you are reading this instead of clicking through a consent banner.',
+  'We advertise charter on Google, and Google\'s advertising tag sets one cookie so that we can tell when a quote request or a phone call came from one of those ads. We walked the site in a clean browser profile and it was the only cookie in the store at the end.',
+  'There is no analytics provider on this site, no remarketing and no profiling. We have told Google not to use visits here to build advertising audiences.',
 ];
 
 // The measured inventory. Keep this table honest: it is the evidence, and the
@@ -32,11 +43,18 @@ export const INVENTORY = {
   head: ['What', 'Type', 'Set by', 'Purpose', 'Lifetime'],
   rows: [
     [
-      'No cookies at all',
+      '_gcl_au',
       'Cookie',
-      'nothing',
-      'There are none to describe.',
-      'n/a',
+      'Google Ads, on pennjets.com, when any page loads',
+      'Lets Google match a charter quote request or a call to the ad click that led to it, so that we can count which ads produce enquiries.',
+      '90 days',
+    ],
+    [
+      '_gcl_ls',
+      'Local storage',
+      'Google Ads, on pennjets.com, when any page loads',
+      'Ad-click information Google\'s tag keeps for the same purpose as _gcl_au.',
+      'Until you clear this site\'s stored data',
     ],
     [
       'pj_view_session',
@@ -51,7 +69,7 @@ export const INVENTORY = {
 export const SECTIONS = [
   {
     id: 'the-one-thing',
-    title: 'The one thing we do store',
+    title: 'The one thing we store ourselves',
     body: [
       'Opening a Market Note puts a single value in your browser\'s session storage, under the name pj_view_session. It is a randomly generated id, it is not a cookie, and it disappears when you close the tab.',
       'It exists so that our own view count is accurate. If the page reports the same view more than once, the id lets us recognise it as one visit rather than two. It is sent to our own system along with the campaign parameters on the link you arrived from and the page your browser says you came from.',
@@ -59,12 +77,21 @@ export const SECTIONS = [
     ],
   },
   {
+    id: 'google-ads',
+    title: 'Google Ads conversion tracking',
+    body: [
+      'Every page of this site loads Google\'s advertising tag. When it loads, your browser contacts Google, which receives the address of the page, the page you came from, your IP address and the identifiers in the table above.',
+      'We count two things as conversions: sending the charter quote form successfully, and tapping the Call button on the charter page or in the bar at the bottom of the screen. A conversion tells Google that one of those happened. It does not include your name, email address, phone number or anything you typed.',
+      'Ad personalisation is turned off for this tag, so visits here are not used to build remarketing audiences or to follow you with our ads elsewhere. We do not sell your information.',
+    ],
+  },
+  {
     id: 'other-companies',
     title: 'Requests your browser makes to other companies',
     body: [
-      'One, and it is ours. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go.',
-      'Nothing else. The typeface used to be fetched from Google Fonts, which meant your browser contacted Google and Google received your IP address on every page. We moved those font files onto this site, so that request no longer happens.',
-      'There is no analytics provider, no advertising network, no tag manager and no embedded third-party content on this site to contact.',
+      'Two. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go. It also contacts Google, for the advertising tag described above, at www.googletagmanager.com, www.google.com and ad.doubleclick.net.',
+      'The typeface used to be fetched from Google Fonts on every page. We moved those font files onto this site, so that request no longer happens.',
+      'Apart from Google\'s advertising tag, there is no analytics provider, no other advertising network and no embedded third-party content on this site to contact.',
     ],
   },
   {
@@ -79,8 +106,8 @@ export const SECTIONS = [
     id: 'controls',
     title: 'What you can do about it',
     body: [
-      'Blocking cookies for this site changes nothing, because there are none to block. Clearing your session storage, or simply closing the tab, removes the one id described above.',
-      'There is no consent banner because there is nothing here to consent to. If that ever changes, this page changes at the same time as the thing it describes, not afterwards.',
+      'Blocking cookies for this site, or blocking Google\'s advertising domains, stops the Google Ads cookie; the site works the same without it. Clearing this site\'s stored data removes _gcl_ls. Closing the tab removes our own session id.',
+      'There is no consent banner. If what this site stores changes, this page changes at the same time as the thing it describes, not afterwards.',
     ],
   },
 ];

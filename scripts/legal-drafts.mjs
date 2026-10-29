@@ -80,7 +80,7 @@ function table(head, rows) {
   out.push('');
   out.push('## What is actually stored');
   out.push('');
-  out.push(`Measured on ${cookie.LAST_UPDATED} in a browser profile with nothing in it.`);
+  out.push(`Measured on ${cookie.LAST_UPDATED} in a browser profile with nothing in it, across ${cookie.MEASURED_ACROSS}.`);
   out.push('');
   out.push(...table(cookie.INVENTORY.head, cookie.INVENTORY.rows));
 

@@ -15,7 +15,9 @@
 
 // A statement of fact about this document, not a legal effective date. Joseph
 // sets the effective date when he approves the wording.
-export const LAST_UPDATED = '20 September 2026';
+// WO-4.56, 2026-10-29: the Google Ads tag; the short version, the cookies
+// section and the sharing paragraph changed in the same commit as the tag.
+export const LAST_UPDATED = '29 October 2026';
 
 // Until real aliases exist, every published address on this site is
 // joe@pennjets.com. privacy@, compliance@, info@ and inquiries@ were all dead
@@ -28,8 +30,8 @@ export const INTRO =
   'This page describes what happens to information when you use pennjets.com. It is written from what this site and the system behind it actually do, not from a template. If anything here is unclear, ask us and we will answer plainly.';
 
 export const SHORT_VERSION = [
-  'We do not use advertising pixels, profiling, or third-party analytics.',
-  'This site sets no cookies.',
+  'We use one advertising tag, Google Ads, to count charter enquiries that came from our ads. No remarketing, no profiling, no third-party analytics.',
+  'Google\'s tag sets one cookie. We set none of our own.',
   'Reading an article is recorded against a session, not against you.',
   'If you send us a form, it becomes a lead in our CRM and a broker reads it.',
   'We do not sell your information.',
@@ -86,19 +88,20 @@ export const SECTIONS = [
     id: 'cookies',
     title: 'Cookies and browser storage',
     body: [
-      'This site sets no cookies. We measured it: loading a page leaves your cookie store untouched.',
+      'We set no cookies of our own. Google\'s advertising tag sets one, _gcl_au, for 90 days, and keeps a related value in local storage, so that a charter quote request or a call can be matched to the Google ad that led to it. The cookie policy lists exactly what is stored and for how long.',
       'One value is kept in your browser session storage, an anonymous session id used by the view counting described above. It is cleared when you close the tab and it identifies a visit rather than a person.',
-      'Because there is nothing to consent to, there is no cookie banner. We would rather not interrupt you with a dialog about tracking we are not doing.',
+      'There is no cookie banner. The cookie policy explains what the one cookie does and how to block it.',
     ],
   },
   {
     id: 'sharing',
     title: 'Who else sees it',
     body: [
-      'We do not sell your information and we do not share it with advertisers, data brokers or analytics companies. There are none involved in this site.',
-      'The companies that run our infrastructure process it on our behalf:',
+      'We do not sell your information, and we do not share it with data brokers or analytics companies. The one advertising company involved in this site is Google, listed below.',
+      'The companies that run our infrastructure and measure our advertising process it on our behalf:',
     ],
     list: [
+      'Google, which measures our Google Ads for us: which visits came from an ad, and whether a charter quote request or a call followed. It receives the page address, your IP address and the identifiers described under Cookies, never what you type into a form.',
       'Vercel, which hosts the CRM and serves it.',
       'Neon, which holds the database.',
       'Upstash, which holds the short-lived rate limiting counters.',

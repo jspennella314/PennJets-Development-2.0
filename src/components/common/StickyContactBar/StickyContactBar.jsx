@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { PHONE_HREF, quoteTargetFor } from './quoteTarget';
+import { sendConversion, SEND_TO_CALL } from '../../../content/googleAds';
 
 // Two actions always within reach: call, or go to the inquiry form that fits
 // the page you are on. WO-4.11.
@@ -84,6 +85,9 @@ const StickyContactBar = () => {
       <div className="mx-auto flex max-w-6xl gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <a
           href={PHONE_HREF}
+          // A call is a Google Ads conversion from this button, on any page.
+          // WO-4.56.
+          onClick={() => sendConversion(SEND_TO_CALL)}
           className="flex flex-1 items-center justify-center rounded-xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-900 hover:bg-gray-50"
           tabIndex={hidden ? -1 : 0}
         >

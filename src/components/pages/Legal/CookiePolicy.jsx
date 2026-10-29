@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  LAST_UPDATED, INTRO, HEADLINE, HEADLINE_BODY, INVENTORY, SECTIONS, RELATED,
+  LAST_UPDATED, INTRO, HEADLINE, HEADLINE_BODY, INVENTORY, SECTIONS, RELATED, MEASURED_ACROSS,
 } from '../../../content/cookiePolicy';
 
 // Copy lives in src/content/cookiePolicy.js so the page and the draft Joseph
@@ -34,9 +34,8 @@ const CookiePolicy = () => {
           <section className="mt-12">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900">What is actually stored</h2>
             <p className="mt-4 leading-relaxed text-gray-700">
-              Measured on {LAST_UPDATED} in a browser profile with nothing in it, across
-              the home page, the Market Notes index, a Market Note, the charter, buy and
-              contact pages, and both legal pages.
+              Measured on {LAST_UPDATED} in a browser profile with nothing in it, across{' '}
+              {MEASURED_ACROSS}.
             </p>
             <div className="mt-6 overflow-hidden rounded-xl border border-gray-200">
               <table className="min-w-full divide-y divide-gray-200 text-sm">
