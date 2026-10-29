@@ -17,7 +17,8 @@ const Footer = () => {
 
   const footerSections = [
     {
-      title: 'Services',
+      // "Services" until the page went (WO-4.53); Joseph's heading, 2026-10-28.
+      title: 'What We Do',
       links: [
         // Aircraft Sales and Aircraft Acquisition went with the Services page;
         // the Aircraft column's Sell and Buy rows already point there. WO-4.53.

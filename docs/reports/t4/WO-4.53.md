@@ -3,7 +3,7 @@ wo: WO-4.53
 terminal: T4
 model: claude-opus-5-5
 tested_against: local build of t4/work 59dc23d (main 818ab32 + WO-4.54 Part 1), served by vite preview on :4174, Playwright at 390x844 with the CRM host caught first and the webhook stubbed
-status: done; copy to Joseph again in the PR. Row 2 (photography) still unanswered, a one-line follow-up if he says move.
+status: done; copy table approved 2026-10-28; the two §5 lines added (addendum); for the lead's audit, then Joseph opens the PR
 ---
 
 # WO-4.53 — report
@@ -155,11 +155,31 @@ src/seo/siteMeta.js:74:  '/terms-of-service': { … 'Terms governing use of the 
 - The preview was stopped. The remaining node.exe processes are T1's
   CRM vitest run, not this repo.
 
-## Open
+## Addendum: the two §5 lines (Joseph, 2026-10-28)
 
-- **Row 2, photography.** If Joseph says move, `/sell` step 2 becomes
-  "We agree an asking price and a plan, photograph the aircraft, and take
-  it to buyers." That is a one-line follow-up.
-- **The PR.** The copy table above goes to Joseph. This work is on
-  `t4/work`, behind the WO-4.54 Part 1 PR (`t4/pr-4.54-stub`), which
-  `t4/work` already contains.
+Joseph approved the copy table above as written. He asked for two
+more lines before the PR, and both are in one commit on `t4/work`,
+after `t4/work` took main `9908dfb` (PR #16):
+
+| Where | Before | After |
+|---|---|---|
+| Footer, first column heading | Services | What We Do |
+| `/sell` step 2 | We agree an asking price and a plan, and take it to buyers. | We agree an asking price and a plan, and take it to buyers. Photography of the aircraft, taken by Penn Jets or arranged locally. |
+
+- The photography sentence is his, verbatim, with his spelling "Penn
+  Jets". It follows the existing sentence in the same step.
+- **The footer test.** The footer had none, so "re-pin" became a new
+  `Footer.test.jsx` with 3 tests. They pin:
+  - "What We Do" as the first heading, with no "Services" heading;
+  - that column's two rows (Charter Services → `/charter`, Consulting →
+    `/consulting`);
+  - the Aircraft column's five rows (Market Analysis → `/blog`,
+    Valuation Services → `/consulting`);
+  - no link under `/services`.
+- **Checks.** `npx vitest run src/components/layout` gives 2 files and
+  18 tests, all passing. `npm run lint` exits 0. The full suite was not
+  run, because T1 is the other active builder; the lead's audit build is
+  the evidence.
+
+Nothing in WO-4.53 waits on Joseph now. The lead audits this commit,
+then Joseph opens the PR from `t4/work`.
