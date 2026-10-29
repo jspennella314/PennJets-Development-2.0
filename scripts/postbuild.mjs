@@ -26,6 +26,7 @@ import {
   canonicalFor, absoluteImage, articleMeta, isAllowedImage,
 } from '../src/seo/siteMeta.js';
 import { fetchAllPosts } from '../src/services/blogPaging.js';
+import { redirectStubs } from '../src/seo/redirectStub.js';
 
 const DIST = path.resolve('dist');
 const CRM = (process.env.VITE_CRM_API_URL || 'https://www.pennforce.pennjets.com').replace(/\/$/, '');
@@ -133,6 +134,9 @@ try {
 const INDEX_FIELDS = [
   'id', 'title', 'slug', 'excerpt', 'featuredImage', 'featuredImageSocial',
   'imageAttribution', 'keywords', 'publishedAt', 'updatedAt', 'author',
+  // A note's former slugs (T1's WO-1.37), so the app knows an old address.
+  // WO-4.54.
+  'previousSlugs',
 ];
 const INDEX_MAX_BYTES = 200 * 1024;
 {
@@ -320,6 +324,16 @@ for (const post of posts) {
   const noscript = `<noscript><article><h1>${esc(post.title)}</h1><p>${esc(a.description)}</p><p><a href="${esc(a.url)}">${esc(a.url)}</a></p></article></noscript>`;
   writeFile(`blog/${post.slug}.html`, renderShell(meta, noscript));
   written.push(`blog/${post.slug}.html`);
+}
+
+// ---- redirect stubs at former note URLs (src/seo/redirectStub.js) ----------
+// One per previousSlugs entry; not counted in `written`, never in the sitemap.
+// WO-4.54.
+{
+  const { stubs, skipped } = redirectStubs(posts);
+  for (const s of stubs) writeFile(`blog/${s.from}.html`, s.html);
+  console.log(`[postbuild] wrote ${stubs.length} redirect stub(s)${stubs.length ? ': ' + stubs.map((s) => `/blog/${s.from} -> /blog/${s.to}`).join(', ') : ''}`);
+  for (const why of skipped) console.warn(`[postbuild] redirect stub skipped, ${why}`);
 }
 
 // ---- sitemap ---------------------------------------------------------------
