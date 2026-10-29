@@ -5,9 +5,9 @@ import { sendConversion, SEND_TO_FORM, SEND_TO_CALL, AW_ID } from './googleAds.j
 
 afterEach(() => { vi.unstubAllGlobals(); });
 
-describe('the labels (held until Joseph sends them by file)', () => {
-  it('are empty, so nothing is counted yet', () => {
-    expect(SEND_TO_FORM).toBe('');
+describe('the labels (from Joseph by file)', () => {
+  it("the form label is the file's; the call label is still empty, so no call is counted yet", () => {
+    expect(SEND_TO_FORM).toBe('AW-18544502023/HfIdCJrgta4dEIfK2opF');
     expect(SEND_TO_CALL).toBe('');
   });
   it('the tag id is the campaign account\'s', () => expect(AW_ID).toBe('AW-18544502023'));
@@ -18,7 +18,7 @@ describe('sendConversion', () => {
     const gtag = vi.fn();
     vi.stubGlobal('window', { gtag });
     expect(sendConversion('')).toBe(false);
-    expect(sendConversion(SEND_TO_FORM)).toBe(false);
+    expect(sendConversion(SEND_TO_CALL)).toBe(false);
     expect(gtag).not.toHaveBeenCalled();
   });
   it('no tag (blocked, or not loaded yet) sends nothing and does not throw', () => {

@@ -1,8 +1,9 @@
 // @vitest-environment happy-dom
 // The charter page's two Google Ads conversions (WO-4.56): the quote form
 // counts only when the webhook accepted the lead, never on Continue, an error
-// or mount; the Call button counts a call. With the labels still empty,
-// sendConversion is called with "" and nothing reaches gtag.
+// or mount; the Call button counts a call. The form label is in (Joseph's
+// file, 2026-10-29), so a success reaches gtag; the call label is still empty,
+// so a call is sent as "" and nothing reaches gtag.
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import * as React from 'react';
@@ -101,15 +102,16 @@ describe('the quote form conversion (WO-4.56)', () => {
     expect(sendConversion).not.toHaveBeenCalled();
   });
 
-  it('once on a step-2 success, with the form label; empty, so gtag hears nothing', async () => {
+  it('once on a step-2 success, with the form label, and gtag hears exactly that', async () => {
     const el = await render(() => ok(200, { success: true }));
     await stepOne(el);
     await stepTwoSubmit(el);
     expect(el.textContent).toMatch(/Thanks/);
     expect(sendConversion).toHaveBeenCalledTimes(1);
     expect(sendConversion).toHaveBeenCalledWith(SEND_TO_FORM);
-    expect(SEND_TO_FORM).toBe('');
-    expect(gtag).not.toHaveBeenCalled();
+    expect(SEND_TO_FORM).toBe('AW-18544502023/HfIdCJrgta4dEIfK2opF');
+    expect(gtag).toHaveBeenCalledTimes(1);
+    expect(gtag).toHaveBeenCalledWith('event', 'conversion', { send_to: 'AW-18544502023/HfIdCJrgta4dEIfK2opF' });
   });
 
   it('nothing when the webhook answers 500', async () => {

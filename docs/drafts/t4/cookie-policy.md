@@ -46,11 +46,11 @@ Ad personalisation is turned off for this tag, so visits here are not used to bu
 
 ## Requests your browser makes to other companies
 
-Two. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go. It also contacts Google, for the advertising tag described above, at www.googletagmanager.com, www.google.com and ad.doubleclick.net.
+Three. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go. It also contacts Google, for the advertising tag described above, at www.googletagmanager.com, www.google.com and ad.doubleclick.net. Where a page shows a Market Note's picture, your browser fetches the picture from Vercel, the company that hosts our system, at a vercel-storage.com address; that is our own image, and the request sets nothing in your browser.
 
 The typeface used to be fetched from Google Fonts on every page. We moved those font files onto this site, so that request no longer happens.
 
-Apart from Google's advertising tag, there is no analytics provider, no other advertising network and no embedded third-party content on this site to contact.
+Apart from Google's advertising tag and our own pictures on Vercel, there is no analytics provider, no other advertising network and no embedded third-party content on this site to contact.
 
 ## Two things that sound like tracking and are not
 
