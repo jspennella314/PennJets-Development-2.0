@@ -332,7 +332,7 @@ const QuoteForm = () => {
           )}
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets about this request.</p>
+            <p className="text-xs text-gray-500">By submitting, you agree to be contacted by Penn Jets about this request.</p>
             {narrow && step === 1 ? (
               <button
                 type="button"

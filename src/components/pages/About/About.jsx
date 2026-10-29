@@ -27,9 +27,9 @@ const About = () => {
       <section className="bg-gray-900 text-white py-24 mt-24">
         <div className="max-w-7xl mx-auto container-padding">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="heading-lg mb-6">About PennJets</h1>
+            <h1 className="heading-lg mb-6">About Penn Jets</h1>
             <p className="body-lg text-gray-300">
-              Founded in 2025, PennJets is a private aviation sales and consulting firm.
+              Founded in 2025, Penn Jets is a private aviation sales and consulting firm.
               We connect clients with the right aircraft through straightforward advice
               and personal service.
             </p>
@@ -52,7 +52,7 @@ const About = () => {
                 <p>{JOSEPH_BIO}</p>
                 <p>
                   Whether you're buying your first light jet, looking at fractional ownership,
-                  or selling a legacy aircraft, PennJets provides the expertise and
+                  or selling a legacy aircraft, Penn Jets provides the expertise and
                   negotiation power to get the deal done and protect your interests.
                 </p>
               </div>
@@ -153,7 +153,7 @@ const About = () => {
             <Card className="text-center">
               <h3 className="text-xl font-semibold mb-3">Fractional Ownership</h3>
               <p className="text-gray-600 text-sm">
-                Fractional shares structured by PennJets and flown by a licensed Part 135
+                Fractional shares structured by Penn Jets and flown by a licensed Part 135
                 operator.
               </p>
             </Card>
@@ -174,7 +174,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto">
             <h2 className="heading-lg mb-6">Ready to Work With Us?</h2>
             <p className="body-lg text-gray-600 mb-8">
-              Whether you're buying, selling, or connecting with charter operators, PennJets is ready to provide
+              Whether you're buying, selling, or connecting with charter operators, Penn Jets is ready to provide
               the expertise and personalized service you deserve.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -183,7 +183,7 @@ const About = () => {
                 size="lg"
                 onClick={() => navigate('/contact')}
               >
-                Contact PennJets
+                Contact Penn Jets
               </Button>
               <Button 
                 variant="outline" 

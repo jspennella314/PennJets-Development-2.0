@@ -155,7 +155,7 @@ const Header = () => {
           <Link to="/" className="flex shrink-0 items-center h-full">
             <img
               src="/images/pennjets-logo-192.png"
-              alt="PennJets"
+              alt="Penn Jets"
               className="h-12 lg:h-16 w-auto"
               style={{ filter: 'brightness(0) saturate(100%)' }}
             />
