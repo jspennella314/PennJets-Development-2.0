@@ -17,11 +17,12 @@ const Footer = () => {
 
   const footerSections = [
     {
-      title: 'Services',
+      // "Services" until the page went (WO-4.53); Joseph's heading, 2026-10-28.
+      title: 'What We Do',
       links: [
-        { name: 'Aircraft Sales', href: '/services#sales' },
-        { name: 'Aircraft Acquisition', href: '/services#acquisition' },
-        { name: 'Charter Services', href: '/services#charter' },
+        // Aircraft Sales and Aircraft Acquisition went with the Services page;
+        // the Aircraft column's Sell and Buy rows already point there. WO-4.53.
+        { name: 'Charter Services', href: '/charter' },
         { name: 'Consulting', href: '/consulting' },
       ]
     },
@@ -32,8 +33,10 @@ const Footer = () => {
         // Recent Inquiries, WO-4.52.
         { name: 'See recent inquiries', href: '/aircraft' },
         { name: 'Sell Your Aircraft', href: '/sell' },
-        { name: 'Market Analysis', href: '/services#analysis' },
-        { name: 'Valuation Services', href: '/services#analysis' },
+        // Joseph, 2026-10-28: market commentary is the Market Notes; valuation
+        // is part of Consulting's ownership analysis. WO-4.53.
+        { name: 'Market Analysis', href: '/blog' },
+        { name: 'Valuation Services', href: '/consulting' },
       ]
     },
     {

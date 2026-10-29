@@ -4,7 +4,6 @@ import Header from './components/layout/Header/Header';
 import Footer from './components/layout/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import About from './components/pages/About/About';
-import Services from './components/pages/Services/Services';
 import AircraftListing from './components/pages/AircraftListing/AircraftListing';
 import Contact from './components/pages/Contact/Contact';
 import BlogList from './components/pages/Blog/BlogList';
@@ -38,7 +37,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
+              {/* The Services page is removed; its content lives on Buy, Sell,
+                  Consulting and Charter (Joseph, 2026-10-21). Old links, anchors
+                  included, land on the home tiles. WO-4.53. */}
+              <Route path="/services" element={<Navigate to="/#paths" replace />} />
               {/* /aircraft is "Recent Inquiries", reached from /buy and the
                   footer; the menu keeps no Aircraft item (WO-4.49). WO-4.52.
                   A listing's own page still sends buyers to Buy until a

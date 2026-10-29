@@ -46,7 +46,6 @@ const navigation = [
   { name: 'Sell', href: '/sell' },
   { name: 'PennShare', href: '/pennshare' },
   { name: 'Consulting', href: '/consulting' },
-  { name: 'Services', href: '/services' },
   { name: 'About', href: '/about' },
   { name: 'Market Notes', href: '/blog' },
   { name: 'Contact', href: '/contact' },

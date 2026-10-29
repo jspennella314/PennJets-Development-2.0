@@ -41,8 +41,9 @@ const Consulting = () => {
         <header className="mb-8 max-w-3xl">
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Aviation Consulting</h1>
           <p className="mt-3 text-gray-600">
-            Cost of ownership, mission fit, ownership structure, or a second opinion
-            on a deal in front of you. Tell us what you need help with.
+            Ownership analysis, fleet planning and pre-purchase strategy, for
+            individuals, corporations, and family offices. Tell us what you
+            need help with.
           </p>
         </header>
 
@@ -104,10 +105,14 @@ const Consulting = () => {
           <aside className="rounded-2xl border p-6 shadow-sm">
             <h2 className="text-base font-semibold">What we advise on</h2>
             <ul className="mt-4 space-y-2 text-sm text-gray-700">
-              <li>Aircraft selection and mission fit</li>
-              <li>Cost of ownership and budget modelling</li>
-              <li>Ownership structure options, sole or fractional</li>
-              <li>A second opinion on a deal already in front of you</li>
+              {/* Joseph's three (WO-4.53, approved 2026-10-28). The four
+                  bullets before folded in: selection and mission fit into
+                  fleet planning, cost and structure into ownership analysis,
+                  the second opinion into pre-purchase strategy. Valuation
+                  moved here from the Services page. */}
+              <li>Ownership analysis: what the aircraft is worth, what it costs to own, and whether sole or fractional fits</li>
+              <li>Fleet planning: which aircraft fit the mission, now and as it changes</li>
+              <li>Pre-purchase strategy: what to check, what to offer, and a second opinion on a deal already in front of you</li>
             </ul>
             <p className="mt-4 text-xs text-gray-500">
               We work alongside your own tax and legal advisors rather than in place of them.

@@ -49,11 +49,6 @@ export const ROUTES = {
     description:
       'Fractional aircraft shares structured by PennJets and flown by a licensed Part 135 operator. Share the costs, not the convenience.',
   },
-  '/services': {
-    title: 'Aircraft Sales, Charter Brokerage & Consulting | PennJets',
-    description:
-      'Aircraft sales and acquisition, charter brokerage, fractional structures, market analysis, and aviation consulting from PennJets.',
-  },
   '/about': {
     title: 'About PennJets | Private Aviation Sales and Consulting',
     description:

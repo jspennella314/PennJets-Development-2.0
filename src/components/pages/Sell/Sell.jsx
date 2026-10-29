@@ -129,7 +129,7 @@ const Sell = () => {
             <h2 className="text-base font-semibold">How selling with PennJets works</h2>
             <ol className="mt-4 space-y-3 text-sm text-gray-700">
               <li className="flex gap-3"><span className="font-semibold">1.</span><span>We review the aircraft, its logs and its position in the current market.</span></li>
-              <li className="flex gap-3"><span className="font-semibold">2.</span><span>We agree an asking price and a plan, and take it to buyers.</span></li>
+              <li className="flex gap-3"><span className="font-semibold">2.</span><span>We agree an asking price and a plan, and take it to buyers. Photography of the aircraft, taken by Penn Jets or arranged locally.</span></li>
               <li className="flex gap-3"><span className="font-semibold">3.</span><span>We manage the offer, inspection and closing with you.</span></li>
             </ol>
             <Link to="/contact" className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium underline">Prefer to talk? Contact us</Link>
