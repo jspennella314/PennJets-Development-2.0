@@ -82,8 +82,8 @@ off. The CRM host was caught 4 times, and nothing reached it.
 
 **The tag's weight on `/charter`:** `gtag.js` is **159,513 bytes over the
 wire** (zstd) and **462,330 bytes decoded**, measured from the response.
-It loads `async`, so it does not block rendering. For scale, it is more
-than the site's own JavaScript bundle.
+It loads `async`, so it does not block rendering. For scale, the site's own bundle (`dist/assets/index-*.js`) is 369,270 bytes raw and 109,718 gzipped,
+so the tag is larger than the whole site's JavaScript on both measures.
 
 ## §2 The two conversions
 
