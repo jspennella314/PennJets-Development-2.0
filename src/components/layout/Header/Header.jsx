@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../../common/Button/Button';
+import { sendConversion, SEND_TO_CALL } from '../../../content/googleAds';
 
 // What the banner says on a given local date. Joseph's wording (2026-09-22);
 // the year is read from the date, never typed. On 1 January, for that day
@@ -189,6 +190,7 @@ const Header = () => {
             */}
             <a
               href="tel:+19545460763"
+              onClick={() => sendConversion(SEND_TO_CALL)}
               className="whitespace-nowrap text-sm font-medium text-gray-700 transition-colors hover:text-primary-700"
             >
               (954) 546-0763

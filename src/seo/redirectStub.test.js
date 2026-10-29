@@ -1,7 +1,7 @@
 // The redirect stubs postbuild writes at former Market Note URLs. WO-4.54.
 
 import { describe, it, expect } from 'vitest';
-import { redirectStubHtml, redirectStubs } from './redirectStub.js';
+import { redirectStubHtml, redirectStubs, servicesStubHtml } from './redirectStub.js';
 
 const NEW = 'https://www.pennjets.com/blog/dassault-falcon-900b-for-sale-2026-market-study';
 const FALCON = {
@@ -25,6 +25,20 @@ describe('redirectStubHtml', () => {
   });
   it('escapes the title', () => {
     expect(redirectStubHtml({ title: 'A <b> & "c"', slug: 'x' })).toContain('<title>A &lt;b&gt; &amp; &quot;c&quot;</title>');
+  });
+});
+
+describe('servicesStubHtml (the retired /services page)', () => {
+  const html = servicesStubHtml();
+  it('refresh 0 to /#paths, canonical /, noindex, the plain link', () => {
+    expect(html).toContain('<meta http-equiv="refresh" content="0; url=https://www.pennjets.com/#paths">');
+    expect(html).toContain('<link rel="canonical" href="https://www.pennjets.com/">');
+    expect(html).toContain('<meta name="robots" content="noindex">');
+    expect(html).toContain('<p>This page has moved: <a href="https://www.pennjets.com/#paths">https://www.pennjets.com/#paths</a></p>');
+  });
+  it('carries the query string across, ahead of the fragment', () => {
+    expect(html).toContain('<script>location.replace("https://www.pennjets.com/" + location.search + (location.hash || "#paths"));</script>');
+    expect(html.indexOf('<script>')).toBeLessThan(html.indexOf('http-equiv="refresh"'));
   });
 });
 

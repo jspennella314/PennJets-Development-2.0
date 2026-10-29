@@ -40,7 +40,7 @@ It is an identifier on your device for as long as the tab is open, and we would 
 
 Every page of this site loads Google's advertising tag. When it loads, your browser contacts Google, which receives the address of the page, the page you came from, your IP address and the identifiers in the table above.
 
-We count two things as conversions: sending the charter quote form successfully, and tapping the Call button on the charter page or in the bar at the bottom of the screen. A conversion tells Google that one of those happened. It does not include your name, email address, phone number or anything you typed.
+We count two things as conversions: sending the charter quote form successfully, and tapping our phone number to call us: the Call button on the charter page, the Call button in the bar at the bottom of the screen, or the number at the top of the page. A conversion tells Google that one of those happened. It does not include your name, email address, phone number or anything you typed.
 
 Ad personalisation is turned off for this tag, so visits here are not used to build remarketing audiences or to follow you with our ads elsewhere. We do not sell your information.
 

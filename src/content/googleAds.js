@@ -12,8 +12,9 @@ export const AW_ID = 'AW-18544502023';
 // The charter quote form, on a submit the webhook accepted (Charter.jsx).
 export const SEND_TO_FORM = '';
 
-// A tap on the charter page's Call button or the sticky bar's Call
-// (Charter.jsx, StickyContactBar.jsx). No other tel: link on the site counts.
+// A tap on the charter page's Call button, the sticky bar's Call or the
+// desktop header's number (Charter.jsx, StickyContactBar.jsx, Header.jsx; the
+// header by Joseph's ruling, 2026-10-29). No other tel: link on the site counts.
 export const SEND_TO_CALL = '';
 
 // The one place a conversion is sent. Nothing happens without a label or
