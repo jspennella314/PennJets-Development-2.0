@@ -62,7 +62,7 @@ const Gallery = () => {
         name: 'PennJets-Website-Logo.png',
         url: '/images/PennJets-Website-Logo.png',
         category: 'Branding',
-        description: 'PennJets Logo',
+        description: 'Penn Jets Logo',
       },
       {
         id: 13,

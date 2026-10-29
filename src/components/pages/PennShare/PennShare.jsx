@@ -159,7 +159,7 @@ const PennShare = () => {
                 Flown by Part 135 Operators
               </h3>
               <p className="text-gray-600">
-                A licensed Part 135 operator flies and maintains the aircraft. PennJets structures the share and stays your point of contact.
+                A licensed Part 135 operator flies and maintains the aircraft. Penn Jets structures the share and stays your point of contact.
               </p>
             </Card>
 
@@ -362,7 +362,7 @@ const PennShare = () => {
                   required
                   className="w-5 h-5 shrink-0 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
                 />
-                <span>I consent to being contacted by PennJets regarding fractional ownership opportunities. *</span>
+                <span>I consent to being contacted by Penn Jets regarding fractional ownership opportunities. *</span>
               </label>
 
               <Button

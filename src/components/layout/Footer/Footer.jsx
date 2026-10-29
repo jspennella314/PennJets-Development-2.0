@@ -80,7 +80,7 @@ const Footer = () => {
                 <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-lg">P</span>
                 </div>
-                <span className="text-xl font-bold">PennJets</span>
+                <span className="text-xl font-bold">Penn Jets</span>
               </Link>
               {/* The slogan as the footer's tagline, with the comma (Joseph,
                   2026-10-21). WO-4.52. */}
@@ -136,7 +136,7 @@ const Footer = () => {
         <div className="py-6 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {currentYear} PennJets. All rights reserved.
+              © {currentYear} Penn Jets. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
               <span>Call: (954) 546-0763</span>

@@ -180,7 +180,7 @@ const BlogArticle = () => {
                 },
             "publisher": {
               "@type": "Organization",
-              "name": "PennJets",
+              "name": "Penn Jets",
               "logo": {
                 "@type": "ImageObject",
                 "url": "https://www.pennjets.com/images/pennjets-logo-192.png"
