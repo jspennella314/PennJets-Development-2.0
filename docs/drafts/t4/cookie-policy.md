@@ -8,26 +8,27 @@
 
 ---
 
-**Penn Jets LLC. Last updated 20 September 2026.**
+**Penn Jets LLC. Last updated 29 October 2026.**
 
 Most cookie policies describe a website other than the one you are reading. This one was written by measuring what pennjets.com actually puts on your device, page by page, in a browser with nothing stored in it.
 
-## This site sets no cookies.
+## This site sets one cookie, for Google Ads.
 
-Not strictly necessary ones, not analytics ones, not advertising ones. We walked the site in a clean browser profile and the cookie store was still empty at the end of it.
+We advertise charter on Google, and Google's advertising tag sets one cookie so that we can tell when a quote request or a phone call came from one of those ads. We walked the site in a clean browser profile and it was the only cookie in the store at the end.
 
-There are no third-party analytics on this site, no advertising pixels and no profiling. That was a deliberate decision, and it is why you are reading this instead of clicking through a consent banner.
+There is no analytics provider on this site, no remarketing and no profiling. We have told Google not to use visits here to build advertising audiences.
 
 ## What is actually stored
 
-Measured on 20 September 2026 in a browser profile with nothing in it.
+Measured on 29 October 2026 in a browser profile with nothing in it, across the home page, the charter page, a Market Note, and both legal pages.
 
 | What | Type | Set by | Purpose | Lifetime |
 |---|---|---|---|---|
-| No cookies at all | Cookie | nothing | There are none to describe. | n/a |
+| _gcl_au | Cookie | Google Ads, on pennjets.com, when any page loads | Lets Google match a charter quote request or a call to the ad click that led to it, so that we can count which ads produce enquiries. | 90 days |
+| _gcl_ls | Local storage | Google Ads, on pennjets.com, when any page loads | Ad-click information Google's tag keeps for the same purpose as _gcl_au. | Until you clear this site's stored data |
 | pj_view_session | Session storage | pennjets.com, when you open a Market Note | A generated id, so that if the page reports the same view twice we update one record instead of counting two. It is not linked to a name, an email address or an account. | Cleared when you close the tab |
 
-## The one thing we do store
+## The one thing we store ourselves
 
 Opening a Market Note puts a single value in your browser's session storage, under the name pj_view_session. It is a randomly generated id, it is not a cookie, and it disappears when you close the tab.
 
@@ -35,13 +36,21 @@ It exists so that our own view count is accurate. If the page reports the same v
 
 It is an identifier on your device for as long as the tab is open, and we would rather say that plainly than describe it as nothing. What it is not: persistent, shared with anyone, or connected to you as a person. It cannot be, unless you later fill in a form and tell us who you are.
 
+## Google Ads conversion tracking
+
+Every page of this site loads Google's advertising tag. When it loads, your browser contacts Google, which receives the address of the page, the page you came from, your IP address and the identifiers in the table above.
+
+We count two things as conversions: sending the charter quote form successfully, and tapping our phone number to call us: the Call button on the charter page, the Call button in the bar at the bottom of the screen, or the number at the top of the page. A conversion tells Google that one of those happened. It does not include your name, email address, phone number or anything you typed.
+
+Ad personalisation is turned off for this tag, so visits here are not used to build remarketing audiences or to follow you with our ads elsewhere. We do not sell your information.
+
 ## Requests your browser makes to other companies
 
-One, and it is ours. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go.
+Two. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go. It also contacts Google, for the advertising tag described above, at www.googletagmanager.com, www.google.com and ad.doubleclick.net.
 
-Nothing else. The typeface used to be fetched from Google Fonts, which meant your browser contacted Google and Google received your IP address on every page. We moved those font files onto this site, so that request no longer happens.
+The typeface used to be fetched from Google Fonts on every page. We moved those font files onto this site, so that request no longer happens.
 
-There is no analytics provider, no advertising network, no tag manager and no embedded third-party content on this site to contact.
+Apart from Google's advertising tag, there is no analytics provider, no other advertising network and no embedded third-party content on this site to contact.
 
 ## Two things that sound like tracking and are not
 
@@ -51,8 +60,8 @@ Our newsletter emails carry an unsubscribe link and a pixel that records whether
 
 ## What you can do about it
 
-Blocking cookies for this site changes nothing, because there are none to block. Clearing your session storage, or simply closing the tab, removes the one id described above.
+Blocking cookies for this site, or blocking Google's advertising domains, stops the Google Ads cookie; the site works the same without it. Clearing this site's stored data removes _gcl_ls. Closing the tab removes our own session id.
 
-There is no consent banner because there is nothing here to consent to. If that ever changes, this page changes at the same time as the thing it describes, not afterwards.
+There is no consent banner. If what this site stores changes, this page changes at the same time as the thing it describes, not afterwards.
 
 What happens to information you send us, rather than what is stored on your device, is on the privacy policy.

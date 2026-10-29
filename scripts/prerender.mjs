@@ -83,6 +83,9 @@ try {
 }
 const INV = { hits: 0, misses: 0 };
 
+// Requests to Google Ads hosts, aborted in every render (WO-4.56).
+const GOOGLE = { blocked: 0 };
+
 function listFromCache(url) {
   const limit = parseInt(url.searchParams.get('limit') || '10', 10);
   const offset = parseInt(url.searchParams.get('offset') || '0', 10);
@@ -236,6 +239,17 @@ async function renderRoute(browser, route) {
   const articleHits = [];
   const articleMisses = [];
   const consoleErrors = [];
+
+  // The Google Ads tag (WO-4.56) never loads here. Rendered, gtag.js would
+  // count a visit to every page on every build, and anything it put in the
+  // body (an iframe, a script) would be written into the static page. The
+  // inline bootstrap in index.html only defines dataLayer and gtag(); without
+  // gtag.js nothing is sent and nothing is added.
+  await page.route(
+    (url) => /(^|\.)(googletagmanager\.com|doubleclick\.net|googleadservices\.com|googlesyndication\.com)$/.test(url.hostname)
+      || (/(^|\.)google\.com$/.test(url.hostname) && url.pathname.startsWith('/pagead')),
+    (r) => { GOOGLE.blocked += 1; return r.abort(); },
+  );
 
   // The article fetch, answered from the cache postbuild.mjs filled.
   //
@@ -424,6 +438,7 @@ if (LIST.hits) {
 if (LIST.misses.length) {
   console.warn(`[prerender] ${LIST.misses.length} note-list read(s) allowed through to the CRM: ${LIST.misses.join(', ')}`);
 }
+console.log(`[prerender] ${GOOGLE.blocked} Google Ads tag request(s) blocked; none reached Google.`);
 if (INV.hits) {
   console.log(`[prerender] ${INV.hits} inventory read(s) answered from scripts/crm-inventory.cache.json ` +
     `(${INVENTORY.length} listing(s)); none reached the CRM.`);

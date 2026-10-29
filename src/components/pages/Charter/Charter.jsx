@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { blogApi } from "../../../services/blogApi";
+import { sendConversion, SEND_TO_FORM, SEND_TO_CALL } from "../../../content/googleAds";
 import useNarrowViewport from "../../../hooks/useNarrowViewport";
 
 // 14 CFR 295.23 air charter broker disclosure. Wording approved by Joseph 2026-09-20.
@@ -74,6 +75,7 @@ const Hero = () => (
             </a>
             <a
               href="tel:+19545460763"
+              onClick={() => sendConversion(SEND_TO_CALL)}
               className="rounded-2xl px-5 py-3 text-sm font-medium text-white ring-1 ring-white/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/80"
             >
               Call (954) 546‑0763
@@ -252,6 +254,10 @@ const QuoteForm = () => {
       .join("\n");
     try {
       await blogApi.submitLead({ name, email, phone, service: "charter", message });
+      // The Google Ads conversion: only here, once the webhook has accepted
+      // the lead (submitLead throws on anything else). Never on Continue,
+      // the error path or mount. WO-4.56.
+      sendConversion(SEND_TO_FORM);
       setStatus("success");
       setName(""); setEmail(""); setPhone(""); setFrom(""); setTo("");
       setDate(""); setRetDate(""); setPax(4); setNotes("");

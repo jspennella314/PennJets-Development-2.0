@@ -3,12 +3,18 @@
 // one dismissible line kept dismissed per year; the menu's order with no
 // Aircraft; a named 44 px hamburger. WO-4.49.
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { createRoot } from 'react-dom/client';
 import { MemoryRouter } from 'react-router-dom';
 import Header from './Header';
+import { sendConversion, SEND_TO_CALL } from '../../../content/googleAds';
+
+vi.mock('../../../content/googleAds', async (importOriginal) => {
+  const actual = await importOriginal();
+  return { ...actual, sendConversion: vi.fn(actual.sendConversion) };
+});
 
 const act = React.act || TestUtils.act;
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
@@ -130,5 +136,24 @@ describe('the header and menu (WO-4.49)', () => {
     expect(el.querySelector('a[href="/services"]')).toBeNull();
     expect(el.querySelector('a[href="/aircraft"]')).toBeNull();
     expect(el.querySelector('a[href="/contact"] button').textContent.trim()).toBe('Contact Us');
+  });
+});
+
+// The desktop header's phone number counts as a call too (Joseph, 2026-10-29);
+// the empty label means nothing reaches gtag. WO-4.56.
+describe('the header number is a call conversion (WO-4.56)', () => {
+  it('a click on the number sends the call label, and nothing reaches gtag while it is empty', async () => {
+    const gtag = vi.fn();
+    window.gtag = gtag;
+    sendConversion.mockClear();
+    const el = await render('/charter');
+    expect(sendConversion).not.toHaveBeenCalled();
+    const call = el.querySelector('header a[href="tel:+19545460763"]');
+    call.addEventListener('click', (e) => e.preventDefault());
+    await act(async () => { call.click(); });
+    expect(sendConversion).toHaveBeenCalledTimes(1);
+    expect(sendConversion).toHaveBeenCalledWith(SEND_TO_CALL);
+    expect(gtag).not.toHaveBeenCalled();
+    delete window.gtag;
   });
 });

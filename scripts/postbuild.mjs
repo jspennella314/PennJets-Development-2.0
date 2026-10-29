@@ -26,7 +26,7 @@ import {
   canonicalFor, absoluteImage, articleMeta, isAllowedImage,
 } from '../src/seo/siteMeta.js';
 import { fetchAllPosts } from '../src/services/blogPaging.js';
-import { redirectStubs } from '../src/seo/redirectStub.js';
+import { redirectStubs, servicesStubHtml } from '../src/seo/redirectStub.js';
 
 const DIST = path.resolve('dist');
 const CRM = (process.env.VITE_CRM_API_URL || 'https://www.pennforce.pennjets.com').replace(/\/$/, '');
@@ -334,6 +334,9 @@ for (const post of posts) {
   for (const s of stubs) writeFile(`blog/${s.from}.html`, s.html);
   console.log(`[postbuild] wrote ${stubs.length} redirect stub(s)${stubs.length ? ': ' + stubs.map((s) => `/blog/${s.from} -> /blog/${s.to}`).join(', ') : ''}`);
   for (const why of skipped) console.warn(`[postbuild] redirect stub skipped, ${why}`);
+  // The retired /services page (WO-4.53) to the home page's paths, noindex.
+  writeFile('services.html', servicesStubHtml());
+  console.log('[postbuild] wrote the /services stub -> /#paths');
 }
 
 // ---- sitemap ---------------------------------------------------------------
