@@ -184,3 +184,19 @@ $ git show --stat --format= a86d555
 
 Only this repository was touched. My preview is stopped, and no node
 process of mine is running.
+
+## Addendum 2026-10-29: the card check, at the first build after WO-1.36
+
+T1's WO-1.36 is live. The public list route now carries `author.email`
+and `readTimeMinutes` for every note; the `crm-posts.cache.json`
+refresh is `2ccb77b`, on `t4/wo-4.54-p3`. The first local build after
+that, read in `dist/blog.html`:
+
+```
+By PennJets:        0   (17 before WO-1.36)
+By Joseph Pennella: 19
+min read:           19  (1, 2, 3, 6×4, 5×5, 2×6, 2×7, 8)
+```
+
+All 19 index cards show a real author and the CRM's read time, and none
+falls back. The live read follows the next deploy of the site.
