@@ -59,6 +59,15 @@ describe('the footer columns (WO-4.53)', () => {
     ]);
   });
 
+  // Joseph's brand form, 2026-10-28. WO-4.55.
+  it('the word mark and the copyright say "Penn Jets"', async () => {
+    const el = await render();
+    const text = el.querySelector('footer').textContent;
+    expect(text).toContain(`© ${new Date().getFullYear()} Penn Jets. All rights reserved.`);
+    expect(el.querySelector('footer a[href="/"]').textContent).toContain('Penn Jets');
+    expect(text).not.toMatch(/PennJets/);
+  });
+
   it('links nowhere under /services', async () => {
     const el = await render();
     expect(el.querySelector('a[href^="/services"]')).toBeNull();

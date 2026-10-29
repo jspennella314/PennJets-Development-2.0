@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const NotFound = () => (
   <>
     <Helmet>
-      <title>Page Not Found | PennJets</title>
+      <title>Page Not Found | Penn Jets</title>
       <meta name="robots" content="noindex" />
     </Helmet>
     <div className="min-h-[60vh] bg-white pt-32 pb-16">

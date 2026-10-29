@@ -29,7 +29,7 @@ const Home = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "PennJets",
+            "name": "Penn Jets",
             "url": "https://www.pennjets.com",
             "logo": "https://www.pennjets.com/images/pennjets-logo-192.png",
             "description": "Private aviation brokerage and consulting firm specializing in aircraft sales, acquisitions, and charter brokerage",

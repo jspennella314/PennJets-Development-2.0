@@ -47,12 +47,12 @@ export const ROUTES = {
   '/pennshare': {
     title: 'PennShare Fractional Ownership | Penn Jets',
     description:
-      'Fractional aircraft shares structured by PennJets and flown by a licensed Part 135 operator. Share the costs, not the convenience.',
+      'Fractional aircraft shares structured by Penn Jets and flown by a licensed Part 135 operator. Share the costs, not the convenience.',
   },
   '/about': {
     title: 'About Penn Jets | Private Aviation Sales and Consulting',
     description:
-      'Joseph Pennella, founder and principal broker of PennJets. Private aviation sales and consulting: sole ownership, fractional, charter brokerage, and advisory.',
+      'Joseph Pennella, founder and principal broker of Penn Jets. Private aviation sales and consulting: sole ownership, fractional, charter brokerage, and advisory.',
   },
   '/contact': {
     title: 'Contact Penn Jets',
@@ -62,7 +62,7 @@ export const ROUTES = {
   '/blog': {
     title: 'Market Notes | Penn Jets',
     description:
-      'Market notes, transaction insights, and aircraft overviews from PennJets.',
+      'Market notes, transaction insights, and aircraft overviews from Penn Jets.',
   },
   // Copy for Joseph's approval at the WO-4.52 report.
   '/aircraft': {
@@ -70,11 +70,11 @@ export const ROUTES = {
     description:
       'Aircraft Penn Jets has recently sourced, evaluated or been asked about. Not exclusive listings; availability and pricing confirmed at inquiry.',
   },
-  '/privacy-policy': { title: 'Privacy Policy | Penn Jets', description: 'How PennJets collects, uses, and protects your information.' },
-  '/terms-of-service': { title: 'Terms of Service | Penn Jets', description: 'Terms governing use of the PennJets website and services.' },
-  '/cookie-policy': { title: 'Cookie Policy | Penn Jets', description: 'How the PennJets website uses cookies and similar technologies.' },
-  '/compliance': { title: 'Compliance Statement | Penn Jets', description: 'PennJets compliance statement and air charter broker disclosure.' },
-  '/gallery': { title: 'Image Library | Penn Jets', description: 'Image library for PennJets Market Notes.', noindex: true },
+  '/privacy-policy': { title: 'Privacy Policy | Penn Jets', description: 'How Penn Jets collects, uses, and protects your information.' },
+  '/terms-of-service': { title: 'Terms of Service | Penn Jets', description: 'Terms governing use of the Penn Jets website and services.' },
+  '/cookie-policy': { title: 'Cookie Policy | Penn Jets', description: 'How the Penn Jets website uses cookies and similar technologies.' },
+  '/compliance': { title: 'Compliance Statement | Penn Jets', description: 'Penn Jets compliance statement and air charter broker disclosure.' },
+  '/gallery': { title: 'Image Library | Penn Jets', description: 'Image library for Penn Jets Market Notes.', noindex: true },
 };
 
 // Routes that get a static HTML file at build time and a sitemap entry.
@@ -150,7 +150,7 @@ export function articleMeta(post) {
     image: absoluteImage(safeImage(post.featuredImageSocial) ?? safeImage(post.featuredImage)),
     url: `${SITE_URL}/blog/${post.slug}`,
     publishedAt: post.publishedAt,
-    authorName: (post.author && post.author.name) || 'PennJets',
+    authorName: (post.author && post.author.name) || 'Penn Jets',
     type: 'article',
   };
 }

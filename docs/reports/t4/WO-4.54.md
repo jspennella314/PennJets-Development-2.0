@@ -3,7 +3,7 @@ wo: WO-4.54
 terminal: T4
 model: claude-opus-5-5
 tested_against: Part 1, local build of t4/pr-4.54-stub (5a0ceae + 4f6ef5e) on main 818ab32 via vite preview :4174, and the CRM list route read live once; Part 3, local build of t4/wo-4.54-p3 (39525f7 + 2ccb77b), the CRM list route live at build time; Part 2, local build of t4/wo-4.54-p2 (e163143) via vite preview :4174 with previousSlugs and redirectTo live on the CRM
-status: done. Part 1 live (PR #16); Parts 3 and 2 on t4/work (3b1a90c, 8a29d36); one tag beyond Part 1's shape for the lead (the query-string script)
+status: done. Parts 1, 2 and 3 live (PR #16; PR #19 merged t4/wo-4.54-p2, Part 2 e163143 with WO-4.55); Part 2 also sits on t4/work as the cherry-pick 8a29d36, folded in by the merge of main; one tag beyond Part 1's shape for the lead (the query-string script)
 ---
 
 # WO-4.54 — report
@@ -155,7 +155,7 @@ The lead read it live.
 
 ## Part 2 — the mechanism (done)
 
-On `t4/work` at `8a29d36`, cherry-picked from `t4/wo-4.54-p2` `e163143` so that WO-4.56 lands after Parts 2 and 3 and ahead of WO-4.55, as the lead ordered on 2026-10-29. No pushed history was rewritten. `t4/wo-4.54-p2` (built on `t4/wo-4.55`) is superseded. The Part 1 file is deleted in the same commit.
+Built on `t4/wo-4.54-p2`, cut from `t4/wo-4.55`, at commit `e163143`, and merged to main by Joseph as PR #19 (`ecea2c1`), which also carried WO-4.55. Before that merge it had been cherry-picked onto `t4/work` as `8a29d36` so that WO-4.56 could land after Parts 2 and 3, as the lead ordered on 2026-10-29; the merge of main into `t4/work` before the WO-4.56 PR reconciles the two with no code conflict. No pushed history was rewritten. The Part 1 file is deleted in the same commit.
 
 ### When WO-1.37 went live
 

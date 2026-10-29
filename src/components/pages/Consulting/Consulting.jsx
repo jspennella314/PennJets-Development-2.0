@@ -76,7 +76,7 @@ const Consulting = () => {
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets about this request.</p>
+              <p className="text-xs text-gray-500">By submitting, you agree to be contacted by Penn Jets about this request.</p>
               {/* No gate on Send: name, email and the need carry `required`,
                   so an empty one gets the browser's message at the field
                   instead of a grey button that says nothing (WO-4.47 row 2).

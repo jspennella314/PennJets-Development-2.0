@@ -136,7 +136,7 @@ const Buy = () => {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-xs text-gray-500">By submitting, you agree to be contacted by PennJets about this request.</p>
+                <p className="text-xs text-gray-500">By submitting, you agree to be contacted by Penn Jets about this request.</p>
                 {/* No gate on Send: name and email carry `required`, so an empty one
                     gets the browser's message at the field instead of a grey
                     button that says nothing (WO-4.47 row 2). WO-4.50. */}
@@ -165,7 +165,7 @@ const Buy = () => {
             </form>
 
             <aside className="rounded-2xl border p-6 shadow-sm">
-              <h2 className="text-base font-semibold">How buying with PennJets works</h2>
+              <h2 className="text-base font-semibold">How buying with Penn Jets works</h2>
               <ol className="mt-4 space-y-3 text-sm text-gray-700">
                 <li className="flex gap-3"><span className="font-semibold">1.</span><span>We talk through the mission: passengers, trips, budget, and timeline.</span></li>
                 <li className="flex gap-3"><span className="font-semibold">2.</span><span>We identify aircraft that fit, including ones that aren't publicly listed.</span></li>
