@@ -10,7 +10,9 @@
 export const AW_ID = 'AW-18544502023';
 
 // The charter quote form, on a submit the webhook accepted (Charter.jsx).
-export const SEND_TO_FORM = '';
+// "Charter quote form submit" in Google Ads; from Joseph's file
+// docs/integration/google-ads-labels.md (CRM repo), 2026-10-29.
+export const SEND_TO_FORM = 'AW-18544502023/HfIdCJrgta4dEIfK2opF';
 
 // A tap on the charter page's Call button, the sticky bar's Call or the
 // desktop header's number (Charter.jsx, StickyContactBar.jsx, Header.jsx; the
