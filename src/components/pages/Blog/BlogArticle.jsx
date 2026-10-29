@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Card from '../../common/Card/Card';
 import Button from '../../common/Button/Button';
 import NewsletterSignup from '../../common/NewsletterSignup/NewsletterSignup';
@@ -13,6 +13,7 @@ import { categoryFor, formatNoteDate, relatedNotes } from '../../../utils/market
 const BlogArticle = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [article, setArticle] = useState(null);
   const [allNotes, setAllNotes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -64,6 +65,14 @@ const BlogArticle = () => {
       setLoading(true);
       setError(null);
       const data = await blogApi.getPost(slug);
+      // A former slug: the CRM answers with the note and redirectTo (T1's
+      // WO-1.37). Go there in place of this address, keeping the query
+      // string, so a caption's utm_* still reach the beacon on the note.
+      // Before the next build writes the stub. WO-4.54.
+      if (data && data.redirectTo && data.redirectTo !== `/blog/${slug}`) {
+        navigate(data.redirectTo + location.search + location.hash, { replace: true });
+        return;
+      }
       setArticle(data);
     } catch (err) {
       console.error('Error loading article:', err);
