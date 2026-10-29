@@ -2,8 +2,8 @@
 wo: WO-4.54
 terminal: T4
 model: claude-opus-5-5
-tested_against: Part 1, local build of t4/pr-4.54-stub (5a0ceae + 4f6ef5e) on main 818ab32 via vite preview :4174, and the CRM list route read live once; Part 3, local build of t4/wo-4.54-p3 (39525f7 + 2ccb77b), the CRM list route live at build time
-status: Part 1 live (PR #16); Part 3 done on t4/wo-4.54-p3 (after the WO-4.53 PR); Part 2 held, waiting on WO-1.37's deploy (the live list has no previousSlugs, 2026-10-29)
+tested_against: Part 1, local build of t4/pr-4.54-stub (5a0ceae + 4f6ef5e) on main 818ab32 via vite preview :4174, and the CRM list route read live once; Part 3, local build of t4/wo-4.54-p3 (39525f7 + 2ccb77b), the CRM list route live at build time; Part 2, local build of t4/wo-4.54-p2 (e163143) via vite preview :4174 with previousSlugs and redirectTo live on the CRM
+status: done. Part 1 live (PR #16); Part 3 on t4/wo-4.54-p3; Part 2 on t4/wo-4.54-p2 (on t4/wo-4.55); one tag beyond Part 1's shape for the lead (the query-string script)
 ---
 
 # WO-4.54 — report
@@ -153,21 +153,148 @@ so the deployed file is the LF file that `cmp` checked here.
 Part 1 has been live since 2026-10-28 17:26 UTC (PR #16, `9908dfb`).
 The lead read it live.
 
-## Part 2 — the mechanism: held, waiting on WO-1.37's deploy
+## Part 2 — the mechanism (done)
 
-WO-1.37 is merged on the CRM's local `main` (`0b90ac2`) but has not
-reached production. Read on 2026-10-29:
+Branch `t4/wo-4.54-p2`, cut from `t4/wo-4.55`, at commit `e163143`.
+The Part 1 file is deleted in the same commit.
 
-- The live list route has no `previousSlugs` field. Its keys are `id,
-  title, slug, excerpt, featuredImage, imageCredit, imageSourceUrl,
-  imageLicense, imageModified, metaTitle, metaDescription, keywords,
-  publishedAt, updatedAt, viewCount, leadCount, author,
-  imageAttribution, featuredImageSocial, readTimeMinutes`.
-- `GET /api/public/blog/title-dassault-falcon-900b-for-sale-2026-market-study`
-  answers `404`, not `redirectTo`.
+### When WO-1.37 went live
 
-Part 2 starts at the first build after the deploy. The Part 1 file is
-deleted in that commit.
+- **Earlier on 2026-10-29**, the live list had no `previousSlugs`, and
+  the single route answered the old slug with `404`. Part 2 was held.
+- **At WO-4.55's build the same day**, the list carried `previousSlugs`
+  on every note: the Falcon note's is
+  `["title-dassault-falcon-900b-for-sale-2026-market-study"]`, and the
+  other 18 are `[]`. The refreshed cache is `6674f7c`, on
+  `t4/wo-4.55`.
+- **The single route** now answers the old slug with `200`, the note
+  and `redirectTo: "/blog/dassault-falcon-900b-for-sale-2026-market-study"`.
+
+**One stray ContentAnalytics row is mine.** I checked that last point
+with a `curl` GET on the single route, and every GET there writes a
+ContentAnalytics row. The Falcon note's view count is one higher for
+it. The list route would have answered the question without that.
+
+### What changed
+
+| File | Change |
+|---|---|
+| `src/seo/redirectStub.js` (new) | The one template, `redirectStubHtml({ title, slug })`. `redirectStubs(posts)` returns one stub per `previousSlugs` entry and the reason for any it refuses: a former slug that is a live note's slug (the live page wins), one that is not a plain slug (`^[a-z0-9][a-z0-9-]*$`, since it becomes a file path), or one listed twice. |
+| `scripts/postbuild.mjs` | `previousSlugs` joins `INDEX_FIELDS`, so it reaches `data/market-notes.json`. After the article pages, it writes `dist/blog/<old>.html` for each stub, logs the count, and warns on each refusal. Stubs are not counted with the HTML pages and never enter the sitemap. |
+| `src/components/pages/Blog/BlogArticle.jsx` | A response carrying `redirectTo` calls `navigate(redirectTo + location.search + location.hash, { replace: true })` and renders nothing. "Note Not Found" stays for a real 404. `transformPost` spreads the post, so `redirectTo` arrives without a change under `src/services/`. |
+| `public/blog/title-…html` | Deleted. The template now writes that path. |
+| `scripts/prerender.mjs` | No change. Part 1's skip ("a file with a refresh is left as written") covers every template stub. |
+
+### One tag beyond Part 1's shape, for the lead: the query string
+
+`CLAUDE.md`: "The site must preserve those query parameters [utm_*]
+through any redirect or router transition until the beacon has read
+them."
+
+- **The problem.** The three social posts of 2026-10-28 link to the old
+  URL with `?utm_source=…`. A meta refresh to a fixed URL drops the
+  query, so **the live Part 1 stub loses that attribution today**.
+- **The fix.** The template puts one script before the refresh:
+  `location.replace("<new URL>" + location.search + location.hash)`.
+- **What stays the same.** The refresh, the canonical, the title and
+  the link are as Part 1 had them. A reader without scripts still gets
+  the refresh, but without the query, which is the same limit as Part 1.
+- **The SPA redirect** keeps the query and the hash the same way.
+
+Say if the order meant Part 1's shape strictly; dropping the script
+costs the attribution.
+
+### The two heads
+
+Part 1, hand-written, from `public/`:
+
+```html
+<head>
+<meta charset="utf-8">
+<title>Dassault Falcon 900B for Sale: 2026 Market Study</title>
+<meta http-equiv="refresh" content="0; url=https://www.pennjets.com/blog/dassault-falcon-900b-for-sale-2026-market-study">
+<link rel="canonical" href="https://www.pennjets.com/blog/dassault-falcon-900b-for-sale-2026-market-study">
+</head>
+```
+
+Part 2, from the template, in `dist/blog/title-…html`:
+
+```html
+<head>
+<meta charset="utf-8">
+<title>Dassault Falcon 900B for Sale: 2026 Market Study</title>
+<script>location.replace("https://www.pennjets.com/blog/dassault-falcon-900b-for-sale-2026-market-study" + location.search + location.hash);</script>
+<meta http-equiv="refresh" content="0; url=https://www.pennjets.com/blog/dassault-falcon-900b-for-sale-2026-market-study">
+<link rel="canonical" href="https://www.pennjets.com/blog/dassault-falcon-900b-for-sale-2026-market-study">
+</head>
+```
+
+`diff --strip-trailing-cr` of the two whole files prints one line, the
+added `<script>` (`5a6`). The body is identical.
+
+### Build (`npm run build`, exit 0)
+
+```
+[postbuild] wrote data/market-notes.json: 19 note(s), 21,471 bytes
+[postbuild] article bodies: 19 from cache, 0 fetched
+[postbuild] wrote 1 redirect stub(s): /blog/title-dassault-falcon-900b-for-sale-2026-market-study -> /blog/dassault-falcon-900b-for-sale-2026-market-study
+[postbuild] wrote 34 HTML files (19 Market Notes) and sitemap.xml with 33 URLs
+[prerender] 1 redirect stub(s) left as written: /blog/title-dassault-falcon-900b-for-sale-2026-market-study
+[prerender] 34 of 34 routes rendered in 44.4s
+```
+
+| Check | Result |
+|---|---|
+| `ls dist/blog \| grep title-` | `title-dassault-falcon-900b-for-sale-2026-market-study.html`, now from the template |
+| `grep -c title-dassault dist/sitemap.xml` | 0 |
+| `market-notes.json` | every post has `previousSlugs`; the Falcon note's is `["title-dassault-falcon-900b-for-sale-2026-market-study"]` |
+
+### Followed in a browser
+
+Playwright loaded the stub with `?utm_source=linkedin&utm_medium=social&utm_campaign=…`.
+`www.pennjets.com` and the CRM were caught first, and 0 requests
+reached the CRM.
+
+| Run | Landed on |
+|---|---|
+| Scripts on | `https://www.pennjets.com/blog/dassault-falcon-900b-for-sale-2026-market-study?utm_source=linkedin&utm_medium=social&utm_campaign=dassault-falcon-900b-for-sale-2026-market-study` |
+| Scripts off | `https://www.pennjets.com/blog/dassault-falcon-900b-for-sale-2026-market-study` (the refresh) |
+
+### Tests
+
+**`src/seo/redirectStub.test.js`, 5 tests:**
+
+- the Part 1 tags;
+- the script, placed before the refresh;
+- title escaping;
+- one stub per former slug;
+- no stub over a live note, at a non-slug path, or for a slug listed
+  twice.
+
+**`src/components/pages/Blog/BlogArticle.test.jsx`, 2 tests (RTL):**
+
+- A stubbed fetch answers the old slug with `redirectTo`. The page ends
+  at `/blog/<new>?utm_source=linkedin&utm_medium=social#talk` with
+  navigation type `REPLACE`. It renders the note's h1, and no beacon
+  fired for the old slug.
+- A real 404 renders "Note Not Found" and does not navigate.
+
+**Results:**
+
+- `npx vitest run src/components/pages/Blog src/seo`: 4 files, 68 tests,
+  68 passed.
+- Run against the unchanged `BlogArticle.jsx` (stashed), the redirect
+  test fails and the 404 test passes, so the test pins the change.
+- `npm run lint`: exit 0.
+- `npx eslint scripts/postbuild.mjs` reports 4 `no-unused-vars` errors
+  (`viewCount`, `leadCount` at `:109` and `:259`). They are identical on
+  `HEAD` before this change, and `npm run lint` does not cover `.mjs`.
+- The full suite was not run, because T3 is the other active builder.
+- The preview was stopped; no node process of this repo is running.
+
+**Still to do:** after the deploy, the lead reads the live stub (the
+script, the refresh, the canonical, the link) and a direct SPA hit on
+the old slug.
 
 ## Part 3 — the title suffix, once, in "Penn Jets" (done)
 
