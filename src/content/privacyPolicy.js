@@ -102,7 +102,7 @@ export const SECTIONS = [
     ],
     list: [
       'Google, which measures our Google Ads for us: which visits came from an ad, and whether a charter quote request or a call followed. It receives the page address, your IP address and the identifiers described under Cookies, never what you type into a form.',
-      'Vercel, which hosts the CRM and serves it.',
+      'Vercel, which hosts the CRM, serves it and stores the Market Note pictures.',
       'Neon, which holds the database.',
       'Upstash, which holds the short-lived rate limiting counters.',
       'Resend, which delivers our email.',

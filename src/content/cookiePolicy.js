@@ -20,6 +20,10 @@
 // one cookie (_gcl_au, 90 days) and one local storage value (_gcl_ls), both
 // set on page load before any interaction. Production is re-read after the
 // merge; if it differs, this text is corrected in a follow-up commit.
+//
+// WO-4.57, 2026-10-29: the requests section counts Vercel's storage host,
+// where Market Note pictures are served from (it sets nothing). Wording
+// drafted by the lead and approved by Joseph as drafted.
 
 export const LAST_UPDATED = '29 October 2026';
 
@@ -89,9 +93,9 @@ export const SECTIONS = [
     id: 'other-companies',
     title: 'Requests your browser makes to other companies',
     body: [
-      'Two. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go. It also contacts Google, for the advertising tag described above, at www.googletagmanager.com, www.google.com and ad.doubleclick.net.',
+      'Three. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go. It also contacts Google, for the advertising tag described above, at www.googletagmanager.com, www.google.com and ad.doubleclick.net. Where a page shows a Market Note\'s picture, your browser fetches the picture from Vercel, the company that hosts our system, at a vercel-storage.com address; that is our own image, and the request sets nothing in your browser.',
       'The typeface used to be fetched from Google Fonts on every page. We moved those font files onto this site, so that request no longer happens.',
-      'Apart from Google\'s advertising tag, there is no analytics provider, no other advertising network and no embedded third-party content on this site to contact.',
+      'Apart from Google\'s advertising tag and our own pictures on Vercel, there is no analytics provider, no other advertising network and no embedded third-party content on this site to contact.',
     ],
   },
   {
