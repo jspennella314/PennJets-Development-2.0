@@ -156,7 +156,6 @@ The lead read it live.
 ## Part 2 — the mechanism (done)
 
 On `t4/work` at `8a29d36`, cherry-picked from `t4/wo-4.54-p2` `e163143` so that WO-4.56 lands after Parts 2 and 3 and ahead of WO-4.55, as the lead ordered on 2026-10-29. No pushed history was rewritten. `t4/wo-4.54-p2` (built on `t4/wo-4.55`) is superseded. The Part 1 file is deleted in the same commit.
-The Part 1 file is deleted in the same commit.
 
 ### When WO-1.37 went live
 
