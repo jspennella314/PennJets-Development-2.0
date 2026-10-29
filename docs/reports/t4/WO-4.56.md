@@ -2,8 +2,8 @@
 wo: WO-4.56
 terminal: T4
 model: claude-opus-5-5
-tested_against: local build of t4/work f2eb5ec (main 0e9ad26 + WO-4.54 Parts 3 and 2 + this order), served by vite preview on :4174; Playwright with a clean profile, the CRM host and the webhook caught first, Google let through for the measurement only
-status: built and pushed on t4/work; labels held (Joseph's file); the before/after table to Joseph; production cookie inventory re-read after the merge
+tested_against: local build of t4/work f2eb5ec (main 0e9ad26 + WO-4.54 Parts 3 and 2 + this order), served by vite preview on :4174; Playwright with a clean profile, the CRM host and the webhook caught first, Google let through for the measurement only. Pre-PR commit f78e603: local build of t4/work after the merge of origin/main ecea2c1 (8581a5a), vite preview on :4174, Playwright with a catch-all abort registered first and pennjets.com and the CRM caught
+status: accepted by the lead; pre-PR commit done (main merged, the header number counts as a call, the /services stub) and pushed on t4/work; labels held (Joseph's file); production cookie inventory re-read after the merge
 ---
 
 # WO-4.56 — report: the Google Ads tag and two conversions on /charter, with the policies
@@ -18,7 +18,10 @@ Everything is on `t4/work`, with no topic branch.
 | `8a29d36` | WO-4.54 Part 2, cherry-picked from `e163143` |
 | `f2eb5ec` | **This order**: the tag, the conversions and both policies in one commit, as §4 requires |
 | `d9206d3` | The cache refresh, in its own commit |
-| This commit | The report |
+| `28a0d70`, `bd05ec6` | The report |
+| `8581a5a` | **Pre-PR:** `origin/main` (`ecea2c1`, PR #19) merged in. No code conflict; `t4/work`'s newer cache kept; the WO-4.54 report's two Part 2 versions reconciled |
+| `f78e603` | **Pre-PR:** the header phone number counts as a call; the `/services` stub |
+| This commit | The report's pre-PR section |
 
 **Why Part 2 was cherry-picked.** Part 2 had been built on top of
 `t4/wo-4.55`. Taking it whole would have put WO-4.55 ahead of this order;
@@ -120,6 +123,7 @@ bar. The sticky bar's Call is in `StickyContactBar.jsx`.
 - I did **not** wire the header number.
 - If the desktop header number should count too, it is one `onClick`.
   Say so.
+- **Update, pre-PR:** Joseph ruled that it counts. It is wired in `f78e603` (see "Pre-PR commit").
 - No other `tel:` link is wired: About, a Market Note and the legal
   pages are unchanged.
 
@@ -207,7 +211,7 @@ the date.
 | 7 | Cookie policy, table row (new) | — | _gcl_ls \| Local storage \| Google Ads, on pennjets.com, when any page loads \| Ad-click information Google's tag keeps for the same purpose as _gcl_au. \| Until you clear this site's stored data |
 | 8 | Cookie policy, section title | The one thing we do store | The one thing we store ourselves |
 | 9 | Cookie policy, new section "Google Ads conversion tracking" (1) | — | Every page of this site loads Google's advertising tag. When it loads, your browser contacts Google, which receives the address of the page, the page you came from, your IP address and the identifiers in the table above. |
-| 10 | (2) | — | We count two things as conversions: sending the charter quote form successfully, and tapping the Call button on the charter page or in the bar at the bottom of the screen. A conversion tells Google that one of those happened. It does not include your name, email address, phone number or anything you typed. |
+| 10 | (2) | — | We count two things as conversions: sending the charter quote form successfully, and tapping our phone number to call us: the Call button on the charter page, the Call button in the bar at the bottom of the screen, or the number at the top of the page. A conversion tells Google that one of those happened. It does not include your name, email address, phone number or anything you typed. |
 | 11 | (3) | — | Ad personalisation is turned off for this tag, so visits here are not used to build remarketing audiences or to follow you with our ads elsewhere. We do not sell your information. |
 | 12 | Cookie policy, "Requests your browser makes to other companies" (1) | One, and it is ours. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go. | Two. Loading a page contacts pennforce.pennjets.com, our own system, which is where Market Notes are loaded from and where form submissions go. It also contacts Google, for the advertising tag described above, at www.googletagmanager.com, www.google.com and ad.doubleclick.net. |
 | 13 | (2) | Nothing else. The typeface used to be fetched from Google Fonts, which meant your browser contacted Google and Google received your IP address on every page. We moved those font files onto this site, so that request no longer happens. | The typeface used to be fetched from Google Fonts on every page. We moved those font files onto this site, so that request no longer happens. |
@@ -305,6 +309,39 @@ are for the lead to add:
 - **Still to come:** the production reading, after the merge, and the
   date the tag started counting (from Joseph).
 
+## Pre-PR commit (the lead's verdict, 2026-10-29)
+
+The three items of the verdict's "Before the PR" list, plus one policy line that follows from item 2:
+
+1. **Main merged** (`8581a5a`). PR #19 had carried Part 2's original (`e163143`) and WO-4.55; `t4/work` had Part 2 as the cherry-pick `8a29d36`. Two conflicts, neither in code: `scripts/crm-articles.cache.json` (kept `t4/work`'s, the newer) and `docs/reports/t4/WO-4.54.md` (the two Part 2 texts rewritten as one that says what happened). After the merge, the diff against `origin/main` is only WO-4.56.
+2. **The desktop header number** (`Header.jsx`, `tel:+19545460763`) gets `onClick={() => sendConversion(SEND_TO_CALL)}`, Joseph's ruling. Its test sits in `Header.test.jsx`: one click sends the call label once, and gtag hears nothing while the label is empty. **The test fails with the `onClick` removed** (1 failed, 15 passed), and passes with it.
+3. **The cookie policy follows the header ruling, in the same commit.** Its Google Ads section named the two Call buttons, so it now names the header number too. **Row 10 of the before/after table has the new wording; it is Joseph's to approve with the rest.** The drafts were regenerated, and the comment in `googleAds.js` was updated to match.
+4. **The `/services` stub** (the WO-4.54 Part 2 addendum). `redirectStub.js` now has one internal template; the note stubs come out byte for byte as before (their tests are unchanged and pass), and `servicesStubHtml()` adds the retired page. postbuild writes it to `dist/services.html`. It is not in the sitemap (`grep -c services dist/sitemap.xml` gives 0), and prerender leaves it as written.
+
+   ```html
+   <title>Penn Jets</title>
+   <script>location.replace("https://www.pennjets.com/" + location.search + (location.hash || "#paths"));</script>
+   <meta http-equiv="refresh" content="0; url=https://www.pennjets.com/#paths">
+   <link rel="canonical" href="https://www.pennjets.com/">
+   <meta name="robots" content="noindex">
+   ```
+
+   **One difference from the note stubs:** the target has its own fragment, so the script puts the query string before it. Appending `location.search` to `/#paths` would have put the utm values inside the hash, where nothing reads them. Followed in Chromium from `/services.html?utm_source=linkedin&utm_medium=social&utm_campaign=wo-4-56-check`:
+   - With scripts on, it lands on `https://www.pennjets.com/?utm_source=linkedin&utm_medium=social&utm_campaign=wo-4-56-check#paths`.
+   - With scripts off, the meta refresh lands on `https://www.pennjets.com/#paths`.
+   - Requests to the CRM: 0. Both pennjets.com requests were caught locally, and nothing reached the live site.
+
+**Pre-PR evidence:**
+- Touched tests: `npx vitest run src/seo/redirectStub.test.js src/components/layout/Header/Header.test.jsx src/components/common/StickyContactBar src/content/googleAds.test.js src/components/pages/Charter` gives 5 files, **41 passed**.
+- `npm run lint` exits 0.
+- `npm run build` exits 0:
+  - 34 HTML files and 33 sitemap URLs.
+  - `[prerender] 2 redirect stub(s) left as written: /blog/title-dassault-falcon-900b-for-sale-2026-market-study, /services`.
+  - 34 Google Ads tag requests blocked.
+  - Article bodies: 19 from cache, **0 fetched**, so no ContentAnalytics row.
+- The build changed the cache file's line endings only, so there is no cache commit.
+- Not run: the full suite (T3 is active). The preview is stopped.
+
 ## Tests, lint, build
 
 - **Touched tests:** `npx vitest run src/content src/components/pages/Charter src/components/common src/components/layout src/seo`
@@ -327,5 +364,4 @@ are for the lead to add:
 2. **The before/after table above.**
 3. **The merge**, then the date of the first recorded conversion, which
    starts the two-week hold on `/charter`.
-4. **For the lead:** whether the desktop header's phone number should
-   also count as a call (§2).
+4. ~~For the lead: whether the desktop header's phone number should also count as a call.~~ Ruled yes by Joseph; done in `f78e603`.
