@@ -4,12 +4,12 @@
 // Plain ESM, no JSX, no import.meta: it must load in Node as well as the browser.
 
 export const SITE_URL = 'https://www.pennjets.com';
-export const SITE_NAME = 'PennJets';
+export const SITE_NAME = 'Penn Jets';
 // The branded link-preview card: the mark in white on primary.600, 1200x630.
 // WO-4.16, Joseph chose the logo alone over a logo-plus-wordmark lockup,
 // because the mark is itself the word PennJets and the lockup said it twice.
 export const DEFAULT_IMAGE = '/images/og-card.png';
-export const DEFAULT_TITLE = 'PennJets | Private Jet Brokerage & Aviation Consulting';
+export const DEFAULT_TITLE = 'Penn Jets | Private Jet Brokerage & Aviation Consulting';
 export const DEFAULT_DESCRIPTION =
   'Independent aircraft brokerage and consulting. Buy, sell, or charter with someone who shows you the numbers.';
 
@@ -30,51 +30,51 @@ export const ROUTES = {
       'Light and midsize jet charter from Teterboro, Westchester and Long Island, arranged by Penn Jets, an air charter broker.',
   },
   '/buy': {
-    title: 'Buy an Aircraft | PennJets',
+    title: 'Buy an Aircraft | Penn Jets',
     description:
       "Sole and fractional ownership, including aircraft that aren't publicly listed. Tell us the mission and we'll tell you what's available.",
   },
   '/sell': {
-    title: 'Sell Your Aircraft | PennJets',
+    title: 'Sell Your Aircraft | Penn Jets',
     description:
       "Tell us what you have and we'll come back with where it sits in the current market and what a realistic timeline looks like.",
   },
   '/consulting': {
-    title: 'Aviation Consulting | PennJets',
+    title: 'Aviation Consulting | Penn Jets',
     description:
       'Cost of ownership, mission fit, ownership structure, or a second opinion on a deal in front of you.',
   },
   '/pennshare': {
-    title: 'PennShare Fractional Ownership | PennJets',
+    title: 'PennShare Fractional Ownership | Penn Jets',
     description:
       'Fractional aircraft shares structured by PennJets and flown by a licensed Part 135 operator. Share the costs, not the convenience.',
   },
   '/about': {
-    title: 'About PennJets | Private Aviation Sales and Consulting',
+    title: 'About Penn Jets | Private Aviation Sales and Consulting',
     description:
       'Joseph Pennella, founder and principal broker of PennJets. Private aviation sales and consulting: sole ownership, fractional, charter brokerage, and advisory.',
   },
   '/contact': {
-    title: 'Contact PennJets',
+    title: 'Contact Penn Jets',
     description:
       'Talk to a broker about buying, selling, or chartering an aircraft. Call (954) 546-0763 or send a message.',
   },
   '/blog': {
-    title: 'Market Notes | PennJets',
+    title: 'Market Notes | Penn Jets',
     description:
       'Market notes, transaction insights, and aircraft overviews from PennJets.',
   },
   // Copy for Joseph's approval at the WO-4.52 report.
   '/aircraft': {
-    title: 'Recent Inquiries | PennJets',
+    title: 'Recent Inquiries | Penn Jets',
     description:
       'Aircraft Penn Jets has recently sourced, evaluated or been asked about. Not exclusive listings; availability and pricing confirmed at inquiry.',
   },
-  '/privacy-policy': { title: 'Privacy Policy | PennJets', description: 'How PennJets collects, uses, and protects your information.' },
-  '/terms-of-service': { title: 'Terms of Service | PennJets', description: 'Terms governing use of the PennJets website and services.' },
-  '/cookie-policy': { title: 'Cookie Policy | PennJets', description: 'How the PennJets website uses cookies and similar technologies.' },
-  '/compliance': { title: 'Compliance Statement | PennJets', description: 'PennJets compliance statement and air charter broker disclosure.' },
-  '/gallery': { title: 'Image Library | PennJets', description: 'Image library for PennJets Market Notes.', noindex: true },
+  '/privacy-policy': { title: 'Privacy Policy | Penn Jets', description: 'How PennJets collects, uses, and protects your information.' },
+  '/terms-of-service': { title: 'Terms of Service | Penn Jets', description: 'Terms governing use of the PennJets website and services.' },
+  '/cookie-policy': { title: 'Cookie Policy | Penn Jets', description: 'How the PennJets website uses cookies and similar technologies.' },
+  '/compliance': { title: 'Compliance Statement | Penn Jets', description: 'PennJets compliance statement and air charter broker disclosure.' },
+  '/gallery': { title: 'Image Library | Penn Jets', description: 'Image library for PennJets Market Notes.', noindex: true },
 };
 
 // Routes that get a static HTML file at build time and a sitemap entry.
@@ -135,8 +135,10 @@ export function metaForPath(pathname) {
 export function articleMeta(post) {
   const title = post.metaTitle || post.title;
   const description = post.metaDescription || post.excerpt || DEFAULT_DESCRIPTION;
+  // The brand once: a title that already carries it, in either spelling, is
+  // never suffixed again. Joseph's form is "Penn Jets" (2026-10-28). WO-4.54.
   return {
-    title: /penn\s?jets/i.test(title) ? title : `${title} | PennJets Market Notes`,
+    title: /penn\s?jets/i.test(title) ? title : `${title} | Penn Jets Market Notes`,
     description,
     // The link-preview image prefers the CRM's 1200x630 social crop
     // (`featuredImageSocial`, WO-1.30: the social.webp stored beside every
