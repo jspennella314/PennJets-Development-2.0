@@ -2,8 +2,8 @@
 wo: WO-4.56
 terminal: T4
 model: claude-opus-5-5
-tested_against: local build of t4/work f2eb5ec (main 0e9ad26 + WO-4.54 Parts 3 and 2 + this order), served by vite preview on :4174; Playwright with a clean profile, the CRM host and the webhook caught first, Google let through for the measurement only. Pre-PR commit f78e603: local build of t4/work after the merge of origin/main ecea2c1 (8581a5a), vite preview on :4174, Playwright with a catch-all abort registered first and pennjets.com and the CRM caught
-status: accepted by the lead; pre-PR commit done (main merged, the header number counts as a call, the /services stub) and pushed on t4/work; labels held (Joseph's file); production cookie inventory re-read after the merge
+tested_against: local build of t4/work f2eb5ec (main 0e9ad26 + WO-4.54 Parts 3 and 2 + this order), served by vite preview on :4174; Playwright with a clean profile, the CRM host and the webhook caught first, Google let through for the measurement only. Pre-PR commit f78e603: local build of t4/work after the merge of origin/main ecea2c1 (8581a5a), vite preview on :4174, Playwright with a catch-all abort registered first and pennjets.com and the CRM caught. Production reading: https://www.pennjets.com after PR #20 (ff857b6), Playwright at 390 with a clean profile, a catch-all abort registered first, the CRM host and the webhook caught, Google let through
+status: live (PR #20, ff857b6); production cookie inventory read 2026-10-29 19:22 UTC and matches the policies, no follow-up commit; labels held (Joseph's file)
 ---
 
 # WO-4.56 — report: the Google Ads tag and two conversions on /charter, with the policies
@@ -341,6 +341,35 @@ The three items of the verdict's "Before the PR" list, plus one policy line that
   - Article bodies: 19 from cache, **0 fetched**, so no ContentAnalytics row.
 - The build changed the cache file's line endings only, so there is no cache commit.
 - Not run: the full suite (T3 is active). The preview is stopped.
+
+## Production reading (after PR #20, 2026-10-29 19:22 UTC)
+
+**Live:**
+- `curl https://www.pennjets.com/charter` gives 200, with `AW-18544502023` and `allow_ad_personalization_signals: false` in the head.
+- `curl https://www.pennjets.com/services` gives **200** (it was 404): 509 bytes, the refresh to `/#paths`, and `noindex`.
+
+**Cookie inventory.** Read with a clean profile at 390. The walk was home, then `/charter`, then the Falcon Market Note, then both legal pages, the same walk as the local measurement:
+
+| | Before any interaction (home loaded) | End of the walk |
+|---|---|---|
+| Cookies | `_gcl_au`: domain `.pennjets.com`, path `/`, 90 days, SameSite=Lax, not HttpOnly | the same, and nothing else |
+| localStorage | `_gcl_ls` | `_gcl_ls` |
+| Google requests | 3 | 11 in all: `gtag/js` ×5, `www.google.com/ccm/collect` ×5, `ad.doubleclick.net/ccm/s/collect` ×1 |
+
+- **This matches the local reading and the policy text, so there is no follow-up commit.**
+- `dataLayer` holds `js` and the `config` with personalisation off, and no conversion event. That is expected, since the labels are empty and nothing was clicked or submitted.
+- gtag.js on production is 159,888 bytes over the wire (zstd) and 463,459 decoded, the same order as locally.
+- The CRM host was caught: 4 requests answered locally. So no ContentAnalytics row was written, and no form was submitted.
+- `pj_view_session` did not appear, because the caught CRM answered the note with an empty body. That row is WO-4.12's, unchanged by this order, and was not re-measured here.
+
+**For the lead (technical, no policy change proposed):**
+- `_gcl_au` is scoped to `.pennjets.com`, not `www.pennjets.com`.
+- So the browser would also send it to `pennforce.pennjets.com` on any request that carries cookies.
+- No call does send it, from reading the code. Every CRM call is a plain `fetch` with no `credentials` option, so it uses the default `same-origin`, and pennforce is another origin. That includes the view beacon, which is `fetch` with `keepalive` and not `sendBeacon`, which would always send cookies. No code change is needed. This is a reading of the code, not a captured request.
+
+**Row 10.** Joseph approved "all 24 rows" (joseph.md, lead commit `0ca55ae`, 12:42 EDT). Row 10's wording changed in the pre-PR commit (`f78e603`, the header number) and went live in PR #20. If his approval was given on the table the lead relayed before that change, the new row 10 still needs his word.
+
+**Still owed:** the two labels (a one-line commit when Joseph's file is on the order) and the date the tag started counting (Joseph to the lead).
 
 ## Tests, lint, build
 
