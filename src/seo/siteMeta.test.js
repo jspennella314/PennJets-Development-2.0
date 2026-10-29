@@ -9,7 +9,7 @@
 // prerendered).
 
 import { describe, it, expect } from 'vitest';
-import { isAllowedImage, safeImage, articleMeta, SITE_URL, DEFAULT_IMAGE } from './siteMeta.js';
+import { isAllowedImage, safeImage, articleMeta, SITE_URL, DEFAULT_IMAGE, ROUTES, DEFAULT_TITLE } from './siteMeta.js';
 
 const BLOB = 'https://algxvqsvihyabn9r.public.blob.vercel-storage.com/blog/test/x.jpg';
 
@@ -82,4 +82,25 @@ describe('refuse: the same path on a host that is not the store', () => {
   it('not a URL', () => expect(isAllowedImage('https://')).toBe(false));
   it('empty', () => expect(isAllowedImage('')).toBe(false));
   it('null', () => expect(isAllowedImage(null)).toBe(false));
+});
+
+// The brand in a title, exactly once, in Joseph's form "Penn Jets"
+// (2026-10-28). A hand-entered meta title that already carries the brand,
+// in either spelling, passes through untouched. WO-4.54 Part 3.
+describe('the title suffix: "Penn Jets", once', () => {
+  const withTitle = (title, metaTitle) => ({ ...post(null), title, metaTitle });
+  it('a bare title gets " | Penn Jets Market Notes"', () =>
+    expect(articleMeta(withTitle('Dassault Falcon 900B for Sale: 2026 Market Study')).title)
+      .toBe('Dassault Falcon 900B for Sale: 2026 Market Study | Penn Jets Market Notes'));
+  it('a hand-entered "… | Penn Jets" passes through once', () =>
+    expect(articleMeta(withTitle('x', 'Dassault Falcon 900B for Sale: 2026 Market Study | Penn Jets')).title)
+      .toBe('Dassault Falcon 900B for Sale: 2026 Market Study | Penn Jets'));
+  it('a hand-entered "… | PennJets" passes through too, not suffixed again', () =>
+    expect(articleMeta(withTitle('x', 'Hawker 800XP Market Update | PennJets')).title)
+      .toBe('Hawker 800XP Market Update | PennJets'));
+  it('the page titles say "Penn Jets"', () => {
+    expect(ROUTES['/buy'].title).toBe('Buy an Aircraft | Penn Jets');
+    expect(DEFAULT_TITLE).toBe('Penn Jets | Private Jet Brokerage & Aviation Consulting');
+    for (const [path, r] of Object.entries(ROUTES)) expect(r.title, path).not.toMatch(/PennJets/);
+  });
 });
