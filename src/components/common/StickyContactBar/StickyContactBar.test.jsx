@@ -101,3 +101,12 @@ describe('the Call conversion (WO-4.56)', () => {
     delete window.gtag;
   });
 });
+
+// On /contact the quote action goes to the charter quote form. WO-4.58.
+describe('Request a Quote on /contact (WO-4.58)', () => {
+  it('points to /charter#quote', async () => {
+    const el = await render('/contact');
+    const quote = [...el.querySelectorAll('[data-sticky-contact-bar] a')].find((a) => a.textContent.trim() === 'Request a Quote');
+    expect(quote.getAttribute('href')).toBe('/charter#quote');
+  });
+});

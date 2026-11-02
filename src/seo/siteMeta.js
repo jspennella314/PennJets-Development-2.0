@@ -11,7 +11,7 @@ export const SITE_NAME = 'Penn Jets';
 export const DEFAULT_IMAGE = '/images/og-card.png';
 export const DEFAULT_TITLE = 'Penn Jets | Private Jet Brokerage & Aviation Consulting';
 export const DEFAULT_DESCRIPTION =
-  'Independent aircraft brokerage and consulting. Buy, sell, or charter with someone who shows you the numbers.';
+  'Independent aircraft brokerage and consulting from Teterboro and the New York metro area. Buy, sell, or charter with someone who shows you the numbers.';
 
 // Titles stay under ~60 characters and descriptions under ~160 so they are not truncated.
 export const ROUTES = {
@@ -55,9 +55,9 @@ export const ROUTES = {
       'Joseph Pennella, founder and principal broker of Penn Jets. Private aviation sales and consulting: sole ownership, fractional, charter brokerage, and advisory.',
   },
   '/contact': {
-    title: 'Contact Penn Jets',
+    title: 'Contact Penn Jets | Teterboro & New York Metro',
     description:
-      'Talk to a broker about buying, selling, or chartering an aircraft. Call (954) 546-0763 or send a message.',
+      'Talk to a broker about buying, selling, or chartering an aircraft from Teterboro and the New York metro area. Call (201) 241-2749 or send a message.',
   },
   '/blog': {
     title: 'Market Notes | Penn Jets',

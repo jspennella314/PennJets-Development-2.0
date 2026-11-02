@@ -94,7 +94,7 @@ const Sell = () => {
                 </label>
                 <label className="block sm:col-span-2">
                   <span className="text-sm font-medium">Location</span>
-                  <input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Fort Lauderdale, FL" className={inputClass} />
+                  <input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Teterboro, NJ" className={inputClass} />
                 </label>
               </MoreFields>
             </div>
@@ -120,7 +120,7 @@ const Sell = () => {
             )}
             {status === 'error' && (
               <p className="mt-3 text-sm text-red-700" role="alert">
-                Sorry, that didn&apos;t go through. Please try again or call (954) 546-0763.
+                Sorry, that didn&apos;t go through. Please try again or call (201) 241-2749.
               </p>
             )}
           </form>

@@ -17,7 +17,9 @@
 // sets the effective date when he approves the wording.
 // WO-4.56, 2026-10-29: the Google Ads tag; the short version, the cookies
 // section and the sharing paragraph changed in the same commit as the tag.
-export const LAST_UPDATED = '29 October 2026';
+// WO-4.58, 2026-11-02: the contact block's address and phone (the move to
+// the New York metro).
+export const LAST_UPDATED = '2 November 2026';
 
 // Until real aliases exist, every published address on this site is
 // joe@pennjets.com. privacy@, compliance@, info@ and inquiries@ were all dead
@@ -131,8 +133,9 @@ export const SECTIONS = [
 
 export const CONTACT = {
   name: 'Penn Jets LLC',
-  address: '690 SW 1st Ct #1030, Miami, FL 33130',
+  // No street address: meetings are at the client's FBO (WO-4.58).
+  address: 'Clifton, New Jersey',
   email: PRIVACY_EMAIL,
-  phone: '(954) 546-0763',
-  phoneHref: 'tel:+19545460763',
+  phone: '(201) 241-2749',
+  phoneHref: 'tel:+12012412749',
 };

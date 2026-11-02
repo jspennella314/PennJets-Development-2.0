@@ -20,4 +20,4 @@ export const JOSEPH_BIO =
   "many are actually available, and what that means for a buyer's timeline.";
 
 export const JOSEPH_EMAIL = 'joe@pennjets.com';
-export const JOSEPH_PHONE = '(954) 546-0763';
+export const JOSEPH_PHONE = '(201) 241-2749';

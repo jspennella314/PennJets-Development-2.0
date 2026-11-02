@@ -320,7 +320,7 @@ const PennShare = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                      placeholder="(954) 546-0763"
+                      placeholder="(201) 241-2749"
                     />
                   </label>
                   <label className="block">
@@ -378,7 +378,7 @@ const PennShare = () => {
                 <p className="text-sm text-green-700" role="status">Thanks. Your inquiry is in. We'll be in touch.</p>
               )}
               {submitStatus === 'error' && (
-                <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again or call (954) 546-0763.</p>
+                <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again or call (201) 241-2749.</p>
               )}
             </form>
           </div>

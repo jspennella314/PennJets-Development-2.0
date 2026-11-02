@@ -187,9 +187,9 @@ const Compliance = () => {
               </p>
               <div className="bg-gray-50 p-6 rounded-lg">
                 <p className="text-gray-700 mb-2"><strong>Penn Jets LLC - Compliance Department</strong></p>
-                <p className="text-gray-700 mb-2">690 SW 1st Ct #1030, Miami, FL 33130</p>
+                <p className="text-gray-700 mb-2">Clifton, New Jersey</p>
                 <p className="text-gray-700 mb-2">Email: <a href="mailto:joe@pennjets.com" className="text-primary-600 hover:text-primary-700">joe@pennjets.com</a></p>
-                <p className="text-gray-700">Phone: <a href="tel:+19545460763" className="text-primary-600 hover:text-primary-700">(954) 546-0763</a></p>
+                <p className="text-gray-700">Phone: <a href="tel:+12012412749" className="text-primary-600 hover:text-primary-700">(201) 241-2749</a></p>
               </div>
             </section>
 

@@ -168,12 +168,24 @@ function slotOf(tag) {
     const sizes = (tag.match(/sizes="([^"]*)"/i) || [])[1];
     return 'link:' + rel.toLowerCase() + (sizes ? ':' + sizes : '');
   }
+  // Structured data, one slot per schema type: the home page's Organization
+  // (set by Helmet at render) was dropped here before WO-4.58, so the static
+  // page carried no schema at all. postbuild's Article on a note still wins.
+  if (/^<script/i.test(tag)) {
+    const body = tag.replace(/^<script[^>]*>/i, '').replace(/<\/script>$/i, '');
+    try {
+      const type = JSON.parse(body)['@type'];
+      return 'ld:' + (typeof type === 'string' ? type.toLowerCase() : 'unknown');
+    } catch {
+      return null;
+    }
+  }
   return null;
 }
 
 function headTagList(html) {
   const head = headOf(html);
-  const tags = head.match(/<title[^>]*>[\s\S]*?<\/title>|<meta\b[^>]*?\/?>|<link\b[^>]*?\/?>/gi) || [];
+  const tags = head.match(/<title[^>]*>[\s\S]*?<\/title>|<meta\b[^>]*?\/?>|<link\b[^>]*?\/?>|<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi) || [];
   return tags.map((t) => ({ tag: t, slot: slotOf(t) })).filter((t) => t.slot);
 }
 
