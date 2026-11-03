@@ -126,7 +126,7 @@ describe('the quote form conversion (WO-4.56)', () => {
 describe('the Call button conversion (WO-4.56)', () => {
   it('a click on the hero Call counts a call, with the call label', async () => {
     const el = await render(() => ok(200, { success: true }));
-    const call = [...el.querySelectorAll('a[href="tel:+19545460763"]')].find((a) => /Call \(954\)/.test(a.textContent));
+    const call = [...el.querySelectorAll('a[href="tel:+12012412749"]')].find((a) => /Call \(201\)/.test(a.textContent));
     call.addEventListener('click', (e) => e.preventDefault());
     await act(async () => { call.click(); });
     expect(sendConversion).toHaveBeenCalledTimes(1);

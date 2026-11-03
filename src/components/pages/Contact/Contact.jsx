@@ -122,7 +122,7 @@ const Contact = () => {
   const contactInfo = [
     {
       title: 'Phone',
-      info: '(954) 546-0763',
+      info: '(201) 241-2749',
       icon: HiPhone
     },
     {
@@ -132,18 +132,25 @@ const Contact = () => {
     },
     {
       title: 'Address',
-      info: '690 SW 1st Ct #1030\nMiami, FL 33130',
-      description: 'Visit our offices by appointment',
+      info: 'Clifton, New Jersey\nServing Teterboro (TEB), Westchester County (HPN), Morristown (MMU), and the New York metro area.',
+      description: 'Meetings at your FBO by appointment.',
       icon: HiLocationMarker
     }
   ];
 
+  // Markets served, not offices: airports and cities, never a street address
+  // (WO-4.58). Meetings are at the client's FBO.
   const offices = [
     {
-      city: 'Miami, FL',
-      address: '690 SW 1st Ct #1030\nMiami, FL 33130',
-      phone: '(954) 546-0763',
+      city: 'New York Metro · Teterboro',
+      address: 'Teterboro (TEB) · Westchester County (HPN) · Morristown (MMU)',
+      phone: '(201) 241-2749',
       isHQ: true
+    },
+    {
+      city: 'South Florida',
+      address: 'Fort Lauderdale · Palm Beach · Miami',
+      phone: '(201) 241-2749',
     },
   ];
 
@@ -261,7 +268,7 @@ const Contact = () => {
                   <p className="text-sm text-green-700" role="status">Thank you. Your message is in. We'll be in touch.</p>
                 )}
                 {submitStatus === 'error' && (
-                  <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email joe@pennjets.com, or call (954) 546-0763.</p>
+                  <p className="text-sm text-red-700" role="alert">Sorry, that didn't go through. Please try again, email joe@pennjets.com, or call (201) 241-2749.</p>
                 )}
               </form>
             </Card>
@@ -301,16 +308,16 @@ const Contact = () => {
           <div className="text-center mb-12">
             <h2 className="heading-lg mb-4">Our Locations</h2>
             <p className="body-lg max-w-2xl mx-auto">
-              Visit us at any of our convenient locations or schedule a meeting at your preferred airport.
+              Meetings at your FBO by appointment, in the New York metro area or South Florida.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {offices.map((office, index) => (
               <Card key={index} className="text-center">
                 {office.isHQ && (
                   <div className="inline-block bg-primary-100 text-primary-800 text-xs font-medium px-2 py-1 rounded-full mb-4">
-                    Headquarters
+                    Primary
                   </div>
                 )}
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">

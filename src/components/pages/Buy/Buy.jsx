@@ -156,7 +156,7 @@ const Buy = () => {
               )}
               {status === 'error' && (
                 <p className="mt-3 text-sm text-red-700" role="alert">
-                  Sorry, that didn't go through. Please try again or call (954) 546‑0763.
+                  Sorry, that didn't go through. Please try again or call (201) 241‑2749.
                 </p>
               )}
               {/* Under the form: the aircraft buyers have recently asked

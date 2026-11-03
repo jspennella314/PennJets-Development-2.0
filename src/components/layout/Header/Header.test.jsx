@@ -148,7 +148,7 @@ describe('the header number is a call conversion (WO-4.56)', () => {
     sendConversion.mockClear();
     const el = await render('/charter');
     expect(sendConversion).not.toHaveBeenCalled();
-    const call = el.querySelector('header a[href="tel:+19545460763"]');
+    const call = el.querySelector('header a[href="tel:+12012412749"]');
     call.addEventListener('click', (e) => e.preventDefault());
     await act(async () => { call.click(); });
     expect(sendConversion).toHaveBeenCalledTimes(1);

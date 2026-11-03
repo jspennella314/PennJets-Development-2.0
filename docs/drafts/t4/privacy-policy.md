@@ -10,7 +10,7 @@
 
 > Decisions still outstanding are in `for-joseph-WO-4.10.md` beside this file.
 
-**Penn Jets LLC. Last updated 29 October 2026.**
+**Penn Jets LLC. Last updated 2 November 2026.**
 
 This page describes what happens to information when you use pennjets.com. It is written from what this site and the system behind it actually do, not from a template. If anything here is unclear, ask us and we will answer plainly.
 
@@ -92,6 +92,6 @@ If you subscribed to the newsletter, the unsubscribe link in any message removes
 ## Contact
 
 Penn Jets LLC  
-690 SW 1st Ct #1030, Miami, FL 33130  
+Clifton, New Jersey  
 joe@pennjets.com  
-(954) 546-0763
+(201) 241-2749

@@ -20,7 +20,7 @@ const ContactConsultant = ({ navigate }) => (
       <div className="text-sm text-gray-600">Private Jet Advisor</div>
     </div>
     <div className="space-y-2 text-sm mb-4">
-      <div>Phone: (954) 546-0763</div>
+      <div>Phone: (201) 241-2749</div>
       <div>Email: joe@pennjets.com</div>
     </div>
     <button

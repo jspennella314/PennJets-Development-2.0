@@ -16,6 +16,13 @@ const Container = ({ children }) => (
   <div className="mx-auto w-full max-w-6xl px-6">{children}</div>
 );
 
+// Where Penn Jets works, for the Organization schema. WO-4.58.
+const AREA_SERVED = [
+  { "@type": "Place", "name": "Teterboro, NJ" },
+  { "@type": "Place", "name": "New York metro area" },
+  { "@type": "Place", "name": "South Florida" },
+];
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -30,29 +37,30 @@ const Home = () => {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Penn Jets",
+            "legalName": "Penn Jets LLC",
             "url": "https://www.pennjets.com",
             "logo": "https://www.pennjets.com/images/pennjets-logo-192.png",
             "description": "Private aviation brokerage and consulting firm specializing in aircraft sales, acquisitions, and charter brokerage",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "690 SW 1st Ct #1030",
-              "addressLocality": "Miami",
-              "addressRegion": "FL",
-              "postalCode": "33130",
-              "addressCountry": "US"
-            },
+            // No address: meetings are at the client's FBO, and there is no
+            // office to list. The markets served say where instead. WO-4.58.
+            "areaServed": AREA_SERVED,
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+1-954-546-0763",
+              "telephone": "+1-201-241-2749",
               "contactType": "Sales",
-              "areaServed": "US",
+              "areaServed": AREA_SERVED,
               "availableLanguage": "English"
             },
             // was info@pennjets.com. This is the address search engines and
             // assistants surface as the way to reach the company. WO-4.20.
             "email": "joe@pennjets.com",
+            // The footer's four profiles (WO-4.53), confirmed in WO-4.58.
             "sameAs": [
-              "https://www.pennjets.com"
+              "https://www.pennjets.com",
+              "https://www.linkedin.com/company/penn-jets-llc/",
+              "https://x.com/pennjets",
+              "https://www.instagram.com/pennjets/",
+              "https://www.facebook.com/pennjets"
             ]
           })}
         </script>

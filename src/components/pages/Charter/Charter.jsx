@@ -60,8 +60,7 @@ const Hero = () => (
           {/*
             Where charter departs, stated plainly: Joseph's decision of
             2026-10-20 (Round 7). Wording for his approval at the WO-4.50
-            report. The Miami address and the (954) number are the registered
-            office and stay where they are.
+            report.
           */}
           <p className="mt-2 text-sm text-white/85 sm:text-base">
             Penn Jets arranges charter from New York and New Jersey airports, including Teterboro (TEB), Westchester (HPN) and Morristown (MMU).
@@ -74,11 +73,11 @@ const Hero = () => (
               {CTA_LABEL}
             </a>
             <a
-              href="tel:+19545460763"
+              href="tel:+12012412749"
               onClick={() => sendConversion(SEND_TO_CALL)}
               className="rounded-2xl px-5 py-3 text-sm font-medium text-white ring-1 ring-white/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/80"
             >
-              Call (954) 546‑0763
+              Call (201) 241‑2749
             </a>
           </div>
         </div>
@@ -381,7 +380,7 @@ const QuoteForm = () => {
           )}
           {status === "error" && (
             <p className="mt-3 text-sm text-red-700" role="alert">
-              Sorry, that didn't go through. Please try again or call (954) 546‑0763.
+              Sorry, that didn't go through. Please try again or call (201) 241‑2749.
             </p>
           )}
         </form>
@@ -410,7 +409,7 @@ const FooterCta = () => (
       <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
         <div>
           <h3 className="text-xl font-semibold">Ready to go wheels up?</h3>
-          <p className="mt-1 text-sm text-white/80">Call (954) 546‑0763 or send your itinerary.</p>
+          <p className="mt-1 text-sm text-white/80">Call (201) 241‑2749 or send your itinerary.</p>
         </div>
         <div className="flex gap-3">
           <a href="#quote" className="rounded-2xl bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow hover:shadow-md">{CTA_LABEL}</a>
